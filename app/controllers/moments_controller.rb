@@ -12,7 +12,10 @@ class MomentsController < ApplicationController
     @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page], :page_size => 999)
   end
 
-  def detail
-  	
+  def details
+    kActivitiesPerRow = 3
+    kRowPerPage = 2
+    photoNum = kActivitiesPerRow * kRowPerPage
+    @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page].to_i - 1, :page_size => photoNum)
   end
 end

@@ -26,3 +26,7 @@ gem "therubyracer"
 gem 'capistrano'
 
 gem 'airbrake'
+
+gem 'log4r'
+
+gem 'thin'

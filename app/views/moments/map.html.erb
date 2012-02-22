@@ -51,26 +51,12 @@
     	</div>
     	<div class="side-row">
     		<div class="side-row-title" id="info-title-info">活动信息</div>
-    		<div class="side-row-box  multi-col-box">
-    			<div class="box-col right-border">
-    				<h1><%= @moment['data']['items_count'] %></h1>
-    				<h2>照片/视频</h2>
-    			</div>
-    			<div class="box-col right-border">
-    				<h1><%= @moment['data']['participators_count']  %></h1>
-    				<h2>参与人数</h2>
-    			</div>
-    			<div class="box-col">
-    				<h1> <%= @moment['data']['likes_count'] %> </h1>
-    				<h2>喜欢数</h2>
-    			</div>
-    			<div class="clearfix"></div>
-    		</div>
+    		<%= render :partial => "widgets/moment_info", :locals => {:moment => @moment['data']} %>
     	</div>
 
-    	<%= render :partial => "widgets/download_bar", :locals => {:hide_title => false} %>
-
-
+      <div class="side-row">
+        <%= render :partial => "widgets/download_bar", :locals => {:hide_title => false} %>
+      </div>
     </div>
 
 

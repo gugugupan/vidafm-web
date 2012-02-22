@@ -27,7 +27,7 @@ Bluerain::Application.routes.draw do
 
   resources :moments, :only => [:show], :constraints => {:id => /[0-9]+/} do
     get "map", :on => :member
-    get "detail", :on => :member
+    get "details", :on => :member
   end
 
   match '/auth/:provider/callback' => 'sessions#create'

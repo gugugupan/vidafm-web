@@ -1,0 +1,114 @@
+ 	<%= content_for :page_specific_asset do %> 	
+ 		<%= stylesheet_link_tag "moments/details.reset" %>
+ 		<%= stylesheet_link_tag "moments/details" %>
+		<!--[if IE]>
+			<%= stylesheet_link_tag "moments/details.ie" %>
+		<![endif]-->
+ 	<%  end -%>
+
+<div id="moment-details">
+	<div id="header">
+		<div id="header_content">
+			<%= image_tag "moments/details/header_logo.jpg", :id => :logo %>
+
+
+			<% unless session[:current_user] %>
+				<%= render :partial => "widgets/login" %>
+			<% else %>
+				<%= render :partial => "widgets/profile", :locals => {:current_user => session[:current_user] } %>
+			<% end %>
+
+		</div>
+		
+	</div><!-- header end -->
+
+	<div id="main">
+		
+		<%= render :partial => "widgets/banner" %>
+
+		<div id="left">
+
+			<div id="moment_info">
+
+				<div class="container_left">
+					<div class="top"></div>
+					<div class="content">
+						<div>
+							<script type="text/javascript">
+								moment = <%= raw @moment.to_json %>
+							</script>
+							<div id="row-title"><%= @moment['data']['name']  %></div>
+							<font> <%= @moment['data']['user']['name'] %> </font>
+							<p> <%= @moment['data']['location'] %> </p>
+						</div>
+					</div>
+					<div class="bottom"></div>
+				</div>
+
+				
+				<%= image_tag @moment['data']['user']['avatar_file'] %>
+
+			</div><!-- moment info end -->
+
+			<div id="thumbnail_area_big">
+
+
+
+			  <%= render :partial => "moments/details/thumbnails", :collection => @moment['data']['items'], :as => 'activity'  %>
+
+				
+				<div class="clear"></div>
+
+				<div id="page_bar">
+
+					<font class="photo_number_big"><%= @moment['data']['items_count'] %></font>
+
+					<div class="page_number_area">
+							<%= vida_pagination details_moment_url(@moment['data']['id']), @moment['page_count'], @moment['current_page'] %>
+					</div>
+
+					<div class="clear"></div>
+				</div>
+
+			</div><!-- thumbnail_area end -->
+
+			<div id="from_weibo">
+				<h1>来自微博 1</h1>
+			</div>
+
+			<div class="container_left">
+				<div class="top"></div>
+				<div class="content">
+					<!-- weibo content -->
+				</div>
+				<div class="bottom"></div>
+			</div><!-- from weibo end -->
+
+		</div><!-- left end -->
+
+		<div id="info-col" class="container_right">
+
+			<div class="side-row">
+				<%= render :partial => "widgets/award_list", :locals => {:moment => @moment['data']['winners']} %>
+			</div>
+
+			<div class="side-row">
+				<%= render :partial => "widgets/moment_info", :locals => {:moment => @moment['data']} %>
+			</div>
+
+			<div class="side-row">
+				<%= render :partial => "widgets/participators", :locals => {:moment => @moment['data']} %>
+			</div>
+			<div class="side-row">
+				<%= render :partial => "widgets/map", :locals => { :activities => @moment['data']['items'] } %>
+			</div>
+			<div class="side-row">
+				<%= render :partial => "widgets/download_bar", :locals => {:hide_title => false} %>
+			</div>
+
+		</div>
+
+
+	</div><!-- main end -->
+
+</div>

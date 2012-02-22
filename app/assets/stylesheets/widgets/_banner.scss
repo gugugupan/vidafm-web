@@ -1,0 +1,9 @@
+#v {
+	width: 968px;
+	height: 251px;
+	background-image: image-url("moments/details/v.png");
+	background-color: white;
+	@include round-shadow-box;
+	border-top: 0;
+	border-bottom: 0;
+}

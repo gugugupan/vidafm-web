@@ -1,0 +1,13 @@
+<div class="thumbnail_big">
+	<%= link_to moment_path(activity['moment_id']) + "#id=#{activity['id']}" do %>
+		<%= image_tag activity['photo']['url_m'], :class => "thumbnails" %>
+	<% end %>
+	<div class="thumbnail_big_like">
+		<% if activity['liked'] == 'true' %>
+			<span class="thumnail_like liked"> </span>
+		<% else %>
+			<%= link_to "", like_activity_path(activity['id']), :class => "thumbnail_like", :remote => true, :method => :PUT %>
+		<% end %>
+		<span class="likes-num"><%= activity['likes_count'] %></span>
+	</div>
+</div>

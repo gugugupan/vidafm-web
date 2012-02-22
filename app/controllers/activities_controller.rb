@@ -6,4 +6,5 @@ class ActivitiesController < ApplicationController
   def likelist
   	@activities = Activity.fetchLikeList(params[:id])
   end
+
 end

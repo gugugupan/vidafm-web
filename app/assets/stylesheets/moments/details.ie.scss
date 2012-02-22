@@ -1,0 +1,60 @@
+/* Welcome to Compass. Use this file to write IE specific override styles.
+ * Import this file using the following HTML or equivalent:
+ * <!--[if IE]>
+ *   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+ * <![endif]--> */
+
+ /* ---------------------------------- header ---------------------------------- */
+*+html #header {
+
+ 	#login {
+ 		
+ 		font {
+ 			padding-top:17px;
+ 		}
+ 	}
+
+ 	#account {
+ 		
+ 		a {
+ 			padding-top:7px;
+ 		}
+ 	}
+ }
+
+*html #header {
+	background-repeat:repeat-x;
+
+ 	#login {
+ 		
+ 		font {
+ 			padding-top:17px;
+ 		}
+ 	}
+
+ 	#account {
+ 		
+ 		a {
+ 			padding-top:7px;
+ 		}
+ 	}
+ }
+
+ /* ---------------------------------- right ---------------------------------- */
+*html #right {
+	padding-left:0px;
+}
+
+*html #right_arrow {
+	left:-10px;
+}
+
+*html #comment {
+	
+	#input_area {
+		
+		.user_avatar_middle {
+			margin-left:8px;
+		}
+	}
+}

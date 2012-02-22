@@ -1,0 +1,18 @@
+<div id="account">
+	<div class="user_avatar">
+		<img class="avatar_img" src=" <%= current_user['avatar_file'] %> "></img>
+		<%= image_tag "moments/details/avatar_shadow.png", :class => "avatar_shadow" %>
+
+	</div>
+	<ul>
+		<li>
+			<a href="#"><%= current_user['name'] %></a>
+		</li>
+		<li>
+			<a>|</a>
+		</li>
+		<li>
+			<%= link_to("退出", "/auth/logout", :id => "current_user_logout")  %>
+		</li>
+	</ul>
+</div>
