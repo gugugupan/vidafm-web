@@ -1,0 +1,29 @@
+$bar_length: 500px;
+$thumbnail_a: 61px;
+
+@import "mixins";
+
+#activity-show {
+  background-image: url(/assets/moments/bg.png);
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+
+  #container {
+    width: 1000px;
+    height: 512px;
+    margin: 30px auto 20px;
+
+    #activity-col {
+      width: 600px;
+      height: 633px;
+      float: left;
+      @include round-shadow-box;
+
+
+      #main-row {
+      }
+    }
+  }
+}

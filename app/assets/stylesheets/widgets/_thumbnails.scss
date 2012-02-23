@@ -1,0 +1,21 @@
+#thumbnails {
+	.box-content {
+		margin-top: 6px;
+		.box-thumbnails {
+			width: 56px;
+			height: 56px;
+			margin-right: 6px;
+		}
+
+
+
+		.pagination {
+			margin-left: -5px;
+			.page_number, .prev_page, .next_page, .page-dot {
+				line-height: 13px;
+				padding: 2px 0;
+			}	
+		}
+			
+	}
+}

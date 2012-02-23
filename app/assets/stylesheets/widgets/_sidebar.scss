@@ -1,47 +1,91 @@
-	#info-col {
-		float: left;
-		margin-left: 20px;
-		.side-row {
-			margin-bottom: 20px;
+#info-col {
+	float: left;
+	margin-left: 20px;
+	.side-row {
+		margin-bottom: 20px;
 
-			.side-row-box {
-				width: 265px;
-				padding: 5px;
-				background: white;
-				font-size: 12px;
+		.side-row-box {
+			width: 265px;
+			padding: 5px;
+			background: white;
+			font-size: 12px;
 
-				@include round-shadow-box;
+			@include round-shadow-box;
 
-				&.multi-col-box {
-					padding: 10px 0;
-					width: 275px;
+			&#activity-info {
+				position: relative;
+
+				.minor-arrow-r {
+					position: absolute;
+					top: 20px;
+					left: -20px;
+					z-index: 2;
 				}
 
-				.box-col {
-					width: 91px;
-					height: 45px;
+				.box-label {
 					float: left;
-					text-align: center;
-					h1 {
-						font: bold 24px helvetica;
-					}
+				}
 
-					&.right-border {
-						border-right: 1px solid #ccc;
+				.box-wrapper {
+					float: left;
+					width: 200px;
+					margin-left: 10px;
+
+					.box-title {
+						color: #4D4D4D;
+						.created-time {
+							float: right;
+							color: #CCC;
+						}
+					}
+					.box-content {
+						margin-top: 5px;
 					}
 				}
 
+				.clearfix {
+					clear: both;
+				}
+			}
+
+			&#thumbnails {
 				.box-title {
-					color: #999;
+					padding-left: 55px;
+					background: image-url("icons.png") no-repeat 0 -38px;
+				}
+			}
+
+
+			&.multi-col-box {
+				padding: 10px 0;
+				width: 275px;
+			}
+
+			.box-col {
+				width: 91px;
+				height: 45px;
+				float: left;
+				text-align: center;
+				h1 {
+					font: bold 24px helvetica;
 				}
 
-				.box-content {
-					color: #4D4D4D;
-
+				&.right-border {
+					border-right: 1px solid #ccc;
 				}
+			}
+
+			.box-title {
+				color: #999;
+			}
+
+			.box-content {
+				color: #4D4D4D;
+
 			}
 		}
 	}
+}
 
 #moment-name {
 	.box-title {
@@ -67,5 +111,31 @@
 		margin-top: 5px;
 	}
 }
+
+#activity-show {
+	#info-col {
+		.collapse-row {
+			margin-top: -20px;
+
+			.side-row-box {
+				padding: 11px;
+				border: 0;
+				border-top: 1px solid #e5e5e5;
+				border-radius: 0 0 4px 4px;
+			}
+		}
+
+		#moment-name {
+			background-color: rgb(247, 247, 247);
+			-webkit-border-radius: 4px 4px 0 0;
+			-moz-border-radius: 4px 4px 0 0;
+			border-radius: 4px 4px 0 0;
+			border-color: rgb(247, 247, 247);
+		}
+
+	}
+}
+
+
 
 

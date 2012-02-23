@@ -1,0 +1,14 @@
+<div class="side-row-box" id="thumbnails">
+	<div class="box-title"> <%= moment['data']['items_count'] %> </div>
+	<div class="box-content">
+		<% moment["data"]['items'].each do |e| %>
+			<% e.stringify_keys! %>
+			<%= image_tag e["photo"]['url_s'], :class => "box-thumbnails" %>
+		<% end %>
+
+		<div class="pagination">
+			<%= vida_pagination moment_url(moment['data']['id']), moment['page_count'], moment['current_page'] + 1 %>		
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>

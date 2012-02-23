@@ -8,7 +8,7 @@
  *= require video-js
  *= require bootstrap.min
  *= require_self
- *= require moments/show
+ *= require activities/show
  *= require moments/map
  *= require frontpage
  *= require android_download
@@ -36,4 +36,8 @@ a#follow-us {
   &:hover {
     background: image-url("frontpage/follow-us-pon.png") no-repeat 0 -98px;
   }
+}
+
+.clearfix {
+  clear: both;
 }

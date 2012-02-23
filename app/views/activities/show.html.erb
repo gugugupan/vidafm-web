@@ -1,0 +1,37 @@
+<%= content_for :title do %>
+  <%= @moment["data"]["name"] %> - VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
+<div id="activity-show">
+  <%= render :partial => "widgets/header" %>
+  <div id="container">
+    <div id="activity-col">
+      <div id="main-row">
+        <%= image_tag @activity['photo']['url_l'] %>
+        <div id="like-bar"></div>
+      </div>
+    </div>
+    <div id="info-col">
+      <div class="side-row">
+        <%= render :partial => "widgets/map", :locals => {:moment_id => @moment['data']['id'], :activities => [@activity] } %>
+      </div>
+      <div class="side-row">
+        <%= render :partial => "widgets/activity_info", :locals => {:activity => @activity } %>
+      </div>
+
+
+      <div class="side-row">
+        <%= render :partial => "moments/name", :locals => {:moment => @moment['data'] } %>
+      </div>
+
+      <div class="side-row collapse-row">
+        <%= render :partial => "widgets/thumbnails", :locals => {:moment => @moment } %>
+      </div>    
+
+      <div class="side-row">
+        <%= render :partial => "widgets/download_bar", :locals => {:hide_title => false} %>
+      </div>
+    </div>
+  </div>
+
+</div>
