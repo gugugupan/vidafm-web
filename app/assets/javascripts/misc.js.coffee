@@ -4,3 +4,7 @@
 $(document).ready ->
   $("a[data-remote=true]").live 'click', ->
       $(@).text($(@).attr("data-disable-with"))
+
+
+  $("#v .close").click ->
+  	$(@).parent("#v").remove()

@@ -291,6 +291,13 @@ $thumbnail_a: 61px;
     left: 50%;
     width: $bar_length;
 
+
+    .download_bar {
+      margin-left: 23px;
+      margin-top: 513px;
+      float: left;
+    }
+
     #login_bar{
       position: absolute;
       top: 0px;
@@ -545,50 +552,6 @@ $thumbnail_a: 61px;
 
 
         }   
-      }
-    }
-
-    
-
-
-    #download_bar{
-      position: absolute;
-      top: 512px;
-      left:24px;
-      width:476px;
-      height:90px;
-
-      #download_icon{
-        height: 24px;
-        width: 400px;
-      }
-
-      #download_iphone{
-        display: block;
-        position:absolute;
-        top:25px;
-        left: 0px;
-        height: 61px;
-        width:208px;
-        background-image:image-url("moments/download.png");
-        background-position:0px 0px;
-      }
-      #download_iphone:hover{
-        background-position:0px -72px;
-      }
-
-      #download_android{
-        display: block;
-        position:absolute;
-        top:25px;
-        left: 220px;
-        height: 61px;
-        width:208px;
-        background-image:image-url("moments/download.png");
-        background-position:-220px 0px;
-      } 
-      #download_android:hover{
-        background-position:-220px -72px;
       }
     }
   }

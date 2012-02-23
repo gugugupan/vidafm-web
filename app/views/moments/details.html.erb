@@ -10,17 +10,13 @@
 	<div id="header">
 		<div id="header_content">
 			<%= image_tag "moments/details/header_logo.jpg", :id => :logo %>
-
-
 			<% unless session[:current_user] %>
 				<%= render :partial => "widgets/login" %>
 			<% else %>
 				<%= render :partial => "widgets/profile", :locals => {:current_user => session[:current_user] } %>
 			<% end %>
-
 		</div>
-		
-	</div><!-- header end -->
+	</div>
 
 	<div id="main">
 		
@@ -48,7 +44,7 @@
 				
 				<%= image_tag @moment['data']['user']['avatar_file'] %>
 
-			</div><!-- moment info end -->
+			</div>
 
 			<div id="thumbnail_area_big">
 
@@ -70,21 +66,10 @@
 					<div class="clear"></div>
 				</div>
 
-			</div><!-- thumbnail_area end -->
-
-			<div id="from_weibo">
-				<h1>来自微博 1</h1>
 			</div>
 
-			<div class="container_left">
-				<div class="top"></div>
-				<div class="content">
-					<!-- weibo content -->
-				</div>
-				<div class="bottom"></div>
-			</div><!-- from weibo end -->
 
-		</div><!-- left end -->
+		</div>
 
 		<div id="info-col" class="container_right">
 
@@ -109,6 +94,6 @@
 		</div>
 
 
-	</div><!-- main end -->
+	</div>
 
 </div>

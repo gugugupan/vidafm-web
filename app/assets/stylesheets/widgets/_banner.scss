@@ -6,4 +6,20 @@
 	@include round-shadow-box;
 	border-top: 0;
 	border-bottom: 0;
+
+	.download_bar {
+		margin-top: 89px;
+		margin-right: 76px;
+		float: right;
+		position: initial;
+		width: initial;
+
+		.download_iphone, .download_android {
+			float: left;
+		}
+
+		.download_android {
+			margin-left: 20px;
+		}
+	}
 }
