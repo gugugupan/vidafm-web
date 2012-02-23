@@ -6,26 +6,18 @@
 		<![endif]-->
  	<%  end -%>
 
+
+<%= content_for :title do %>
+  <%= @moment["data"]["name"] %> - VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
+
 <div id="moment-details">
-	<div id="header">
-		<div id="header_content">
-			<%= image_tag "moments/details/header_logo.jpg", :id => :logo %>
-			<% unless session[:current_user] %>
-				<%= render :partial => "widgets/login" %>
-			<% else %>
-				<%= render :partial => "widgets/profile", :locals => {:current_user => session[:current_user] } %>
-			<% end %>
-		</div>
-	</div>
-
+	<%= render :partial => "widgets/header" %>
 	<div id="main">
-		
 		<%= render :partial => "widgets/banner" %>
-
 		<div id="left">
-
 			<div id="moment_info">
-
 				<div class="container_left">
 					<div class="top"></div>
 					<div class="content">
@@ -40,23 +32,12 @@
 					</div>
 					<div class="bottom"></div>
 				</div>
-
-				
 				<%= image_tag @moment['data']['user']['avatar_file'] %>
-
 			</div>
-
 			<div id="thumbnail_area_big">
-
-
-
 			  <%= render :partial => "moments/details/thumbnails", :collection => @moment['data']['items'], :as => 'activity'  %>
-
-				
 				<div class="clear"></div>
-
 				<div id="page_bar">
-
 					<font class="photo_number_big"><%= @moment['data']['items_count'] %></font>
 
 					<div class="page_number_area">
@@ -85,7 +66,7 @@
 				<%= render :partial => "widgets/participators", :locals => {:moment => @moment['data']} %>
 			</div>
 			<div class="side-row">
-				<%= render :partial => "widgets/map", :locals => { :activities => @moment['data']['items'] } %>
+				<%= render :partial => "widgets/map", :locals => {:moment_id => @moment['id'], :activities => @moment['data']['items'] } %>
 			</div>
 			<div class="side-row">
 				<%= render :partial => "widgets/download_bar", :locals => {:hide_title => false} %>

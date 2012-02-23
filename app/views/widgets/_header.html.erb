@@ -1,0 +1,10 @@
+<div id="header">
+	<div id="header_content">
+		<%= image_tag "moments/details/header_logo.jpg", :id => :logo %>
+		<% unless session[:current_user] %>
+			<%= render :partial => "widgets/login" %>
+		<% else %>
+			<%= render :partial => "widgets/profile", :locals => {:current_user => session[:current_user] } %>
+		<% end %>
+	</div>
+</div>

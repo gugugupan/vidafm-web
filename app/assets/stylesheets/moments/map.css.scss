@@ -1,15 +1,5 @@
 $bar_length: 500px;
-@mixin round-shadow-box {
-	border:6px solid white;
-  -moz-box-shadow:0px 2px 2px #ccc;
-  -webkit-box-shadow:0px 2px 2px #ccc;
-  box-shadow:0px 2px 2px #ccc;
-
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-}
-
+@import "mixins";
 
 #moment_map {
 	position:fixed;
@@ -19,103 +9,10 @@ $bar_length: 500px;
 	height:100%;
 	width:100%;
 
-	#logo_vida {
-		width: 500px;
-		position: fixed;
-		right: 50%;
-	}
-
-  #right_bar {
-    position:fixed;
-    top: 0px;
-    left: 50%;
-    width: $bar_length;
-    #login_bar{
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      padding-top: 36px;
-      padding-left: auto;
-      height: 40px;
-      width: $bar_length;
-
-      #current_user_photo{
-        float: right;
-        margin-right:10px;
-        height:30px;
-        width:30px;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-      }
-
-      #current_user_name{
-        float: right;
-        margin-right: 10px;
-        font-size:14px;
-        font-weight:700;
-        line-height:30px;
-        color:#4D4D4D;
-      }
-
-      #current_user_logout{
-        float: right;
-        margin-right: 10px;
-        font-weight:700;
-        line-height:30px;
-        font-size: 14px;
-        color:#4D4D4D;
-      }
-      #current_user_logout:hover{
-        font-weight:900px;
-        font-size:16px;
-        color:#000000;
-      }
-
-
-
-      .bar{
-        float: right;
-        height: 31px;
-        width: 30px;
-        margin-right: 11px;
-        background-image:image-url("moments/login_icon.png");
-      }
-      #qq_icon{
-        background-position:-123px -36px;
-      }
-      #qq_icon:hover{
-        background-position:-123px 0px;
-      }
-      #renren_icon{
-        background-position:-82px -36px;
-      }
-      #renren_icon:hover{
-        background-position:-82px 0px;
-      }
-      #douban_icon{
-        background-position:-41px -36px;
-      }
-      #douban_icon:hover{
-        background-position:-41px 0px;
-      }
-      #weibo_icon{
-        background-position:0px -36px;
-      }
-      #weibo_icon:hover{
-        background-position:0px 0px;
-      }
-      #login{
-        float: right;
-        margin-right: 10px;
-      }
-    }
-  }
-
 	#container {
 		width: 1000px;
 		height: 512px;
-		margin: 80px auto 20px;
+		margin: 30px auto 20px;
 
 		#map-col {
 			width: 659px;

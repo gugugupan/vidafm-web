@@ -3,8 +3,8 @@
 		<%= image_tag activity['photo']['url_m'], :class => "thumbnails" %>
 	<% end %>
 	<div class="thumbnail_big_like">
-		<% if activity['liked'] == 'true' %>
-			<span class="thumnail_like liked"> </span>
+		<% if activity['liked'] %>
+			<span class="thumbnail_like liked"> </span>
 		<% else %>
 			<%= link_to "", like_activity_path(activity['id']), :class => "thumbnail_like", :remote => true, :method => :PUT %>
 		<% end %>

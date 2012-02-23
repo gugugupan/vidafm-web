@@ -9,30 +9,7 @@
 
 <div id="moment_map">
   <div id="bg_white"> </div>
-  <div id="left_outline">
-    <div id="logo_vida">
-      <a href="/">
-        <%=image_tag("moments/logo_vida.png")%>
-      </a>
-    </div>
-  </div>
-
-  <div id="right_bar"> 
-    <div id="login_bar"> 
-    <% if @current_user.nil? %>
-			<%= link_to "", "/auth/tqq", :class => "bar", :id => "qq_icon" %>
-      <%= link_to "", "/auth/douban", :class => "bar", :id => "douban_icon" %>
-      <%= link_to "", "/auth/tsina", :class => "bar", :id => "weibo_icon" %>
-      <div id="login">
-        <%=image_tag("moments/login.png")%>
-      </div>
-    <% else %>
-      <%= link_to("退出", "/auth/logout", :id => "current_user_logout")  %>
-      <div id="current_user_name"><%=@current_user['name']%></div>
-      <%=image_tag(@current_user['avatar_file'],:id => "current_user_photo") %>
-    <% end %>
-    </div>
-  </div>
+  <%= render :partial => "widgets/header" %>
 
   <div id="container">
 	  <div id="map-col">
@@ -41,18 +18,15 @@
     <div id="info-col">
     	
     	<div class="side-row">
-    		<div class="side-row-title" id="info-title-name">活动名称
-    			<%= link_to "查看详情>>", moment_path(@moment['data']['id']), :id => "view-detail" %>
-    		</div>
-    		<div class="side-row-box" id="moment-name">
-    			<%= @moment["data"]["name"] %>
-    			<span class="indicator"></span>
-    		</div>
+        <%= render :partial => "moments/name", :locals => {:moment => @moment['data']} %>
     	</div>
     	<div class="side-row">
-    		<div class="side-row-title" id="info-title-info">活动信息</div>
     		<%= render :partial => "widgets/moment_info", :locals => {:moment => @moment['data']} %>
     	</div>
+
+      <div class="side-row">
+        <%= render :partial => "widgets/participators", :locals => {:moment => @moment['data']} %>
+      </div>
 
       <div class="side-row">
         <%= render :partial => "widgets/download_bar", :locals => {:hide_title => false} %>

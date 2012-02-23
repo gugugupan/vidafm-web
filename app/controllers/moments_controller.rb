@@ -16,6 +16,6 @@ class MomentsController < ApplicationController
     kActivitiesPerRow = 3
     kRowPerPage = 2
     photoNum = kActivitiesPerRow * kRowPerPage
-    @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page].to_i - 1, :page_size => photoNum)
+    @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page].to_i - 1, :page_size => photoNum, :current_user => current_user)
   end
 end

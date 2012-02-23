@@ -58,21 +58,6 @@ font {
 	font-size:12px;
 }
 
-.user_avatar {
-	float: left;
-	height:32px;
-	position: relative;
-	width:30px;
-
-	img {
-		position: absolute;
-	}
-
-	& img:first-child {
-		margin-top:1px;
-	}
-}
-
 .close {
 	background: image-url("moments/details/close.jpg") left top no-repeat;
 	display: block;
@@ -179,7 +164,8 @@ font {
 			float: left;
 			margin-right: 5px;
 
-			&:hover {
+			&:hover,
+			&.liked {
 				background-position:left top;
 			}
 
@@ -288,148 +274,6 @@ font {
 	position: absolute;
 }
 
-/* -------------------------------header------------------------ */
-#header{
-	background-image: image-url("moments/details/header_bg.jpg");
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='image/scale/crop');
-	height:44px;
-	width:100%;
-
-	#header_content {
-		height:44px;
-		margin: 0px auto;
-		width:960px;
-	}
-
-	a,font {
-		color: #fff;
-		display: block;
-		float:left;
-		font-family:"Microsoft YaHei",Hei,Helvetica,Arial;
-		font-size:12px;
-		text-decoration:none;
-		padding: 4px 0px;
-		text-shadow: 0px 2px 0px #6D0B15;
-	}
-
-	#logo{
-		float: left;
-	}
-
-	#account {
-		float: right;
-
-		.user_avatar {
-			padding-top: 6px;
-		}
-
-		ul {
-			padding: 10px 0px 0px 40px;
-
-			li {
-				color: #fff;
-				display: block;
-				float:left;
-				margin-right:5px;
-			}
-		}
-	}
-
-	#login {
-		float: right;
-		margin-left:20px;
-
-		a {
-			float: left;
-			height:36px;
-			width:30px;
-		}
-
-		font {
-			background: image-url("moments/details/login_bg.jpg") left top no-repeat;
-			display:block;
-			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='image/scale/crop');
-			float: left;
-			padding:14px 0px 18px 22px;
-			text-shadow: 0px 2px 0px #6D0B15;
-		}
-
-		ul {
-
-			li {
-				display: block;
-				float:left;
-				margin-left:5px;
-			}
-			
-		}
-
-		#login_sian {
-			background: image-url("moments/details/login_sina_bg.jpg") left center no-repeat;
-			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='image/scale/crop');
-		}
-
-		#login_sian:hover {
-			background-position:left top;
-		}
-
-		#login_sian:active {
-			background-position:left bottom;
-		}
-
-		#login_douban {
-			background: image-url("moments/details/login_douban_bg.jpg") left center no-repeat;
-			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='image/scale/crop');
-		}
-
-		#login_douban:hover {
-			background-position:left top;
-		}
-
-		#login_douban:active {
-			background-position:left bottom;
-		}
-
-		#login_renren {
-			background: image-url("moments/details/login_renren_bg.jpg") left center no-repeat;
-			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='image/scale/crop');
-		}
-
-		#login_renren:hover {
-			background-position:left top;
-		}
-
-		#login_renren:active {
-			background-position:left bottom;
-		}
-
-		#login_tencent {
-			background: image-url("moments/details/login_tencent_bg.jpg") left center no-repeat;
-			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='image/scale/crop');
-		}
-
-		#login_tencent:hover {
-			background-position:left top;
-		}
-
-		#login_tencent:active {
-			background-position:left bottom;
-		}
-
-		#login_kaixin {
-			background: image-url("moments/details/login_kaixin_bg.jpg") left center no-repeat;
-			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='image/scale/crop');
-		}
-
-		#login_kaixin:hover {
-			background-position:left top;
-		}
-
-		#login_kaixin:active {
-			background-position:left bottom;
-		}
-	}
-}
 
 /* -------------------------------main------------------------------ */
 #main {

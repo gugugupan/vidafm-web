@@ -3,33 +3,13 @@
 		margin-left: 20px;
 		.side-row {
 			margin-bottom: 20px;
-			.side-row-title {
-				padding: 0 0 0px 20px;
-				background: image-url("icon-sprite.png") no-repeat;
-				color: #4d4d4d;
-				font-size: 12px;
-
-				&#info-title-name {
-					background-position: 0 1px;	
-				}
-
-				&#info-title-info {
-					background-position: 0 -17px;
-				}
-
-				text-shadow: 0px 1px 0px #fff;
-				// filter: dropshadow(color=#fff, offx=0, offy=1);
-				#view-detail {
-					float: right;
-					text-decoration: none;
-					color: #99918A;
-				}
-			}
 
 			.side-row-box {
-				width: 255px;
-				padding: 10px;
+				width: 265px;
+				padding: 5px;
 				background: white;
+				font-size: 12px;
+
 				@include round-shadow-box;
 
 				&.multi-col-box {
@@ -51,10 +31,41 @@
 					}
 				}
 
-				&#moment-name {
-					font-size: 14px;
-					color: #666;
+				.box-title {
+					color: #999;
+				}
+
+				.box-content {
+					color: #4D4D4D;
+
 				}
 			}
 		}
 	}
+
+#moment-name {
+	.box-title {
+		padding-left: 20px;
+		background: image-url("icons.png") no-repeat 0 2px;
+	}
+	.box-content {
+		a.view-more {
+			float: right;
+			color: #999;
+			text-decoration: none;
+		}
+	}
+}
+
+
+#moment-participators {
+	.box-title {
+		padding-left: 20px;
+		background: image-url("icons.png") no-repeat 0 -18px;
+	}
+	.box-content {
+		margin-top: 5px;
+	}
+}
+
+
