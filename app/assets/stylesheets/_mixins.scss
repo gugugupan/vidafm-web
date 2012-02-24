@@ -8,3 +8,9 @@
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
+
+@mixin shadow-box {
+	-moz-box-shadow:0px 2px 2px #ccc;
+	-webkit-box-shadow:0px 2px 2px #ccc;
+	box-shadow:0px 2px 2px #ccc;
+}

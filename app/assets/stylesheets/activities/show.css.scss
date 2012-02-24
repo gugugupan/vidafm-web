@@ -4,7 +4,6 @@ $thumbnail_a: 61px;
 @import "mixins";
 
 #activity-show {
-  background-image: url(/assets/moments/bg.png);
   left: 0px;
   top: 0px;
   height: 100%;
@@ -16,13 +15,104 @@ $thumbnail_a: 61px;
     margin: 30px auto 20px;
 
     #activity-col {
-      width: 600px;
-      height: 633px;
       float: left;
-      @include round-shadow-box;
+      
 
 
       #main-row {
+        width: 600px;
+        background-color: white;
+        @include round-shadow-box;
+        #like-bar {
+          height: 35px;
+          padding: 10px 0 5px 0px;
+          .like-btn {
+            text-indent: 9999px;
+            display: block;
+            background: url(/assets/moments/details/like.jpg) no-repeat left center;
+            height: 35px;
+            width: 35px;
+            float: left;
+
+            &:hover {
+              background-position: left top;
+            }
+
+            &:active, &.liked {
+              background-position: left bottom;
+            }
+          }
+          .like-num {
+            line-height: 35px;
+            margin-left: 10px;
+            color: #999;
+            float: left;
+          }
+          .like-users {
+            float: left;
+            margin: 3px 0 0 25px;
+            .like-user {
+              position: relative;
+              float: left;
+              height: 30px;
+              width: 30px;
+              margin-left: 5px;
+
+              .user-avatar-shadow {
+                position: absolute;
+                z-index: 2;
+                top: 0;
+                left: 0;
+              }
+              .user-avatar {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 30px;
+                width: 29px;
+              }
+            }
+          }
+        }
+      }
+
+
+      #comment-row {
+        margin-top: 20px;
+        #new-comment-box {
+          border-top: 1px solid #eee;
+          background-color: #f7f7f7;
+          padding: 10px;
+          @include shadow-box;
+          .user-avatar {
+            height: 42px;
+            width: 42px;
+            float: left;
+          }
+          #new_comment {
+            float: left;
+            position: relative;
+            .minor-arrow-l {
+              position: absolute;
+              top: 14px;
+              left: 18px;
+            }
+            input#content {
+              padding: 10px;
+              border: 1px solid #E6E6E6;
+              line-height: 20px;
+              margin: 0 0 0 26px;
+              width: 487px;
+              &:focus {
+                outline: none;
+              }
+            }
+          }
+        }
+        #comment-list {
+          @include shadow-box;
+          border-top: 1px solid #E6E6E6;
+        }
       }
     }
   }

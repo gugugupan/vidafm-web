@@ -1,3 +1,4 @@
 <%= form_tag activity_comments_path(activity_id), :id => "new_comment", :remote => true do %>
-	<%= text_field_tag(:content,"写评论...") %>
+	<%= image_tag "minor-arrow-l.png", :class => "minor-arrow-l" %>
+	<%= text_field_tag(:content, nil, :placeholder => "写评论...") %>
 <% end -%>

@@ -76,4 +76,12 @@ module MomentsHelper
 	end
 
 
+	def user_avatar_or_placeholder current_user
+		return (image_tag current_user['avatar_file'], :class => "user-avatar") if current_user
+
+		placeholder_url = "http://www.dentistry.co.uk/forum/forum_graphics/avatar_placeholder.gif"
+		image_tag placeholder_url, :class => "user-avatar"
+	end
+
+
 end

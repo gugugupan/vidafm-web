@@ -70,20 +70,3 @@
   }
 
 }
-
-#footer {
-  bottom: 0px;
-  color: #b3b3b3;
-  padding: 11px 20px;
-  position: absolute;
-  right: 0px;
-  font-size: 11px;
-  width: initial;
-  a {
-    color: #b3b3b3;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
