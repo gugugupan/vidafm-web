@@ -7,7 +7,7 @@
 		<% end %>
 
 		<div class="pagination">
-			<%= vida_pagination moment_url(moment['data']['id']), moment['page_count'], moment['current_page'] + 1 %>		
+			<%= vida_pagination moment_url(moment['data']['id']), moment['page_count'], moment['current_page'] , {:remote => true, :page_size => 4, :page_padding => 1} %>		
 		</div>
 		<div class="clearfix"></div>
 	</div>
