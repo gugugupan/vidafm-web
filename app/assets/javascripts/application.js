@@ -7,24 +7,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.cycle.lite 
-//= require jquery.purr
-//= require jquery.ba-bbq.min
-//= require backbone.js/underscore-min
-//= require video
-//= require jquery.lazyload
-//= require bootstrap-twipsy
-//= require bootstrap-modal
-//= require jquery.cookie
-//= require bootstrap-popover
-//= require date.format
-//= require spin.min
-//= require jquery.spin
-//= require_tree .
+//= require humane.min
 
-_.templateSettings = {
-  interpolate : /\{\{(.+?)\}\}/g,
-  evaluate : /\{\-(.+?)\-\}/g
-};
+
+// underscore.js的模版设置，暂时不用。
+// _.templateSettings = {
+//   interpolate : /\{\{(.+?)\}\}/g,
+//   evaluate : /\{\-(.+?)\-\}/g
+// };
 
 function gup( name )
 {

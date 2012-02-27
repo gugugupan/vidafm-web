@@ -11,8 +11,6 @@ class Moment < ActiveRecord::Base
   def self.fetch(id, options = {})
     options.reject! { |key, value| value.nil? } # 清理为空的键值对，因为如果同时出现activity_id和page，服务器不认page。
     r = JSON.parse(VIDA.call("moment/show/#{id}?page_size=#{options['page_size'] || PAGE_SIZE}&offset_padding=0&#{options.to_query}", nil, options[:current_user]))
-    p '------'
-    p r
     r
   end
 

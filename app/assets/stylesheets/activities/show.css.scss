@@ -27,6 +27,7 @@ $thumbnail_a: 61px;
           height: 35px;
           padding: 10px 0 5px 0px;
           .like-btn {
+            overflow: hidden;
             text-indent: 9999px;
             display: block;
             background: url(/assets/moments/details/like.jpg) no-repeat left center;

@@ -1,5 +1,6 @@
-// 重载activity的评论
-fetchAndSetComment( <%= @activity["id"] %> );
-
-// 清除输入框
-$("form #content").val("");
+// 成功创建评论之后，在评论列表插入该评论。
+$("#comment-list").append(" <%= j render :partial => 'comments/comment', :object => @comment %> ");
+// Notification.
+humane.success("评论成功!");
+// Clean up input field.
+$("#new_comment > #content").val("");

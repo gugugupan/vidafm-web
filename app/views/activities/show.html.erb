@@ -2,6 +2,10 @@
   <%= @moment["data"]["name"] %> - VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
+<%= content_for :page_specific_asset do %>
+  <%= javascript_include_tag "activities" %>
+<% end %>
+
 <div id="activity-show">
   <%= render :partial => "widgets/header" %>
   <div id="container">
