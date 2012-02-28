@@ -3,7 +3,9 @@
 	<div class="box-content">
 		<% moment["data"]['items'].each do |e| %>
 			<% e.stringify_keys! %>
-			<%= image_tag e["photo"]['url_s'], :class => "box-thumbnails" %>
+			<%= link_to activity_url(e['id']) do  %>
+				<%= image_tag e["photo"]['url_s'], :class => "box-thumbnails" %>
+			<% end %>
 		<% end %>
 
 		<div class="pagination">

@@ -4,6 +4,8 @@
 
 <%= content_for :page_specific_asset do %>
   <%= javascript_include_tag "activities" %>
+  <%= javascript_include_tag "http://vjs.zencdn.net/c/video.js" %>
+  <%= stylesheet_link_tag    "http://vjs.zencdn.net/c/video-js.css" %>
 <% end %>
 
 <div id="activity-show">
@@ -11,18 +13,13 @@
   <div id="container">
     <div id="activity-col">
       <div id="main-row">
-        <%= image_tag @activity['photo']['url_l'] %>
+        <%= render :partial => "activity", :object => @activity %>
         <div id="like-bar">
-          <%= link_to "like", like_activity_url(@activity['id']), :class => "like-btn" %>
+          <%= link_to "like", like_activity_url(@activity['id']), :class => "like-btn #{'liked' if @activity['liked']}", :remote => true, :method => :PUT %>
           <span class="like-num"> <%= @activity['likes_count'] %> </span>
 
           <div class="like-users">
-            <% @activity['likes_users'].each do |u| %>
-            <div class="like-user">
-              <%= image_tag "moments/details/avatar_shadow_white.png", :class => "user-avatar-shadow" %>
-              <%= image_tag u['avatar_file'], :class => "user-avatar" %>
-            </div>
-            <% end %>
+            <%= render :partial => "like_user", :collection => @activity['likes_users'] %>
           </div>
         </div>
       </div>

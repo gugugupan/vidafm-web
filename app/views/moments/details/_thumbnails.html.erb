@@ -1,5 +1,5 @@
 <div class="thumbnail_big">
-	<%= link_to moment_path(activity['moment_id']) + "#id=#{activity['id']}" do %>
+	<%= link_to activity_url(activity['id']), :target => "_blank" do %>
 		<%= image_tag activity['photo']['url_m'], :class => "thumbnails" %>
 	<% end %>
 	<div class="thumbnail_big_like">

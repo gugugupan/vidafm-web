@@ -1,6 +1,10 @@
 class ActivitiesController < ApplicationController
   def like
-    @activity = Activity.like(:activity_id => params[:id], :user => current_user)
+    unless current_user
+      render "comments/need_authentication"
+    else
+      @activity = Activity.like(:activity_id => params[:id], :user => current_user)
+    end
   end
 
   def likelist
@@ -8,13 +12,12 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-  	kMomentID = 13666
-  	kActivityID = 29510
-  	@moment = Moment.fetch(kMomentID, :activity_id => kActivityID, :page => params[:page], :page_size => 4)
+  	kActivityID = params[:id]
+  	@moment = Moment.fetch(nil, :activity_id => kActivityID, :page => params[:page], :page_size => 4, :current_user => current_user)
     @moment['current_page'] = 0 if @moment['current_page'].to_i == -1 # 如果没有找到activity，后台返回当前页数是-1
     @activity = Object.new
     @moment['data']['items'].each do |e|
-  		if e['id'] == kActivityID
+  		if e['id'].to_i == kActivityID.to_i
   			@activity = e
   			break
   		end

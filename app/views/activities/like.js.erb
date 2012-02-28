@@ -1,7 +1,6 @@
-// 修改activities中的元素
-activity = _.find(activities, function(activity) { return activity.id == <%= @activity["id"] %>; } );
-i = _.indexOf(activities, activity);
-activities[i] = <%= raw @activity.to_json  %>;
-
-// reload activity view
-setActivity(activity.id);
+// 提示成功
+humane.success("喜欢成功!");
+// 修改喜欢数
+$(".like-btn").addClass("liked");
+$(".like-num").html( <%= @activity['likes_count'] %> );
+$(".like-users").html('<%= j render :partial => "like_user", :collection => @activity["likes_users"] %>');

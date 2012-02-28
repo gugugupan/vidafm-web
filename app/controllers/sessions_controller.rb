@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       href = cookies.delete(:refer_url)
       redirect_to href
     else
-      redirect_to :root
+      redirect_to :back
     end
   end
 
