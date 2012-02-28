@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require jquery.cycle.lite 
 //= require humane.min
+//= require backbone.js/underscore-min
 
 
 // underscore.js的模版设置，暂时不用。

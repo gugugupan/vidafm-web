@@ -21,7 +21,7 @@ $bar_length: 500px;
 			float: left;
 
 
-			@include round-shadow-box; 
+			@include shadow-box; 
 		}
 	}
 }

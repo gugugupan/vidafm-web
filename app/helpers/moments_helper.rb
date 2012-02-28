@@ -44,7 +44,7 @@ module MomentsHelper
 		base_url = "http://maps.google.com/maps/api/staticmap"
 		locations = activities.reject { |e| e.symbolize_keys!; (e[:lat].to_f < 0.01) or (e[:lng].to_f < 0.01) }.map { |e| e.symbolize_keys!; "#{e[:lat]},#{e[:lng]}" if e[:lat] and e[:lng] }
 		options = {
-			:size => "256x177", 
+			:size => "242x177", 
 			:maptype => "roadmap",
 			:markers => {
 				:size => "mid", 

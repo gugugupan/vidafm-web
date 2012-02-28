@@ -30,9 +30,13 @@
           <%= render :partial => "comments/form", :locals => { :activity_id => @activity['id'] } %>
           <div class="clearfix"></div>
         </div>
-        <div id="comment-list">
-          <%= render :partial => "comments/comment", :collection => @activity['comments'] %>
-        </div>
+        <% if @activity['comments_count'] > 0 %>
+          <div id="comment-list">
+            <%= render :partial => "comments/comment", :collection => @activity['comments'] %>
+          </div>
+        <% end %>
+        <div id="comment-list-bottom"></div>
+
       </div>
     </div>
 
@@ -51,6 +55,7 @@
 
       <div class="side-row collapse-row">
         <%= render :partial => "widgets/thumbnails", :locals => {:moment => @moment } %>
+        <div class="side-row-box-bottom"></div>
       </div>    
 
       <div class="side-row">
@@ -60,5 +65,7 @@
   </div>
   
   <%= render :partial => "widgets/footer" %>
+
+  <div class="clearfix"></div>
 
 </div>

@@ -4,10 +4,7 @@ $thumbnail_a: 61px;
 @import "mixins";
 
 #activity-show {
-  left: 0px;
-  top: 0px;
-  height: 100%;
-  width: 100%;
+  background-color: #f2f2f2;
 
   #container {
     width: 1000px;
@@ -18,11 +15,17 @@ $thumbnail_a: 61px;
       float: left;
       
 
-
+      $main-content-width: 648px;
       #main-row {
-        width: 600px;
+        width: $main-content-width;
         background-color: white;
-        @include round-shadow-box;
+        @include shadow-box;
+
+        & > img {
+          width: $main-content-width 
+        }
+
+
         #like-bar {
           height: 35px;
           padding: 10px 0 5px 0px;
@@ -80,11 +83,14 @@ $thumbnail_a: 61px;
 
       #comment-row {
         margin-top: 20px;
+        margin-left: -2px;
         #new-comment-box {
-          border-top: 1px solid #eee;
-          background-color: #f7f7f7;
+          // @include shadow-box;
+          background: image-url("moments/details/input_area_bg.png") no-repeat -1px 0;
+          // border: 0;
+          // border-top: 1px solid #eee;
+          // background-color: #f7f7f7;
           padding: 10px;
-          @include shadow-box;
           .user-avatar {
             height: 42px;
             width: 42px;
@@ -103,7 +109,7 @@ $thumbnail_a: 61px;
               border: 1px solid #E6E6E6;
               line-height: 20px;
               margin: 0 0 0 26px;
-              width: 487px;
+              width: 554px;
               &:focus {
                 outline: none;
               }
@@ -111,8 +117,19 @@ $thumbnail_a: 61px;
           }
         }
         #comment-list {
-          @include shadow-box;
+          // @include shadow-box;
+          margin-left: -1px;
+          background: image-url("moments/details/container_left_middle.png") left top repeat-y;
+          padding: 5px 16px 12px 16px;
+          width: 634px;
           border-top: 1px solid #E6E6E6;
+        }
+
+        #comment-list-bottom {
+          background: image-url("moments/details/container_left_bottom.png") left top no-repeat;
+          font-size: 0px;
+          height: 3px;
+          width: 666px;
         }
       }
     }

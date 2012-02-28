@@ -85,8 +85,9 @@ font {
 		width:634px;
 
 		div#row-title {
+			color: #4D4D4D;
 			font-size: 18px;
-			padding: 5px 0!important;
+			padding: 5px 0 10px!important;
 		}
 	}
 
@@ -213,20 +214,9 @@ font {
 /* -------------------------------main------------------------------ */
 #main {
 	margin:16px auto;
-	width:990px;
+	width:960px;
 }
 
-#ad_banner {
-	background: image-url("moments/details/ad_banner.png") left top no-repeat;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='', sizingMethod='image/scale/crop');
-	height:255px;
-	margin-top:10px;
-	width:959px;
-
-	.close {
-		margin:10px 10px 0px 0px;
-	}
-}
 
 /* -------------------------------left------------------------------ */
 
