@@ -10,7 +10,7 @@ module MomentsHelper
 		html = ""
 
 		if page_count == 1
-			html += page_label(base_url, page_count, current_page)
+			html += page_label(base_url, page_count, current_page, {})
 		else
 			html = 1.upto(2).inject(html) { |mem, var| mem += page_label(base_url, var, current_page, options) }   
 			#=>   "< 1 2"

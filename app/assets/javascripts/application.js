@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require jquery.cycle.lite 
 //= require humane.min
+//= require misc
 //= require backbone.js/underscore-min
 
 

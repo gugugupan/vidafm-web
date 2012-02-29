@@ -1,6 +1,8 @@
 #info-col {
-	float: left;
+	width: 274px;
+	float: right;
 	margin: 23px 0 0 8px;
+	_margin-left: 0;
 	.side-row {
 		margin-bottom: 10px;
 		.side-row-box-top {
@@ -73,22 +75,6 @@
 
 				.clearfix {
 					clear: both;
-				}
-			}
-
-			&#thumbnails {
-				.box-title {
-					padding-left: 55px;
-					background: image-url("icons.png") no-repeat 0 -38px;
-				}
-				.box-content {
-					img {
-						float: left;
-					}
-					.pagination {
-						float: left;
-						margin-top: 10px;
-					}
 				}
 			}
 

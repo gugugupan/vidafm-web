@@ -9,6 +9,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
+  <!--[if IE]>
+    <%= stylesheet_link_tag    "moments/details.ie" %>
+  <![endif]-->
+  <!--[if lt IE 7]>
+  <style type="text/css">
+    img.user-avatar-shadow {
+      display: none;
+    }
+  </style>
+  <![endif]-->
   <%= csrf_meta_tags %>
 
   <%= yield :page_specific_asset %>

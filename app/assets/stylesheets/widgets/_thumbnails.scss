@@ -1,6 +1,13 @@
 #thumbnails {
+	.box-title {
+		padding-left: 55px;
+		background: image-url("icons.png") no-repeat 0 -38px;
+	}
 	.box-content {
 		margin-top: 6px;
+		img {
+			float: left;
+		}
 		.box-thumbnails {
 			width: 56px;
 			height: 56px;
@@ -11,6 +18,11 @@
 
 		.pagination {
 			margin-left: -5px;
+			margin-top: 10px;
+			float: left;
+			clear: both;
+
+			
 			.page_number, .prev_page, .next_page, .page-dot {
 				line-height: 13px;
 				padding: 2px 0;

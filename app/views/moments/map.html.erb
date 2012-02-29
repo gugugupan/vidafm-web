@@ -5,6 +5,16 @@
 <%= content_for :page_specific_asset do %>
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag :richmarker %>
+  <!--[if lte IE 7]>
+  <style type="text/css">
+    #moment_map #container #map-col {
+      width: 659px;
+      margin: 0;
+    }
+
+
+  </style>
+  <![endif]-->
 <%  end -%>
 
 <div id="moment_map">
