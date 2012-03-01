@@ -70,7 +70,6 @@
         }
       }
     }
-
   }
 
   #intro-col {
@@ -91,18 +90,20 @@
         margin-top: 15px;
       }
     }
+
+    .download_bar {
+      a {
+        float: left;
+        &.download_android {
+          margin-left: 5px;
+        }
+      }
+    }
   }
 
   #footer {
-    bottom: 0px;
-    color: #b3b3b3;
-    padding: 11px 20px;
     position: absolute;
-    right: 0px;
-    font-size: 11px;
-    width: initial;
-    a {
-      color: #b3b3b3;
-    }
+    right: 0;
+    bottom: 0;
   }
 }

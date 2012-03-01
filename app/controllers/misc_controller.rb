@@ -1,15 +1,6 @@
 #encoding: utf-8
 class MiscController < ApplicationController
-
-  def index_v2
-    if request.url =~ /is_mobile=/i || request.user_agent =~ /(android|ipod|iphone)/i
-  		render :partial => "/misc/redirect", :layout => false 
-  		return
-  	end
-    render :layout => false
-  end
-
-  def index_v3
+  def frontpage
     if request.url =~ /is_mobile=/i || request.user_agent =~ /(android|ipod|iphone)/i
       render :partial => "/misc/redirect", :layout => false 
       return

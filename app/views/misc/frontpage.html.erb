@@ -49,12 +49,10 @@ VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活
       </div>
     </div>
   </div>
-
-  <div id="footer">
-    <%= link_to "联系我们", about_url %>
-    <span>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;沪ICP备10216111号-2</span>
-  </div>
+  <%= render :partial => "widgets/footer" %>
 </div>
+
+
 
 <script type="text/javascript">
   $(".screenshots").cycle({

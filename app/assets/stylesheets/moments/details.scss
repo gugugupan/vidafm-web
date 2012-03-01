@@ -123,6 +123,8 @@ font {
 	}
 }
 
+
+
 .clear {
 	clear: both;
 	font-size:0px;
@@ -668,4 +670,11 @@ font {
 			margin:12px 0px 0px 0px;
 		}
 	}	
+}
+
+
+#moment-details {
+	#info-col {
+		margin-top: 23px;
+	}
 }
