@@ -8,9 +8,12 @@
 			<% end %>
 		<% end %>
 
+
+		<% if moment['page_count'].to_i > 1 %>
 		<div class="pagination">
 			<%= vida_pagination moment_url(moment['data']['id']), moment['page_count'], moment['current_page'] , {:remote => true, :page_size => 4, :page_padding => 1} %>		
 		</div>
+		<% end %>
 		<div class="clearfix"></div>
 	</div>
 </div>
