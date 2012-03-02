@@ -38,6 +38,7 @@ $white_shadow_ie:dropshadow(color=#ffffff, offx=0, offy=1);
 	background: image-url("moments/details/last_page.png") left center no-repeat;
 }
 
+
 .page_number,
 .prev_page,
 .next_page,
@@ -67,5 +68,10 @@ $white_shadow_ie:dropshadow(color=#ffffff, offx=0, offy=1);
 		color: #fff;
 		text-shadow: 0px 1px 0px #999;
 		filter: dropshadow(color=#333, offx=0, offy=0);
+	}
+
+
+	&.page-dot {
+		width: 12px;
 	}
 }

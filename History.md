@@ -1,4 +1,9 @@
 
+n.n.n / 2012-03-02 
+==================
+
+  * bug fixed: 关掉banner后，按下一页banner继续出来 new feature: 点Vida去首页 new feature: 喜欢和评论没有登陆的时候的client-side validations.
+
 n.n.n / 2012-03-01 
 ==================
 
