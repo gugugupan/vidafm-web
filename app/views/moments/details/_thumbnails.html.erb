@@ -6,7 +6,7 @@
 		<% if activity['liked'] %>
 			<span class="thumbnail_like liked"> </span>
 		<% else %>
-			<%= link_to "", like_activity_path(activity['id']), :class => "thumbnail_like", :remote => true, :method => :PUT %>
+			<%= link_to "", like_activity_path(activity['id']), :class => "thumbnail_like", "data-login-required" => true, :remote => true, :method => :PUT %>
 		<% end %>
 		<span class="likes-num"><%= activity['likes_count'] %></span>
 	</div>

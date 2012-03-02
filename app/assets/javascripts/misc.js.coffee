@@ -8,3 +8,5 @@ $(document).ready ->
 
   $("#v .close").click ->
   	$(@).parent("#v").remove()
+  	# 关闭`moment show`页面的banner之后，不再出现。
+  	$.cookie('is_banner_closed', true);

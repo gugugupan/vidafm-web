@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.cycle.lite 
+//= require jquery.cookie
 //= require humane.min
 //= require misc
 //= require backbone.js/underscore-min
@@ -29,3 +30,11 @@ function gup( name )
   else
     return results[1];
 }
+
+$("[data-login-required=true]").live('ajax:before', function(e) {
+	if (current_user.id) {
+	} else {
+    humane.error("对不起，请登陆后再发表评论。");
+		return false;
+	}
+});

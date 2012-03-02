@@ -1,6 +1,8 @@
 <div id="header">
 	<div id="header_content">
-		<%= image_tag "moments/details/header_logo.jpg", :id => :logo %>
+		<%= link_to :root, :id => "home-link" do %>
+			<%= image_tag "moments/details/header_logo.jpg", :id => :logo %>
+		<% end %>
 		<% unless session[:current_user] %>
 			<%= render :partial => "widgets/login" %>
 		<% else %>

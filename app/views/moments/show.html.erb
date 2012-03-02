@@ -15,7 +15,7 @@
 <div id="moment-details">
 	<%= render :partial => "widgets/header" %>
 	<div id="main">
-		<%= render :partial => "widgets/banner" %>
+		<%= render :partial => "widgets/banner" unless cookies[:is_banner_closed] %>
 		<div id="left">
 			<div id="moment_info">
 				<div class="container_left">
