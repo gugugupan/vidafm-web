@@ -43,7 +43,7 @@
 
 					<% if @moment['page_count'].to_i > 1 %>
 					<div class="page_number_area">
-							<%= vida_pagination moment_url(@moment['data']['id']), @moment['page_count'], @moment['current_page'], {:remote => false, :page_size => 6} %>
+							<%= vida_pagination moment_url(@moment['data']['id']), @moment['page_count'], @moment['current_page'], {:remote => false, :page_size => 6, :page_padding => 4} %>
 					</div>
 					<% end %>
 

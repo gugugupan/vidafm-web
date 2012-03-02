@@ -7,7 +7,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.cycle.lite 
+//= require spin.min
 //= require jquery.cookie
+//= require jquery.spin
 //= require underscore-min
 //= require humane.min
 //= require misc

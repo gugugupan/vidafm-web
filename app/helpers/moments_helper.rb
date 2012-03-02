@@ -7,8 +7,8 @@ module MomentsHelper
 		page_label_padding = options[:page_padding] || 2
 		fixed_head_page_label = 2
 
-		start_page = [current_page - page_label_padding, 1].max
-		end_page = [start_page + page_label_padding * 2, page_count].min
+		start_page = [current_page - page_label_padding, 1].max.to_i
+		end_page = [start_page + page_label_padding * 2, page_count].min.to_i
 
 
 		html = start_page.upto(end_page).inject("") do |a, e|

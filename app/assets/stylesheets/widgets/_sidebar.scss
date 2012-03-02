@@ -66,11 +66,13 @@
 				}
 
 				.box-wrapper {
+					margin-top: 9px;
 					float: left;
 					width: 186px;
 					margin-left: 10px;
 
 					.box-title {
+						font-size: 14px;
 						color: #4D4D4D;
 						line-height: 20px;
 						.created-time {
@@ -79,7 +81,8 @@
 						}
 					}
 					.box-content {
-						margin-top: 5px;
+						font-size: 12px;
+						margin-top: 2px;
 					}
 				}
 
