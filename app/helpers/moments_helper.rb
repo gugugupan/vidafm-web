@@ -7,22 +7,12 @@ module MomentsHelper
 		page_label_padding = options[:page_padding] || 2
 		fixed_head_page_label = 2
 
-		html = ""
+		start_page = [current_page - page_label_padding, 1].max
+		end_page = [start_page + page_label_padding * 2, page_count].min
 
-		if page_count == 1
-			html += page_label(base_url, page_count, current_page, {})
-		else
-			html = 1.upto(2).inject(html) { |mem, var| mem += page_label(base_url, var, current_page, options) }   
-			#=>   "< 1 2"
-			html += "<span class='page-dot'> ... </span>" if current_page - fixed_head_page_label - page_label_padding > 1
-			#=>   "< 1 2 .."
 
-			html += [current_page - page_label_padding, 3].max.upto([current_page + page_label_padding, page_count].min).inject("") { |mem, var| mem += page_label(base_url, var, current_page, options) } 
-			#=> 	"< 1 2 .. 4 5"
-
-			
-			html += "<span class='page-dot'> ... </span>" if current_page + page_label_padding < page_count
-			#=>   "< 1 2 .. 4 5 .."
+		html = start_page.upto(end_page).inject("") do |a, e|
+			a += page_label(base_url, e, current_page, options)
 		end
 
 		html = link_to("", "#{base_url}?page=#{current_page - 1}&page_size=#{options[:page_size]}", :class => "prev_page", :remote => options[:remote]) + raw(html) unless current_page == 1

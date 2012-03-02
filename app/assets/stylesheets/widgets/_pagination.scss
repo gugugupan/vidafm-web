@@ -63,7 +63,7 @@ $white_shadow_ie:dropshadow(color=#ffffff, offx=0, offy=1);
 		color: $red;
 	}
 
-	&:active:not(.page-dot) {
+	&:active:not(.page-dot), &.current_page_number {
 		background-position:left bottom;
 		color: #fff;
 		text-shadow: 0px 1px 0px #999;
