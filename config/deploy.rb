@@ -3,7 +3,7 @@ set :application, "vida.fm"
 set :deploy_to, "/home/vidafm/dev/#{application}"
 
 set :scm, :git
-set :repository,  "git@github.com:soshkt/HelloWorld.git"
+set :repository,  "git://github.com/stranbird/vidafm.git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
