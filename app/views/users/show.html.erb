@@ -23,21 +23,21 @@
 		)
 		.mousedown(
 			function() {
-				var i = $(this).index("#header #nav a");
+				var i = $(this).index("#header #nav li a");
 				$(this).parents("#nav").css('background-position', offset_array[i].downOffset);
 				$(this).css("color","black").css("opacity",".6").css("text-shadow","0px 1px 0px #F46E85");
 			}
 		)
 		.mouseup(
 			function() {
-				var i = $(this).index("#header #nav a");
+				var i = $(this).index("#header #nav li a");
 				$(this).parents("#nav").css('background-position', offset_array[i].hoverOffset);
 				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
 			}
 		)
 		.mouseout(
 			function() {
-				var i = $(this).index("#header #nav a");
+				var i = $(this).index("#header #nav li a");
 				$(this).parents("#nav").css('background-position', "left bottom");
 				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
 			}
@@ -49,20 +49,23 @@
 			{hoverOffset : "left top", downOffset: "left -44px"},
 		]
 
-		$("#popup #popup_content #title_bar a").mouseover(function() {
+		$("#popup #popup_content #title_bar li a").mouseover(function() {
 			var i = $(this).index("#popup #popup_content #title_bar a");
+			// console.log(i);
 			$(this).parents("ul").css('background-position', popup_offset_array[i].hoverOffset);
 		})
 		.mousedown(
 			function() {
-				var i = $(this).index("#popup #popup_content #title_bar a");
+				var i = $(this).index("#popup #popup_content #title_bar li a");
+				// console.log(i);
 				$(this).parents("ul").css('background-position', popup_offset_array[i].downOffset);
 				$(this).css("color","black").css("opacity",".6").css("text-shadow","0px 1px 0px #F46E85");
 			}
 		)
 		.mouseup(
 			function() {
-				var i = $(this).index("#popup #popup_content #title_bar a");
+				var i = $(this).index("#popup #popup_content #title_bar li a");
+				// console.log(i);
 				$(this).parents("ul").css('background-position', popup_offset_array[i].hoverOffset);
 				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
 			}
@@ -70,6 +73,7 @@
 		.mouseout(
 			function() {
 				var i = $(this).index("#popup #popup_content #title_bar a");
+				// console.log(i);
 				$(this).parents("ul").css('background-position', "left bottom");
 				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
 			}
@@ -105,7 +109,7 @@
 		}
 
 		//popup action
-		$("#main .user_list .user_info .follow").click(function() {
+		$("#action-follow").click(function() {
 			$("#popup").css("display","block");
 		});
 
@@ -188,7 +192,9 @@
 			</div>
 		</div>
 
-		<div id='map_canvas'></div>
+		<div id='map_canvas'>
+			<div id="map_cc_canvas"></div>
+		</div>
 		
 		<div id="photo_list_area">
 			<%= render :partial => "moments/item", :collection => @moments['data'] %>
