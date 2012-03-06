@@ -4,6 +4,15 @@
 		<!--[if IE]>
 			<%= stylesheet_link_tag "moments/details.ie" %>
 		<![endif]-->
+
+		<script type="text/javascript">
+			// 适配之前的地址格式
+			var hash = window.location.hash;
+			if (hash) {
+				var id = hash.split("=").pop();
+				window.location = '/activities/' + id
+			};
+		</script>	
  	<%  end -%>
 
 

@@ -25,6 +25,7 @@
 			width: 250px;
 
 			.box-title {
+				line-height: 22px;
 				color: #999;
 			}
 
@@ -43,6 +44,7 @@
 					background: image-url("icons.png") no-repeat 0 2px;
 				}
 				.box-content {
+					line-height: 22px;
 					a.view-more {
 						float: right;
 						color: #999;
@@ -116,6 +118,7 @@
 				h2 {
 					color: #999;
 					font-size: 12px;
+					width: 100%;
 				}
 			}
 

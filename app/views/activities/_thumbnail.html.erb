@@ -1,7 +1,10 @@
 <div class="photo">
-	<div> <%= image_tag thumbnail['photo']['url_m'] %> </div>
-	<a class="thumbnail_like" href="#">
-		<span>like</span>
-		<font> <%= thumbnail['likes_count'] %> </font>
-	</a>
+<%= link_to activity_url(thumbnail['id']), :class => "thumbnail" do %>
+	<%= image_tag thumbnail['photo']['url_m'] %> 
+<% end %>
+	<% if thumbnail['liked'] %>
+		<span class="thumbnail_like liked"> </span>
+	<% else %>
+		<%= link_to "", like_activity_path(thumbnail['id']), :class => "thumbnail_like", "data-login-required" => true, :remote => true, :method => :PUT %>
+	<% end %>
 </div>

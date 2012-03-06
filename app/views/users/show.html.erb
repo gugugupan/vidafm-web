@@ -1,4 +1,10 @@
+<%= content_for :title do %>
+  <%= @user['name'] %> - VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
 <%= content_for :page_specific_asset do %>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		//nav action
@@ -112,8 +118,56 @@
 		$("#popup #popup_content #title_bar #close").click(function() {
 			$("#popup").css("display","none");
 		});
-
 	})
+</script>
+<script type="text/javascript">
+	var moments = <%= raw @moments.to_json %>;
+	var map;
+	function initialize() {
+    var myOptions = {
+      zoom: 8,
+      center: new google.maps.LatLng(-34.397, 150.644),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById('map_canvas'),
+        myOptions);
+
+    var bounds = new google.maps.LatLngBounds();
+    
+    _.each(moments.data, function(e) { 
+    	point = new google.maps.LatLng(e.lat, e.lng);
+      if (point.lat() > 0 && point.lng() > 0) {
+        bounds = bounds.extend(point);
+      	marker = new google.maps.Marker({
+      		position: point,
+      	});
+      	marker.setMap(map);
+      }
+    });
+
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+        zoomChangeBoundsListener = 
+            google.maps.event.addListener(map, 'bounds_changed', function(event) {
+                if (this.getZoom() > 15 && this.initialZoom == true) {
+                    // Change max/min zoom here
+                    this.setZoom(15);
+                    this.initialZoom = false;
+                }
+            google.maps.event.removeListener(zoomChangeBoundsListener);
+        });
+    });
+    map.initialZoom = true;
+    map.fitBounds(bounds);
+  }
+
+	var slideDownMap = function () {
+		$("#map_canvas").stop(true, false).animate({
+		          height: "toggle"
+		    }, 200, function() {
+		    	initialize();
+		    });
+		$("#action-map").toggleClass("active");
+	}
 </script>
 <% end %>
 
@@ -122,15 +176,19 @@
 
 <div id="user-show" class="container">
 	<div id="main">
-
 		<div class="user_list">
-			<a href="#"> <%= image_tag @user['avatar_file'], :class => :avatar_big %> </a>
+			<%= image_tag @user['avatar_file'], :class => :avatar_big %>
 			<div class="user_info">
 				<h1> <%= @user['name'] %> </h1>
 				<p>活动数: <%= @user['count_moments']  %>  |  被喜欢: <%= @user['count_likes'] %> </p>
-				<a href="#" class="follow"></a>
+				<div class="action-bar">
+					<a href="javascript:slideDownMap()" id="action-map" class="action"></a>
+					<a href="javascript:void(0)" id="action-follow" class="action"></a>
+				</div>
 			</div>
 		</div>
+
+		<div id='map_canvas'></div>
 		
 		<div id="photo_list_area">
 			<%= render :partial => "moments/item", :collection => @moments['data'] %>
@@ -147,4 +205,8 @@
 			<a href="#" id="close"></a>
 		</div>
 	<% end %>
+
 </div>
+
+
+	<%= render :partial => "widgets/footer" %>
