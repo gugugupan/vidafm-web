@@ -3,6 +3,7 @@
 		<%= link_to :root, :id => "home-link" do %>
 			<%= image_tag "moments/details/header_logo.jpg", :id => :logo %>
 		<% end %>
+		<%= render :partial => "widgets/nav" if (defined? slot) and (slot[:nav]) %>
 		<% unless session[:current_user] %>
 			<%= render :partial => "widgets/login" %>
 		<% else %>

@@ -2,6 +2,19 @@
 n.n.n / 2012-03-02 
 ==================
 
+  * new feature: 载入时加入了spin效果，增强交互感
+  * new feature: 改变了分页的逻辑。
+  * chores: removed useless javasripts libs
+  * removed useless images
+  * bug fixed: "参与者"侧边栏的图标位置修正。 bug fixed: “照片所在活动”侧边栏title改为“活动”
+  * .
+  * bug fixed: 页码为`1`的时候，不显示分页。
+  * bug fixed: 侧边栏分页在页数多的时候会换行。
+  * bug fixed: 关掉banner后，按下一页banner继续出来 new feature: 点Vida去首页 new feature: 喜欢和评论没有登陆的时候的client-side validations.
+
+n.n.n / 2012-03-02 
+==================
+
   * bug fixed: 页码为`1`的时候，不显示分页。
   * bug fixed: 侧边栏分页在页数多的时候会换行。
   * bug fixed: 关掉banner后，按下一页banner继续出来 new feature: 点Vida去首页 new feature: 喜欢和评论没有登陆的时候的client-side validations.

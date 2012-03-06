@@ -1,0 +1,15 @@
+<!-- This partial is used for moment item in user's timeline -->
+
+<div class="photo_list">
+	<div class="date">
+		<span> <%= year_and_month_of(item['created_at']).join "." %> </span>
+		<h1> <%= day_of item['created_at'] %> </h1>
+	</div>
+
+	<%= render :partial => "activities/thumbnail", :collection => item['items'][0, 3] %>
+
+	<div class="photo_list_info">
+		<p> <%= item['name'] %> </p>
+		<font class="photo_number_big"> <%= item['items_count'] %> </font>
+	</div>
+</div>

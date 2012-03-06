@@ -153,4 +153,21 @@
 			background-position:left bottom;
 		}
 	}
+
+	#nav {
+		background: image-url('widgets/header/nav_bg.jpg') left bottom no-repeat;
+		float: left;
+		height:44px;
+		margin-left:200px;
+		width:341px;
+
+		li {
+
+			a {
+				padding-top:15px;
+				text-align:center;
+				width:85px;
+			}
+		}
+	}
 }

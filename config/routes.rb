@@ -1,4 +1,5 @@
 Bluerain::Application.routes.draw do
+
   root :to => "misc#frontpage"
 
   match "/d/iphone" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
@@ -19,6 +20,7 @@ Bluerain::Application.routes.draw do
 
   #get "activities/likelist.js" => "activities#likelist.js"
 
+  resources :users, :only => "show", :constraints => {:id => /[0-9]+/}
   resources :activities, :only => [:show], :constraints => {:id => /[0-9]+/} do
     resources :comments
     put "like", :on => :member

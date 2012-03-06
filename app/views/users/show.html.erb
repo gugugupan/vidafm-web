@@ -1,0 +1,150 @@
+<%= content_for :page_specific_asset do %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//nav action
+		offset_array = [
+			{hoverOffset : "left -264px", downOffset: "left -308px"},
+			{hoverOffset : "left -176px", downOffset: "left -220px"},
+			{hoverOffset : "left -88px", downOffset: "left -132px"},
+			{hoverOffset : "left top", downOffset: "left -44px"}
+		]
+
+		$("#header #nav a").mouseover(
+			function() {
+				var i = $(this).index("#header #nav a");
+				$(this).parents("#nav").css('background-position', offset_array[i].hoverOffset);
+			}
+		)
+		.mousedown(
+			function() {
+				var i = $(this).index("#header #nav a");
+				$(this).parents("#nav").css('background-position', offset_array[i].downOffset);
+				$(this).css("color","black").css("opacity",".6").css("text-shadow","0px 1px 0px #F46E85");
+			}
+		)
+		.mouseup(
+			function() {
+				var i = $(this).index("#header #nav a");
+				$(this).parents("#nav").css('background-position', offset_array[i].hoverOffset);
+				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
+			}
+		)
+		.mouseout(
+			function() {
+				var i = $(this).index("#header #nav a");
+				$(this).parents("#nav").css('background-position', "left bottom");
+				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
+			}
+		)
+
+		//popup nav action
+		popup_offset_array = [
+			{hoverOffset : "left -88px", downOffset: "left -132px"},
+			{hoverOffset : "left top", downOffset: "left -44px"},
+		]
+
+		$("#popup #popup_content #title_bar a").mouseover(function() {
+			var i = $(this).index("#popup #popup_content #title_bar a");
+			$(this).parents("ul").css('background-position', popup_offset_array[i].hoverOffset);
+		})
+		.mousedown(
+			function() {
+				var i = $(this).index("#popup #popup_content #title_bar a");
+				$(this).parents("ul").css('background-position', popup_offset_array[i].downOffset);
+				$(this).css("color","black").css("opacity",".6").css("text-shadow","0px 1px 0px #F46E85");
+			}
+		)
+		.mouseup(
+			function() {
+				var i = $(this).index("#popup #popup_content #title_bar a");
+				$(this).parents("ul").css('background-position', popup_offset_array[i].hoverOffset);
+				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
+			}
+		)
+		.mouseout(
+			function() {
+				var i = $(this).index("#popup #popup_content #title_bar a");
+				$(this).parents("ul").css('background-position', "left bottom");
+				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
+			}
+		)
+
+		//define photo area width
+		if($(".date").length > 0) {
+			$("#photo_list_area").css("width","820px");
+			$("#photo_list_area .photo_list .photo_list_info").css("left","75px");
+			$("#main .user_list").css("margin-left","144px");
+		}
+		else {
+			$("#photo_list_area").css("width","660px")
+		}
+
+		//define photo width
+		for (var i = $(".photo_list").length - 1; i>=0; i--){
+			
+			if($(".photo_list:eq(" + i + ")").find(".photo").length == 1) {
+				$(".photo_list:eq(" + i + ")").find(".photo").addClass("photo_long").end().find(".photo img").addClass("img_long");
+			}
+			else if($(".photo_list:eq(" + i + ")").find(".photo").length == 2){
+				$(".photo_list:eq(" + i + ")").find(".photo:eq("+ 0 +")").addClass("photo_middle");
+				$(".photo_list:eq(" + i + ")").find(".photo:eq("+0+") img").addClass("img_middle");
+				$(".photo_list:eq(" + i + ")").find(".photo:eq("+ 1 +")").addClass("photo_short");
+				$(".photo_list:eq(" + i + ")").find(".photo:eq("+1+") img").addClass("img_short");
+			}
+			else if($(".photo_list:eq(" + i + ")").find(".photo").length == 3) {
+				$(".photo_list:eq(" + i + ")").find(".photo").addClass("photo_short");
+				$(".photo_list:eq(" + i + ")").find(".photo img").addClass("img_short");
+			}
+
+		}
+
+		//popup action
+		$("#main .user_list .user_info .follow").click(function() {
+			$("#popup").css("display","block");
+		});
+
+		$("#popup").click(function() {
+			if($(event.target).parent().get(0) == $("body").get(0)) {
+				$("#popup").css("display","none");
+			}
+		});
+
+		$("#popup #popup_content #title_bar #close").click(function() {
+			$("#popup").css("display","none");
+		});
+
+	})
+</script>
+<% end %>
+
+
+	<%= render :partial => "widgets/header", :locals => {:slot => {:nav => true}} %>
+
+<div id="user-show" class="container">
+	<div id="main">
+
+		<div class="user_list">
+			<a href="#"> <%= image_tag @user['avatar_file'], :class => :avatar_big %> </a>
+			<div class="user_info">
+				<h1> <%= @user['name'] %> </h1>
+				<p>活动数: <%= @user['count_moments']  %>  |  被喜欢: <%= @user['count_likes'] %> </p>
+				<a href="#" class="follow"></a>
+			</div>
+		</div>
+		
+		<div id="photo_list_area">
+			<%= render :partial => "moments/item", :collection => @moments['data'] %>
+		</div>
+
+	</div>
+
+	<%= render :layout => "widgets/popup" do %>
+		<div id="title_bar">
+			<ul>
+				<li><a id="guanzhu" href="#">关注 <%= @user['count_followings'] %> </a></li>
+				<li><a id="fensi" href="#">粉丝 <%= @user['count_followers'] %> </a></li>
+			</ul>
+			<a href="#" id="close"></a>
+		</div>
+	<% end %>
+</div>

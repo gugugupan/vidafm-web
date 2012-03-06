@@ -1,0 +1,64 @@
+#popup {
+	background: image-url('popup_bg.png') left top repeat;
+	display: none;
+	height:100%;
+	left:0px;
+	position: absolute;
+	top:0px;
+	width:100%;
+	z-index:3;
+
+	#popup_content {
+		background-color:#F2F2F2;
+		box-shadow:0px 1px 6px #000;
+		height:470px;
+		margin:100px auto 0px auto;
+		width:380px;
+
+		#title_bar {
+			background: image-url('header_bg.jpg') left top repeat-x;
+			height:44px;
+			width:380px;
+
+			ul {
+				background: image-url('popup_nav_bg.jpg') left bottom no-repeat;
+				float: left;
+				height:44px;
+				margin-left:104px;
+				width:171px;
+
+				li {
+					float: left;
+
+					a {
+						color: #fff;
+						display: block;
+						height:17px;
+						padding:14px 0px 6px 0px;
+						text-align:center;
+						text-decoration:none;
+						text-shadow:0px 2px 0px #6D0B15;
+						width:84px;
+					}
+				}
+			}
+
+			#close {
+				background: image-url('popup_close.png') left bottom no-repeat;
+				display: block;
+				float:right;
+				height:31px;
+				margin: 7px 7px 0px 0px;
+				width:30px;
+
+				&:hover {
+					background-position:left top;
+				}
+
+				&:active {
+					background-position:left -31px;
+				}
+			}
+		}
+	}
+}
