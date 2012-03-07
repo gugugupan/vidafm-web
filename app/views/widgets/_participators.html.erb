@@ -3,7 +3,8 @@
 <div class="side-row-box" id="moment-participators">
 	<div class="box-title">创建者</div>
 	<div class="box-content">
-		<%= image_tag moment["user"]['avatar_file'], :alt => moment['user']['name'] %>
+		<%= avatar_tag moment["user"] %>
+		<div class="clearfix"></div>
 	</div>
 </div>
 

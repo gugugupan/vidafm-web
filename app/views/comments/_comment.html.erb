@@ -1,7 +1,8 @@
 <div class="comment-item">
   <div class="box-label">
-    <%= image_tag "moments/details/avatar_shadow_white.png", :class => "user-avatar-shadow" %>
-    <%= image_tag comment["user"]["avatar_file"], :alt => "创建者:" + comment["user"]["name"], :class => "user-avatar" %> 
+    <%#= image_tag "moments/details/avatar_shadow_white.png", :class => "user-avatar-shadow" %>
+    <%#= image_tag comment["user"]["avatar_file"], :alt => "创建者:" + comment["user"]["name"], :class => "user-avatar" %> 
+    <%= avatar_tag comment["user"], {:shadow_white => true} %>
   </div>
   <div class="box-wrapper">
     <div class="box-title">
