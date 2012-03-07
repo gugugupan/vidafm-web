@@ -36,7 +36,7 @@ function gup( name )
 $("[data-login-required=true]").live('ajax:before', function(e) {
 	if (current_user.id) {
 	} else {
-    humane.error("对不起，请登陆后再发表评论。");
+    humane.error("对不起，请登陆后再操作。");
 		return false;
 	}
 });
