@@ -31,7 +31,7 @@ module MomentsHelper
 
 
 	def google_image_tag activities
-		base_url = "http://maps.google.com/maps/api/staticmap"
+		base_url = "http://ditu.google.cn/maps/api/staticmap"
 		locations = activities.reject { |e| e.symbolize_keys!; (e[:lat].to_f < 0.01) or (e[:lng].to_f < 0.01) }.map { |e| e.symbolize_keys!; "#{e[:lat]},#{e[:lng]}" if e[:lat] and e[:lng] }
 		options = {
 			:size => "242x177", 

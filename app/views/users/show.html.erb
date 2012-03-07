@@ -145,11 +145,11 @@
 <div id="user-show" class="container">
 	<div id="main">
 		<div class="user_list">
-			<%#= image_tag @user['avatar_file'], :class => :avatar_big %>
 			<%= avatar_tag @user, :nolink => true %>
 			<div class="user_info">
-				<h1> <%= @user['name'] %> </h1>
-				<p>活动数: <%= @user['count_moments']  %>  |  被喜欢: <%= @user['count_likes'] %> </p>
+				<h1> <%= @user[:name] %> </h1>
+
+				<p>活动数: <%= @user[:count_moments]  %>  |  被喜欢: <%= @user[:count_likes] %> </p>
 				<div class="action-bar">
 					<a href="javascript:slideDownMap()" id="action-map" class="action"></a>
 					<a href="javascript:void(0)" id="action-follow" class="action"></a>
@@ -170,8 +170,8 @@
 	<%= render :layout => "widgets/popup" do %>
 		<div id="title_bar">
 			<ul>
-				<li><a id="guanzhu" href="#">关注 <%= @user['count_followings'] %> </a></li>
-				<li><a id="fensi" href="#">粉丝 <%= @user['count_followers'] %> </a></li>
+				<li><a id="guanzhu" href="#">关注 <%= @user[:count_followings] %> </a></li>
+				<li><a id="fensi" href="#">粉丝 <%= @user[:count_followers] %> </a></li>
 			</ul>
 			<a href="#" id="close"></a>
 		</div>
