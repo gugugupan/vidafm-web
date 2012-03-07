@@ -3,7 +3,8 @@
 <div class="side-row-box" id="activity-info">
 	<%= image_tag "moments/details/right_arrow.png", :class => "minor-arrow-r" %>
 
-	<%= image_tag activity[:user]["avatar_file"], :alt => "创建者:" + activity[:user]["name"], :class => "box-label" %>
+	<%#= image_tag activity[:user]["avatar_file"], :alt => "创建者:" + activity[:user]["name"], :class => "box-label" %>
+	<%= avatar_tag activity[:user] %>
 	<div class="box-wrapper">
 		<div class="box-title">
 			<%= activity[:user]["name"] %>

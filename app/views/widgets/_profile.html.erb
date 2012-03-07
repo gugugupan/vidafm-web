@@ -1,8 +1,6 @@
 <div id="account">
 	<div class="user_avatar">
-		<img class="avatar_img" src=" <%= current_user['avatar_file'] %> "></img>
-		<%= image_tag "moments/details/avatar_shadow.png", :class => "avatar_shadow" %>
-
+		<%= avatar_tag current_user, :shadow => true %>
 	</div>
 	<ul>
 		<li>

@@ -145,7 +145,8 @@
 <div id="user-show" class="container">
 	<div id="main">
 		<div class="user_list">
-			<%= image_tag @user['avatar_file'], :class => :avatar_big %>
+			<%#= image_tag @user['avatar_file'], :class => :avatar_big %>
+			<%= avatar_tag @user, :nolink => true %>
 			<div class="user_info">
 				<h1> <%= @user['name'] %> </h1>
 				<p>活动数: <%= @user['count_moments']  %>  |  被喜欢: <%= @user['count_likes'] %> </p>

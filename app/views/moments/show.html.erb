@@ -41,7 +41,7 @@
 					</div>
 					<div class="bottom"></div>
 				</div>
-				<%= image_tag @moment['data']['user']['avatar_file'] %>
+				<%= avatar_tag @moment['data']['user'], :nolink => true %>
 			</div>
 			<div id="thumbnail_area_big">
 			  <%= render :partial => "moments/details/thumbnails", :collection => @moment['data']['items'], :as => 'activity'  %>
