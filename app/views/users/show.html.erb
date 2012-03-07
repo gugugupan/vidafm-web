@@ -7,42 +7,6 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		//nav action
-		offset_array = [
-			{hoverOffset : "left -264px", downOffset: "left -308px"},
-			{hoverOffset : "left -176px", downOffset: "left -220px"},
-			{hoverOffset : "left -88px", downOffset: "left -132px"},
-			{hoverOffset : "left top", downOffset: "left -44px"}
-		]
-
-		$("#header #nav a").mouseover(
-			function() {
-				var i = $(this).index("#header #nav a");
-				$(this).parents("#nav").css('background-position', offset_array[i].hoverOffset);
-			}
-		)
-		.mousedown(
-			function() {
-				var i = $(this).index("#header #nav li a");
-				$(this).parents("#nav").css('background-position', offset_array[i].downOffset);
-				$(this).css("color","black").css("opacity",".6").css("text-shadow","0px 1px 0px #F46E85");
-			}
-		)
-		.mouseup(
-			function() {
-				var i = $(this).index("#header #nav li a");
-				$(this).parents("#nav").css('background-position', offset_array[i].hoverOffset);
-				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
-			}
-		)
-		.mouseout(
-			function() {
-				var i = $(this).index("#header #nav li a");
-				$(this).parents("#nav").css('background-position', "left bottom");
-				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
-			}
-		)
-
 		//popup nav action
 		popup_offset_array = [
 			{hoverOffset : "left -88px", downOffset: "left -132px"},
@@ -176,7 +140,7 @@
 <% end %>
 
 
-	<%= render :partial => "widgets/header", :locals => {:slot => {:nav => true}} %>
+	<%= render :partial => "widgets/header", :locals => {:slot => {:nav => false}} %>
 
 <div id="user-show" class="container">
 	<div id="main">
