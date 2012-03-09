@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  <%= @user['name'] %> - VIDA（唯达） - 你我的生活轨迹
+  <%= @user[:name] %> - VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
@@ -104,7 +104,7 @@
     
     _.each(moments.data, function(e) { 
     	point = new google.maps.LatLng(e.lat, e.lng);
-      if (point.lat() > 0 && point.lng() > 0) {
+      if (Math.abs(point.lat()) > 0 && Math.abs(point.lng()) > 0) {
         bounds = bounds.extend(point);
       	marker = new google.maps.Marker({
       		position: point,
