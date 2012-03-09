@@ -168,6 +168,8 @@
 				<%= render :partial => "moments/item", :collection => @moments['data'] %>
 				<%= render :partial => "widgets/load_more", :locals => {:page => 1, :controller => "users", :id => params[:id]} if (@moments['is_last_page'].to_i != 1)%>
 			</div>
+		<% else %>
+			<div id="warnings">登入后查看更多</div>
 		<% end %>
 	</div>
 	<% if @current_user %>
