@@ -164,11 +164,11 @@
 			<div id='map_canvas'>
 				<div id="map_cc_canvas"></div>
 			</div>
+			<div id="photo_list_area">
+				<%= render :partial => "moments/item", :collection => @moments['data'] %>
+				<%= render :partial => "widgets/load_more", :locals => {:page => 1, :controller => "users", :id => params[:id]} if (@moments['is_last_page'].to_i != 1)%>
+			</div>
 		<% end %>
-		<div id="photo_list_area">
-			<%= render :partial => "moments/item", :collection => @moments['data'] if @current_user %>
-			<%= render :partial => "widgets/load_more", :locals => {:page => 1, :controller => "users", :id => params[:id]} if (@moments['is_last_page'].to_i != 1)%>
-		</div>
 	</div>
 	<% if @current_user %>
 		<%= render :layout => "widgets/popup" do %>
