@@ -20,7 +20,9 @@ Bluerain::Application.routes.draw do
 
   #get "activities/likelist.js" => "activities#likelist.js"
 
-  resources :users, :only => "show", :constraints => {:id => /[0-9]+/}
+  resources :users, :only => "show", :constraints => {:id => /[0-9]+/} do
+    get "load_more", :on => :member
+  end
   resources :activities, :only => [:show], :constraints => {:id => /[0-9]+/} do
     resources :comments
     put "like", :on => :member

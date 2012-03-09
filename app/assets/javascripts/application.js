@@ -14,6 +14,7 @@
 //= require humane.min
 //= require video
 //= require misc
+//= require users
 
 
 // underscore.js的模版设置，暂时不用。
@@ -40,4 +41,24 @@ $("[data-login-required=true]").live('ajax:before', function(e) {
     humane.error("对不起，请登陆后再操作。");
 		return false;
 	}
+});
+
+
+$("[data-disable-with-spin]").live('click', function(e) {
+  var opts = {
+    lines: 8, // The number of lines to draw
+    length: 3, // The length of each line
+    width: 2, // The line thickness
+    radius: 4, // The radius of the inner circle
+    color: '#000', // #rgb or #rrggbb
+    speed: 1, // Rounds per second
+    trail: 60, // Afterglow percentage
+    shadow: false, // Whether to render a shadow
+    hwaccel: false, // Whether to use hardware acceleration
+    className: 'spinner', // The CSS class to assign to the spinner
+    zIndex: 2e9, // The z-index (defaults to 2000000000)
+    top: 'auto', // Top position relative to parent in px
+    left: 'auto' // Left position relative to parent in px
+  };
+  $(e.currentTarget).css('color', 'white').spin(opts);
 });
