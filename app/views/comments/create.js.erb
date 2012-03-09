@@ -1,5 +1,5 @@
 // 成功创建评论之后，在评论列表插入该评论。
-if (!$("#comment-list"))
+if ($("#comment-list").length == 0)
 	$('<div id="comment-list"></div>').insertBefore($("#comment-list-bottom"));
 $("#comment-list").append(" <%= j render :partial => 'comments/comment', :object => @comment %> ");
 // Notification.
