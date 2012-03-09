@@ -6,7 +6,7 @@
   </div>
   <div class="box-wrapper">
     <div class="box-title">
-      <span class="author"><%= comment["user"]["name"] %></span>
+      <span class="author"><%= comment["user"][:name] %></span>
       <span class="created-time"> <%= (time_ago_in_words Date.parse(comment["created_at"])) + "前" %> </span>
     </div>
     <div class="box-content">

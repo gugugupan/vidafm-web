@@ -12,6 +12,7 @@
 //= require jquery.spin
 //= require underscore-min
 //= require humane.min
+//= require video
 //= require misc
 
 
