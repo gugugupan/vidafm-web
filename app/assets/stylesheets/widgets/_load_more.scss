@@ -13,21 +13,3 @@ $shadow:0px 1px 4px #bcbcbc;
 		@include background(#e6e6e6,none,none,none,no-repeat,none);
 	}
 }
-
-#login {
-	@include background(#fff,none,none,none,none,none);
-	@include container(146px,373px,0 auto,41px 0px 0px 0px,none,$shadow);
-
-	p {
-		@include font(#666,14px,"Helvetica",left,none);
-		@include container(auto,auto,0px 0px 20px 15px,0px 0px 0px 15px,none,none);
-		@include background(none,image-url('login_title_bg.jpg'),left,top,no-repeat,top);
-	}
-
-	a {
-		@include background(none,none,left,top,no-repeat,bottom);
-		@include container(56px,56px,0px 0px 0px 15px,none,left,none);
-		display:block;
-		text-decoration:none;
-	}
-}
