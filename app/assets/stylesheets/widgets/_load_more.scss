@@ -1,11 +1,9 @@
 $shadow:0px 1px 4px #bcbcbc;
 
-a {
+#loadmore {
 	display:block;
 	text-decoration:none;
-}
 
-#loadmore {
 	@include border(none,none,none,none,2px);
 	@include container(20px,660px,0 auto,10px 0px 0px 0px,none,$shadow);
 	@include font(#666,12px,"Helvetica",center,none);
@@ -29,5 +27,7 @@ a {
 	a {
 		@include background(none,none,left,top,no-repeat,bottom);
 		@include container(56px,56px,0px 0px 0px 15px,none,left,none);
+		display:block;
+		text-decoration:none;
 	}
 }
