@@ -15,8 +15,8 @@ module MomentsHelper
 			a += page_label(base_url, e, current_page, options)
 		end
 
-		html = link_to("", "#{base_url}?page=#{current_page - 1}&page_size=#{options[:page_size]}", :class => "prev_page", :remote => options[:remote]) + raw(html) unless current_page == 1
-		html = html + link_to("", "#{base_url}?page=#{current_page + 1}&page_size=#{options[:page_size]}", :class => "next_page", :remote => options[:remote]) unless current_page == page_count
+		html = link_to("", "#{base_url}?page=1&page_size=#{options[:page_size]}", :class => "prev_page", :remote => options[:remote]) + raw(html) unless current_page == 1
+		html = html + link_to("", "#{base_url}?page=#{page_count}&page_size=#{options[:page_size]}", :class => "next_page", :remote => options[:remote]) unless current_page == page_count
 
 		raw html
 	end
