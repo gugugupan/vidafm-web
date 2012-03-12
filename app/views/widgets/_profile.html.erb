@@ -4,7 +4,9 @@
 	</div>
 	<ul>
 		<li>
-			<a href="#"><%= current_user[:name] %></a>
+			<%= link_to user_url(current_user[:id]) do %>
+				<%= current_user[:name] %>
+			<% end %>
 		</li>
 		<li>
 			<a>|</a>
