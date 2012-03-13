@@ -8,7 +8,9 @@
 
 <div id="activity-show">
   <%= render :partial => "widgets/header" %>
+
   <div id="container">
+    <%= render :partial => "widgets/banner" unless cookies[:is_banner_closed] %>
     <div id="activity-col">
       <div id="main-row">
         <%= render :partial => "activity", :object => @activity %>
