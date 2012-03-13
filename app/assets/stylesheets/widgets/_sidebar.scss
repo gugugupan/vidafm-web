@@ -31,7 +31,6 @@
 
 			.box-content {
 				color: #4D4D4D;
-
 			}
 
 
@@ -45,6 +44,9 @@
 				}
 				.box-content {
 					line-height: 22px;
+					a {
+						color: #4D4D4D;
+					}
 					a.view-more {
 						float: right;
 						color: #999;
@@ -75,8 +77,11 @@
 
 					.box-title {
 						font-size: 14px;
-						color: #4D4D4D;
 						line-height: 20px;
+
+						a {
+							color: #4D4D4D;
+						}
 						.created-time {
 							float: right;
 							color: #CCC;

@@ -33,7 +33,9 @@
 								moment = <%= raw @moment.to_json %>
 							</script>
 							<div id="row-title"><%= @moment['data']['name']  %></div>
-							<font> <%= @moment['data']['user']['name'] %> </font>
+							<%= link_to user_url(@moment['data']['user']['id']) do %>
+								<font> <%= @moment['data']['user']['name'] %> </font>
+							<% end %>
 							<p> <%= @moment['data']['location'] %> </p>
 						</div>
 					</div>
@@ -73,9 +75,9 @@
 				<%= render :partial => "widgets/moment_info", :locals => {:moment => @moment['data']} %>
 			</div>
 
-			<div class="side-row">
-				<%= render :partial => "widgets/participators", :locals => {:moment => @moment['data']} %>
-			</div>
+			<!-- <div class="side-row">
+				<%#= render :partial => "widgets/participators", :locals => {:moment => @moment['data']} %>
+			</div> -->
 			<div class="side-row">
 				<%= render :partial => "widgets/map", :locals => {:moment_id => @moment['id'], :activities => @moment['data']['items'] } %>
 			</div>

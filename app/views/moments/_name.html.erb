@@ -1,7 +1,7 @@
 <div class="side-row-box" id="moment-name">
 	<div class="box-title">活动</div>
 	<div class="box-content">
-		<%= moment["name"] %>
+		<%= link_to moment["name"], moment_url(moment['id']) %>
 		<%= link_to "详情 »", moment_url(moment['id']), :class => "view-more" %>
 	</div>
 </div>

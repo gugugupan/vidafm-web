@@ -6,7 +6,9 @@
 	<%= avatar_tag activity[:user] %>
 	<div class="box-wrapper">
 		<div class="box-title">
-			<%= activity[:user][:name] %>
+			<%= link_to user_url activity[:user][:id] do %>
+				<%= activity[:user][:name] %>
+			<% end %>
 			<span class="created-time"> <%= (time_ago_in_words Time.parse(activity[:created_at])) + "前" %> </span>
 		</div>
 		<div class="box-content">

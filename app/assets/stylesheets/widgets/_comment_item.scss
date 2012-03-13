@@ -30,6 +30,10 @@
 		.box-title {
 			color: #4D4D4D;
 			font-size: 12px;
+			.author {
+				display: initial;
+				color: #4D4D4D;
+			}
 			.created-time {
 				float: right;
 				color: #CCC;
