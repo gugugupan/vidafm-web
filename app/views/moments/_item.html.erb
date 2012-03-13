@@ -1,7 +1,7 @@
 <div class="photo_list">
 	<div class="date">
-		<span> <%= year_and_month_of(item['created_at']).join "." %> </span>
-		<h1> <%= day_of item['created_at'] %> </h1>
+		<span> <%= year_and_month_of(item['me_modified_at']).join "." %> </span>
+		<h1> <%= day_of item['me_modified_at'] %> </h1>
 	</div>
 
 	<%= render :partial => "activities/thumbnail", :collection => item['items'][0, 3] %>
