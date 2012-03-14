@@ -5,6 +5,7 @@ class MiscController < ApplicationController
       render :partial => "/misc/redirect", :layout => false 
       return
     end
+    save_url_in_cookies
   end
 
   def about

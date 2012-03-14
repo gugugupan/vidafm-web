@@ -29,6 +29,10 @@ class ApplicationController < ActionController::Base
     @current_user = session[:current_user].stringify_keys!
   end
 
+  def save_url_in_cookies
+    cookies[:refer_url] = request.url
+  end
+
   private
 
   def nonce

@@ -1,4 +1,5 @@
 class MomentsController < ApplicationController
+  before_filter :save_url_in_cookies
   def show
     if request.url =~ /is_mobile=/i || request.user_agent =~ /(android|ipod|iphone)/i
        render :partial => "/misc/redirect", :layout => false 
