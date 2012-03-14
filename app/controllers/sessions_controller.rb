@@ -2,9 +2,9 @@
 class SessionsController < ApplicationController
   def create
     session[:current_user] = Session.create(:from => auth_provider, :token => auth_token, :secret => auth_secret)
-    puts cookies
     if cookies[:refer_url]
       href = cookies.delete(:refer_url)
+
       redirect_to href
     else
       redirect_to :back
