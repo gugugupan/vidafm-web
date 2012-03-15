@@ -1,6 +1,11 @@
 #frontpage {
+  #header {
+    position: relative;
+    z-index: 2;
+  }
    #container {
     position:absolute;
+    z-index: 1;
     width: 945px;
     right: 50%;
     margin-right: -472.5px;
