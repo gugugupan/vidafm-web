@@ -33,19 +33,22 @@ module MomentsHelper
 	def google_image_tag activities
 		base_url = "http://ditu.google.cn/maps/api/staticmap"
 		locations = activities.reject { |e| e.symbolize_keys!; (e[:lat].to_f.abs < 0.01) or (e[:lng].to_f.abs < 0.01) }.map { |e| e.symbolize_keys!; "#{e[:lat]},#{e[:lng]}" if e[:lat] and e[:lng] }
+		puts locations
 		return if locations.count == 0
 		options = {
 			:size => "242x177", 
 			:maptype => "roadmap",
 			:markers => {
+				:zlocations => locations,
 				:size => "mid", 
 				:color => "red",
-				:zlocations => locations 
 			},
+			:zoom => "12", 
 			:sensor => "false"
 		}
 
 		params = parse_options options
+		puts params
 
 		image_tag "#{base_url}?#{params}", :alt => "moment_map"
 	end
