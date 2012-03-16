@@ -39,9 +39,9 @@ module MomentsHelper
 			:size => "242x177", 
 			:maptype => "roadmap",
 			:markers => {
-				:zlocations => locations,
-				:size => "mid", 
-				:color => "red",
+				"size" => "mid", 
+				"color" => "red",
+				"zlocations" => locations,
 			},
 			:zoom => "12", 
 			:sensor => "false"
@@ -57,8 +57,8 @@ module MomentsHelper
 	def parse_options options
 		options.symbolize_keys!
 		if options[:markers]
-			options[:markers] = options[:markers].to_a.map do |e|
-				if e[0] == :zlocations
+			options[:markers] = options[:markers].to_a.sort { |a, b| a[0] <=> b[0] }.map do |e|
+				if e[0] == "zlocations"
 					e[1].join "|"
 				else
 					e.join ":"
