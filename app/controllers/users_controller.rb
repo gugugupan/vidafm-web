@@ -1,3 +1,4 @@
+#encoding: utf-8
 class UsersController < ApplicationController
   
   def show
@@ -8,5 +9,15 @@ class UsersController < ApplicationController
 
   def load_more
   	@moments = User.fetch_moments(params[:id], params[:page])
+  end
+
+  def relation
+  	trans = {
+  		'followings' => 'following',
+  		'followers'	 => 'followed_by',
+  	}
+  	relation = trans[params[:relation]]
+  	@friends = User.fetch_friends(params[:id], relation, current_user)['data']
+  	puts @friends
   end
 end

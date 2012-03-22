@@ -176,11 +176,16 @@
 		<%= render :layout => "widgets/popup" do %>
 			<div id="title_bar">
 				<ul>
-					<li><a id="guanzhu" href="#">关注 <%= @user[:count_followings] %> </a></li>
-					<li><a id="fensi" href="#">粉丝 <%= @user[:count_followers] %> </a></li>
+					<% %w{followings followers}.each do |e| %>
+					<li>
+						<%= link_to relation_in_zh(e) + @user["count_#{e}".to_sym].to_s, relation_user_url(@user[:id], e), :id => e, :remote => true %>
+					</li>
+					<% end %>
 				</ul>
 				<a href="#" id="close"></a>
 			</div>
+			<ul id="relation-li">
+			</ul>
 		<% end %>
 	<% end %>
 
