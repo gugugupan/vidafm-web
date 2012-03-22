@@ -4,11 +4,11 @@ class VIDA
 			params = options[0]
 			user = options[1].try(:symbolize_keys)
 			resource = "'#{api_url}/#{methods}'"
-			cmd = "curl -A 'Platform/web' -d '#{params.to_param}' "
+			cmd = "curl -A 'Platform/web' -d " + '"' + "#{params.to_param}" + '" '
 			cmd += "-s "
 			cmd += "-u #{user[:token]}:#{user[:secret]} " if user
 			cmd += resource
-			p "\nCMD:#{cmd}\n"
+			puts "\nCMD:#{cmd}\n"
 			`#{cmd}`
 		end
 		

@@ -22,6 +22,7 @@ Bluerain::Application.routes.draw do
 
   resources :users, :only => "show", :constraints => {:id => /[0-9]+/} do
     get "load_more", :on => :member
+    get "relation/:relation", :on => :member, :action => 'relation', :as => :relation
   end
   resources :activities, :only => [:show], :constraints => {:id => /[0-9]+/} do
     resources :comments

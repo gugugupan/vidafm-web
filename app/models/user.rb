@@ -13,5 +13,9 @@ class User
 
 			JSON.parse VIDA.call("/user/show", {:id => user_id})
 		end	
+
+		def fetch_friends(user_id, relations, current_user)
+			JSON.parse VIDA.call("/user/relationships", {:id => user_id, :type => relations}, current_user)
+		end
 	end
 end

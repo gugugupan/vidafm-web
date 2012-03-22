@@ -15,6 +15,19 @@
 		margin:100px auto 0px auto;
 		width:380px;
 
+		#relation-li {
+			height: 426px;
+			overflow-y: scroll;
+			.friend-item {
+				line-height: 53px;
+				border-bottom: 1px solid #ccc;
+				.user-avatar-link {
+					margin: 10px;
+				}
+			}
+		}
+
+
 		#title_bar {
 			background: image-url('header_bg.jpg') left top repeat-x;
 			height:44px;

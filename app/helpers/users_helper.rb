@@ -37,6 +37,15 @@ module UsersHelper
 		end
 	end
 
+	def relation_in_zh(word)
+		alph = {
+			'followings' => '关注',
+			'followers'  => '粉丝',
+		}
+
+		return alph[word]
+	end
+
 	private
 
 	def exact_time_parts date

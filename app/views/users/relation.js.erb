@@ -1,0 +1,2 @@
+$("#relation-li").html( "<%= j render :partial => "list_item", :collection => @friends, :as => "friend" %> ");
+console.log( <%= raw @friends.to_json %> );
