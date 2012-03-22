@@ -20,13 +20,13 @@ class Moment < ActiveRecord::Base
       :attender => options[:user_id],
       :month => "#{options[:year]}-#{options[:month]}"
     }
-    j = JSON.parse VIDA.call("moment/list?#{o.to_param}")
+    j = JSON.parse VIDA.call("moment/list?#{o.to_param}", nil, options[:current_user])
   end
 
   def self.fetch_by_user_id(o = {})
     o = {
       :attender => o.delete(:user_id)
     }
-    j = JSON.parse VIDA.call("moment/list?#{o.to_param}")
+    j = JSON.parse VIDA.call("moment/list?#{o.to_param}", nil, options[:current_user])
   end
 end

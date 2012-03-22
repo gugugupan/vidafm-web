@@ -22,7 +22,7 @@ class MomentsController < ApplicationController
   end
 
   def map
-    @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page], :page_size => 999)
+    @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page], :page_size => 999, :current_user => current_user)
 
     redirect_to(user_url(@moment['data']['user_id'])) and return if auth_failed(@moment)
   end
