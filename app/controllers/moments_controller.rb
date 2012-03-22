@@ -13,6 +13,8 @@ class MomentsController < ApplicationController
     @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page], :page_size => params[:page_size], :current_user => current_user)
     @moment['current_page'] = 0 if @moment['current_page'].to_i == -1 # 如果没有找到activity，后台返回当前页数是-1 
 
+    redirect_to(user_url(@moment['data']['user_id'])) and return if auth_failed(@moment)
+
     respond_to do |format|
       format.html
       format.js
@@ -21,6 +23,8 @@ class MomentsController < ApplicationController
 
   def map
     @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page], :page_size => 999)
+
+    redirect_to(user_url(@moment['data']['user_id'])) and return if auth_failed(@moment)
   end
 
   def details

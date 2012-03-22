@@ -39,4 +39,9 @@ class ApplicationController < ActionController::Base
     rand(10 ** 30).to_s.rjust(30,'0')
   end
 
+
+  def auth_failed(json_data)
+    (json_data['result'] || json_data[:result]).to_i == 401
+  end
+
 end
