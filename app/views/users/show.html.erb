@@ -13,35 +13,44 @@
 			{hoverOffset : "left top", downOffset: "left -44px"},
 		]
 
-		$("#popup #popup_content #title_bar li a").mouseover(function() {
+		updateUIOnMouseUp = function() {
+			var i = $(this).index("#popup #popup_content #title_bar li a");
+			$(this).parents("ul").css('background-position', popup_offset_array[i].hoverOffset);
+		}
+
+		updateUIOnMouseOut = function() {
 			var i = $(this).index("#popup #popup_content #title_bar a");
-			// console.log(i);
+			$(this).parents("ul").css('background-position', "left bottom");
+		}
+
+		updateUIOnMouseDown = function(e) {
+			var i = $(e).index("#popup #popup_content #title_bar li a");
+			$(e).parents("ul").css('background-position', popup_offset_array[i].downOffset);
+
+		}
+
+		$("#popup #popup_content #title_bar li a").mouseenter(function() {
+			var i = $(this).index("#popup #popup_content #title_bar a");
 			$(this).parents("ul").css('background-position', popup_offset_array[i].hoverOffset);
 		})
-		.mousedown(
-			function() {
-				var i = $(this).index("#popup #popup_content #title_bar li a");
-				// console.log(i);
-				$(this).parents("ul").css('background-position', popup_offset_array[i].downOffset);
-				$(this).css("color","black").css("opacity",".6").css("text-shadow","0px 1px 0px #F46E85");
-			}
-		)
-		.mouseup(
-			function() {
-				var i = $(this).index("#popup #popup_content #title_bar li a");
-				// console.log(i);
-				$(this).parents("ul").css('background-position', popup_offset_array[i].hoverOffset);
-				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
-			}
-		)
+		// .mousedown(
+		// 	updateUIOnMouseDown
+		// )
+		// .mouseup(
+		// 	updateUIOnMouseUp
+		// )
 		.mouseout(
 			function() {
-				var i = $(this).index("#popup #popup_content #title_bar a");
-				// console.log(i);
-				$(this).parents("ul").css('background-position', "left bottom");
-				$(this).css("color","white").css("opacity","1").css("text-shadow","0px 2px 0px #6D0B15");
+				var i = $(".active").index("#popup #popup_content #title_bar a");
+				$(this).parents("ul").css('background-position', popup_offset_array[i].downOffset);
 			}
 		)
+
+		$("#popup #popup_content #title_bar li a").click(function() {
+			updateUIOnMouseDown(this);
+			$(".active").removeClass("active");
+			$(this).addClass('active');
+		});
 
 		//define photo area width
 		if($(".date").length > 0) {
