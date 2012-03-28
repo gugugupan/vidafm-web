@@ -102,6 +102,8 @@
             coord: [1, 1, 1, 20, 18, 20, 18 , 1],
             type: 'poly'
         };
+
+        markers = [];
         for (var i = 0; i < locations.length; i++) {
 
         	var beach = locations[i];
@@ -110,14 +112,21 @@
           if (!(Math.abs(myLatLng.lat()) > 0.1) && !(Math.abs(myLatLng.lng()) > 0.1))
             continue;
 
-        // console.log(beach);
-         marker = new RichMarker({
-           position: myLatLng,
-           map: map,
-           content: '<a href="/moments/' + beach.moment_id + '#id=' + beach.id + '" target="_blank"><img src="' + beach.photo.url_s + '" class="map-marker" /></a>',
-           shadow: "" 
-         });
+          marker = new RichMarker({
+            position: myLatLng,
+            map: map,
+            content: '<a href="/moments/' + beach.moment_id + '#id=' + beach.id + '" target="_blank"><img src="' + beach.photo.url_s + '" class="map-marker" /></a>',
+            shadow: "" 
+          });
+
+          markers.push(marker);
         }
+
+        mcOptions = {
+          gridSize: 50,
+          maxZoom: 15
+        };
+        mc = new MarkerClusterer(map, markers, mcOptions);
       }
   	</script>
   </div>
