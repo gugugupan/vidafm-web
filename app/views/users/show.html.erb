@@ -4,7 +4,6 @@
 
 <%= content_for :page_specific_asset do %>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		//popup nav action
@@ -104,40 +103,32 @@
 	var moments = <%= raw @moments.to_json %>;
 	var map;
 	function initialize() {
-    var myOptions = {
-      zoom: 8,
-      center: new google.maps.LatLng(-34.397, 150.644),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    map = new google.maps.Map(document.getElementById('map_canvas'),
-        myOptions);
-
-    var bounds = new google.maps.LatLngBounds();
-    
-    _.each(moments.data, function(e) { 
-    	point = new google.maps.LatLng(e.lat, e.lng);
-      if (Math.abs(point.lat()) > 0 && Math.abs(point.lng()) > 0) {
-        bounds = bounds.extend(point);
-      	marker = new google.maps.Marker({
-      		position: point,
-      	});
-      	marker.setMap(map);
-      }
-    });
-
-    google.maps.event.addListener(map, 'zoom_changed', function() {
-        zoomChangeBoundsListener = 
-            google.maps.event.addListener(map, 'bounds_changed', function(event) {
-                if (this.getZoom() > 15 && this.initialZoom == true) {
-                    // Change max/min zoom here
-                    this.setZoom(15);
-                    this.initialZoom = false;
-                }
-            google.maps.event.removeListener(zoomChangeBoundsListener);
-        });
-    });
-    map.initialZoom = true;
-    map.fitBounds(bounds);
+	  var bounds, center, latlng, map, marker, markers, mc, mcOptions, options, photo, _i, _len, _ref;
+	  center = new google.maps.LatLng(37.4419, -122.1419);
+	  options = {
+	    zoom: 13,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	  };
+	  map = new google.maps.Map(document.getElementById("map_canvas"), options);
+	  bounds = new google.maps.LatLngBounds();
+	  markers = [];
+	  _ref = moments.data;
+	  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+	    photo = _ref[_i];
+	    latlng = new google.maps.LatLng(photo.lat, photo.lng);
+	    if (latlng.lat() === 0 || latlng.lng() === 0) continue;
+	    marker = new google.maps.Marker({
+	      'position': latlng
+	    });
+	    markers.push(marker);
+	    bounds.extend(latlng);
+	  }
+	  map.fitBounds(bounds);
+	  mcOptions = {
+	    gridSize: 50,
+	    maxZoom: 15
+	  };
+	  mc = new MarkerClusterer(map, markers, mcOptions);
   }
 
 	var slideDownMap = function () {

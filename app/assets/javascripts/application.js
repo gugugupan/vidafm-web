@@ -15,6 +15,7 @@
 //= require video
 //= require misc
 //= require users
+//= require markerclusterer_packed
 
 
 // underscore.js的模版设置，暂时不用。
