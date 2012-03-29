@@ -101,7 +101,11 @@
 </script>
 <script type="text/javascript">
 	var moments = <%= raw @moments.to_json %>;
+	var user_id = <%= params[:id] %>;
 	var map;
+	var addNoise = function(o) {
+	};
+
 	function initialize() {
 	  var bounds, center, latlng, map, marker, markers, mc, mcOptions, options, photo, _i, _len, _ref;
 	  center = new google.maps.LatLng(37.4419, -122.1419);
@@ -112,11 +116,19 @@
 	  map = new google.maps.Map(document.getElementById("map_canvas"), options);
 	  bounds = new google.maps.LatLngBounds();
 	  markers = [];
-	  _ref = moments.data;
+
+	  _ref = _.flatten(_.pluck(moments.data, 'items'), true);
+	  _ref = _.chain(_ref)
+	  				// 去掉不属于被访问用户的活动。
+				    .reject(function(o) { return o.user_id != user_id })
+				    // 去掉没有地理位置信息的活动
+				    .reject(function(o) { return (o.lat == 0 || o.lng == 0) })
+				    .sortBy(function(o) { return [o.lat, o.lng] })
+				    .value();
+
 	  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
 	    photo = _ref[_i];
 	    latlng = new google.maps.LatLng(photo.lat, photo.lng);
-	    if (latlng.lat() === 0 || latlng.lng() === 0) continue;
 	    marker = new google.maps.Marker({
 	      'position': latlng
 	    });
