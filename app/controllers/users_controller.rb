@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def load_more
-  	@moments = User.fetch_moments(params[:id], params[:page])
+  	@moments = User.fetch_moments(params[:id], params[:page], current_user)
   end
 
   def relation
