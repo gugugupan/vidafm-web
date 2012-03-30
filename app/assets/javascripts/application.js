@@ -1,9 +1,3 @@
-// This is a manifest file that'll be compiled into including all the files listed below.
-// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
-// be included in the compiled file accessible from http://example.com/assets/application.js
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
 //= require jquery
 //= require jquery_ujs
 //= require jquery.cycle.lite 
@@ -16,14 +10,12 @@
 //= require misc
 //= require users
 //= require markerclusterer_packed
+//= require richmarker
 //= require map
 
-
-// underscore.js的模版设置，暂时不用。
-// _.templateSettings = {
-//   interpolate : /\{\{(.+?)\}\}/g,
-//   evaluate : /\{\-(.+?)\-\}/g
-// };
+_.templateSettings = {
+  interpolate : /\{\{(.+?)\}\}/g
+};
 
 function gup( name )
 {
@@ -64,3 +56,5 @@ $("[data-disable-with-spin]").live('click', function(e) {
   };
   $(e.currentTarget).css('color', 'white').spin(opts);
 });
+
+var VIDA;

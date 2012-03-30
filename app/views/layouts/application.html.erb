@@ -6,6 +6,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title><%= yield :title %></title>
   <meta name="Description" content="<%= raw yield :meta_description %>">
+  <%= yield :prerequisite_libraries %>
   
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>

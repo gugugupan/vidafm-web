@@ -20,6 +20,10 @@ $bar_length: 500px;
 			height: 512px;
 			background: black;
 			float: left;
+			#map-canvas {
+				width: 659px;
+				height: 512px;
+			}
 
 
 			@include shadow-box; 

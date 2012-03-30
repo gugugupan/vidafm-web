@@ -2,9 +2,11 @@
   <%= @moment["data"]["name"] %>的地图 - VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
+<%= content_for :prerequisite_libraries do %>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<% end %>
+
 <%= content_for :page_specific_asset do %>
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-  <%= javascript_include_tag :richmarker %>
   <!--[if lte IE 7]>
   <style type="text/css">
     #moment_map #container #map-col {
@@ -46,82 +48,13 @@
 
     <script type="text/javascript">
   		window.moment = <%= raw @moment['data'].to_json %>;
-
-  		var map;
-      function initialize() {
-        var myOptions = {
-          zoom: 8,
-          center: new google.maps.LatLng(-34.397, 150.644),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        map = new google.maps.Map(document.getElementById('map-col'),
-            myOptions);
-
-        setMarkers(map, activities);
-
-
-        var bounds = new google.maps.LatLngBounds();
-        
-        _.each(activities, function(e) { 
-        	point = new google.maps.LatLng(e.lat, e.lng);
-          if (Math.abs(point.lat()) > 0 && Math.abs(point.lng()) > 0)
-            bounds = bounds.extend(point);
-	      });
-
-	      google.maps.event.addListener(map, 'zoom_changed', function() {
-	          zoomChangeBoundsListener = 
-	              google.maps.event.addListener(map, 'bounds_changed', function(event) {
-	                  if (this.getZoom() > 15 && this.initialZoom == true) {
-	                      // Change max/min zoom here
-	                      this.setZoom(15);
-	                      this.initialZoom = false;
-	                  }
-	              google.maps.event.removeListener(zoomChangeBoundsListener);
-	          });
-	      });
-	      map.initialZoom = true;
-	      map.fitBounds(bounds);
-      }
-
-
-
       var activities = moment.items;
 
-      google.maps.event.addDomListener(window, 'load', initialize);
-
-
-      function setMarkers(map, locations) {
-        // Add markers to the map
-        var shape = {
-            coord: [1, 1, 1, 20, 18, 20, 18 , 1],
-            type: 'poly'
-        };
-
-        markers = [];
-        for (var i = 0; i < locations.length; i++) {
-
-        	var beach = locations[i];
-          var markerImageSize = 40;
-          var myLatLng = new google.maps.LatLng(beach.lat, beach.lng);
-          if (!(Math.abs(myLatLng.lat()) > 0.1) && !(Math.abs(myLatLng.lng()) > 0.1))
-            continue;
-
-          marker = new RichMarker({
-            position: myLatLng,
-            map: map,
-            content: '<a href="/moments/' + beach.moment_id + '#id=' + beach.id + '" target="_blank"><img src="' + beach.photo.url_s + '" class="map-marker" /></a>',
-            shadow: "" 
-          });
-
-          markers.push(marker);
-        }
-
-        mcOptions = {
-          gridSize: 50,
-          maxZoom: 15
-        };
-        mc = new MarkerClusterer(map, markers, mcOptions);
-      }
+      $(document).ready(function () {
+        map = new Map($("#map-canvas").get(0));
+        map.setTemplate('<a href="/moments/{{moment_id}}#id={{id}}" target="_blank"><img src="{{photo.url_s}}" class="map-marker" /></a>');
+        map.setMarkers(activities);
+      });
   	</script>
   </div>
   <%= render :partial => "widgets/footer" %>
