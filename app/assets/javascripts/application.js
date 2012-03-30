@@ -16,6 +16,7 @@
 //= require misc
 //= require users
 //= require markerclusterer_packed
+//= require map
 
 
 // underscore.js的模版设置，暂时不用。

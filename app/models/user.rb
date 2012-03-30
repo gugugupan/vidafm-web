@@ -15,6 +15,7 @@ class User
 		end	
 
 		def fetch_friends(user_id, relations, current_user)
+			relations += ',favourite' if (relations == 'following' and user_id.to_i == (current_user['id'] || current_user[:id]).to_i)
 			JSON.parse VIDA.call("/user/relationships", {:id => user_id, :type => relations}, current_user)
 		end
 	end
