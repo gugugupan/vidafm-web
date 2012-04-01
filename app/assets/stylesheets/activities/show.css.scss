@@ -78,6 +78,15 @@ $thumbnail_a: 61px;
               }
             }
           }
+
+          #action-remove {
+            display: block;
+            float: right;
+            height: 35px;
+            width: 35px;
+            background: image-url("delete_big.jpg") -9px no-repeat;
+            text-indent: 999999px;
+          }
         }
       }
 

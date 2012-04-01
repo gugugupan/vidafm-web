@@ -18,6 +18,5 @@ class UsersController < ApplicationController
   	}
   	relation = trans[params[:relation]]
   	@friends = User.fetch_friends(params[:id], relation, current_user)['data']
-  	puts @friends
   end
 end

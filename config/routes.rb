@@ -27,6 +27,7 @@ Bluerain::Application.routes.draw do
   resources :activities, :only => [:show], :constraints => {:id => /[0-9]+/} do
     resources :comments
     put "like", :on => :member
+    delete "remove", :on => :member
     get "likelist", :on => :member
   end
 

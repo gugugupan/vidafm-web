@@ -176,6 +176,17 @@ font {
 				background-position:left bottom;
 			}
 		}
+
+		.action-remove {
+			float: right;
+			display: block;
+			text-indent: 999999px;
+			height: 30px;
+			width: 30px;
+			background: image-url("delete_small.jpg") no-repeat;
+			margin-top: -5px;
+			margin-right: -5px;
+		}
 	}
 }
 

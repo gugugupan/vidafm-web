@@ -26,4 +26,12 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def remove
+    unless current_user
+      render "comments/need_authentication"
+    else
+      @message = Activity.remove(:activity_id => params[:id], :user => current_user)
+    end
+  end
+
 end

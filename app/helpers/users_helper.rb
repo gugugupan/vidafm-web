@@ -52,4 +52,16 @@ module UsersHelper
 		date = date.to_s
 		date.split(/[-\ \/:]/)
 	end
+
+
+	def is_owner_or_admin? activity
+		return false unless @current_user
+		user_id = (activity['user_id'] || activity[:user_id]).to_i
+		(admin_ids << user_id).include? @current_user[:id].to_i
+	end
+
+	def admin_ids
+		#(VIDA 唯达).id
+		[169, ]
+	end
 end

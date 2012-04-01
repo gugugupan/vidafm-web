@@ -9,4 +9,9 @@ class Activity < ActiveRecord::Base
   	data = `#{cmd}`
   	JSON.parse data
   end
+
+  def self.remove(options = {})
+  	options[:user].symbolize_keys!
+    JSON.parse(VIDA.call("moment/remove", {:activity_id => options[:activity_id]}, {:token => options[:user][:token], :secret => options[:user][:secret]}))
+  end
 end

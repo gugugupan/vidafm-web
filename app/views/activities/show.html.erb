@@ -30,6 +30,8 @@
           <div class="like-users">
             <%= render :partial => "like_user", :collection => @activity['likes_users'] %>
           </div>
+
+          <%= link_to "remove", remove_activity_url(@activity['id']), :id => "action-remove", :method => :delete, :remote => true if is_owner_or_admin? @activity %>
         </div>
       </div>
 
