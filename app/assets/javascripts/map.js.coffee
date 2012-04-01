@@ -14,6 +14,7 @@ $(document).ready ->
     setMarkers: (collection) ->
       c = collection || @collection
       c = @chompCollection c
+      c = @addNoise c
       @markers = []
       for o in c
         latlng = new google.maps.LatLng o.lat, o.lng
@@ -54,7 +55,26 @@ $(document).ready ->
 
           false
         )
+        .sortBy( (o)->
+          [o.lat, o.lng]
+        )
         .value()
+
+    addNoise: (collection) ->
+      i = 0
+      for curr in collection
+        if i++ == 0
+          continue
+        prev = collection[i - 1]
+
+        if _.isEqual([prev.lat, prev.lng], [curr.lat, curr.lng])
+          [collection[i - 1].lat, collection[i - 1].lng] = [@doAddNoise(prev.lat), @doAddNoise(prev.lng)]
+
+      collection
+
+    doAddNoise: (flo, precious = 1e-3) ->
+      flo += (Math.random() - 0.5 ) * precious
+
 
 
 
