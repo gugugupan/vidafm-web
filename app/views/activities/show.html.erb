@@ -4,6 +4,15 @@
 
 <%= content_for :page_specific_asset do %>
   <%= javascript_include_tag "activities" %>
+  <script type="text/javascript">
+    activity = <%= raw @activity.slice("id").to_json %>;
+    $(document).ready(function() {
+      $(".side-row").on("viewDidLoad", "#thumbnails", function() {
+        $(".thumbnail-item[ref=" + activity.id + "]").addClass("selected");
+      });
+      $("#thumbnails").trigger("viewDidLoad");
+    })
+  </script>
 <% end %>
 
 <div id="activity-show">

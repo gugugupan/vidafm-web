@@ -1,1 +1,2 @@
 $("#thumbnails").replaceWith(" <%= j render :partial => 'widgets/thumbnails', :locals => {:moment => @moment} %> ");
+$("#thumbnails").trigger("viewDidLoad");
