@@ -2,27 +2,28 @@ $(document).ready ->
   class window.Map
 
     constructor: (@el, @collection, template = "", @shadow = "") ->
-      @options =
-        zoom: 13
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      @map = new google.maps.Map @el, @options
+      @options  = 
+        zoom:       13
+        mapTypeId:  google.maps.MapTypeId.ROADMAP
+      @map      = new google.maps.Map @el, @options
+      
       @setTemplate template
 
     setTemplate: (template)->
       @template = _.template(template)
 
     setMarkers: (collection) ->
-      c = collection || @collection
-      c = @chompCollection c
-      c = @addNoise c
-      @markers = []
+      c         = collection || @collection
+      c         = @chompCollection c
+      c         = @addNoise c
+      @markers  = []
       for o in c
-        latlng = new google.maps.LatLng o.lat, o.lng
-        options = 
+        latlng    = new google.maps.LatLng o.lat, o.lng
+        options   = 
           position: latlng
-          content: @template(o)
-          shadow: @shadow
-        marker = null
+          content:  @template(o)
+          shadow:   @shadow
+        marker    = null
         if not (options.content)
           marker = new google.maps.Marker(options)
         else
@@ -31,14 +32,14 @@ $(document).ready ->
 
       mcOptions = 
         gridSize: 50
-        maxZoom: 15
+        maxZoom:  15
       mc = new MarkerClusterer(@map, @markers, mcOptions)
 
       @fitBoundsWithMarkers()
       
     fitBoundsWithMarkers: (markers) ->
-      markers ||= @markers
-      bounds = new google.maps.LatLngBounds()
+      markers     ||= @markers
+      bounds      = new google.maps.LatLngBounds()
       for o in markers
         bounds.extend o.position
       @map.fitBounds bounds

@@ -4,7 +4,7 @@ class User
 			# check whether the user_id is a number.
 			return nil unless user_id =~ /[0-9]+/
 
-			JSON.parse VIDA.call("/moment/list", {:attender => user_id, :page => page}, current_user)
+			JSON.parse VIDA.call("/moment/list", {:attender => user_id, :page => page, :offset_padding => 0}, current_user)
 		end	
 
 		def fetch(user_id)
