@@ -51,8 +51,8 @@
       var activities = moment.items;
 
       $(document).ready(function () {
-        map = new Map($("#map-canvas").get(0));
-        map.setTemplate('<a href="/moments/{{moment_id}}#id={{id}}" target="_blank"><img src="{{photo.url_s}}" class="map-marker" /></a>');
+        window.map = new Map($("#map-canvas").get(0));
+        map.setTemplate('<a href="/activities/{{id}}" target="_blank"><img src="{{photo.url_s}}" class="map-marker" /></a>');
         map.setMarkers(activities);
       });
   	</script>

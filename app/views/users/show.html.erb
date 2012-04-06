@@ -119,7 +119,7 @@
 		    	if (!map) {
 			    	map = new Map(this);
 			    	activities = _.flatten(_.pluck(moments.data, 'items'), true);
-			    	map.setTemplate('<a href="/moments/{{moment_id}}#id={{id}}" target="_blank"><img src="{{photo.url_s}}" class="map-marker" /></a>');
+			    	map.setTemplate('<a href="/activities/{{id}}" target="_blank"><img src="{{photo.url_s}}" class="map-marker" /></a>');
 			    	map.setMarkers(activities);
 			    }
 		    });

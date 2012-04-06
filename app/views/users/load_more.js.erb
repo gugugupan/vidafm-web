@@ -7,3 +7,4 @@ layoutSubviews( <%= @moments['current_page'].to_i * 20 %> );
 	$("#photo_list_area").append('<%= j render :partial => "widgets/load_more", :locals => {:page => params[:page].to_i + 1, :controller => "users", :id => params[:id]} %>');
 <% end %>
 
+map.setMarkersWithMoments( <%= raw @moments['data'].to_json %> );

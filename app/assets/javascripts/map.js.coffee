@@ -23,7 +23,7 @@ $(document).ready ->
           position: latlng
           content:  @template(o)
           shadow:   @shadow
-        marker    = null
+        marker    = null  
         if not (options.content)
           marker = new google.maps.Marker(options)
         else
@@ -33,16 +33,26 @@ $(document).ready ->
       mcOptions = 
         gridSize: 50
         maxZoom:  15
-      mc = new MarkerClusterer(@map, @markers, mcOptions)
+      if not @mc
+        @mc = new MarkerClusterer(@map, @markers, mcOptions)
+      else
+        @mc.addMarkers @markers, true
 
-      @fitBoundsWithMarkers()
+      @mc.fitMapToMarkers()
+
+    setMarkersWithMoments: (moments)->
+      c = _.flatten(_.pluck(moments, "items"), true)
+      @setMarkers(c)
+
+
+      # @fitBoundsWithMarkers()
       
-    fitBoundsWithMarkers: (markers) ->
-      markers     ||= @markers
-      bounds      = new google.maps.LatLngBounds()
-      for o in markers
-        bounds.extend o.position
-      @map.fitBounds bounds
+    # fitBoundsWithMarkers: (markers) ->
+    #   markers     ||= @markers
+    #   bounds      = new google.maps.LatLngBounds()
+    #   for o in markers
+    #     bounds.extend o.position
+    #   @map.fitBounds bounds
 
     chompCollection: (collection) ->
       _.chain(collection)
