@@ -3,7 +3,7 @@ Bluerain::Application.routes.draw do
   root :to => "misc#frontpage"
 
   match "/d/iphone" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
-  match "/d/android" => redirect("http://pics.vida.fm/vida.1.6.apk")
+  match "/d/android" => redirect("http://pics.vida.fm/vida-1.6.apk")
 
   match "/v1" => redirect("http://itunes.apple.com/cn/app/id454984086")
   match "/v2" => redirect("http://itunes.apple.com/cn/app/id454984086")
