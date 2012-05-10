@@ -18,7 +18,7 @@ role :web, "api.vida.fm:33356"                         # Your HTTP server, Apach
 role :app, "api.vida.fm:33356"                          # This may be the same as your `Web` server
 role :db,  "api.vida.fm:33356", :primary => true # This is where Rails migrations will run
 
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+# $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require 'rvm/capistrano'
 require 'bundler/capistrano'
 
