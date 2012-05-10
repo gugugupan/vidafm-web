@@ -24,6 +24,7 @@ gem 'anemone'
 gem "therubyracer"
 
 gem 'capistrano'
+gem 'rvm-capistrano'
 
 gem 'airbrake'
 
