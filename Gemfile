@@ -23,7 +23,6 @@ gem 'omniauth', :git => 'git://github.com/stranbird/omniauth.git'
 gem 'anemone'
 gem "therubyracer"
 
-gem 'rvm-capistrano'
 gem 'capistrano'
 
 gem 'airbrake'
