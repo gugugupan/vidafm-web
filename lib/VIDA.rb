@@ -14,7 +14,7 @@ class VIDA
 		
 
 		def api_url
-			"http://api.vida.fm"
+			"http://api.vida.fm:15097"
 		end
 	end
 end
