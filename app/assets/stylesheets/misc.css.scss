@@ -31,7 +31,7 @@
 
       $padding : 50px;
 
-      &#feedback_from {
+      &#from {
         height: 70px;
         width: $width - $padding;
         padding-left: $padding;
@@ -41,7 +41,7 @@
         background: image-url("about/email-form.png") no-repeat;
       }
 
-      &#feedback_content {
+      &#content {
         resize:none;
         height: 203px;
         width: $width - $padding;
@@ -53,7 +53,7 @@
         background: image-url("about/contact-form.png") no-repeat;
       }
 
-      &#feedback_submit {
+      &#submit {
         cursor: pointer;
         height: 60px;
         width: $width;
