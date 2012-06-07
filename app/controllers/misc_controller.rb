@@ -13,8 +13,8 @@ class MiscController < ApplicationController
   end
 
   def create_feedback
-    Feedback.create(params[:feedback])
-    redirect_to :about, :notice => "感谢你的建议,我们将会尽快和你联系"
+    response = Feedback.create(params[:feedback])
+    redirect_to :about, :notice => "感谢你的建议,我们将会尽快和你联系" if response['result'].to_i == 0
   end
   
   def android_download
