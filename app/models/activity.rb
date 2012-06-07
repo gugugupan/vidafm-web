@@ -1,4 +1,4 @@
-class Activity < ActiveRecord::Base
+class Activity 
   def self.like(options = {})
     options[:user].symbolize_keys!
     JSON.parse(VIDA.call("moment/like", {:activity_id => options[:activity_id]}, {:token => options[:user][:token], :secret => options[:user][:secret]}))["data"]

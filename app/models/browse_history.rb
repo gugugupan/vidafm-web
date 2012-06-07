@@ -1,2 +1,2 @@
-class BrowseHistory < ActiveRecord::Base
+class BrowseHistory 
 end

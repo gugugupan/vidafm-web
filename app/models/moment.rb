@@ -3,7 +3,7 @@ require "VIDA"
 PAGE_SIZE = 5
 
 #encoding: utf-8
-class Moment < ActiveRecord::Base
+class Moment
   def self.recent
     JSON.parse(VIDA.call("moment/list_recent"))["data"]
   end

@@ -1,4 +1,4 @@
-class Comment < ActiveRecord::Base
+class Comment 
 
   def self.fetchPeer(options = {})
   	o = {
