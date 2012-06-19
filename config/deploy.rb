@@ -35,6 +35,10 @@ namespace :deploy do
   task :symlink_db, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
   end
+  desc "Symlinks the android_download.yml"
+  task :symlink_download_yml, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/config/download.yml #{release_path}/config/download.yml"
+  end
 end
 
 namespace :rvm do

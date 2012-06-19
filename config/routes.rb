@@ -3,7 +3,11 @@ Bluerain::Application.routes.draw do
   root :to => "misc#frontpage"
 
   match "/d/iphone" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
-  match "/d/android" => redirect("http://pics.vida.fm/vida-1.7.4.apk")
+  android_url = ""
+  YAML::load_documents(File.open("config/download.yml")) do |doc|
+    android_url = doc["android"]["base_url"] + doc["android"]["path"]
+  end
+  match "/d/android" => redirect(android_url)
 
   match "/v1" => redirect("http://itunes.apple.com/cn/app/id454984086")
   match "/v2" => redirect("http://itunes.apple.com/cn/app/id454984086")
