@@ -1,0 +1,41 @@
+#user-show {
+	margin-bottom: 100px;
+	width: 100%;
+
+	#main-block {
+		position: relative;
+		top: -80px;
+		width: 765px;
+		margin: 0px auto;
+
+
+		#user-info {
+			position: relative;
+			border-bottom: 1px solid #D2CFCB;
+			width: 100%;
+
+			img.avatar {
+				margin: 10px;
+				width: 80px;
+				height: 80px;
+				border: 2px solid rgb(255, 255, 255);
+			}
+
+			h1 {
+				float: left;
+				display: block;
+				margin-top: 35px;
+				margin-left: 10px;
+				font-size: 25px;
+				color: white;
+				text-shadow:black 1px 1px 0;
+			}
+			
+			#user-info-button {
+				margin-top: 20px;
+				margin-left: 25px;
+				float: left;
+			}
+		}
+	}
+}

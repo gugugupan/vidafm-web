@@ -1,0 +1,10 @@
+<div class="thumbnail" style="width:245px;">
+	<a href="#" class="thumb">
+		<%= image_tag pic[ "photo" ] [ "url_m" ] , :class => "show-photo" %>
+	</a>
+<% if first %>
+	<h1 class="ribbon red"> <%= date %> </h1>
+	<%= link_to like_count , like_link , :class => "thumb_like btn_dark btn_small" %>
+<% end %>
+</div>
+

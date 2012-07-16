@@ -1,0 +1,26 @@
+<%= content_for :title do %>
+  VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
+<%= content_for :meta_description do %>
+VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活轨迹。
+<% end -%>
+
+<div id="discover-page">
+	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
+	<div id="main-main-block">
+		<%= render :partial => "discover/sidebar" %>
+		<div id="main-block">
+			<div id="main-block-header">
+				<%= image_tag "images/icon_feature_small@2x.png" %>
+				<h1> 精选故事 </h1>
+				<div id="sort-method"> </div>
+				<div class="clearfix"> </div>
+			</div>
+			<div id="main-block-commend">
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>

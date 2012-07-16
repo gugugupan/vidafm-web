@@ -1,183 +1,28 @@
 <%= content_for :title do %>
-  <%= @user[:name] %> - VIDA（唯达） - 你我的生活轨迹
+  <%= @cur_user[ "name" ] %> - VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
-<%= content_for :prerequisite_libraries do %>
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<% end %>
+<div id="user-show">
+ 	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
+ 	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ :cover_file ] } %>
 
-<%= content_for :page_specific_asset do %>
-<script type="text/javascript">
-	$(document).ready(function(){
-		//popup nav action
-		popup_offset_array = [
-			{hoverOffset : "left -88px", downOffset: "left -132px"},
-			{hoverOffset : "left top", downOffset: "left -44px"},
-		]
+ 	<div id="main-block">
+ 		<div id="user-info">
+ 			<div style="float:left;"> <%= avatar_tag @user, :nolink => true %> </div>
+ 			<h1> <%= @user[ :name ] %> </h1>
 
-		updateUIOnMouseUp = function() {
-			var i = $(this).index("#popup #popup_content #title_bar li a");
-			$(this).parents("ul").css('background-position', popup_offset_array[i].hoverOffset);
-		}
+ 			<div id="user-info-button"> 				
+ 				<%= render :partial => "widgets/filter" %>
+ 				<a class="btn_dark btn_middle" href="#" style="margin-left:10px">
+					<%= image_tag "images/icon_follow.png" , :alt => "" %>
+				</a>
+				<a class="btn_blue btn_middle" href="#" style="margin-left:10px">+关注</a>
+ 			</div>
 
-		updateUIOnMouseOut = function() {
-			var i = $(this).index("#popup #popup_content #title_bar a");
-			$(this).parents("ul").css('background-position', "left bottom");
-		}
+ 			<div class="clearfix"> </div>
+ 		</div>
+ 		<%= render :partial => "widgets/item", :collection => @moments['data'] , :locals => { :show_type => 1 } %>
+ 		<div class="clearfix"> </div>
+ 	</div>
 
-		updateUIOnMouseDown = function(e) {
-			var i = $(e).index("#popup #popup_content #title_bar li a");
-			$(e).parents("ul").css('background-position', popup_offset_array[i].downOffset);
-
-		}
-
-		$("#popup #popup_content #title_bar li a").mouseenter(function() {
-			var i = $(this).index("#popup #popup_content #title_bar a");
-			$(this).parents("ul").css('background-position', popup_offset_array[i].hoverOffset);
-		})
-		// .mousedown(
-		// 	updateUIOnMouseDown
-		// )
-		// .mouseup(
-		// 	updateUIOnMouseUp
-		// )
-		.mouseout(
-			function() {
-				var i = $(".active").index("#popup #popup_content #title_bar a");
-				$(this).parents("ul").css('background-position', popup_offset_array[i].downOffset);
-			}
-		)
-
-		$("#popup #popup_content #title_bar li a").click(function() {
-			updateUIOnMouseDown(this);
-			$(".active").removeClass("active");
-			$(this).addClass('active');
-		});
-
-		//define photo area width
-		if($(".date").length > 0) {
-			$("#photo_list_area").css("width","820px");
-		}
-		else {
-			$("#photo_list_area").css("width","660px")
-		}
-
-		//define photo width
-		window.layoutSubviews = function (e) {
-			for (var i = $(".photo_list").length - 1; i>= (e || 0); i--){
-			
-			if($(".photo_list:eq(" + i + ")").find(".photo").length == 1) {
-				$(".photo_list:eq(" + i + ")").find(".photo").addClass("photo_long").end().find(".photo img").addClass("img_long");
-			}
-			else if($(".photo_list:eq(" + i + ")").find(".photo").length == 2){
-				$(".photo_list:eq(" + i + ")").find(".photo:eq("+ 0 +")").addClass("photo_middle");
-				$(".photo_list:eq(" + i + ")").find(".photo:eq("+0+") img").addClass("img_middle");
-				$(".photo_list:eq(" + i + ")").find(".photo:eq("+ 1 +")").addClass("photo_short");
-				$(".photo_list:eq(" + i + ")").find(".photo:eq("+1+") img").addClass("img_short");
-			}
-			else if($(".photo_list:eq(" + i + ")").find(".photo").length == 3) {
-				$(".photo_list:eq(" + i + ")").find(".photo").addClass("photo_short");
-				$(".photo_list:eq(" + i + ")").find(".photo img").addClass("img_short");
-			}
-
-			}
-		}
-
-		layoutSubviews();
-
-		//popup action
-		$("#action-follow").click(function() {
-			$("#popup").css("display","block");
-			$("#followings").click();
-		});
-
-		$("#popup").click(function() {
-			if($(event.target).parent().get(0) == $("body").get(0)) {
-				$("#popup").css("display","none");
-			}
-		});
-
-		$("#popup #popup_content #title_bar #close").click(function() {
-			$("#popup").css("display","none");
-		});
-
-
-		$("#followings, #followers").click(function() {
-			$("#relation-li").html("").spin();
-		});
-	})
-</script>
-<script type="text/javascript">
-	var moments = <%= raw @moments.to_json %>
-	 , user_id = <%= params[:id] %>
-	 , map = null;
-
-	var slideDownMap = function () {
-		$("#map_canvas").stop(true, false).animate({
-		          height: "toggle"
-		    }, 200, function() {
-		    	if (!map) {
-			    	map = new Map(this);
-			    	activities = _.flatten(_.pluck(moments.data, 'items'), true);
-			    	map.setTemplate('<a href="/activities/{{id}}" target="_blank"><img src="{{photo.url_s}}" class="map-marker" /></a>');
-			    	map.setMarkers(activities);
-			    }
-		    });
-		$("#action-map").toggleClass("active");
-	}
-</script>
-<% end %>
-
-
-<%= render :partial => "widgets/header", :locals => {:slot => {:nav => false}} %>
-
-<div id="user-show" class="container">
-	<div id="main">
-		<div class="user_list">
-			<%= avatar_tag @user, :nolink => true %>
-			<div class="user_info">
-				<h1> <%= @user[:name] %> </h1>
-
-				<p>活动数: <%= @user[:count_moments]  %>  |  被喜欢: <%= @user[:count_likes] %> </p>
-				<div class="action-bar">
-					<% if @current_user %>
-						<a href="javascript:slideDownMap()" id="action-map" class="action"></a>
-						<a href="javascript:void(0)" id="action-follow" class="action"></a>
-					<% end %>
-				</div>
-			</div>
-		</div>
-		<% if @current_user %>
-			<div id='map_canvas'>
-				<div id="map_cc_canvas"></div>
-			</div>
-			<div id="photo_list_area">
-				<%= render :partial => "moments/item", :collection => @moments['data'] %>
-				<%= render :partial => "widgets/load_more", :locals => {:page => 1, :controller => "users", :id => params[:id]} if (@moments['is_last_page'].to_i != 1)%>
-			</div>
-		<% else %>
-			<div id="warnings">登入后查看更多</div>
-		<% end %>
-	</div>
-	<% if @current_user %>
-		<%= render :layout => "widgets/popup" do %>
-			<div id="title_bar">
-				<ul>
-					<% %w{followings followers}.each do |e| %>
-					<li>
-						<%= link_to relation_in_zh(e) + @user["count_#{e}".to_sym].to_s, relation_user_url(@user[:id], e), :id => e, :remote => true %>
-					</li>
-					<% end %>
-				</ul>
-				<a href="#" id="close"></a>
-			</div>
-			<ul id="relation-li">
-			</ul>
-		<% end %>
-	<% end %>
-
-
-</div>
-
-
-	<%= render :partial => "widgets/footer" %>
+ </div>

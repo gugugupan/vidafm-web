@@ -1,0 +1,38 @@
+#friend-show {
+	width: 100%;
+	overflow: hidden;
+
+	#main-block {
+		position: relative;
+		top: -80px;
+		width: 765px;
+		margin: 0px auto;
+
+		#user-info {
+			width: 100%;
+
+			img {
+				margin: 10px;
+				width: 80px;
+				height: 80px;
+				border: 2px solid rgb(255, 255, 255);
+			}
+
+			h1#detail {
+				display: block;
+				margin-top: 35px;
+				margin-left: 10px;
+				float: left;
+				font-size: 25px;
+				color: white;
+				text-shadow:black 1px 1px 0;
+			}
+		}
+
+		#following-list {
+			width: 100%;
+			margin: 10px 0px;
+			border-top: 1px solid #D2CFCB;
+		}
+	}
+}

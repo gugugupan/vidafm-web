@@ -1,0 +1,20 @@
+<%= content_for :title do %>
+  <%= @user[ "name" ] %> - VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
+<div id="friend-show">
+ 	<%= render :partial => "widgets/header" , :locals => { :user => @user } %>
+ 	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ "cover_file" ] } %>
+
+ 	<div id="main-block">
+ 		<div id="user-info">
+ 			<div style="float:left;"> <%= avatar_tag @user %> </div>
+ 			<h1 id="detail"> <%= @user[ :name ] %> 的好友动态 </h1>
+ 			<div class="clearfix"> </div>
+ 		</div>
+ 		<div id="following-list">
+ 			<%= render :partial => "widgets/item" , :collection => @moment , :locals => { :show_type => 2 } %>
+ 			<div class="clearfix"> </div>
+ 		</div>
+ 	</div>
+ </div>

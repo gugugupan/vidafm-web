@@ -52,6 +52,10 @@ module Bluerain
 	 
 	# Version of your assets, change this if you want to expire all your assets
 	config.assets.version = '1.0'
+
+  # assets path for font
+  config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
 	 
 	# Change the path that assets are served from
 	# config.assets.prefix = "/assets"

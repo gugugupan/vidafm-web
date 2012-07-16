@@ -16,7 +16,11 @@ class MiscController < ApplicationController
     response = Feedback.create(params[:feedback])
     redirect_to :about, :notice => "感谢你的建议,我们将会尽快和你联系" if response['result'].to_i == 0
   end
-  
+
   def android_download
+  end
+
+  def index
+    redirect_to "/home" if current_user
   end
 end

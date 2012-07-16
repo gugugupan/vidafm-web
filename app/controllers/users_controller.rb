@@ -4,19 +4,15 @@ class UsersController < ApplicationController
   def show
     @moments = User.fetch_moments(params[:id], 0, current_user)
     @user = User.fetch(params[:id])['data'].symbolize_keys
-    save_url_in_cookies
+    @cur_user = current_user_for_header
   end
 
-  def load_more
-  	@moments = User.fetch_moments(params[:id], params[:page], current_user)
-  end
-
-  def relation
-  	trans = {
-  		'followings' => 'following',
-  		'followers'	 => 'followed_by',
-  	}
-  	relation = trans[params[:relation]]
-  	@friends = User.fetch_friends(params[:id], relation, current_user)['data']
+  def friend
+    unless current_user
+      render "/"
+      return
+    end
+    @user = User.fetch_current_user( current_user ) [ "data" ]
+    @moment = User.fetch_friend_moments( current_user ) [ "data" ]
   end
 end

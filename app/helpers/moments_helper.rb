@@ -1,7 +1,7 @@
 module MomentsHelper
 	def vida_pagination(base_url, page_count, current_page, options)
 
-    page_count = page_count.to_i
+	    page_count = page_count.to_i
 		current_page = current_page.to_i + 1
 		max_page_label = 6
 		page_label_padding = options[:page_padding] || 2
@@ -76,5 +76,19 @@ module MomentsHelper
 		image_tag placeholder_url, :class => "user-avatar"
 	end
 
+	def moment_category( str )
+		return "随拍" if str == "random"
+		return "出游" if str == "travel"
+		return "亲子" if str == "children"
+		return "心情日记" if str == "mood"
+		return "秀搭配" if str == "misc"
+		return "吃货" if str == "food"
+		str = "空" if str .nil?
+		str
+	end
 
+	def empty_descripe( str )
+		str = "(空)" if str .nil?
+		str 
+	end
 end

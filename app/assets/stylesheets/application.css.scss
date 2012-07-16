@@ -3,73 +3,22 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require css_reset
- *= require widgets/widgets
- *= require misc
- *= require original
- *= require bootstrap.min
- *= require_self
- *= require activities/show
- *= require moments/map
- *= require moments/show
- *= require users/show
- *= require frontpage
- *= require android_download
- *= require video-js
+ *= require screen
+ *= require index
+ *= require user_show
+ *= require discover
+ *= require moment_show
+ *= require friend_show
+ *= require moment_list
 */
 
 @import "variables";
 
 body {
-  background:#f2f2f2;
-  font-family:"Microsoft YaHei",Hei,Helvetica,Arial;
-  font-size:12px;
-  letter-spacing:1px;
-}
-
-div {
-  font-size:12px;
-}
-
-h1 {
-  color: #4d4d4d;
-  font-family:"Microsoft YaHei",Hei,Helvetica,Arial;
-  font-size:18px;
-  font-weight:normal
-}
-
-h2 {
-  color: $grey;
-  float: left;
-  font-size:14px;
-  font-weight:normal;
-}
-
-h3 {
-  color: $grey;
-  float: left;
-  font-size:12px;
-  font-weight:normal;
-}
-
-a {
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-  span {
-    display: none;
-  }
-}
-
-p {
-  color: #666;
-  font-size:12px;
-  line-height:15px;
-  width:512px;
-}
-
-font {
-  font-size:12px;
+  letter-spacing:normal;
+  color: black;
+	margin: 0px auto;
+  width:100%;
 }
 
 .container {
@@ -92,6 +41,10 @@ a#follow-us {
   }
 }
 
+img {
+}
+
 .clearfix {
   clear: both;
 }
+

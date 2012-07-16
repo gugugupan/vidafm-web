@@ -1,9 +1,0 @@
- <% if activity['video']  %>
- 	 <video id="my_video_1" class="video-js vjs-default-skin" controls
- 	   preload="auto" width="648" height="648" poster=" <%= activity['photo']['url_l'] %> "
- 	   data-setup='{"controls": true, "preload": "auto"}'>
- 	   <source src=" <%= activity['video']['url_iphone'] %> " type='video/mp4'>
- 	 </video>
- <% else %>
-	 <%= image_tag activity['photo']['url_l'], :class => "photo-view" %> 
- <% end %> 

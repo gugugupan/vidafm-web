@@ -1,0 +1,31 @@
+<div class="user-story">
+	<div class="user-story-head">
+	<% if show_type == 1 -%>
+		<a class="font0" href="/moments/<%= item[ 'id' ] %>"> 
+			<%= item[ "name" ] %>
+		</a>
+	<% else -%>
+		<div id="header-pic"> <%= avatar_tag item[ "user" ] , :nolink => true %> </div>
+		<div style="float:left;margin-left:10px;">
+			<a class="font1" href="/moments/<%= item[ 'id' ] %>">
+				[<%= moment_category( item[ "category" ] ) %>] <%= item[ "name" ] %> 
+			</a>
+			<a class="font2" href="/users/<%= item[ "user" ] [ :id ] %>">
+				<%= item[ "user" ] [ :name ] %> 
+			</a>
+			<div class="clearfix"> </div>
+		</div>
+	<% end -%>
+		<a class="btn_round" href="/moments/<%= item[ 'id' ] %>">
+			所有 <%= item[ "photo_count" ] %>
+		</a>
+		<div class="clearfix"> </div>
+	</div>
+
+	<div class="photo-row">
+		<%= render :partial => "widgets/pic", :collection => item['items'] [ 0 , 1 ] , :locals => { :first => true , :date => item['modified_at'] [ 0 .. 9 ] , :like_count => item[ "likes_count" ] , :like_link => "#" } %>
+		<%= render :partial => "widgets/pic", :collection => item['items'] [ 1 , 2 ] , :locals => { :first => false } %>		
+		<div class="clearfix"> </div>
+	</div>
+</div>
+

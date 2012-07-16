@@ -1,13 +1,32 @@
 <div id="header">
-	<div id="header_content">
-		<%= link_to :root, :id => "home-link" do %>
-			<%= image_tag "moments/details/header_logo.jpg", :id => :logo %>
-		<% end %>
-		<%= render :partial => "widgets/nav" if (defined? slot) and (slot[:nav]) %>
-		<% unless session[:current_user] %>
-			<%= render :partial => "widgets/login" %>
-		<% else %>
-			<%= render :partial => "widgets/profile", :locals => {:current_user => session[:current_user] } %>
-		<% end %>
+	<div class="content">
+		<%= image_tag "images/logo.png" , :alt => "" , :id => "logo" %>
+		<ul>
+			<li>
+				<a href="/users/<%= user[ 'id' ] %>" class="avatar">
+					<%= image_tag user[ "avatar_file" ] || user[ :avatar_file ] , :alt => "" %> 
+				</a>
+				<a href="/users/<%= user[ 'id' ] %>" id="me" class="link"><%= user[ "name" ] %></a>
+			</li>
+			<li>
+				<a href="/home" id="activity" class="link">好友动态</a>
+			</li>
+			<li>
+				<a href="/discover/index" id="discover" class="link">发现</a>
+			</li>
+		</ul>
+
+		<div id="header_btn">
+			<!-- message btn -->
+			<a href="#" class="btn_red btn_small">
+				<%= image_tag "images/icon_message.png" , :alt => "" %>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp消息
+			</a>
+			<!-- logout btn -->
+			<a href="/auth/logout" class="btn_red btn_small">
+				<%= image_tag "images/icon_logout.png" , :alt => "" %>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp登出
+			</a>
+		</div>
 	</div>
 </div>

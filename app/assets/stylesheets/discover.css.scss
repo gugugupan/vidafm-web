@@ -1,0 +1,60 @@
+// Place all the styles related to the discover controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#left_nav {
+	width: 15%;
+	margin-right: 10px;
+	float: left;
+}
+
+
+#discover-page {
+	width: 100%;
+
+	#main-main-block {
+		width: 75%;
+		margin: 0px auto;
+		position: relative;
+
+		#main-block {
+			margin-left: 10px;
+			float: left;
+			width: 765px;
+
+			#main-block-header {
+				width: 100%;
+				padding: 0px;
+				position: relative;
+				border-bottom: 1px dashed rgba(0,0,0,0.3);
+
+				img {
+					float: left;
+					display: block;
+					padding: 10px;
+				}
+
+				h1 {
+					display: block;
+					float: left;
+					padding: 13px;
+					font-size: 21px;
+					font-weight: normal;
+					color: rgb(50,50,50);
+				}
+
+				#sort-method {
+					float: right;
+				}
+			}
+
+			#main-block-commend {
+				width: 80%;
+				float: left;
+				height: 300px;
+				background-color: rgba(0,255,0,0.3);
+			}
+
+		}
+	}
+}

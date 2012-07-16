@@ -1,0 +1,28 @@
+<div class="story_container">
+	<h1 class="ribbon red">第一天</h1>
+	<a href="#" class="photo_container">
+		<%= image_tag pic[ 'photo' ] [ 'url_m' ] , :style => "min-width:100%;" %>
+	</a>
+	<div class="info_container">
+		<%= avatar_tag pic[ 'user' ] %>
+		<div class="comment_container">
+			<p class="user_name"> 
+				<a href="/users/<%= pic[ "user" ] [ :id ] %>"> <%= pic[ "user" ] [ :name ] %> </a> 
+				<div class="clearfix"> </div>
+			</p>
+			<p class="photo_description"> <%= empty_descripe( pic[ "description_comment" ] [ "content" ] ) %> </p>
+			<font class="timer">1h</font>
+			<font class="location">照片地址</font>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div style="width:100%;margin:15px 0px;">
+	<a class="like" href="#">
+		<%= pic[ "likes_count" ] %>
+	</a>
+	<a class="comment" href="#">
+		<%= pic[ "comments_count" ] %>
+	</a>
+	<div class="clearfix"> </div>
+</div>

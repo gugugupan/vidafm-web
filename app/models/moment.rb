@@ -29,4 +29,8 @@ class Moment
     }
     j = JSON.parse VIDA.call("moment/list?#{o.to_param}", nil, options[:current_user])
   end
+
+  def self.fetch_by_category( category , sort_type) 
+    JSON.parse VIDA.call( "moment/search?category=#{ category }&order=#{ sort_type }&limit=10" , nil )
+  end
 end

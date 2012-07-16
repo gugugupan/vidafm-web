@@ -1,9 +1,0 @@
-<% if moment['page_count'] > 1 %>
-	<% 0.upto(moment['page_count']) do |page| %>
-		<% if page != moment['current_page'] %>
-			<%= link_to "", moment_path(moment['id'], :page => page, :format => :js), :remote => true, :class => "page_item" %>
-		<% else %>
-			<div id="current_page"></div>
-		<% end -%>
-	<% end -%>
-<% end -%>

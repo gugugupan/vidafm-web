@@ -1,6 +1,15 @@
 Bluerain::Application.routes.draw do
 
-  root :to => "misc#frontpage"
+  root :to => "misc#index"
+  match "users/:id" => "users#show"
+  match "moments/:id" => "moments#show"
+  match "moments/ajax_get_new_page/:id" => "moments#ajax_get_new_page"
+  match "home" => "users#friend"
+  get "discover/index"
+  get "discover/category"
+
+
+
 
   match "/d/iphone" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
   android_url = ""
@@ -13,7 +22,7 @@ Bluerain::Application.routes.draw do
   match "/v2" => redirect("http://itunes.apple.com/cn/app/id454984086")
   match "/v3" => redirect("http://goo.gl/qWeJx")
   match "/v4" => redirect("http://goo.gl/qWeJx")
-   match "/v5" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
+  match "/v5" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
   #match "/v5" => redirect("http://goo.gl/CKRnH")
   
   match "/v6" => redirect("http://goo.gl/FfF5V")
@@ -23,11 +32,12 @@ Bluerain::Application.routes.draw do
   get "android_download" => "misc#android_download"
 
   #get "activities/likelist.js" => "activities#likelist.js"
-
+=begin
   resources :users, :only => "show", :constraints => {:id => /[0-9]+/} do
     get "load_more", :on => :member
     get "relation/:relation", :on => :member, :action => 'relation', :as => :relation
   end
+  
   resources :activities, :only => [:show], :constraints => {:id => /[0-9]+/} do
     resources :comments
     put "like", :on => :member
@@ -38,11 +48,12 @@ Bluerain::Application.routes.draw do
   resources :moments, :only => [:show], :constraints => {:id => /[0-9]+/} do
     get "map", :on => :member
   end
+=end
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'sessions#failure'
   match '/auth/logout' => 'sessions#destroy'
 
-  match "contact" => "misc#about", :as => :about  # Hack to rename the legal route "about" to "contact".
-  post "create_feedback" => "misc#create_feedback"
+  #match "contact" => "misc#about", :as => :about  # Hack to rename the legal route "about" to "contact".
+  #post "create_feedback" => "misc#create_feedback"
 end

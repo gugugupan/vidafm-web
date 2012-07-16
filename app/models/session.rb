@@ -1,3 +1,5 @@
+require "VIDA"
+
 class Session
 	def self.create(options = {})
 		user = JSON.parse(VIDA.call("account/signup_with_vendors", options))['user']

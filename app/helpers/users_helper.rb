@@ -25,16 +25,8 @@ module UsersHelper
 		user.symbolize_keys!
 
 		inner_html = ""
-		inner_html += image_tag "moments/details/avatar_shadow_white.png", :class => "user-avatar-shadow" if options[:shadow_white]
-		inner_html += image_tag "moments/details/avatar_shadow.png", :class => "user-avatar-shadow" if options[:shadow]
-		inner_html += image_tag user[:avatar_file], :class => 'user-avatar', :alt => user[:name], :title => user[:name]
-		if user[:id] and not options[:nolink]
-			link_to user_url(user[:id]), :class => 'user-avatar-link' do
-				raw inner_html	
-			end
-		else
-			raw inner_html
-		end
+		inner_html += image_tag user[:avatar_file], :class => 'avatar', :alt => user[:name], :title => user[:name]
+		raw inner_html
 	end
 
 	def relation_in_zh(word)

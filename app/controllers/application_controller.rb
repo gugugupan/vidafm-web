@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
     @current_user = session[:current_user].stringify_keys!
   end
 
+  def current_user_for_header
+    session[ :cur_user ] = User.fetch_current_user( current_user ) [ "data" ] if session[ :cur_user ] .nil?
+    session[ :cur_user ] 
+  end
+
   def save_url_in_cookies
     cookies[:refer_url] = request.url
   end
@@ -44,4 +49,16 @@ class ApplicationController < ActionController::Base
     (json_data['result'] || json_data[:result]).to_i == 401
   end
 
+  def comment_category(id)
+  end
+
+  def moment_category( str )
+    return "随拍" if str == "random"
+    return "出游" if str == "travel"
+    return "亲子" if str == "children"
+    return "心情日记" if str == "mood"
+    return "秀搭配" if str == "misc"
+    return "吃货" if str == "food"
+    return nil
+  end
 end

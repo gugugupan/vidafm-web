@@ -1,96 +1,89 @@
-	<%= content_for :page_specific_asset do %> 	
-		<!--[if IE]>
-			<%= stylesheet_link_tag "moments/details.ie" %>
-		<![endif]-->
-
-		<script type="text/javascript">
-			// 适配之前的地址格式
-			var hash = window.location.hash;
-			if (hash) {
-				var id = hash.split("=").pop();
-				window.location = '/activities/' + id
-			};
-		</script>	
- 	<%  end -%>
-
-
 <%= content_for :title do %>
-  <%= @moment["data"]["name"] %> - VIDA（唯达） - 你我的生活轨迹
+  <%= @moment[ "name" ] %> - VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
+<%= content_for :page_specific_asset do %>
+<script>
+	var page_now = 0 ;
+	var comment_id = <%= params[ :id ] %> ;
+	$( document ) .ready( function() 
+	{
+    	$( "#refresh-link" ) .click( function() 
+    	{
+            if ( page_now < <%= @max_page %> )
+            {
+                $( "#refresh-link" ) .text( "载入中,请稍后.." ) ;
+        		page_now = page_now + 1 ;
+        		var get_url = "/moments/ajax_get_new_page/" + String( comment_id ) + "?page=" + String( page_now ) ;
 
-<div id="moment-details">
-	<%= render :partial => "widgets/header" %>
-	<div id="main">
-		<%= render :partial => "widgets/banner" unless cookies[:is_banner_closed] %>
-		<div id="left">
-			<div id="moment_info">
-				<div class="container_left">
-					<div class="top"></div>
-					<div class="content">
-						<div>
-							<script type="text/javascript">
-								moment = <%= raw @moment.to_json %>
-							</script>
-							<div id="row-title"><%= @moment['data']['name']  %></div>
-							<%= link_to user_url(@moment['data']['user']['id']) do %>
-								<font> <%= @moment['data']['user']['name'] %> </font>
-							<% end %>
-							<p> <%= @moment['data']['location'] %> </p>
-						</div>
-					</div>
-					<div class="bottom"></div>
-				</div>
-				<%= avatar_tag @moment['data']['user'], :nolink => true %>
-			</div>
-			<div id="thumbnail_area_big">
-			  <%= render :partial => "moments/details/thumbnails", :collection => @moment['data']['items'], :as => 'activity'  %>
-				<div class="clear"></div>
-				<div id="page_bar">
-					<font class="photo_number_big"><%= @moment['data']['items_count'] %></font>
+        		$.get( get_url , function( data ) 
+        		{
+        			$( "#refresh-link" ) .before( data ) ;
+    				$( ".story_container" ) .show( 500 ) ;
+                    if ( page_now == <%= @max_page %>)
+                    {
+                        $( "#refresh-link" ) .text( "没有更多的照片了." ) ;
+                    } else
+                    {
+                        $( "#refresh-link" ) .text( "点击显示更多照片" ) ;
+                    }
+        		} ) ;
+            }
+        });
+	});
+</script>
+<% end -%>
 
+<div id="moment-show-page">
+    <%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
+    <%= render :partial => "widgets/cover" , :locals => { :cover => @momment_cover } %>
 
-					<% if @moment['page_count'].to_i > 1 %>
-					<div class="page_number_area">
-							<%= vida_pagination moment_url(@moment['data']['id']), @moment['page_count'], @moment['current_page'], {:remote => false, :page_size => 6, :page_padding => 4} %>
-					</div>
-					<% end %>
+ 	<div id="main-block">
+ 		<div id="main-block-header"> 
+ 			<div id="download-place">
+ 				<%= @moment[ "user" ] [ "name" ] %>正在使用<p>VIDA</p>记录生活,下载手机客户端,与其戏耍之!!!
+ 			</div>
+ 			<div id="title-place">
+ 				<h1>[<%= @moment[ "moment_type" ] %>] <%= @moment[ "name" ] %> </h1>
+ 				<p> <%= "#{ @moment[ "created_at" ] [ 0 .. 9 ] } - #{ @moment[ "modified_at" ] [ 0 .. 9 ] }" %> </p>
+ 			</div>
+            <a href="#" class="btn_dark btn_middle" style="margin-top:25px;float:right;">
+                <%= image_tag "images/icon_share.png" , :alt => "" %>
+                &nbsp&nbsp&nbsp&nbsp&nbsp分享
+            </a>
+            <div class="clearfix"> </div>
+ 		</div>
 
+        <div id="story_info">
+            <%= image_tag "images/icon_arrow.png" , :alt => "" , :class => "arrow" %>
+            <div class="story_container">
+                <div class="info_container">
+                    <p id="story_description">
+                        <%= empty_descripe( @moment[ "user" ] [ "content" ] ) %>
+                    </p>
+                </div>
+                <div class="info_container">
+                    <p id="location_list">景点</p>
+                    <div id="map">
+                        <%= image_tag "images/test_map.png" , :alt => "" , :id => "google_map" %>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-					<div class="clear"></div>
-				</div>
+ 		<div id="pic-block">
+ 			<a id="refresh-link">点击显示更多照片</a>
+ 			<div class="clearfix"> </div>
+ 		</div>
 
-			</div>
-
-
-		</div>
-
-		<div id="info-col" class="container_right">
-
-			<div class="side-row">
-				<%= render :partial => "widgets/award_list", :locals => {:moment => @moment['data']['winners']} %>
-			</div>
-
-			<div class="side-row">
-				<%= render :partial => "widgets/moment_info", :locals => {:moment => @moment['data']} %>
-			</div>
-
-			<!-- <div class="side-row">
-				<%#= render :partial => "widgets/participators", :locals => {:moment => @moment['data']} %>
-			</div> -->
-			<div class="side-row">
-				<%= render :partial => "widgets/map", :locals => {:moment_id => @moment['id'], :activities => @moment['data']['items'] } %>
-			</div>
-			<div class="side-row">
-				<%= render :partial => "widgets/download_bar", :locals => {:hide_title => false} %>
-			</div>
-
-		</div>
-
-
-	</div>
-
-	<%= render :partial => "widgets/footer" %>
-
-
+ 		<div id="commend-block">
+ 			<div id="participator-block">
+ 			</div>
+ 			<div class="one-commend">
+ 			</div>
+ 			<div id="new-commend-part">
+ 			</div>
+ 		</div>
+ 		<div class="clearfix"> </div>
+ 	</div>
 </div>

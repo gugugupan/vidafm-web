@@ -1,36 +1,21 @@
 class MomentsController < ApplicationController
   before_filter :save_url_in_cookies
   def show
-    if request.url =~ /is_mobile=/i || request.user_agent =~ /(android|ipod|iphone)/i
-       render :partial => "/misc/redirect", :layout => false 
-       return
-    end
+    params[ :page ] = "1" if params[ :page ] .nil?
+    params[ :page ] = params[ :page ] .to_i - 1
 
-    params[:page] = params[:page].to_i - 1 if params[:page]
-
-    params[:page_size] = 6 if (params[:page_size].blank? or params[:page_size].to_i > 6)
-
-    @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page], :page_size => params[:page_size], :current_user => current_user)
-    @moment['current_page'] = 0 if @moment['current_page'].to_i == -1 # 如果没有找到activity，后台返回当前页数是-1 
-
-    redirect_to(user_url(@moment['data']['user_id'])) and return if auth_failed(@moment)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    data = Moment.fetch(params[ :id ] , :page => params[ :page ] , :page_size => 3 , :current_user => current_user)
+    @max_page = data[ "page_count" ] + 1 
+    @moment = data[ "data" ]
+    @moment_cover = data[ "cover_file"]
+    @cur_user = current_user_for_header
   end
 
-  def map
-    @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page], :page_size => 999, :current_user => current_user)
+  def ajax_get_new_page
+    params[ :page ] = "1" if params[ :page ] .nil?
+    params[ :page ] = params[ :page ] .to_i - 1
 
-    redirect_to(user_url(@moment['data']['user_id'])) and return if auth_failed(@moment)
-  end
-
-  def details
-    # kActivitiesPerRow = 3
-    # kRowPerPage = 2
-    # photoNum = kActivitiesPerRow * kRowPerPage
-    # @moment = Moment.fetch(params[:id], :activity_id => params[:activity_id], :page => params[:page].to_i - 1, :page_size => photoNum, :current_user => current_user)
+    @moment = Moment.fetch(params[ :id ] , :page => params[ :page ] , :page_size => 3 , :current_user => current_user) [ 'data' ] 
+    render :layout => false
   end
 end
