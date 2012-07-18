@@ -3,8 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #left_nav {
-	width: 15%;
-	margin-right: 10px;
 	float: left;
 }
 
@@ -13,12 +11,12 @@
 	width: 100%;
 
 	#main-main-block {
-		width: 75%;
+		width: 950px;
 		margin: 0px auto;
 		position: relative;
 
 		#main-block {
-			margin-left: 10px;
+			margin-left: 15px;
 			float: left;
 			width: 765px;
 
@@ -49,7 +47,7 @@
 			}
 
 			#main-block-commend {
-				width: 80%;
+				width: 100%;
 				float: left;
 				height: 300px;
 				background-color: rgba(0,255,0,0.3);

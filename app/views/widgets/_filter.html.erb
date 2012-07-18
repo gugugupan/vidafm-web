@@ -1,15 +1,22 @@
 <div id="me_filter">
 	<a href="#" id="top_menu">
-		<p>故事分类 - 出游</p>
+		<p><%= moment_category( now ) %></p>
 		<div>
 			<%= image_tag "images/icon_arrow.png" , :alt => "" %>
 		</div>
 	</a>
 
-	<div class="popup_container">
-		<a href="#" class="list selectable">所有<font>9999</font></a>			
-		<a href="#" class="list selectable">出游<font>5</font></a>
-		<a href="#" class="list selectable">美食<font>28</font></a>
+	<div class="popup_container">		
+		<a href="#" class="list selectable">全部故事分类
+		</a>
+	<% data = [] if data .nil? %>
+	<% data .each do | cate | -%>
+	<% unless cate[ "count" ] .nil? -%>
+		<a href="#" class="list selectable">
+			<%= moment_category( cate[ "category" ] ) %><font><%= cate[ "count" ] %></font>
+		</a>
+	<% end -%>
+	<% end -%>
 	</div>
 
 	<div class="clearfix"></div>

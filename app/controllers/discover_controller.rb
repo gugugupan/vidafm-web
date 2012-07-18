@@ -1,24 +1,14 @@
 class DiscoverController < ApplicationController
   def index
-    @cur_user = current_user_for_header
+    @cur_user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys if current_user
+    save_url_in_cookies
   end
 
-  def num2sort_type( num )
-  	return "hottest" if num == 0
-  	return "latest" if num == 1
-  	return "nearest" if num == 2
-  end
-
-  #                         0 hottest
-  # params[ :sort_type ] =  1 latest
-  #                         2 nearest
   def category
-  	if moment_category( params[ :category ] ) .nil?
-  		render "discover/index" 
-  		return 
-  	end
-  	params[ :sort_type ] = "hottest" if params[ :sort_type ] .nil?
-    @cur_user = current_user_for_header
-  	@moment = Moment.fetch_by_category( params[ :category ] , params[ :sort_type ] )  
+  	params[ :sort_type ] = "hottest" if params[ :sort_type ] .nil? || ( params[ :sort_type ] != "hottest" && params[ :sort_type ] != "latest" )
+  	@moment = Moment.fetch_by_category( params[ :category ] , params[ :sort_type ] )
+    @cur_user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys if current_user
+
+    save_url_in_cookies
   end
 end

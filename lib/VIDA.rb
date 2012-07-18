@@ -11,7 +11,6 @@ class VIDA
 			puts "\nCMD:#{cmd}\n"
 			`#{cmd}`
 		end
-		
 
 		def api_url
 			"http://api.vida.fm:15097"

@@ -11,7 +11,6 @@
 
 		#user-info {
 			position: relative;
-			border-bottom: 1px solid #D2CFCB;
 			width: 100%;
 
 			img.avatar {
@@ -36,6 +35,12 @@
 				margin-left: 25px;
 				float: left;
 			}
+		}
+
+		#following-list {
+			width: 100%;
+			margin: 10px 0px;
+			border-top: 1px solid #D2CFCB;
 		}
 	}
 }

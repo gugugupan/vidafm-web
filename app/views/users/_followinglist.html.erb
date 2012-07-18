@@ -1,0 +1,10 @@
+<li class="list">
+	<a href='<%= "/users/" + followinglist[ "id" ] .to_s %>' class="avatar">
+		<%= image_tag followinglist[ "avatar_file" ] %>
+	</a>
+	<%= link_to followinglist[ "name" ] , "/users/" + followinglist[ "id" ] .to_s , :class => "user_name" %>
+<% if button -%>
+	<%= link_to "取消关注" , "javascript:cancelFollowSomebody(" + followinglist[ "id" ] .to_s + ")" , :class => "btn_dark btn_small" , :id => "cancel-tag"%>
+<% end -%>
+	<div class="clearfix"></div>
+</li>

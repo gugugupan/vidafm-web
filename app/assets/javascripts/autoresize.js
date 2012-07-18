@@ -3,7 +3,7 @@ $( document ) .ready( function () {
         var pic_width = $( this ) .width() ;
         var doc_width = $( this ) .parent() .width() ;
         var pic_height = $( this ) .height() ;
-        var doc_height = $( this ) .parent() .height() ;
+        var doc_height = $( this ) .parent() .height() ;    
 
         $( this ) .parent() .css( "position" , "relative" ) ;
         $( this ) .css( "position" , "absolute" ) ;

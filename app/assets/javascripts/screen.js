@@ -12,10 +12,7 @@
 				}
 			}
 
-			for (var i = 0; i<$(".avatar").length; i++) {
-				var avatarAddress = $(avatar[i]).children().attr("src");
-				$(avatar[i]).css({"background":"url("+avatarAddress+")"});
-			};
+			avatarShow() ;
 
 			//thumbnail position
 			for (var i = 0; i<$(".thumbnail").length; i++) {

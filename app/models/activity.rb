@@ -1,7 +1,7 @@
 class Activity 
   def self.like(options = {})
     options[:user].symbolize_keys!
-    JSON.parse(VIDA.call("moment/like", {:activity_id => options[:activity_id]}, {:token => options[:user][:token], :secret => options[:user][:secret]}))["data"]
+    JSON.parse(VIDA.call("moment/like", {:activity_id => options[:activity_id]}, {:token => options[:user][:token], :secret => options[:user][:secret]}))
   end
 
   def self.fetchLikeList(activity_id)

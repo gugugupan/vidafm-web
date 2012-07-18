@@ -1,13 +1,28 @@
 Bluerain::Application.routes.draw do
 
-  root :to => "misc#index"
+=begin
   match "users/:id" => "users#show"
+  match "users/ajax_following/:id" => "users#ajax_following"
+  match "users/ajax_following_list/:id" => "users#ajax_following_list"
   match "moments/:id" => "moments#show"
   match "moments/ajax_get_new_page/:id" => "moments#ajax_get_new_page"
+  match "moments/ajax_like/:id" => "moments#ajax_like"
+=end
+
+  resources :users, :only => "show", :constraints => {:id => /[0-9]+/} do
+    get "ajax_following_list" , :on => :member
+    get "ajax_following" , :on => :member
+  end
+
+  resources :moments, :only => "show", :constraints => {:id => /[0-9]+/} do
+    get "ajax_get_new_page" , :on => :member
+    get "ajax_like" , :on => :member
+  end
+
+  root :to => "misc#index"
   match "home" => "users#friend"
   get "discover/index"
   get "discover/category"
-
 
 
 

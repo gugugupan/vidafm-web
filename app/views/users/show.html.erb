@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  <%= @cur_user[ "name" ] %> - VIDA（唯达） - 你我的生活轨迹
+  <%= get_name( @cur_user ) %>VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
 <div id="user-show">
@@ -8,21 +8,27 @@
 
  	<div id="main-block">
  		<div id="user-info">
- 			<div style="float:left;"> <%= avatar_tag @user, :nolink => true %> </div>
+ 			<div style="float:left;"> <%= avatar_tag @user %> </div>
  			<h1> <%= @user[ :name ] %> </h1>
-
+ 		<% if @current_user %>
  			<div id="user-info-button"> 				
- 				<%= render :partial => "widgets/filter" %>
- 				<a class="btn_dark btn_middle" href="#" style="margin-left:10px">
-					<%= image_tag "images/icon_follow.png" , :alt => "" %>
-				</a>
-				<a class="btn_blue btn_middle" href="#" style="margin-left:10px">+关注</a>
+ 				<%= render :partial => "widgets/filter" , :locals => { :now => params[ :category ] , :data => @user[ :categories ] } %>
+				<%= render :partial => "widgets/followingbtn" , :locals => { :tag => @following_tag , :user => @user } %>
  			</div>
-
+ 		<% end %>
  			<div class="clearfix"> </div>
  		</div>
- 		<%= render :partial => "widgets/item", :collection => @moments['data'] , :locals => { :show_type => 1 } %>
- 		<div class="clearfix"> </div>
+ 	<% if @current_user -%>
+ 		<div id="following-list">
+ 			<%= render :partial => "widgets/item", :collection => @moments['data'] , :locals => { :show_type => 1 } %>
+ 			<div class="clearfix"> </div>
+ 		</div>
  	</div>
-
- </div>
+ 	<% else -%>
+ 		<div class="text-info">
+ 			<p>登录后查看更多内容<p>
+ 		</div>
+ 	</div>
+  	<%= render :partial => "widgets/login" %>
+ 	<% end -%>
+</div>

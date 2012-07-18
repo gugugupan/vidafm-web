@@ -23,9 +23,7 @@ module UsersHelper
 
 	def avatar_tag user, options = {}
 		user.symbolize_keys!
-
-		inner_html = ""
-		inner_html += image_tag user[:avatar_file], :class => 'avatar', :alt => user[:name], :title => user[:name]
+		inner_html = image_tag( user[ :avatar_file ], :class => 'avatar' )
 		raw inner_html
 	end
 
@@ -55,5 +53,10 @@ module UsersHelper
 	def admin_ids
 		#(VIDA 唯达).id
 		[169, ]
+	end
+
+	def get_name( user )
+		return "" if user .nil?
+		"#{ user[ :name ] || user[ "name" ] } - "
 	end
 end

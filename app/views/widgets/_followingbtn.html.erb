@@ -1,0 +1,15 @@
+<a class="btn_dark btn_middle" href=javascript:showFollowingDialog(<%="#{user[:id]},#{user[:count_followings]},#{user[:count_followers]}"%>) style="margin-left:10px">
+	<%= image_tag "images/icon_follow.png" , :alt => "" %>
+</a>
+
+<% if tag == 0 %>
+	<a href=javascript:followingSomebody(<%= user[ :id ] %>) class="btn_blue btn_middle" style="margin-left:10px" id="following-tag">+关注</a>
+<% else %>
+<% if tag == 1 %>
+	<a href=javascript:cancelFollowSomebody(<%= user[ :id ] %>) class="btn_red btn_middle" style="margin-left:10px" id="cancel-tag">取消关注</a>
+<% else %>
+<% if tag == 2 %>
+	<a class="btn_dark btn_middle" style="margin-left:10px" id="waiting-tag">等待</a>
+<% end %>
+<% end %>
+<% end %>

@@ -17,4 +17,7 @@
 		<div class="clearfix"> </div>
 		</div>
 	</div>
+<% unless @current_user -%>
+	<%= render :partial => "widgets/login" %>
+<% end -%>
 </div>

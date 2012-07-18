@@ -30,8 +30,15 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_for_header
-    session[ :cur_user ] = User.fetch_current_user( current_user ) [ "data" ] if session[ :cur_user ] .nil?
-    session[ :cur_user ] 
+=begin
+    unless session[ :cur_user ] .nil?
+      session[ :cur_user ]
+    else
+      data = User.fetch_current_user( current_user ) [ "data" ]
+      session[ :cur_user ] = Hash.new( :id => data[ "id" ] , :avatar_file => data[ "avatar_file" ] , :name => data[ "name" ] )
+      session[ :cur_user ] 
+    end
+=end
   end
 
   def save_url_in_cookies
@@ -49,16 +56,4 @@ class ApplicationController < ActionController::Base
     (json_data['result'] || json_data[:result]).to_i == 401
   end
 
-  def comment_category(id)
-  end
-
-  def moment_category( str )
-    return "随拍" if str == "random"
-    return "出游" if str == "travel"
-    return "亲子" if str == "children"
-    return "心情日记" if str == "mood"
-    return "秀搭配" if str == "misc"
-    return "吃货" if str == "food"
-    return nil
-  end
 end

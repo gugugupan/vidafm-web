@@ -1,9 +1,5 @@
 <%= content_for :title do %>
-  VIDA（唯达） - 你我的生活轨迹
-<% end -%>
-
-<%= content_for :meta_description do %>
-VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活轨迹。
+  精选故事 - VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
 <div id="discover-page">
@@ -23,4 +19,7 @@ VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活
 		</div>
 		<div class="clearfix"> </div>
 	</div>
+<% unless @current_user -%>
+	<%= render :partial => "widgets/login" %>
+<% end -%>
 </div>

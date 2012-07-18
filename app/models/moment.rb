@@ -33,4 +33,8 @@ class Moment
   def self.fetch_by_category( category , sort_type) 
     JSON.parse VIDA.call( "moment/search?category=#{ category }&order=#{ sort_type }&limit=10" , nil )
   end
+
+  def self.hot_story
+    JSON.parse VIDA.call( "moment/list_featured" )
+  end
 end

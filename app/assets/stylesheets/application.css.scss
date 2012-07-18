@@ -10,6 +10,8 @@
  *= require moment_show
  *= require friend_show
  *= require moment_list
+ *= require _login
+ *= require misc
 */
 
 @import "variables";
@@ -47,4 +49,3 @@ img {
 .clearfix {
   clear: both;
 }
-

@@ -77,18 +77,25 @@ module MomentsHelper
 	end
 
 	def moment_category( str )
-		return "随拍" if str == "random"
-		return "出游" if str == "travel"
-		return "亲子" if str == "children"
-		return "心情日记" if str == "mood"
-		return "秀搭配" if str == "misc"
-		return "吃货" if str == "food"
-		str = "空" if str .nil?
-		str
+		alph = {
+			"random" => "随拍" ,
+			"travel" => "出游" ,
+			"children" => "亲子" ,
+			"mood" => "心情日记" ,
+			"misc" => "秀搭配" ,
+			"food" => "吃货" ,
+			"all" => "全部故事分类" ,
+			nil => "空" ,
+		}
+		return alph[ str ] 
 	end
 
 	def empty_descripe( str )
 		str = "(空)" if str .nil?
 		str 
+	end
+
+	def time_ago_now( time_str )
+		time_ago_in_words Time.parse( time_str )
 	end
 end

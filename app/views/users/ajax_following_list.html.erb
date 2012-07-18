@@ -1,0 +1,3 @@
+<%= render :partial => "followinglist" , :collection => @list , :locals => { 
+	:button => ( params[ :id ] .to_i == ( @current_user[ :id ] || @current_user[ "id" ] ) .to_i && ( params[ :relation ] != "followed_by" ) ) 
+} %>

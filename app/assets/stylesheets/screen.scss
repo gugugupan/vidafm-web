@@ -451,6 +451,9 @@ p{
 		padding:6px 12px 0px 30px;
 	}
 }
+.liked {
+	background-image:url("images/icon_liked.png");
+}
 
 .comment {
 	@extend .btn_round;
@@ -890,7 +893,7 @@ p{
 		}
 
 		p {
-			background:url(../images/icon_like_small.png) no-repeat left center;
+			background:url("images/icon_like_small.png") no-repeat left center;
 			color:$font_grey;
 			text-shadow:0px 2px 0px rgba(255,255,255,1);
 			float: right;
@@ -1043,7 +1046,7 @@ p{
 #left_nav {
 	
 	margin:0px;
-
+	
 	li {
 		border-top:1px dashed #ffffff;
 		border-bottom:1px dashed $font_grey;

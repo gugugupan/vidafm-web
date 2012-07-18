@@ -1,33 +1,36 @@
-<div id="login_with" class="popup_container">
-	<p class="list">选择以下方式登入:</p>
-	<a href="/auth/tsina" class="list selectable">
-		<%= image_tag "images/icon_sina.png" , :alt => "" %>
-		<p>新浪微博</p>
-		<div class="clearfix"></div>
-	</a>
-	<a href="#" class="list selectable">
-		<%= image_tag "images/icon_weixin.png" , :alt => "" %>
-		<p>微信</p>
-		<div class="clearfix"></div>
-	</a>
-	<a href="#" class="list selectable">
-		<%= image_tag "images/icon_renren.png" , :alt => "" %>
-		<p>人人</p>
-		<div class="clearfix"></div>
-	</a>
-	<a href="#" class="list selectable">
-		<%= image_tag "images/icon_kaixin.png" , :alt => "" %> 
-		<p>开心</p>
-		<div class="clearfix"></div>
-	</a>
-	<a href="/auth/douban" class="list selectable">
-		<%= image_tag "images/icon_douban.png" , :alt => "" %>
-		<p>豆瓣</p>
-		<div class="clearfix"></div>
-	</a>
-	<a href="/auth/tqq" class="list selectable">
-		<%= image_tag "images/icon_tencent.png" , :alt => "" %>
-		<p>腾讯微博</p>
-		<div class="clearfix"></div>
-	</a>
-</div>
+	<div id="login_with" class="popup_container need_destroy">
+		<p class="list">选择以下方式登入:</p>
+		<a href="/auth/tsina" class="list selectable">
+			<%= image_tag "images/icon_sina.png" , :alt => "" %>
+			<p>新浪微博</p>
+			<div class="clearfix"></div>
+		</a>
+		<a href="#" class="list selectable">
+			<%= image_tag "images/icon_weixin.png" , :alt => "" %>
+			<p>微信</p>
+			<div class="clearfix"></div>
+		</a>
+		<a href="#" class="list selectable">
+			<%= image_tag "images/icon_renren.png" , :alt => "" %>
+			<p>人人</p>
+			<div class="clearfix"></div>
+		</a>
+		<a href="#" class="list selectable">
+			<%= image_tag "images/icon_kaixin.png" , :alt => "" %> 
+			<p>开心</p>
+			<div class="clearfix"></div>
+		</a>
+		<a href="/auth/douban" class="list selectable">
+			<%= image_tag "images/icon_douban.png" , :alt => "" %>
+			<p>豆瓣</p>
+			<div class="clearfix"></div>
+		</a>
+		<a href="/auth/tqq" class="list selectable">
+			<%= image_tag "images/icon_tencent.png" , :alt => "" %>
+			<p>腾讯微博</p>
+			<div class="clearfix"></div>
+		</a>
+		<a class="destroy-tag" href=javascript:destroyDialog(0)>
+			<img src="/assets/images/icon_cancel.png">
+		</a>
+	</div>
