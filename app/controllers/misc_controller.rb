@@ -23,5 +23,6 @@ class MiscController < ApplicationController
   def index
     redirect_to "/home" if current_user
     @moment = Moment.hot_story() [ "data"] [ "hottest_moments" ]
+    save_url_in_cookies
   end
 end

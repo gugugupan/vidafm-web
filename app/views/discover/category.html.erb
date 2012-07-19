@@ -7,12 +7,7 @@
 	<div id="main-main-block">
 		<%= render :partial => "discover/sidebar" %>
 		<div id="main-block">
-			<div id="main-block-header">
-				<%= image_tag "images/icon_star_small@2x.png" %>
-				<h1> <%= moment_category( params[ :category ] ) %> </h1>
-				<div id="sort-method"> </div>
-				<div class="clearfix"> </div>
-			</div>
+			<%= render :partial => "header" , :locals => { :category => params[ :category ] , :titleimg => "images/icon_star_small@2x.png" , :sortbtn => params[ :sort_type ] } %>
 			<%= render :partial => "widgets/item" , :collection => @moment[ "data" ] , :locals => { :show_type => 2 } %> 
 		<div class="clearfix"> </div>
 		</div>

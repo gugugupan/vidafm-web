@@ -4,6 +4,7 @@
 //= require btnfunction
 //= require followinglist
 
+//= require jquery.cycle.lite
 //= require jquery.em
 //= require jquery.mousewheel
 //= require jScrollPane

@@ -1,5 +1,7 @@
 class DiscoverController < ApplicationController
   def index
+    @moments = Moment.hot_story() [ "data"] [ "hottest_moments" ]
+    puts @moments .to_json
     @cur_user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys if current_user
     save_url_in_cookies
   end

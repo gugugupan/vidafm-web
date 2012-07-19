@@ -14,6 +14,8 @@ class UsersController < ApplicationController
       @moments = User.fetch_moments(params[:id], 0, current_user) if current_user
       params[ :category ] = "all"
     else
+      @moments = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user )
+      puts @moments
     end
     @user = User.fetch( params[:id] , current_user ) ["data"] .symbolize_keys
     @cur_user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys if current_user 
@@ -29,6 +31,7 @@ class UsersController < ApplicationController
     end
     @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
     @moment = User.fetch_friend_moments( current_user ) [ "data" ]
+    puts @moment .to_json
   end
 
   def ajax_following

@@ -7,12 +7,12 @@
 	</a>
 
 	<div class="popup_container">		
-		<a href="#" class="list selectable">全部故事分类
+		<a href="?category=all" class="list selectable">全部故事分类
 		</a>
 	<% data = [] if data .nil? %>
 	<% data .each do | cate | -%>
 	<% unless cate[ "count" ] .nil? -%>
-		<a href="#" class="list selectable">
+		<a href="?category=<%= cate[ "category" ] %>" class="list selectable">
 			<%= moment_category( cate[ "category" ] ) %><font><%= cate[ "count" ] %></font>
 		</a>
 	<% end -%>

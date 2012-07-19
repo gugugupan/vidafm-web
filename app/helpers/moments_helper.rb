@@ -85,6 +85,7 @@ module MomentsHelper
 			"misc" => "秀搭配" ,
 			"food" => "吃货" ,
 			"all" => "全部故事分类" ,
+			"hot" => "精选故事" ,
 			nil => "空" ,
 		}
 		return alph[ str ] 

@@ -5,13 +5,26 @@
 			<%= item[ "name" ] %>
 		</a>
 	<% else -%>
-		<div id="header-pic"> <%= avatar_tag item[ "user" ] %> </div>
+		<div id="header-pic"> 
+		<% if item[ "suggest_reason_users" ] .nil? -%>
+			<%= avatar_tag item[ "user" ] %> 
+		<% else -%>
+			<%= avatar_tag item[ "suggest_reason_users" ] [ 0 ] %> 
+		<% end -%>
+		</div>
 		<div style="float:left;margin-left:10px;">
 			<a class="font1" href="/moments/<%= item[ 'id' ] %>">
+		<% unless item[ "suggest_reason_users" ] .nil? -%>
+			<% if item[ "suggest_reason" ] == "liked" -%>
+				<%= item[ "suggest_reason_names" ] + " 喜欢了 " %>
+			<% else -%>
+				<%= item[ "suggest_reason_names" ] + " 新建了故事 " %>
+			<% end -%>
+		<% end -%>
 				[<%= moment_category( item[ "category" ] ) %>] <%= item[ "name" ] %> 
 			</a>
-			<a class="font2" href="/users/<%= item[ "user" ] [ :id ] %>">
-				<%= item[ "user" ] [ :name ] %> 
+			<a class="font2" href="/users/<%= item[ "user" ] [ "id" ] || item[ "user" ] [ :id ] %>">
+				<%= item[ "user" ] [ "name" ] || item[ "user" ] [ :name ] %> 
 			</a>
 			<div class="clearfix"> </div>
 		</div>

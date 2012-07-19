@@ -23,7 +23,7 @@ module UsersHelper
 
 	def avatar_tag user, options = {}
 		user.symbolize_keys!
-		inner_html = image_tag( user[ :avatar_file ], :class => 'avatar' )
+		inner_html = link_to( image_tag( user[ :avatar_file ], :class => 'avatar' ) , "/user/#{ user[ :id ] }" ) ;
 		raw inner_html
 	end
 

@@ -2,18 +2,25 @@
   精选故事 - VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
+<%= content_for :page_specific_asset do -%>
+<script>
+	$( ".thumbnail" ) .cycle() ;
+</script>
+<% end -%>
+
 <div id="discover-page">
 	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
 	<div id="main-main-block">
 		<%= render :partial => "discover/sidebar" %>
 		<div id="main-block">
-			<div id="main-block-header">
-				<%= image_tag "images/icon_feature_small@2x.png" %>
-				<h1> 精选故事 </h1>
-				<div id="sort-method"> </div>
-				<div class="clearfix"> </div>
-			</div>
-			<div id="main-block-commend">
+			<%= render :partial => "header" , :locals => { :category => "hot" , :titleimg =>"images/icon_feature_small@2x.png" } %>
+			<div class="thumbnail" style="width:400px;">
+				<h1 class="ribbon red">2012.06.23</h1>
+			<% for moment in @moments -%>
+				<a class="thumb">
+					<%= image_tag moment[ "items" ] [ "photo" ] [ "url_m" ] , :style => "height: auto; width: 100%; margin-top: -82px;" %>
+				</a>
+			<% end -%>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
