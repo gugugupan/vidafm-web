@@ -4,36 +4,61 @@
 
 <%= content_for :page_specific_asset do %>
 <script>
+    // GOOGLE MAP
+    $( document ) .ready( function() 
+    {
+        if ( <%= @moment[ "lat" ] != 0 || @moment[ "lng" ] != 0 %> ) 
+        {
+            var options = {size:GSize(418, 308), backgroundColor:"#BBBBBB"};
+            var map = new GMap2(document.getElementById("map"), options);
+            map .setCenter(new GLatLng(<%= @moment[ "lat" ] %>, <%= @moment[ "lng" ] %>), 15);
+            map .enableDragging() ;
+            map .enableDoubleClickZoom() ;
+            map .enableContinuousZoom() ;
+            map .enableScrollWheelZoom() ;
+            map .addControl( new GSmallMapControl() ) ;
+        }
+    });
+</script>
+<script>
     //LAZY LOAD
-	var page_now = 0 ;
+	var page_now = 1 ;
 	var comment_id = <%= params[ :id ] %> ;
+    var max_page = <%= @max_page %> ;
+    var url_part = "moments" ;
+    function goLazyLoad()
+    {
+        if ( page_now < max_page )
+            page_now = lazyload( url_part , comment_id , page_now , max_page , ".story_container" ) ;
+    }
+    // CLICK EVENT
 	$( document ) .ready( function() 
 	{
-    	$( "#refresh-link" ) .click( function() 
-    	{
-            if ( page_now < <%= @max_page %> )
-            {
-                $( "#refresh-link" ) .text( "载入中,请稍后.." ) ;
-        		page_now = page_now + 1 ;
-        		var get_url = "/moments/" + comment_id + "/ajax_get_new_page?page=" + page_now ;
-
-        		$.get( get_url , function( data ) 
-        		{
-        			$( "#refresh-link" ) .before( data ) ;
-    				$( ".story_container" ) .slideDown() ;
-                    if ( page_now == <%= @max_page %>)
-                    {
-                        $( "#refresh-link" ) .text( "没有更多的照片了." ) ;
-                    } else
-                    {
-                        $( "#refresh-link" ) .text( "点击显示更多照片" ) ;
-                    }
-        		} ) ;
-            }
-        });
-
+        // Story container
         $( "#title-place" ) .click( function() {
             $( "#story_info" ) .slideDown() ;
+        });
+
+        // New comment
+        $( "form.activity_comment" ) .submit( function() {
+            var $selector = $( this ) ;
+            var content = $( this ) .find( ".text_area" ) .eq( 0 ) .val() ;
+            var activity_id = parseInt( $( this ) .parent() .attr( "id" ) ) ;
+            $.ajax({
+                type: "GET" ,
+                url: "/misc/ajax_new_comment", 
+                data: { activity_id: activity_id, content: content, comment_type: "Activity"}
+            }) .done( function( data ) {
+                showCenterBox( "评论成功." ) ;
+                $selector .parent() .find( ".none_comment" ) .remove() ;
+                $selector .before( data ) ;
+                var $btnselector = $selector .parent() .parent() .find( "a.comment" ) .eq( 0 ) ;
+                var nowCommentedCountStr = $btnselector .text() ;
+                var nowCommentedCount = parseInt( nowCommentedCountStr ) + 1 ;
+                $btnselector .text( nowCommentedCount ) ;
+                $btnselector .addClass( "commented" ) ;
+            });
+            return false ;
         });
 	});
 </script>
@@ -47,11 +72,24 @@
  			<div id="download-place">
  				<%= @moment[ "user" ] [ "name" ] %>正在使用<p>VIDA</p>记录生活,下载手机客户端,与其戏耍之!!!
  			</div>
- 			<div id="title-place">
- 				<h1>[<%= moment_category( @moment[ "category" ] ) %>] <%= @moment[ "name" ] %> </h1>
- 				<p> <%= "#{ @moment[ "created_at" ] [ 0 .. 9 ] } - #{ @moment[ "modified_at" ] [ 0 .. 9 ] }" %> </p>
- 			</div>
-<% unless @current_user -%>
+            <%= render :partial => "header" , :locals => { :moment => @moment } %>
+<% if @current_user -%>
+            <%= link_to image_tag("images/icon_share.png") + "分享" , "#" , :class=>"btn_dark btn_middle" ,:style=>"margin-top:25px;float:right;padding-left:40px;" %>
+            <div class="clearfix"> </div>
+        </div>
+
+        <div id="story_info">
+            <%= image_tag "images/icon_arrow.png" , :alt => "" , :class => "arrow" %>
+            <%= render :partial => "storycontainer" , :locals => { :moment => @moment } %>
+        </div>
+        <div id="pic-block">
+            <%= render :partial => "moments/pic" , :collection => @moment[ "items" ] %>
+            <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+<% else -%>
             <div class="clearfix"> </div>
         </div>
         <div class="text-info">
@@ -59,45 +97,5 @@
         </div>
     </div>
     <%= render :partial => "widgets/login" %>
-<% else -%>
-            <a href="#" class="btn_dark btn_middle" style="margin-top:25px;float:right;">
-                <%= image_tag "images/icon_share.png" , :alt => "" %>
-                &nbsp&nbsp&nbsp&nbsp&nbsp分享
-            </a>
-            <div class="clearfix"> </div>
- 		</div>
-
-        <div id="story_info">
-            <%= image_tag "images/icon_arrow.png" , :alt => "" , :class => "arrow" %>
-            <div class="story_container">
-                <div class="info_container">
-                    <p id="story_description">
-                        <%= empty_descripe( @moment[ "user" ] [ "content" ] ) %>
-                    </p>
-                </div>
-                <div class="info_container">
-                    <p id="location_list">景点</p>
-                    <div id="map">
-                        <%= image_tag "images/test_map.png" , :alt => "" , :id => "google_map" %>
-                    </div>
-                </div>
-            </div>
-        </div>
-
- 		<div id="pic-block">
- 			<a id="refresh-link">点击显示更多照片</a>
- 			<div class="clearfix"> </div>
- 		</div>
-
- 		<div id="commend-block">
- 			<div id="participator-block">
- 			</div>
- 			<div class="one-commend">
- 			</div>
- 			<div id="new-commend-part">
- 			</div>
- 		</div>
- 		<div class="clearfix"> </div>
- 	</div>
 <% end -%>
 </div>

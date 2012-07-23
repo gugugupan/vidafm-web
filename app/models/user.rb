@@ -39,5 +39,9 @@ class User
 			return nil unless user_id =~ /[0-9]+/
 			JSON.parse VIDA.call( "/user/set_relation" , { :user_id => user_id , :type => commond } , current_user )
 		end
+
+		def fetch_star_user( current_user )
+			JSON.parse VIDA.call( "/user/list_featured" , {} , current_user )
+		end
 	end
 end

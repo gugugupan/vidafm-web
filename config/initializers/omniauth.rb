@@ -4,4 +4,3 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     provider :tqq, '801063700', '61f513e3773bfefb23732e35698c85cf'
     provider :renren, 'e404073ab16c4dc78ab94f21560e1c05', '45fe6ed247fd478c82d5a206c2d1955a'
 end
-

@@ -1,4 +1,5 @@
-$( document ) .ready( function () {
+function autoWidthPhoto()
+{
     for ( var i = $( ".user-story" ) . length - 1 ; i >= 0 ; i -- )
     {
         if ( $( ".user-story:eq(" + i + ")" ) .find( ".thumbnail" ) .length == 1 ) 
@@ -10,6 +11,11 @@ $( document ) .ready( function () {
             $( ".user-story:eq(" + i + ")" ) .find( ".thumbnail:eq(0)" ) .css( "width" , "500px" ) ;
         }
     }
+    autoresize() ;
+}
+
+$( document ) .ready( function () {
+    autoWidthPhoto() ;
 
     if ( $( "#hidden-place" ) .length > 0 )
     {

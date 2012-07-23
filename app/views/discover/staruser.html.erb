@@ -1,0 +1,20 @@
+<%= content_for :title do %>
+  星用户 - VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
+<div id="discover-page">
+	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
+	<div id="main-main-block">
+		<%= render :partial => "discover/sidebar" %>
+		<div id="main-block">
+			<%= render :partial => "header" , :locals => { :category => "staruser" , :titleimg => "images/icon_star_small@2x.png" , :sortbtn => nil } %>
+			<%= render :partial => "widgets/staruser" , :collection => @staruser[ 0 , 2 ] , :locals => { :type => "big" } %>
+			<%= render :partial => "widgets/staruser" , :collection => @staruser[ 2 , 4 ] , :locals => { :type => "normal" } %>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+<% unless @current_user -%>
+	<%= render :partial => "widgets/login" %>
+<% end -%>
+</div>

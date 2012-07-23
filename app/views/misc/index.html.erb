@@ -39,13 +39,11 @@ VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活
   </div>
 
   <div id="hidden-place" style="display:none;">
-  <% @moment .each do | moment | -%>
+  <% for moment in @moments -%>
     <div class="thumbnail">
-      <a class="thumb" href="#">
-        <%= image_tag moment[ "items" ] [ 0 ] [ "photo" ] [ "url_m" ] %>
-      </a>
+      <%= link_to image_tag( moment[ "items" ] [ 0 ] [ "photo" ] [ "url_m" ] ) , "/moments/#{ moment[ 'id' ] }#activity#{ moment[ "items" ] [ 0 ] [ 'id' ] }" , :class => "thumb" %>
       <div class="thumb_info">
-        <a href="#"> <%= moment[ "name" ] %> </a>
+        <%= link_to moment[ "name" ] , "/moments/#{ moment[ 'id' ] }" %>
         <p> <%= moment[ "likes_count" ] %> </p>
       </div>
     </div>

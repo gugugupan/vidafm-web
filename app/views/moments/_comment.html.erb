@@ -1,0 +1,9 @@
+<div class="info_container" style="border-bottom: medium none;">
+	<%= avatar_tag comment[ "user" ] %>
+	<div class="comment_container">
+		<p class="user_name"> <%= comment[ "user" ] [ :name ] %> </p>
+		<p class="photo_description"> <%= comment[ "content" ] %> </p>
+		<font class="timer"> <%= time_ago_now( comment[ "created_at" ] ) %>前 </font>
+	</div>
+	<div class="clearfix"></div>
+</div>

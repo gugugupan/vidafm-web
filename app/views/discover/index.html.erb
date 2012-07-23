@@ -4,7 +4,9 @@
 
 <%= content_for :page_specific_asset do -%>
 <script>
-	$( ".thumbnail" ) .cycle() ;
+$( document ) .ready( function () {
+	$( "#slide_show" ) .cycle() ;
+});
 </script>
 <% end -%>
 
@@ -13,15 +15,20 @@
 	<div id="main-main-block">
 		<%= render :partial => "discover/sidebar" %>
 		<div id="main-block">
-			<%= render :partial => "header" , :locals => { :category => "hot" , :titleimg =>"images/icon_feature_small@2x.png" } %>
-			<div class="thumbnail" style="width:400px;">
-				<h1 class="ribbon red">2012.06.23</h1>
-			<% for moment in @moments -%>
-				<a class="thumb">
-					<%= image_tag moment[ "items" ] [ "photo" ] [ "url_m" ] , :style => "height: auto; width: 100%; margin-top: -82px;" %>
+			<%= render :partial => "header" , :locals => { :category => "hot" , :titleimg =>"images/icon_feature_small@2x.png" , :sortbtn => nil } %>
+			<h1 class="ribbon red" style="top:76px;left:188px;z-index:10;"> 本周推荐 </h1>
+			<div class="thumbnail" style="width:100%;height:300px;margin-bottom:15px;" id="slide_show">
+			<% @moments .each() do |moment| -%>
+				<a class="thumb" style="display:none;" href="/moments/<%= moment[ 'id' ] %>">
+					<p class="super-text">
+						<%= moment[ "name" ] %>
+					</p>
+					<%= image_tag moment[ "items" ] [ 0 ] [ "photo" ] [ "url_m" ] , :style => "height: auto; width: 100%; margin-top: -82px;" %>
 				</a>
 			<% end -%>
 			</div>
+			<div style="width:100%;border-bottom:1px gray #D2CFCB;"> </div>
+			<%= render :partial => "widgets/item" , :collection => @moments , :locals => { :show_type => 2 } %>
 			<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix"> </div>

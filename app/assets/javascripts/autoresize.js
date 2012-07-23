@@ -1,4 +1,5 @@
-$( document ) .ready( function () {
+function autoresize()
+{    
     $( ".show-photo" ) .each( function() {
         var pic_width = $( this ) .width() ;
         var doc_width = $( this ) .parent() .width() ;
@@ -30,4 +31,8 @@ $( document ) .ready( function () {
             $( this ) .css( "top" , "-" + String( pic_height / 2 - doc_height/ 2 ) + "px" ) ;
         }
     });
+}
+
+$( document ) .ready( function () {
+    autoresize() ;
 });

@@ -86,13 +86,14 @@ module MomentsHelper
 			"food" => "吃货" ,
 			"all" => "全部故事分类" ,
 			"hot" => "精选故事" ,
+			"staruser" => "星用户" ,
 			nil => "空" ,
 		}
 		return alph[ str ] 
 	end
 
 	def empty_descripe( str )
-		str = "(空)" if str .nil?
+		str = "(没有描述)" if str .nil? || str .length == 0
 		str 
 	end
 

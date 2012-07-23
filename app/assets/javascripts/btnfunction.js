@@ -5,16 +5,22 @@ function likeActivity( num )
 	$.get( get_url , function( likeResult ) {
 		if ( likeResult .result == 0 )
 		{
-			var nowLikedCountStr = $( ".like#" + num ) .text() ;
+			var nowLikedCountStr = $( "#like" + num ) .text() ;
 			var nowLikedCount = parseInt( nowLikedCountStr ) + 1 ;
-			$( ".like#" + num ) .text( nowLikedCount ) ;
-			$( ".like#" + num ) .addClass( "liked" ) ;
+			$( "#like" + num ) .text( nowLikedCount ) ;
+			$( "#like" + num ) .addClass( "liked" ) ;
 			showCenterBox( likeResult .message ) ;
 		}
 		else {
 			showCenterBox( likeResult .message ) ;
 		}
 	});
+}
+
+// Comment Show
+function callComment( num )
+{
+	$( "#" + num + "comment" ) .slideToggle() ;
 }
 
 // Following somebody

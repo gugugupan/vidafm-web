@@ -55,5 +55,14 @@ class ApplicationController < ActionController::Base
   def auth_failed(json_data)
     (json_data['result'] || json_data[:result]).to_i == 401
   end
+  
+  def get_relation_btn( r ) 
+    alph = {
+      "none" => 0 , "followed_by" => 0 , "pending_approve" => 0 , "pending_ignore" => 0 , "suggest_follow" => 0 ,
+      "following" => 1 , "favourite" => 1 , "two_way_following" => 1 ,
+      "pending" => 2
+    }
+    return alph[ r ]
+  end
 
 end

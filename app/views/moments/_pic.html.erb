@@ -1,9 +1,9 @@
-<div class="story_container">
+<div class="story_container" id="activity<%= pic[ 'id' ] %>">
 	<!--
 	<h1 class="ribbon red">第一天</h1>
 	-->
-	<a href="#" class="photo_container">
-		<%= image_tag pic[ 'photo' ] [ 'url_m' ] , :style => "min-width:100%;" %>
+	<a href=javascript:showActivityDetail("<%= pic['photo']['url_l'] %>") class="photo_container">
+		<%= image_tag pic[ 'photo' ] [ 'url_m' ] , :style => "min-width:100%;" , :class => "lazy" %> 
 	</a>
 	<div class="info_container">
 		<%= avatar_tag pic[ 'user' ] %>
@@ -21,12 +21,18 @@
 		<div class="clearfix"></div>
 	</div>
 </div>
-<div style="width:100%;margin:15px 0px;">
-	<a class="like<%= ' liked' if pic[ 'liked' ] %>" href=javascript:likeActivity(<%= pic[ "id" ] %>) id="<%= pic[ 'id' ] %>">
-		<%= pic[ "likes_count" ] %>
-	</a>
-	<a class="comment" href="#">
-		<%= pic[ "comments_count" ] %>
-	</a>
+<div style="width:100%;margin:15px 0px;" id="activityinfo<%= pic[ 'id' ] %>">
+	<%= render :partial => "widgets/likebtn" , :locals => { :liked => pic[ "liked" ] , :pid => pic[ "id" ] , :count => pic[ "likes_count" ] } %>
+	<%= render :partial => "widgets/commentbtn" , :locals => { :commented => pic[ "commented" ] , :pid => pic[ "id" ] , :count => pic[ "comments_count" ] } %>
+
+	<div class="story_container" style="float:left; margin-top:10px; display:none;" id="<%= pic[ 'id' ] %>comment">
+	<% if pic[ "comments" ] .size == 0 -%>
+		<div class="info_container none_comment" style="font-size:14px; border: none;"> 还没有人添加评论 </div>
+	<% else -%>
+		<%= render :partial => "comment" , :collection => pic[ "comments" ] %>
+	<% end -%>
+		<%= render :partial => "newcomment" , :locals => { :pid => pic[ 'id' ] } %>
+		<div class="clearfix"> </div>
+	</div>
 	<div class="clearfix"> </div>
 </div>

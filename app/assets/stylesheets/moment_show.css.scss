@@ -83,46 +83,18 @@
 			margin-bottom: 10px;
 			padding-top: 10px;
 			padding-bottom: 10px;
-
-			a#refresh-link, a#none-link{
-				display: block;
-				width: 100%;
-				background-color: rgba(0,0,0,0.3);
-				text-align: center;
-				padding: 10px 0px;
-				&:hover{ text-decoration: underline; }
-				border-radius: 6px;
-				-moz-border-radius: 6px;
-				-webkit-border-radius: 6px;
-			}
 		}
+	}
+}
 
-		#commend-block {
-			display: none;
-			width: 100%;
-			background-color: white;
-			overflow: hidden;
+#activity_detail {
+	display: none;
+	position: fixed;	
+	background-color: rgba(0,0,0,0.3);
+	top: 0px;
+	left: 0px;
 
-			#participator-block {
-				width: 100%;
-				padding: 10px;
-				margin-bottom: 10px;
-				border-bottom: 1px solid rgba(0,0,0,0.3);
-			}
-
-			.one-commend {
-				width: 100%;
-				padding: 10px;
-				margin-bottom: 10px;
-				border-bottom: 1px solid rgba(0,0,0,0.3);
-			}
-
-			#new-commend-part {
-				width: 100%;
-				padding: 10px;
-				margin-bottom: 10px;
-				border-bottom: 1px solid rgba(0,0,0,0.3);
-			}
-		}
+	#activity_detail_img {
+		postion: relative;
 	}
 }
