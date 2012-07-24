@@ -1,0 +1,10 @@
+<% if @result[ 'result' ] == 0 -%>
+	var num = <%= params[ :id ] %> ;
+	var nowLikedCountStr = $( "#like" + num ) .text() ;
+	var nowLikedCount = parseInt( nowLikedCountStr ) + 1 ;
+	$( "#like" + num ) .text( nowLikedCount ) ;
+	$( "#like" + num ) .addClass( "liked" ) ;
+	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
+<% else -%>
+	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
+<% end -%>

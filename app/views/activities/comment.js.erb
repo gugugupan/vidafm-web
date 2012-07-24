@@ -1,0 +1,19 @@
+<% if @result[ 'result' ] == 1 -%>
+	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
+<% else -%>
+	<% data = @result[ "data" ] [ "comments" ] -%>	
+	var text = "<%= j render :partial => 'moments/comment' , :object => data[ data .size - 1 ] %>" ;
+	var num = <%= params[ :id ] %> ;
+	var $selector = $( "#" + num + "comment" ) ;
+	$selector .find( ".none_comment" ) .remove() ;
+	$selector .find( "form" ) .eq( 0 ) .before( text ) ;
+
+	var $btnselector = $selector .parent() .find( "a.comment" ) .eq( 0 ) ;
+	var nowCommentedCountStr = $btnselector .text() ;
+	var nowCommentedCount = parseInt( nowCommentedCountStr ) + 1 ;
+	$btnselector .text( nowCommentedCount ) ;
+	$btnselector .addClass( "commented" ) ;
+	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
+
+	$selector .find( "input" ) .val( "" ) ;
+<% end -%>

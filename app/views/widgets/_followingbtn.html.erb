@@ -1,11 +1,13 @@
 <% if tag == 0 %>
-	<a href=javascript:followingSomebody(<%= user[ :id ] %>) class="btn_blue btn_middle" style="margin-left:10px" id="following-tag">+关注</a>
+	<!-- <a href=javascript:followingSomebody(<%= uid %>) class="btn_blue btn_middle" style="margin-left:10px" id="following-tag">+关注</a> -->
+	<%= link_to "+关注" , following_user_url( uid ) + "?type=following" , :remote => true , :method => :put , :class => "btn_blue btn_middle" , :style => "margin-left:10px" , :id => "following-tag#{ uid }" %>
 <% else %>
 <% if tag == 1 %>
-	<a href=javascript:cancelFollowSomebody(<%= user[ :id ] %>) class="btn_red btn_middle" style="margin-left:10px" id="cancel-tag">取消关注</a>
+	<!-- <a href=javascript:cancelFollowSomebody(<%= uid %>) class="btn_red btn_middle" style="margin-left:10px" id="cancel-tag">取消关注</a> -->
+	<%= link_to "取消关注" , following_user_url( uid ) + "?type=none" , :remote => true , :method => :put , :class => "btn_red btn_middle" , :style => "margin-left:10px" , :id => "cancel-tag#{ uid }" %>
 <% else %>
 <% if tag == 2 %>
-	<a class="btn_dark btn_middle" style="margin-left:10px" id="waiting-tag">等待</a>
+	<a class="btn_dark btn_middle" style="margin-left:10px" id="waiting-tag<%= uid %>">等待</a>
 <% end %>
 <% end %>
 <% end %>

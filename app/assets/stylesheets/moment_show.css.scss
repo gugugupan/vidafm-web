@@ -89,12 +89,28 @@
 
 #activity_detail {
 	display: none;
-	position: fixed;	
+	position: absolute;	
 	background-color: rgba(0,0,0,0.3);
 	top: 0px;
 	left: 0px;
 
 	#activity_detail_img {
 		postion: relative;
+	}
+}
+
+#share_detail {
+	display: none;
+	position: absolute;	
+	background-color: rgba(0,0,0,0.3);
+	top: 0px;
+	left: 0px;
+
+	#login_with {
+		display: block;
+
+		form {
+			display: none;
+		}
 	}
 }

@@ -1,4 +1,5 @@
 // Like function
+/*
 function likeActivity( num )
 {
 	var get_url = "/moments/" + num + "/ajax_like.json" ;
@@ -16,6 +17,7 @@ function likeActivity( num )
 		}
 	});
 }
+*/
 
 // Comment Show
 function callComment( num )
@@ -24,6 +26,7 @@ function callComment( num )
 }
 
 // Following somebody
+/*
 function followingSomebody( uid )
 {
 	var get_url = "/users/" + uid + "/ajax_following.json?type=following"
@@ -69,3 +72,4 @@ function cancelFollowSomebody( uid )
 		showCenterBox( result .message ) ;
 	});
 }
+*/

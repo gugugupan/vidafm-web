@@ -32,7 +32,7 @@
  			<div id="user-info-button"> 				
  				<%= render :partial => "widgets/filter" , :locals => { :now => params[ :category ] , :data => @user[ :categories ] } %>
                 <%= render :partial => "widgets/followdialogbtn" , :locals => { :user => @user } %>
-				<%= render :partial => "widgets/followingbtn" , :locals => { :tag => @following_tag , :user => @user } %>
+				<%= render :partial => "widgets/followingbtn" , :locals => { :tag => @following_tag , :uid => @user[ :id ] } %>
  			</div>
  		<% end %>
  			<div class="clearfix"> </div>

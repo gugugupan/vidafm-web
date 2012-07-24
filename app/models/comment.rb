@@ -13,6 +13,6 @@ class Comment
   def self.create(options = {})
   	options[:user].symbolize_keys!
   	JSON.parse(VIDA.call("comment/add", {:type => options[ :comment_type ], :type_id => options[:type_id], :content => options[:content]}, 
-      {:token => options[:user][:token], :secret => options[:user][:secret]}))["data"]
+      {:token => options[:user][:token], :secret => options[:user][:secret]}))
   end
 end

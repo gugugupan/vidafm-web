@@ -1,4 +1,4 @@
-<%= form_tag("", { :remote => true , :style => "width: 100%; padding: 0px 15px;" , :class => "activity_comment" } ) do %>
-	<%= text_field_tag "comment" , nil , :style => "width: 92%; float: left; margin-bottom: 10px;" , :class => "text_area" , :placeholder => "写评论.." %>
+<%= form_tag( comment_activity_url( pid ) , { :remote => true , :style => "width: 100%; padding: 0px 15px;" } ) do %>
+	<%= text_field_tag "content" , nil , :style => "width: 92%; float: left; margin-bottom: 10px;" , :placeholder => "写评论.." %>
 	<div class="clearfix"> </div>
 <% end %>

@@ -20,9 +20,8 @@ class UsersController < ApplicationController
     end
     @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
     @moment = User.fetch_friend_moments( current_user ) [ "data" ]
-    puts @moment .to_json
   end
-
+=begin
   def ajax_following
     params[ :type ] = "following" if params[ :type ] .nil?
     result = User.set_relation( params[ :id ] , current_user , params[ :type ] )
@@ -30,7 +29,7 @@ class UsersController < ApplicationController
       format .json { render :json => result }
     end
   end
-
+=end
   def ajax_following_list
     params[ :relation ] = "following" if params[ :relation ] .nil?
     @list = User.fetch_friends( params[ :id ] , params[ :relation ] , current_user ) [ "data" ]
@@ -42,5 +41,13 @@ class UsersController < ApplicationController
     params[ :page ] = params[ :page ] .to_i - 1
     @moments = User.fetch_moments(params[:id], params[ :page ], current_user) 
     render :layout => false
+  end
+
+  def following 
+    if current_user 
+      params[ :type ] = "following" if params[ :type ] .nil?
+      @result = User.set_relation( params[ :id ] , current_user , params[ :type ] )
+    else
+    end
   end
 end

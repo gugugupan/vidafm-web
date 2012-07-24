@@ -1,4 +1,3 @@
-
 var prettyLoad = '\
 				<li class="list">\
 					<a class="user_name">请稍后..</a>\

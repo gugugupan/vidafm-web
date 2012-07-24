@@ -30,11 +30,15 @@ class Moment
     j = JSON.parse VIDA.call("moment/list?#{o.to_param}", nil, options[:current_user])
   end
 
-  def self.fetch_by_category( category , sort_type) 
+  def self.fetch_by_category( category , sort_type ) 
     JSON.parse VIDA.call( "moment/search?category=#{ category }&order=#{ sort_type }&limit=10" , nil )
   end
 
   def self.hot_story
     JSON.parse VIDA.call( "moment/list_featured" )
+  end
+
+  def self.share( options = {} )
+    JSON.parse VIDA.call( "moment/share" , { :moment_id => options[ :id ] , :to => options[ :type ] , :content => options[ :content ] , :url => "http://vida.fm/moments/#{options[:id]}"} , options[ :current_user ] )
   end
 end

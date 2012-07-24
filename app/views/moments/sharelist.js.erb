@@ -1,0 +1,23 @@
+var showDiv = "<div id='share_detail' class='need_destroy'> </div>" ;
+var listDiv = "<%= j render :partial => 'sharelist' , :object => @vendors %>" ;
+$( "body" ) .append( showDiv ) ;
+$( "#share_detail" ) .append( listDiv ) ;
+$( "#share_detail" ) .css( "width"  , $( document ) .width () ) ;
+$( "#share_detail" ) .css( "height" , $( document ) .height() ) ;
+$( "#share_detail" ) .fadeIn() ;
+
+$( "#share_detail" ) .click( function() {
+	destroyDialog( 1 ) ;
+});
+
+$( "#login_with" ) .click( function( event ) {
+	event .stopPropagation() ;
+}) ;
+
+$( "#login_with" ) .find( "textarea" ) .click( function( event ) {
+	event .stopPropagation() ;
+}) ;
+
+$( "a.sharelist" ) .click( function() {
+	$( this ) .find( "form" ) .slideToggle() ;
+}) ;

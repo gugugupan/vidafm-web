@@ -24,11 +24,12 @@ class MiscController < ApplicationController
     redirect_to "/home" if current_user
     @moments = Moment.hot_story() [ "data"] [ "hottest_moments" ]
   end
-
+=begin
   def ajax_new_comment
     return if params[ :comment_type ] .nil? || params[ :activity_id ] .nil? || params[ :content ] .nil?
     data = Comment.create( :comment_type => params[ :comment_type ] , :type_id => params[ :activity_id ] , :content => params[ :content ] , :user => current_user ) [ "comments" ]
     @comment = data[ data .size - 1 ]
     render :layout => false 
   end
+=end
 end

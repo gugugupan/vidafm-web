@@ -17,7 +17,7 @@ $( document ) .ready( function () {
 		<div id="main-block">
 			<%= render :partial => "header" , :locals => { :category => "hot" , :titleimg =>"images/icon_feature_small@2x.png" , :sortbtn => nil } %>
 			<h1 class="ribbon red" style="top:76px;left:188px;z-index:10;"> 本周推荐 </h1>
-			<div class="thumbnail" style="width:100%;height:300px;margin-bottom:15px;" id="slide_show">
+			<div class="thumbnail" style="width:100%;height:300px;margin:15px 0;" id="slide_show">
 			<% @moments .each() do |moment| -%>
 				<a class="thumb" style="display:none;" href="/moments/<%= moment[ 'id' ] %>">
 					<p class="super-text">

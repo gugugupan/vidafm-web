@@ -1,4 +1,5 @@
 //= require jquery
+//= require jquery_ujs
 
 //= require autowidth
 //= require autoresize
@@ -21,11 +22,11 @@ function randomNumber( n )
 
 // Login click function
 $( document ) .ready( function () {
-	$("#login-button").click( function() {
-		$("#login_with").show(300);
+	$( "#login-button" ) .click( function() {
+		$( "#login_with" ) .fadeIn( 300 ) ;
 	});
-	$("#login").click( function() {
-		$("#login_with").show(300);
+	$( "#login" ) .click( function() {
+		$( "#login_with" ) .fadeIn( 300 ) ;
 	});
 });
 
@@ -38,8 +39,8 @@ function showCenterBox( str )
 	var top  = ( $( window ) .height() - $select .height() ) / 2 ;
 	var left = ( $( window ) .width () - $select .width() ) / 2 ;
 	$select .css( { "top" : top , "left" : left } ) ;
-	$select .show( 500 ) ;
-	setTimeout( function() { $select .remove() ; } , 2500 ) ;
+	$select .fadeIn( 400 , function() { setTimeout( function() { $select .remove() ; } , 500 ) } ) ;
+	//$select .fadeIn( 400 , function() { $( this ) .hide() ; } ) ;	
 }
 
 // Adjust avatar picture
@@ -55,7 +56,7 @@ function avatarShow()
 function destroyDialog( type )
 {
 	var $selector = $( ".need_destroy" ) ;
-	$selector .hide( 700 ) ;
+	$selector .fadeOut( 500 ) ;
 	if ( type == 1 )
 		setTimeout( function() { $selector .remove() ; } , 1000 ) ;
 }
@@ -68,13 +69,13 @@ function showActivityDetail( activity_url )
 		var imageDiv = "<img src=" + activity_url + " id='activity_detail_img' class='thumbnail'>" ;
 		$( "body" ) .append( showDiv ) ;
 		$( "#activity_detail" ) .append( imageDiv ) ;
-		$( "#activity_detail" ) .css( "width"  , $( window ) .width () ) ;
-		$( "#activity_detail" ) .css( "height" , $( window ) .height() ) ;
-		$( "#activity_detail_img" ) .css( "max-height" , $( window ) .height() * 0.9 ) ;
-		$( "#activity_detail_img" ) .css( "min-height" , $( window ) .height() * 0.9 ) ;
-		$( "#activity_detail_img" ) .css( "margin-left" , ( $( window ) .width() - 590 ) / 2 ) ;
-		$( "#activity_detail_img" ) .css( "margin-top" , $( window ) .height() * 0.05 ) ;
-		$( "#activity_detail" ) .show( 300 ) ;
+		$( "#activity_detail" ) .css( "width"  , $( document ) .width () ) ;
+		$( "#activity_detail" ) .css( "height" , $( document ) .height() ) ;
+		$( "#activity_detail_img" ) .css( "height" , "auto" ) ;
+		$( "#activity_detail_img" ) .css( "width" , "auto" ) ;
+		$( "#activity_detail_img" ) .css( "left" , ( $( window ) .width() - 590 ) / 2 ) ;
+		$( "#activity_detail_img" ) .css( "top" , $( window ) .height() * 0.05 + $( window ) .scrollTop() ) ;
+		$( "#activity_detail" ) .fadeIn( 300 ) ;
 
 		$( "#activity_detail" ) .click( function() {
 			destroyDialog( 1 ) ;

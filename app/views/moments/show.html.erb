@@ -40,6 +40,7 @@
         });
 
         // New comment
+/*
         $( "form.activity_comment" ) .submit( function() {
             var $selector = $( this ) ;
             var content = $( this ) .find( ".text_area" ) .eq( 0 ) .val() ;
@@ -60,6 +61,7 @@
             });
             return false ;
         });
+*/
 	});
 </script>
 <% end -%>
@@ -74,7 +76,7 @@
  			</div>
             <%= render :partial => "header" , :locals => { :moment => @moment } %>
 <% if @current_user -%>
-            <%= link_to image_tag("images/icon_share.png") + "分享" , "#" , :class=>"btn_dark btn_middle" ,:style=>"margin-top:25px;float:right;padding-left:40px;" %>
+            <%= render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] } %>
             <div class="clearfix"> </div>
         </div>
 
