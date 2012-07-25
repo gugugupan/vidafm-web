@@ -124,6 +124,7 @@ p{
 			margin:2px 0px 0px 2px;
 			width:6px;
 
+			border-radius: 3px;
 			-moz-border-radius: 3px;
 			-webkit-border-radius: 3px;
 		}
@@ -704,6 +705,8 @@ p{
 
 /*photos*/
 .feature_user {
+	&:first-child { margin-left: 0px; }
+	margin-left: 10px;
 	background-color:$white;
 	position:relative;
 
@@ -762,7 +765,7 @@ p{
 		}
 
 		.user_data {
-			margin:20px 20px 0px 12px;
+			margin:15px 20px 0px 12px;
 
 			h1 {
 				font-size:48px;
@@ -872,6 +875,9 @@ p{
 		border-radius: 8px;
 		-moz-border-radius: 8px;
 		-webkit-border-radius: 8px;
+
+		.show-photo {
+		}
 	}
 
 	.thumb_info {
@@ -1078,5 +1084,7 @@ p{
 		&#star {
 			background:url("images/icon_star_small.png") no-repeat 4px center;
 		}
+
+		&:first-child { border-top: none; }
 	}
 }

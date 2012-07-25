@@ -1,7 +1,7 @@
-<div class="feature_user<%= " " + type %>" style="float:left; margin: 10px 0px 10px 20px;">
+<div class="feature_user<%= " " + type %>" style="float:left; width:<%= width %>;">
 	<!-- <h1 class="ribbon blue">官方推荐</h1> -->
-	<a href="/users/<%= staruser[ 'id' ] %>" class="user_cover">
-		<%= image_tag staruser[ "photo" ] , :class => "user_cover_photo" %>
+	<a href="/users/<%= staruser[ 'id' ] %>" class="user_cover" style="width:<%=width%>;">
+		<%= image_tag staruser[ "photo" ] , :class => "user_cover_photo" , :style => "width:#{ width }" %>
 		<%= image_tag "images/user_cover_shadow.png" , :class => "user_cover_shadow" %>
 	</a>
 	<%= avatar_tag staruser %>

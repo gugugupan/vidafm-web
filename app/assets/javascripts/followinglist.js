@@ -8,7 +8,8 @@ var prettyLoad = '\
 function showFollowingDialog( num , count_following , count_followed )
 {
 	var listDiv = '\
-		<div id="follow_list" class="popup_container need_destroy">\
+	<div id="following_detail" class="black_background need_destroy">\
+		<div id="follow_list" class="popup_container">\
 			<div class="tab">\
 				<a id="gz_btn" href=javascript:showFollowingList('+num+','+0+')>关注 '+count_following+'</a>\
 				<a id="fs_btn" href=javascript:showFollowingList('+num+','+1+')>粉丝 '+count_followed+'</a>\
@@ -17,15 +18,19 @@ function showFollowingDialog( num , count_following , count_followed )
 			<img src="/assets/images/list_shadow.png" class="shadow">\
 			<ul>\
 			</ul>\
-			<a class="destroy-tag" href=javascript:destroyDialog(1)>\
-				<img src="/assets/images/icon_cancel.png">\
-			</a>\
-		</div>' ;
+		</div>\
+	</div>' ;
 	if ( $( "#follow_list" ) .length == 0 )
 	{
 		$( "body" ) .append( listDiv ) ;
-		$selector = $( "#follow_list" ) ;
-		$selector .show( 500 ) ;
+		var $selector = $( "#following_detail" ) ;
+		$selector .css( "height" , $( document ) .height() ) ;
+		$selector .fadeIn( 500 ) ;
+
+		$( "#following_detail" ) .click( function() {
+			destroyDialog( 1 ) ;
+		});
+
 		showFollowingList( num , 0 ) ;
 	}
 }
@@ -43,6 +48,6 @@ function showFollowingList( num , type )
 		$ulSelector .empty() ;
 		$ulSelector .append( getData ) ;
 		avatarShow() ;
-		$ulSelector .slideDown( 'fast' ) ;
+		$ulSelector .slideDown() ;
 	}) ;
 }

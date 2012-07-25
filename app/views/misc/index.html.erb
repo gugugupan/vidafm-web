@@ -28,14 +28,27 @@ VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活
         </div>
       </div>
   </div>
-  <a href="#" id="login" style="position: absolute;right: 50px;top: 50px;">
+  <a id="login" style="position: absolute;right: 50px;top: 50px;" class="login_btn mouse">
     登入
-    <%= image_tag "images/icon_detail.png" , :alt => "" %>
+    <%= image_tag "images/icon_detail.png" %>
   </a>
 
   <%= render :partial => "widgets/login" %>
 
+  <div id="star-user">
+    <h1 id="header-title">星用户</h1>
+    <div style="margin-top:10px;">
+      <%= render :partial => "widgets/staruser" , :collection => @staruser[ 0 , 2 ] , :locals => { :type => "big" , :width => "505px" } %>
+      <div class="clearfix"> </div>
+    </div>
+    <div style="margin-top:10px;">
+      <%= render :partial => "widgets/staruser" , :collection => @staruser[ 2 , 4 ] , :locals => { :type => "normal" , :width => "247.5px" } %>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+
   <div id="hot-story">
+    <h1 class="header-title">热门故事</h1>
   </div>
 
   <div id="hidden-place" style="display:none;">

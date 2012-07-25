@@ -6,13 +6,14 @@
 //= require btnfunction
 //= require followinglist
 //= require lazyload
+//= require screen
 
 //= require jquery.cycle.lite
 //= require jquery.em
 //= require jquery.mousewheel
 //= require jScrollPane
 //= require jquery.lazyload
-//= require screen
+//= require jquery.waitforimages.js
 
 
 function randomNumber( n )
@@ -22,12 +23,15 @@ function randomNumber( n )
 
 // Login click function
 $( document ) .ready( function () {
-	$( "#login-button" ) .click( function() {
-		$( "#login_with" ) .fadeIn( 300 ) ;
+	$( ".login_btn" ) .click( function() {
+		$( "#login_detail" ) .fadeIn( 400 ) ;
 	});
-	$( "#login" ) .click( function() {
-		$( "#login_with" ) .fadeIn( 300 ) ;
-	});
+	$( ".login_btn" ) .click( function( event ) {
+		event .stopPropagation() ;
+	}) ;
+	$( "#login_detail" ) .click( function() {
+		destroyDialog( 0 ) ;
+	}) ;
 });
 
 // center text box function
@@ -58,10 +62,10 @@ function destroyDialog( type )
 	var $selector = $( ".need_destroy" ) ;
 	$selector .fadeOut( 500 ) ;
 	if ( type == 1 )
-		setTimeout( function() { $selector .remove() ; } , 1000 ) ;
+		setTimeout( function() { $selector .remove() ; } , 500 ) ;
 }
 
-function showActivityDetail( activity_url )
+function showActivityDetail( activity_url , img_width )
 {
 	if ( $( "#activity_detail" ) .length == 0 ) 
 	{
@@ -73,7 +77,7 @@ function showActivityDetail( activity_url )
 		$( "#activity_detail" ) .css( "height" , $( document ) .height() ) ;
 		$( "#activity_detail_img" ) .css( "height" , "auto" ) ;
 		$( "#activity_detail_img" ) .css( "width" , "auto" ) ;
-		$( "#activity_detail_img" ) .css( "left" , ( $( window ) .width() - 590 ) / 2 ) ;
+		$( "#activity_detail_img" ) .css( "left" , ( $( window ) .width() - img_width ) / 2 ) ;
 		$( "#activity_detail_img" ) .css( "top" , $( window ) .height() * 0.05 + $( window ) .scrollTop() ) ;
 		$( "#activity_detail" ) .fadeIn( 300 ) ;
 

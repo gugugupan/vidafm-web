@@ -23,6 +23,7 @@ class MiscController < ApplicationController
   def index
     redirect_to "/home" if current_user
     @moments = Moment.hot_story() [ "data"] [ "hottest_moments" ]
+    @staruser = User.fetch_star_user( nil ) [ "data" ] [ "recommended" ]
   end
 =begin
   def ajax_new_comment

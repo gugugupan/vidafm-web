@@ -6,52 +6,21 @@
 VIDA-唯达 Android版下载
 <%  end-%>
 
-<div id="android-download">
-  <a id="follow-us" href="http://weibo.com/vidafm" onClick="javascript: pageTracker._trackPageview('clicktrack-frontpage-followus');">关注我们的新浪微博 @vida_唯达</a>
-  <div id="container">
-    <div id="preview-col">
-      <div class="arrow-pane">
-        <a href="#left" id="arrow-left"></a>
-        <a href="#right" id="arrow-right"></a>
+<div id="android_download">
+  <div id="android_download_header">
+      <div id="preview-col">
+        <%= image_tag "images/preview@2x.png" , :style => "max-width:100%;" %>
       </div>
-      <div class="layout">
-        <div class="shine"></div>
-        <div class="screenshots">
-          <% 1.upto(4) do |e| %>
-            <%= image_tag "screenshots/android/screenshot#{e}.png" %>
-          <% end %>
+      <div id="intro-col">
+        <%= image_tag "android_logo.png" , :alt => "VIDA(唯达) for Android." %>
+        <%= image_tag "vida-tagline.png" , :alt => "VIDA即时生活分享，串起你我的生活轨迹。" %>
+        <p id="text0">适用于Android 2.3 以上手机</p>
+        <div id="android_download_bar">
+          <a class="btn_big btn_grey mouse">点击直接下载</a>
+          <a class="btn_big btn_blue mouse">通过豌豆荚一键安装</a>
         </div>
+        <%= image_tag "android_b_btn.png" , :id => "two_code_download" %>
+        <div class="clearfix"> </div>
       </div>
-    </div>
-    <div id="intro-col">
-     <div id="vida-logo">
-        <%= link_to root_url do %>
-          <%= image_tag "android_logo.png", :alt => "VIDA(唯达) for Android." %>
-        <%  end-%>
-        <%= image_tag "vida-tagline.png", :alt => "VIDA即时生活分享，串起你我的生活轨迹。"  %>
-     </div>
-
-     <div id="version-inst">适用于Android 2.3 以上手机</div>
-     <div id="download-row">
-     	<div id="normal-dl">
-     		<a href="/d/android" id="n_btn">点击直接下载</a>
-				<a href="/d/android" name="VIDA" 
-			    onclick="return wdapi_apkdl(this);" title="通过豌豆荚一键安装 VIDA" id="w_btn">通过豌豆荚一键安装 VIDA</a>
-     	</div>
-			<%= image_tag "android_b_btn.png", :id => "qr-dl", :class => "col", :style => "height: 157px; margin: 10px;", :alt => "扫描二维码下载" %>
-     </div>
-    </div>
-  </div>
-
-  <div id="footer">
-    <%= link_to "联系我们", about_url %>
-    <span>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;沪ICP备10216111号-2</span>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(".screenshots").cycle({
-      prev: '#arrow-left',
-      next: '#arrow-right'
-    });
-</script>

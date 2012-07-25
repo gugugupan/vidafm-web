@@ -48,6 +48,7 @@ class UsersController < ApplicationController
       params[ :type ] = "following" if params[ :type ] .nil?
       @result = User.set_relation( params[ :id ] , current_user , params[ :type ] )
     else
+      render "misc/need_authentication"
     end
   end
 end

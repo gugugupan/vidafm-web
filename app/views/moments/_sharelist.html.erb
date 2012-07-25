@@ -6,7 +6,7 @@
 		<p> <%= @sns_hash[ sns[ "vendor" ] ] [ :name ] %> </p>
 		<div class="clearfix"></div>
 		<%= form_tag( "#{share_moment_url}#{@sns_hash[ sns[ 'vendor' ] ] [ :url_attr ] }" , { :remote => true , :style => "padding-top:15px;" } ) do %>
-			<%= text_area_tag "content" , "我在VIDA随手拍,分享了这张照片." , :style => "width: 100%; float: left; margin-bottom: 10px;" %>
+			<%= text_area_tag "content" , "我在#VIDA随手拍#,分享了照片." , :style => "width: 100%; float: left; margin-bottom: 10px;" %>
 			<%= submit_tag "发布" , :class => "btn_small btn_blue" , :style => "float: right;" %>
 			<div class="clearfix"></div>
 		<% end -%>

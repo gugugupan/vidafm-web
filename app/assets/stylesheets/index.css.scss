@@ -82,9 +82,24 @@
 	}
 }
 
+#star-user {
+	width: 1020px;
+	margin: 10px auto;
+
+	h1.header-title {
+		margin-top: 30px;
+		margin-bottom: 20px;
+	}
+}
+
 #hot-story {
 	width: 1020px;
-	margin: 20px auto;
+	margin: 10px auto;
+	
+	h1.header-title {
+		margin-top: 30px;
+		margin-bottom: 20px;
+	}
 
 	.thumbnail {
 		float: left;

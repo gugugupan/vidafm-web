@@ -4,19 +4,34 @@
 
 <%= content_for :page_specific_asset do %>
 <script>
+    var lat = <%= @moment[ "lat" ] %> ;
+    var lng = <%= @moment[ "lng" ] %> ;
     // GOOGLE MAP
     $( document ) .ready( function() 
     {
-        if ( <%= @moment[ "lat" ] != 0 || @moment[ "lng" ] != 0 %> ) 
+        if ( lat != 0 || lng != 0 ) 
         {
-            var options = {size:GSize(418, 308), backgroundColor:"#BBBBBB"};
+            var options = {
+                size : GSize(lat, lng) , 
+                backgroundColor : "#BBBBBB" ,
+                mapTypes : [G_NORMAL_MAP,G_SATELLITE_MAP] ,
+                draggableCursor : "crosshair",
+                draggingCursor : "move"
+            };
             var map = new GMap2(document.getElementById("map"), options);
-            map .setCenter(new GLatLng(<%= @moment[ "lat" ] %>, <%= @moment[ "lng" ] %>), 15);
+            var point = new GLatLng( lat , lng ) ;
+            var icon = new GIcon();
+            icon.image = "http://labs.google.com/ridefinder/images/mm_20_red.png";
+            var myMarker = new GMarker(point, icon);
+            
+            map .setCenter( point , 15 ) ;
             map .enableDragging() ;
             map .enableDoubleClickZoom() ;
             map .enableContinuousZoom() ;
             map .enableScrollWheelZoom() ;
-            map .addControl( new GSmallMapControl() ) ;
+            map .addControl( new GLargeMapControl() ) ;
+            map .addControl( new GMapTypeControl() ) ;
+            map .addControl( new GScaleControl() ) ;
         }
     });
 </script>
@@ -24,19 +39,17 @@
     //LAZY LOAD
 	var page_now = 1 ;
 	var comment_id = <%= params[ :id ] %> ;
-    var max_page = <%= @max_page %> ;
     var url_part = "moments" ;
     function goLazyLoad()
     {
-        if ( page_now < max_page )
-            page_now = lazyload( url_part , comment_id , page_now , max_page , ".story_container" ) ;
+        page_now = lazyload( url_part , comment_id , page_now ) ;
     }
     // CLICK EVENT
 	$( document ) .ready( function() 
 	{
         // Story container
         $( "#title-place" ) .click( function() {
-            $( "#story_info" ) .slideDown() ;
+            $( "#story_info" ) .slideToggle() ;
         });
 
         // New comment
@@ -91,6 +104,7 @@
         </div>
         <div class="clearfix"> </div>
     </div>
+    <!-- <a id="backtop_btn" href="#"> ↑ </a> -->
 <% else -%>
             <div class="clearfix"> </div>
         </div>

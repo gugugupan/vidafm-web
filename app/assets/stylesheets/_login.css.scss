@@ -2,5 +2,15 @@
 	position: fixed;
 	top: 100px;
 	left: 37%;
+}
+
+.black_background {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
 	display: none;
+	background-color: rgba(0,0,0,0.3);
+	Z-index: 10;
 }

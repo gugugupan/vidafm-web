@@ -8,8 +8,14 @@
 		<%= render :partial => "discover/sidebar" %>
 		<div id="main-block">
 			<%= render :partial => "header" , :locals => { :category => "staruser" , :titleimg => "images/icon_star_small@2x.png" , :sortbtn => nil } %>
-			<%= render :partial => "widgets/staruser" , :collection => @staruser[ 0 , 2 ] , :locals => { :type => "big" } %>
-			<%= render :partial => "widgets/staruser" , :collection => @staruser[ 2 , 4 ] , :locals => { :type => "normal" } %>
+			<div style="width:100%;border-top:1px dashed rgb(255,255,255); padding-top:10px;">
+				<%= render :partial => "widgets/staruser" , :collection => @staruser[ 0 , 2 ] , :locals => { :type => "big" , :width => "372.5px" } %>
+				<div class="clearfix"> </div>
+			</div>
+			<div style="margin-top:10px;">
+				<%= render :partial => "widgets/staruser" , :collection => @staruser[ 2 , 3 ] , :locals => { :type => "normal" , :width => "245px" } %>
+				<div class="clearfix"> </div>
+			</div>
 			<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix"> </div>

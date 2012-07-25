@@ -7,14 +7,12 @@
     //LAZY LOAD
 	var page_now = 1 ;
 	var user_id = <%= params[ :id ] %> ;
-    var max_page = 100 ;
     var url_part = "users" ;
     function goLazyLoad()
     {
         if ( page_now < max_page )
         {
-            page_now = lazyload( url_part , user_id , page_now , max_page , ".user-story" ) ;
-            autoWidthPhoto() ;
+            page_now = lazyload( url_part , user_id , page_now ) ;
         }
     }
 </script>

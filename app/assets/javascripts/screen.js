@@ -1,4 +1,3 @@
-
 $(window).load(function () {
 	var avatar = $(".avatar");
 	var featrueUser = $(".feature_user");
@@ -43,9 +42,14 @@ $(window).load(function () {
 	$(".story_container .info_container:first-child").css({'border-top':'none'});
 	$(".story_container .info_container:last-child").css({'border-bottom':'none'});
 
-	$(".thumbnail").hover(function() {
-		$(this).find(".thumb_like").fadeToggle("fast");
-	});
+	$(".thumbnail").hover(
+		function() {
+			$( this ) .find( ".thumb_like" ) .fadeIn( "fast" ) ;
+		} ,
+		function() {
+			$( this ) .find( ".thumb_like" ) .fadeOut( "fast" ) ;
+		}
+	);
 
 	$("#me_filter").hover(function(){
 		$("#me_filter .popup_container").slideToggle(100);
@@ -74,4 +78,3 @@ $(window).load(function () {
 		'border-bottom-right-radius':'6px',
 	});
 });
-

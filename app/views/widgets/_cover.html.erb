@@ -1,1 +1,9 @@
 <div class="cover-pic"> <%= image_tag cover , :alt => "TRY AGAIN" %> </div>
+<script type="text/javascript">
+	var cover_address = $( ".cover-pic" ) .children() .attr( "src" ) ;
+	$( ".cover-pic" ) .css({
+		"background":"url("+cover_address+")" ,		
+		"background-attachment" : "fixed" ,
+		"background-size" : "cover"
+	});
+</script>

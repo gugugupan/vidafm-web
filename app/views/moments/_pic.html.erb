@@ -2,7 +2,7 @@
 	<!--
 	<h1 class="ribbon red">第一天</h1>
 	-->
-	<a href=javascript:showActivityDetail("<%= pic['photo']['url_l'] %>") class="photo_container">
+	<a href=javascript:showActivityDetail("<%=pic['photo']['url_l']%>","<%=pic['photo']['width']%>") class="photo_container">
 		<%= image_tag pic[ 'photo' ] [ 'url_m' ] , :style => "min-width:100%;" , :class => "lazy" %> 
 	</a>
 	<div class="info_container">

@@ -10,8 +10,9 @@ function autoWidthPhoto()
         {
             $( ".user-story:eq(" + i + ")" ) .find( ".thumbnail:eq(0)" ) .css( "width" , "500px" ) ;
         }
+        if ( i == 0 )
+            autoresize() ;
     }
-    autoresize() ;
 }
 
 $( document ) .ready( function () {

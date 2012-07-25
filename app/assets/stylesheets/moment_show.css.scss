@@ -114,3 +114,17 @@
 		}
 	}
 }
+
+#backtop_btn {
+	width: 70px;
+	height: 70px;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;	
+	background-color: rgba(0,0,0,0.3);
+	position: fixed;
+	top: 330px;
+	right: 330px;
+	text-align: center;
+	font-size: 45px;
+}

@@ -1,7 +1,6 @@
 class MomentsController < ApplicationController
   def show
     data = Moment.fetch(params[ :id ] , :page => 0 , :page_size => 3 , :current_user => current_user)
-    @max_page = data[ "page_count" ] + 1 
     @moment = data[ "data" ]
     @moment_cover = @moment[ "cover_file" ]
     @cur_user = User.fetch_current_user( current_user )[ "data" ] .symbolize_keys if current_user
@@ -34,13 +33,16 @@ class MomentsController < ApplicationController
     if current_user 
       @vendors = User.fetch_current_user( current_user )[ "data" ] [ "vendors" ]
     else
+      render "misc/need_authentication"
     end
   end
 
   def share
     if current_user
+      params[ :content ] += " http://vida.fm/moments/#{ params[ :id ] }"
       @result = Moment.share( :id => params[ :id ] , :type => params[ :type ] , :content => params[ :content ] , :current_user => current_user )
     else
+      render "misc/need_authentication"
     end
   end
 end

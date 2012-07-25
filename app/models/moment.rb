@@ -39,6 +39,6 @@ class Moment
   end
 
   def self.share( options = {} )
-    JSON.parse VIDA.call( "moment/share" , { :moment_id => options[ :id ] , :to => options[ :type ] , :content => options[ :content ] , :url => "http://vida.fm/moments/#{options[:id]}"} , options[ :current_user ] )
+    JSON.parse VIDA.call( "moment/share" , { :moment_id => options[ :id ] , :to => options[ :type ] , :content => options[ :content ] } , options[ :current_user ] )
   end
 end

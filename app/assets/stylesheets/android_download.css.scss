@@ -1,143 +1,55 @@
-#android-download {
+#android_download {
   width: 100%;
-  height: 100%;
   position: relative;
+  display: block;
+  margin: 0px auto;
+  font-size: 100%;
 
-
-   #container {
-    position:absolute;
-    width: 945px;
-    right: 50%;
-    margin-right: -472.5px;
-    height: 600px;
-    top:50%;
-    margin-top: -300px;
-  }
-  #preview-col {
-    float: left;
-    width: 424px;
-    height: 600px;
+  #android_download_header {
+    width: 100%;
+    height: 522px;
+    background-image: url("images/sky_desk_photodoom.jpg");
+    background-attachment: fixed;
+    background-size: cover;
     position: relative;
-    .arrow-pane {
-      background: image-url("frontpage/arrow_panel.png") no-repeat scroll;
-      width: 437px;
-      height: 108px;
-      position: absolute;
-      top: 290px;
-      left: 37px;
-      z-index: 1;
-      #arrow-left {
-        display: block;
-        width: 85px;
-        height: 85px;
-        position: absolute;
-        &:hover {
-          background: image-url("frontpage/arrow_l.png") no-repeat scroll;
-        }
-      }
-      #arrow-right {
-        display: block;
-        width: 75px;
-        height: 85px;
-        right: 0px;
-        position: absolute;
-        &:hover {
-          background: image-url("frontpage/arrow_r.png") no-repeat 34px 0;
-        }
-      }
+
+    #preview-col {
+      float: left;
+      position: relative;
+      margin-left: 105px;
+      width: 499px;
     }
 
-    .layout {
-      width: 351px;
-      height: 700px;
-      background: image-url("android_341x658.png") no-repeat;
-      position: absolute;
-      left: 104px;
-      z-index: 2;
-      zoom: 0.9;
-      .shine {
-        // background: image-url("frontpage/shine.png") no-repeat;
-        position: absolute;
-        top: 15px;
-        right: 11px;
-        width: 170px;
-        height: 512px;
-        z-index: 4;
-      }
-      .screenshots {
-        position: absolute;
-        top: 66px;
-        left: 37px;
-        z-index: 3;
-        img {
-          width: 283px;
-          margin-top: 18px;
-        }
-      }
-    }
+    #intro-col {
+      float: left;
+      position: relative;
+      margin-top: 205px;
+      margin-left: 91px;
+      width: 500px;
+      height: 286px;  
 
-  }
-
-  #intro-col {
-    float: left;
-    width: 428px;
-    margin-top: 155px;
-    margin-left: 90px;
-
-    #version-inst {
-      font-size: 12px;
-      color: #808080;
-      margin-top: 30px;
-    }
-
-    #download-row {
-      margin-top: -5px;
-      $width: 209px;
-      $height: 62px;
-      #normal-dl {
-        float: left;
-        width: $width;
-        margin-top: 15px;
-
-
-        #n_btn, #w_btn {
-          display: block;
-          width: $width;
-          height: $height;
-          text-indent: -99999px;
-          &:hover {
-            background-position-y: -72px;
-          }
-        }
-
-        #n_btn {
-          background: image-url("android_download.png") no-repeat;
-        }
-
-        #w_btn {
-          margin-top: 24px;
-          background: image-url("android_download.png") -219px 0 no-repeat;
-        }
-        
+      p#text0 {
+        margin-top: 10px;
+        font-size: 12px;
+        color: rgb(100,100,100);
       }
 
-      #qr-dl {
-        float: left;
+      #android_download_bar {
+        width: 126px;
 
+        a {
+          margin-top: 10px;
+          width: 100%;
+          text-align: center;
+        }
       }
-    }
-  }
 
-  #footer {
-    bottom: 0px;
-    color: #b3b3b3;
-    padding: 11px 20px;
-    position: absolute;
-    right: 0px;
-    font-size: 11px;
-    width: initial;
-    a {
-      color: #b3b3b3;
+      img#two_code_download {
+        width: 112px;
+        height: 112px;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
     }
   }
 }
