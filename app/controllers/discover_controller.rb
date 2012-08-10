@@ -18,7 +18,6 @@ class DiscoverController < ApplicationController
 
   def public
     @moment = Moment.fetch_by_name( params[ :name ] , "latest" ) [ "data" ]
-    puts @moment.to_json
     save_url_in_cookies
   end
 

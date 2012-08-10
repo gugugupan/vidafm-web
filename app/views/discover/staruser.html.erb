@@ -7,7 +7,7 @@
 	<div id="main-main-block">
 		<%= render :partial => "discover/sidebar" %>
 		<div id="main-block">
-			<%= render :partial => "header" , :locals => { :name => "staruser" , :titleimg => "icon/icon_star_small@2x.png" , :sortbtn => nil } %>
+			<%= render :partial => "header" , :locals => { :name => "staruser" , :titleimg => "icon/icon_star_big.png" , :sortbtn => nil } %>
 			<div style="border-top:1px dashed white;width:100%;"> </div>
 			<%= render :partial => "widgets/staruserlist" , :locals => { :stars => @data[ "stars" ] , :recommended => @data[ "recommended" ] , :wb => "372.5px" , :wn => "245px" , :count => 3 } %>
 			<div class="clearfix"> </div>

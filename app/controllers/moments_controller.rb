@@ -36,11 +36,11 @@ class MomentsController < ApplicationController
 =end
   def sharelist
     @sns_hash = {
-      "weiboer" => { :name => "新浪微博" , :img => "images/icon_sina.png" , :url_attr => "?type=weiboer" } ,
-      "douban" => { :name => "豆瓣" , :img => "images/icon_douban.png" , :url_attr => "?type=douban" } ,
-      "renren" => { :name => "人人" , :img => "images/icon_renren.png" , :url_attr => "?type=renren" } ,
-      "kaixin001" => { :name => "开心" , :img => "images/icon_kaixin.png" , :url_attr => "?type=kaixin001" } ,
-      "qq" => { :name => "腾讯微博" , :img => "images/icon_tencent.png" , :url_attr => "?type=qq" }
+      "weiboer" => { :name => "新浪微博" , :img => "icon/icon_sina.png" , :url_attr => "?type=weiboer" } ,
+      "douban" => { :name => "豆瓣" , :img => "icon/icon_douban.png" , :url_attr => "?type=douban" } ,
+      "renren" => { :name => "人人" , :img => "icon/icon_renren.png" , :url_attr => "?type=renren" } ,
+      "kaixin001" => { :name => "开心" , :img => "icon/icon_kaixin.png" , :url_attr => "?type=kaixin001" } ,
+      "qq" => { :name => "腾讯微博" , :img => "icon/icon_tencent.png" , :url_attr => "?type=qq" }
     }
     if current_user 
       @vendors = cur_user[ :vendors ]

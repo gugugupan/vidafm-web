@@ -93,9 +93,21 @@
 	margin: 30px auto;
 	margin-top: 30px;
 
-	h1.header-title {
-		margin-top: 30px;
-		margin-bottom: 20px;
+	.header-title {
+		margin-top: 20px;
+		margin-bottom: 10px;
+
+		img {
+			float: left;
+		}
+
+		h1 {
+			font-size: 21px;
+			color: #333333;
+			font-weight: normal;
+			float: left;
+			margin: 0px 10px;
+		}
 	}
 }
 
@@ -105,10 +117,21 @@
 	margin-top: 30px;
 	text-align: left;
 	
-	h1.header-title {
-		margin-top: 30px;
-		margin-bottom: 20px;
-		float: left;
+	.header-title {
+		margin-top: 20px;
+		margin-bottom: 10px;
+
+		img {
+			float: left;
+		}
+
+		h1 {
+			font-size: 21px;
+			color: #333333;
+			font-weight: normal;
+			float: left;
+			margin: 5px 10px;
+		}
 	}
 
 	.thumbnail {
@@ -119,7 +142,7 @@
 		margin-bottom: 10px;
 	}
 
-	div {
+	div.thumbnail {
 		float: left;
 	}
 

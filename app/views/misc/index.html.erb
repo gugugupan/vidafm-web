@@ -122,17 +122,23 @@ VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活
 <% end -%>
 
   <div id="star-user">
-    <h1 id="header-title">星用户</h1>
+    <div class="header-title">
+      <%= image_tag "icon/icon_star_big.png" %>
+      <h1>星用户</h1>
+      <div class="clearfix"> </div>
+    </div>
     <%= render :partial => "widgets/staruserlist" , :locals => { :stars => @data[ "stars" ] , :recommended => @data[ "recommended" ] , :wb => "505px" , :wn => "247.5px" , :count => 4 } %>
   </div>
 
   <div id="hot-story">
-    <h1 class="header-title">热门故事</h1>
-    <div id="hot-story-block">
+    <div class="header-title">
+      <%= image_tag "icon/icon_hot_big.png" %>
+      <h1>热门故事</h1>
+      <div class="clearfix"> </div>
     </div>
+    <div id="hot-story-block"> </div>
     <div class="clearfix"> </div>
   </div>
-  <div class="clearfix"> </div>
 
   <div id="hidden-place" style="display:none;">
   <% for moment in @moments -%>
