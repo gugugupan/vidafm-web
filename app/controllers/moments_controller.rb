@@ -1,11 +1,7 @@
 class MomentsController < ApplicationController
   def show
-    data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 3 )
-    puts data.to_json
-    if data[ 'result' ] == 1 
-      render "misc/error"
-      return 
-    end
+    data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 3 )    
+    render "misc/error" and return if data[ 'result' ] == 1 
     @moment = data[ "data" ]
     @moment_cover = @moment[ "cover_file" ]
     @need_show = ( @moment[ "description" ] != "" && !@moment[ "description" ] .nil? ) || @moment[ "location" ] != ""

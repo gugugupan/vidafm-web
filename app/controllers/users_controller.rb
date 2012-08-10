@@ -1,28 +1,21 @@
 #encoding: utf-8
 class UsersController < ApplicationController  
   def show
+    data = User.fetch( params[:id] , current_user )
+    render "misc/error" and return if data[ "result" ] == 1 
+    @user = data["data"] .symbolize_keys
+    @following_tag = get_relation_btn( @user[ :relation ] ) 
     if params[ :category ] .nil?
-      data = User.fetch_moments(params[:id], 0, current_user)
+      @moments = User.fetch_moments(params[:id], 0, current_user) [ "data" ]
       params[ :category ] = "all"
     else
-      data = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user )
+      @moments = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user ) [ "data" ]
     end
-    if data[ "result" ] == 1 
-      render "misc/error"
-      return 
-    end
-    @moments = data[ "data" ] 
-    @user = User.fetch( params[:id] , current_user ) ["data"] .symbolize_keys
-    #@cur_user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys if current_user 
-    @following_tag = get_relation_btn( @user[ :relation ] ) 
     save_url_in_cookies
   end
 
   def friend
-    unless current_user
-      redirect_to "/"
-      return
-    end
+    redirect_to "/" and return unless current_user
     @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
     @moment = User.fetch_friend_moments( current_user ) [ "data" ]
   end
