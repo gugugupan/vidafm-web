@@ -1,10 +1,10 @@
 <div id="main-block-header">
 	<%= image_tag titleimg %>
-	<h1> <%= moment_category( category ) %> </h1>
+	<h1> <%= moment_category( name ) %> </h1>
 <% unless sortbtn .nil? -%>
 	<div id="sort-method"> 
-		<a class="btn_round" href="/discover/category?category=<%= category %>&sort_type=hottest">最热</a>
-		<a class="btn_round" href="/discover/category?category=<%= category %>&sort_type=latest">最新</a>
+		<a class="btn_round" href="/discover/category?category=<%= name %>&sort_type=hottest">最热</a>
+		<a class="btn_round" href="/discover/category?category=<%= name %>&sort_type=latest">最新</a>
 	</div>
 <% end -%>
 	<div class="clearfix"> </div>

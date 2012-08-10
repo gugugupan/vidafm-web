@@ -1,0 +1,7 @@
+var num = <%= params[ :id ] %> ;
+var $selector = $( "#" + num + "comment" ) ;
+var text = "<div class='comments-list-container'>\
+			<%= j render :partial => 'moments/comment' , :collection => @comments %>\
+			</div>" ;
+$selector .find( ".comments-list-container" ) .replaceWith( text ) ;
+$selector .find( ".more_comment" ) .remove() ;

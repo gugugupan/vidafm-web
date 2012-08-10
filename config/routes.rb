@@ -1,30 +1,33 @@
 Bluerain::Application.routes.draw do
 
+  root :to => "misc#index"
+  match "home" => "users#friend"
+  match "ajax_notification" => "misc#ajax_notification"
+  
   resources :users, :only => "show", :constraints => {:id => /[0-9]+/} do
     get "ajax_following_list" , :on => :member
-    #get "ajax_following" , :on => :member
     get "ajax_get_new_page" , :on => :member
     put "following", :on => :member 
   end
 
   resources :moments, :only => "show", :constraints => {:id => /[0-9]+/} do
     get "ajax_get_new_page" , :on => :member
-    #get "ajax_like" , :on => :member
     get "sharelist" , :on => :member 
     post "share" , :on => :member
+    post "comment" , :on => :member 
+    get "allcomments", :on => :member 
   end
 
   resources :activities, :only => [] , :constraints => {:id => /[0-9]+/} do
     put "like", :on => :member 
     post "comment", :on => :member
+    get "allcomments", :on => :member 
   end
 
-  root :to => "misc#index"
-  match "home" => "users#friend"
   get "discover/index"
   get "discover/category"
   get "discover/staruser"
-  #get "misc/ajax_new_comment"
+  get "discover/public"
 
 
 
@@ -71,6 +74,6 @@ Bluerain::Application.routes.draw do
   match '/auth/failure' => 'sessions#failure'
   match '/auth/logout' => 'sessions#destroy'
 
-  #match "contact" => "misc#about", :as => :about  # Hack to rename the legal route "about" to "contact".
-  #post "create_feedback" => "misc#create_feedback"
+  match "contact" => "misc#about", :as => :about  # Hack to rename the legal route "about" to "contact".
+  post "create_feedback" => "misc#create_feedback"
 end

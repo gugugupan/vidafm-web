@@ -1,0 +1,15 @@
+<% x = 0 -%>
+<div class="star-user-row" style="width:100%;padding-top:10px;">
+	<%= render :partial => "widgets/staruser" , :object => stars[ "users" ] [ 0 ] , :locals => { :type => "big" , :width => wb , :text => stars[ "title" ] } %>
+<% if stars[ "users" ] .size > 1 -%>
+	<%= render :partial => "widgets/staruser" , :object => stars[ "users" ] [ 1 ] , :locals => { :type => "big" , :width => wb , :text => nil } %>
+<% else -%>
+	<%= render :partial => "widgets/staruser" , :object => recommended[ "users" ] [ 0 ] , :locals => { :type => "big" , :width => wb , :text => recommended[ "title" ] } %>
+	<% x = 1 -%>
+<% end -%>
+	<div class="clearfix"> </div>
+</div>
+<div class="star-user-row" style="margin-top:10px;">
+	<%= render :partial => "widgets/staruser" , :collection => recommended[ "users" ] [ x , count ] , :locals => { :type => "normal" , :width => wn , :text => nil } %>
+	<div class="clearfix"> </div>
+</div>

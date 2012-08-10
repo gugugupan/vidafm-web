@@ -12,12 +12,14 @@ VIDA-唯达 Android版下载
         <%= image_tag "images/preview@2x.png" , :style => "max-width:100%;" %>
       </div>
       <div id="intro-col">
-        <%= image_tag "android_logo.png" , :alt => "VIDA(唯达) for Android." %>
+        <%= link_to root_url do %>
+          <%= image_tag "android_logo.png" , :alt => "VIDA(唯达) for Android." %>
+        <% end -%>
         <%= image_tag "vida-tagline.png" , :alt => "VIDA即时生活分享，串起你我的生活轨迹。" %>
         <p id="text0">适用于Android 2.3 以上手机</p>
         <div id="android_download_bar">
-          <a class="btn_big btn_grey mouse">点击直接下载</a>
-          <a class="btn_big btn_blue mouse">通过豌豆荚一键安装</a>
+          <%= link_to "点击直接下载" , "" , :class => "btn_big btn_grey mouse" %>
+          <%= link_to "通过豌豆荚一键安装" , "" , :class => "btn_big btn_blue mouse" %>
         </div>
         <%= image_tag "android_b_btn.png" , :id => "two_code_download" %>
         <div class="clearfix"> </div>

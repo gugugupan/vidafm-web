@@ -1,4 +1,6 @@
 showCenterBox( "<%= @result[ 'message' ] %>" ) ;
 <% if @result[ "result" ] == 0 -%>
+	destroyDialog( 1 ) ;
 <% else -%>
+	$( "textarea" ) .css( "background-color" , "white" ) ;
 <% end -%>

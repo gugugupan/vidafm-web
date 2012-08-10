@@ -1,0 +1,14 @@
+<div class="story_container">
+    <div class="info_container">
+        <p id="story_description">
+            <%= empty_descripe( moment[ "description" ] ) %>
+        </p>
+    </div>
+    <div class="info_container">
+        <p id="location_list">
+            <%= empty_descripe( moment[ "location" ] ) %>
+        </p>
+        <%= render :partial => "widgets/smallmap" , :locals => { :moment => moment } %>
+        <div class="clearfix"> </div>
+    </div>
+</div>

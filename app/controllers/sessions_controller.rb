@@ -2,6 +2,7 @@
 class SessionsController < ApplicationController
   def create
     session[:current_user] = Session.create(:from => auth_provider, :token => auth_token, :secret => auth_secret)
+    cur_user
     if cookies[:refer_url]
       href = cookies.delete(:refer_url)
 
@@ -33,8 +34,9 @@ class SessionsController < ApplicationController
   end
 
   def auth_provider
-    return "weibo" if auth_info['provider'] == 'tsina'
-    return "qq" if auth_info['provider'] == 'tqq'
+    return "weiboer" if auth_info['provider'] == 'weibo'
+    return "qq" if auth_info[ 'provider' ] == 'tqq'
+    return "kaixin001" if auth_info[ 'provider' ] == 'kaixin'
     auth_info['provider']
   end
 

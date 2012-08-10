@@ -2,8 +2,14 @@
 	<!--
 	<h1 class="ribbon red">第一天</h1>
 	-->
-	<a href=javascript:showActivityDetail("<%=pic['photo']['url_l']%>","<%=pic['photo']['width']%>") class="photo_container">
-		<%= image_tag pic[ 'photo' ] [ 'url_m' ] , :style => "min-width:100%;" , :class => "lazy" %> 
+<% if pic[ "activity_type" ] == 1 -%>
+	<a href=javascript:showActivityPhoto("<%=pic['photo']['url_l']%>","<%=pic['photo']['width']%>") class="photo_container">
+		<%= image_tag pic[ 'photo' ] [ 'url_m' ] %>
+<% else -%>
+	<a href="javascript:showActivityVideo(<%=pic['video'].to_json%>)" class="photo_container" style="position:relative">
+		<%= image_tag pic[ 'photo' ] [ 'url_m' ] %>
+		<%= image_tag "images/play.png" , :style => "position:absolute; bottom:5px; left:5px; width: 82px;" %>
+<% end -%>
 	</a>
 	<div class="info_container">
 		<%= avatar_tag pic[ 'user' ] %>
@@ -22,17 +28,11 @@
 	</div>
 </div>
 <div style="width:100%;margin:15px 0px;" id="activityinfo<%= pic[ 'id' ] %>">
-	<%= render :partial => "widgets/likebtn" , :locals => { :liked => pic[ "liked" ] , :pid => pic[ "id" ] , :count => pic[ "likes_count" ] } %>
 	<%= render :partial => "widgets/commentbtn" , :locals => { :commented => pic[ "commented" ] , :pid => pic[ "id" ] , :count => pic[ "comments_count" ] } %>
+	<%= render :partial => "widgets/likebtn" , :locals => { :liked => pic[ "liked" ] , :pid => pic[ "id" ] , :count => pic[ "likes_count" ] } %>
 
 	<div class="story_container" style="float:left; margin-top:10px; display:none;" id="<%= pic[ 'id' ] %>comment">
-	<% if pic[ "comments" ] .size == 0 -%>
-		<div class="info_container none_comment" style="font-size:14px; border: none;"> 还没有人添加评论 </div>
-	<% else -%>
-		<%= render :partial => "comment" , :collection => pic[ "comments" ] %>
-	<% end -%>
-		<%= render :partial => "newcomment" , :locals => { :pid => pic[ 'id' ] } %>
-		<div class="clearfix"> </div>
+		<%= render :partial => "commentbox" , :object => pic , :locals => { :type => "activity" } %>
 	</div>
 	<div class="clearfix"> </div>
 </div>

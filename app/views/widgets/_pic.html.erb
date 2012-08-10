@@ -1,8 +1,9 @@
 <div class="thumbnail" style="width:245px;">
-	<%= link_to image_tag( pic[ "photo" ] [ "url_m" ] , :class => "show-photo" ) , "/moments/#{ pic[ 'moment_id' ] }#activity#{ pic[ 'id' ] }" , :class => "thumb" %>
+	<%= link_to image_tag( "empty.png" , "data-original" => pic[ "photo" ] [ "url_m" ] , :class => "show-photo lazy" , :cwidth => pic[ "photo" ] [ "width" ] , :cheight => pic[ "photo" ] [ "height" ] ) , "/moments/#{ pic[ 'moment_id' ] }#activity#{ pic[ 'id' ] }" , :class => "thumb" , :title => pic[ "description" ] %>
 <% if first %>
 	<h1 class="ribbon red"> <%= date %> </h1>
-	<%= link_to like_count , like_link , :class => "thumb_like btn_dark btn_small" %>
+	<%= link_to like_count , "/moments/#{ pic[ 'moment_id' ] }" , :class => "thumb_like btn_dark btn_small" , :title => pic[ "description" ] %>
 <% end %>
 </div>
 
+<!-- , :style => "width:#{pic['photo']['width']}px;height:#{pic['photo']['height']}px;" -->

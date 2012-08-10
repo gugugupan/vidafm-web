@@ -1,0 +1,16 @@
+<% if @result[ 'result' ] == 1 -%>
+	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
+<% else -%>
+	<% data = @result[ "data" ] [ "comments" ] -%>	
+	var text = "<%= j render :partial => 'moments/comment' , :object => data[ 0 ] %>" ;
+	var num = <%= params[ :id ] %> ;
+	var $selector = $( "#comment-block" ) ;
+	$selector .find( ".none_comment" ) .remove() ;
+	$selector .find( ".comments-list-container" ) .prepend( text ) ;
+	avatarShow() ;
+
+	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
+
+	$selector .find( "input" ) .val( "" ) ;
+	$selector .find( "input" ) .css( "background-color" , "white" ) ;
+<% end -%>

@@ -6,55 +6,138 @@
 VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活轨迹。
 <% end -%>
 
+<%= content_for :page_specific_asset do %>
+<script type="text/javascript">
+    var sum = $( "#hidden-place" ) .children() .length ;
+    while ( sum > 0 ) 
+    {
+        var rand = randomNumber( 6 ) + 1 ;
+        var temp_div ;
+        if ( rand == 1 && sum >= 1 )
+        {
+            $( "#hidden-place" ) .find( ".thumbnail" ) .eq( 0 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail" ) .eq( 0 ) .css( "width" , "1010px") ;
+            $( "#hidden-place" ) .find( ".thumbnail" ) .eq( 0 ) .appendTo( "#hot-story-block" ) ;
+            sum -= 1 ;
+        } else
+        if ( rand == 2 && sum >= 2 )
+        {
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 1 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 1 ) .css( "width" , "755px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 1 ) .appendTo( "#hot-story-block" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .appendTo( "#hot-story-block" ) ;
+            sum -= 2 ;
+        } else
+        if ( rand == 3 && sum >= 3 )
+        {
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 2 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 2 ) .appendTo( "#hot-story-block" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 1 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 1 ) .appendTo( "#hot-story-block" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .css( "width" , "500px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .appendTo( "#hot-story-block" ) ;
+            sum -= 3 ;
+        } else
+        if ( rand == 4 && sum >= 4 )
+        {
+            $( "#hot-story-block" ) .append( "<div style='width:510px'; id='insert-div'> </div>" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 3 ) .css( "width" , "500px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 3 ) .appendTo( "#hot-story-block div#insert-div:last-child" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 2 ) .appendTo( "#hot-story-block div#insert-div:last-child" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 1 ) .appendTo( "#hot-story-block div#insert-div:last-child" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .css( "width" , "500px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .appendTo( "#hot-story-block" ) ;
+            sum -= 4 ;
+        } else
+        if ( rand == 5 && sum >= 5 )
+        {
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 4 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 4 ) .css( "width" , "500px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 4 ) .appendTo( "#hot-story-block" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 3 ) .appendTo( "#hot-story-block" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 2 ) .appendTo( "#hot-story-block" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 1 ) .appendTo( "#hot-story-block" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .appendTo( "#hot-story-block" ) ;
+            sum -= 5 ;
+        } else
+        if ( rand == 6 && sum >= 6 )
+        {
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 5 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 5 ) .appendTo( "#hot-story-block" ) ;
+            $( "#hot-story-block" ) .append( "<div style='width:510px'; id='insert-div'> </div>" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 4 ) .appendTo( "#hot-story-block div#insert-div:last-child" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 3 ) .appendTo( "#hot-story-block div#insert-div:last-child" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 2 ) .appendTo( "#hot-story-block div#insert-div:last-child" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 1 ) .appendTo( "#hot-story-block div#insert-div:last-child" ) ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .css( "height" , "312px") ;
+            $( "#hidden-place" ) .find( ".thumbnail") .eq( 0 ) .appendTo( "#hot-story-block" ) ;
+            $( "#hot-story-block" ) .append( "<div class='clearfix'> </div>" ) ;
+            sum -= 6 ;
+        }
+        if ( sum == 0 ) autoresize() ;
+    }
+    $( "#hot-story-block" ) .append( "<div class='clearfix'> </div>" ) ;
+</script>
+<% end -%>
+
 <div id="index">
   <div id="index-header">
-      <div id="preview-col">
-        <%= image_tag "images/preview@2x.png" , :style => "max-width:100%;" %>
-      </div>
-      <div id="intro-col">
-        <div class="intro-text">
-          <h1 class="font1">VIDA&nbsp</h1>
-          <p class="font2">分享每个生活故事</p>
-          <div class="clearfix"> </div>
+      <div id="index-header-block">
+          <div id="preview-col">
+            <%= image_tag "images/preview@2x.png" , :style => "width:100%;" %>
+          </div>
+          <div id="intro-col">
+            <div class="intro-text">
+              <h1 class="font1">VIDA&nbsp</h1>
+              <p class="font2">分享每个生活故事</p>
+              <div class="clearfix"> </div>
+            </div>
+            <%= render :partial => "widgets/download_bar", :locals => {:hide_title => true} %>
+            <div class="intro-text">
+              <p class="font3">中国最流行的生活分享应用：</p>
+              <ul>
+                <li>* 多种分类模板:旅游,美食…照片, 视频点滴变成精彩故事;</li>
+                <li>* 实时特效镜头和渲染引擎, 捕捉每个美化瞬间;</li>
+                <li>* 分享给全世界还是只给闺密看, 由你来决定;</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <%= render :partial => "widgets/download_bar", :locals => {:hide_title => true} %>
-        <div class="intro-text">
-          <p class="font3">中国最流行的生活分享应用：</p>
-          <ul>
-            <li>* 多种分类模板:旅游,美食…照片, 视频点滴变成精彩故事;</li>
-            <li>* 实时特效镜头和渲染引擎, 捕捉每个美化瞬间;</li>
-            <li>* 分享给全世界还是只给闺密看, 由你来决定;</li>
-          </ul>
-        </div>
-      </div>
   </div>
+
+<% unless @current_user -%>
   <a id="login" style="position: absolute;right: 50px;top: 50px;" class="login_btn mouse">
     登入
-    <%= image_tag "images/icon_detail.png" %>
+    <%= image_tag "icon/icon_detail.png" %>
   </a>
-
   <%= render :partial => "widgets/login" %>
+<% else -%>
+  <a id="login" style="position: absolute;right: 50px;top: 50px;" class="login_btn mouse" href="/home">
+    进入VIDA
+    <%= image_tag "icon/icon_detail.png" %>
+  </a>
+<% end -%>
 
   <div id="star-user">
     <h1 id="header-title">星用户</h1>
-    <div style="margin-top:10px;">
-      <%= render :partial => "widgets/staruser" , :collection => @staruser[ 0 , 2 ] , :locals => { :type => "big" , :width => "505px" } %>
-      <div class="clearfix"> </div>
-    </div>
-    <div style="margin-top:10px;">
-      <%= render :partial => "widgets/staruser" , :collection => @staruser[ 2 , 4 ] , :locals => { :type => "normal" , :width => "247.5px" } %>
-      <div class="clearfix"> </div>
-    </div>
+    <%= render :partial => "widgets/staruserlist" , :locals => { :stars => @data[ "stars" ] , :recommended => @data[ "recommended" ] , :wb => "505px" , :wn => "247.5px" , :count => 4 } %>
   </div>
 
   <div id="hot-story">
     <h1 class="header-title">热门故事</h1>
+    <div id="hot-story-block">
+    </div>
+    <div class="clearfix"> </div>
   </div>
+  <div class="clearfix"> </div>
 
   <div id="hidden-place" style="display:none;">
   <% for moment in @moments -%>
     <div class="thumbnail">
-      <%= link_to image_tag( moment[ "items" ] [ 0 ] [ "photo" ] [ "url_m" ] ) , "/moments/#{ moment[ 'id' ] }#activity#{ moment[ "items" ] [ 0 ] [ 'id' ] }" , :class => "thumb" %>
+      <%= link_to image_tag( moment[ "items" ] [ 0 ] [ "photo" ] [ "url_m" ] , :cwidth => moment["items"][0]["photo"]["width"] , :cheight => moment["items"][0]["photo"]["height"] ) , "/moments/#{ moment[ 'id' ] }#activity#{ moment[ "items" ] [ 0 ] [ 'id' ] }" , :class => "thumb" %>
       <div class="thumb_info">
         <%= link_to moment[ "name" ] , "/moments/#{ moment[ 'id' ] }" %>
         <p> <%= moment[ "likes_count" ] %> </p>

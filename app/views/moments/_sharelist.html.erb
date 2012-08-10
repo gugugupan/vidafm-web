@@ -1,15 +1,17 @@
 <div id="login_with" class="popup_container need_destroy">
 	<p class="list">选择一个分享方式:</p>
 <% for sns in sharelist -%>
-	<a class="list selectable sharelist">
+<% if sns[ "status" ] == 0 -%>
+	<a class="list selectable sharelist mouse">
 		<%= image_tag @sns_hash[ sns[ "vendor" ] ] [ :img ] %>
 		<p> <%= @sns_hash[ sns[ "vendor" ] ] [ :name ] %> </p>
 		<div class="clearfix"></div>
 		<%= form_tag( "#{share_moment_url}#{@sns_hash[ sns[ 'vendor' ] ] [ :url_attr ] }" , { :remote => true , :style => "padding-top:15px;" } ) do %>
-			<%= text_area_tag "content" , "我在#VIDA随手拍#,分享了照片." , :style => "width: 100%; float: left; margin-bottom: 10px;" %>
+			<%= text_area_tag "content" , "我发现这个故事 ##{ params[ :name ] }# 很不错，特意分享 @VIDA_唯达" , :style => "width: 98%; float: left; margin-bottom: 10px;height:50px;" %>
 			<%= submit_tag "发布" , :class => "btn_small btn_blue" , :style => "float: right;" %>
 			<div class="clearfix"></div>
 		<% end -%>
 	</a>
+<% end -%>
 <% end -%>
 </div>

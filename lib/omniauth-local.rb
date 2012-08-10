@@ -1,0 +1,5 @@
+require 'omniauth/omniauth-weibo'
+require 'omniauth/omniauth-renren'
+require 'omniauth/omniauth-qq'
+require 'omniauth/omniauth-douban'
+require 'omniauth/omniauth-kaixin'

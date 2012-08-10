@@ -7,84 +7,91 @@
 
 	#index-header {
 		width: 100%;
+		min-width: 1200px;
 		height: 522px;
 		background-image: url("images/sky_desk_photodoom.jpg");
+		background-position: center;
 		background-attachment: fixed;
 		background-size: cover;
 		position: relative;
 
-		#preview-col {
-			float: left;
-			position: relative;
-			margin-left: 105px;
-			width: 499px;
-		}
+		#index-header-block {
+			margin: 0px auto;
+			width: 960px;
 
-		#intro-col {
-			float: left;
-			position: relative;
-			margin-top: 205px;
-			margin-left: 91px;
-			width: 500px;
-			height: 286px;	
-
-			.intro-text {
+			#preview-col {
 				float: left;
-				width: 100%;
+				position: relative;
+				width: 499px;
+			}
 
-				#vida-logo {
+			#intro-col {
+				float: left;
+				position: relative;
+				margin-top: 205px;
+				margin-left: 91px;
+				width: 370px;
+				height: 286px;	
+
+				.intro-text {
 					float: left;
-					width: 92;
-					height: 36;
-					margin-right: 23px;
+					width: 100%;
+
+					#vida-logo {
+						float: left;
+						width: 92;
+						height: 36;
+						margin-right: 23px;
+					}
+
+					h1.font1 {
+						font-size: 50px;
+						color: white;
+						float: left;
+						text-shadow: 1px 1px black;
+					}
+
+					p.font2 {
+						float: left;
+						margin-top: 21px;
+						font-size: 25px;
+						color: rgb(255,255,255);
+						text-shadow:black 1px 1px 0;
+					}		
+
+					p.font3 {
+						font-size: 17px;
+						color: rgb(255,255,255);
+						text-shadow:gray 1px 1px 0;
+					}
 				}
 
-				h1.font1 {
+				li {
 					color: white;
-					float: left;
-					text-shadow: 1px 1px black;
-				}
-
-				p.font2 {
-					float: left;
-					margin-top: 4px;
-					font-size: 25px;
-					color: rgb(255,255,255);
-					text-shadow:black 1px 1px 0;
-				}		
-
-				p.font3 {
-					font-size: 17px;
-					color: rgb(255,255,255);
+					font-size: 12px;
+					margin: 13px;
 					text-shadow:gray 1px 1px 0;
 				}
-			}
 
-			li {
-				color: white;
-				font-size: 12px;
-				margin: 13px;
-				text-shadow:gray 1px 1px 0;
-			}
+				.download-bar {
+					width: 100%px;
+					margin: 30px 0px;
+					float: left;
 
-			.download-bar {
-				width: 100%px;
-				margin: 30px 0px;
-				float: left;
-
-      			a {
-        			float: left;
-        			margin-right: 5px;
-        		}
-        	}
-      		
+	      			a {
+	        			float: left;
+	        			margin-right: 5px;
+	        		}
+	        	}
+	        }      		
 		}
 	}
 }
 
 #star-user {
 	width: 1020px;
-	margin: 10px auto;
+	margin: 30px auto;
+	margin-top: 30px;
 
 	h1.header-title {
 		margin-top: 30px;
@@ -94,11 +101,14 @@
 
 #hot-story {
 	width: 1020px;
-	margin: 10px auto;
+	margin: 30px auto;	
+	margin-top: 30px;
+	text-align: left;
 	
 	h1.header-title {
 		margin-top: 30px;
 		margin-bottom: 20px;
+		float: left;
 	}
 
 	.thumbnail {

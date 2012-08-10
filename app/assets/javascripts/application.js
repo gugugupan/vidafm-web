@@ -3,36 +3,49 @@
 
 //= require autowidth
 //= require autoresize
-//= require btnfunction
 //= require followinglist
 //= require lazyload
-//= require screen
+//= require activity_window
 
 //= require jquery.cycle.lite
-//= require jquery.em
-//= require jquery.mousewheel
-//= require jScrollPane
 //= require jquery.lazyload
-//= require jquery.waitforimages.js
+//= require video
 
+(function($){
+	// LIVE function
+	$( ".thumbnail" ) .live({
+		mouseover : function() { $( this ) .find( ".thumb_like" ) .fadeIn( "fast" ) ; } , 
+		mouseout : function() { $( this ) .find( ".thumb_like" ) .fadeOut( "fast" ) ; }
+	}) ;
+	$( "form" ) .live( "submit" , function() { 
+		$( this ) .find( "input,textarea" ) .css( "background-color" , "rgba(0,0,0,0.3)" ) ; 
+	}) ;
+	$( ".one_comment" ) .live( "click" , function() {
+		var name = $( this ) .find( ".user_name" ) .eq( 0 ) .text() ;
+		name = name .replace( " " , "" ) ;
+		var text = $( this ) .parent() .parent() .find( "input" ) .val() ;
+		$( this ) .parent() .parent() .find( "input" ) .val( "回复@" + name + ":" ) ;
+		$( this ) .parent() .parent() .find( "input" ) .focus() ;
+	}) ;
+})(jQuery);
 
-function randomNumber( n )
-{
-	return Math .floor( Math .random() * n ) ;
-}
-
-// Login click function
-$( document ) .ready( function () {
+jQuery( function() {
+	avatarShow() ;
+    autoWidthPhoto() ;
+	// Login function
 	$( ".login_btn" ) .click( function() {
 		$( "#login_detail" ) .fadeIn( 400 ) ;
 	});
-	$( ".login_btn" ) .click( function( event ) {
-		event .stopPropagation() ;
-	}) ;
 	$( "#login_detail" ) .click( function() {
 		destroyDialog( 0 ) ;
 	}) ;
 });
+
+// get a random number
+function randomNumber( n )
+{
+	return Math .floor( Math .random() * n ) ;
+}
 
 // center text box function
 function showCenterBox( str )
@@ -43,6 +56,8 @@ function showCenterBox( str )
 	var top  = ( $( window ) .height() - $select .height() ) / 2 ;
 	var left = ( $( window ) .width () - $select .width() ) / 2 ;
 	$select .css( { "top" : top , "left" : left } ) ;
+	if( $.browser.msie )
+		$select .css( "background-color" , "gray" ) ;
 	$select .fadeIn( 400 , function() { setTimeout( function() { $select .remove() ; } , 500 ) } ) ;
 	//$select .fadeIn( 400 , function() { $( this ) .hide() ; } ) ;	
 }
@@ -50,39 +65,18 @@ function showCenterBox( str )
 // Adjust avatar picture
 function avatarShow()
 {
-	var avatar = $(".avatar");
+	var avatar = $("a.avatar");
 	for (var i = 0; i<$(".avatar").length; i++) {
-				var avatarAddress = $(avatar[i]).children().attr("src");
-				$(avatar[i]).css({"background":"url("+avatarAddress+")" , "background-position":"center"});
-			};
+		var avatarAddress = $(avatar[i]).children().attr("src");
+		$(avatar[i]).css({"background":"url("+avatarAddress+")" , "background-position":"center"});
+	};
 }
 
+// Remove dialog box
 function destroyDialog( type )
 {
 	var $selector = $( ".need_destroy" ) ;
 	$selector .fadeOut( 500 ) ;
 	if ( type == 1 )
 		setTimeout( function() { $selector .remove() ; } , 500 ) ;
-}
-
-function showActivityDetail( activity_url , img_width )
-{
-	if ( $( "#activity_detail" ) .length == 0 ) 
-	{
-		var showDiv = "<div class='need_destroy' id='activity_detail'> </div>"
-		var imageDiv = "<img src=" + activity_url + " id='activity_detail_img' class='thumbnail'>" ;
-		$( "body" ) .append( showDiv ) ;
-		$( "#activity_detail" ) .append( imageDiv ) ;
-		$( "#activity_detail" ) .css( "width"  , $( document ) .width () ) ;
-		$( "#activity_detail" ) .css( "height" , $( document ) .height() ) ;
-		$( "#activity_detail_img" ) .css( "height" , "auto" ) ;
-		$( "#activity_detail_img" ) .css( "width" , "auto" ) ;
-		$( "#activity_detail_img" ) .css( "left" , ( $( window ) .width() - img_width ) / 2 ) ;
-		$( "#activity_detail_img" ) .css( "top" , $( window ) .height() * 0.05 + $( window ) .scrollTop() ) ;
-		$( "#activity_detail" ) .fadeIn( 300 ) ;
-
-		$( "#activity_detail" ) .click( function() {
-			destroyDialog( 1 ) ;
-		}) ;
-	}
 }

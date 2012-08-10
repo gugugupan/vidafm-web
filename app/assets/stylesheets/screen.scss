@@ -13,7 +13,7 @@ $white:#f4f4f4;
 body{
 	background:url("images/bg.png");
 	color:$font_dark;
-	font-family:$font;
+	font-family:黑体,$font;
 	height:100%;
 	//padding:20px;
 }
@@ -43,6 +43,7 @@ p{
 
 /*avatar*/
 .avatar {
+	behavior: url("/assets/PIE.htc");
 	height:40px;
 	width:40px;
 
@@ -66,7 +67,7 @@ p{
 }
 
 .timer {
-	background:url("images/icon_clock.png") no-repeat left center;
+	background:url("icon/icon_clock.png") no-repeat left center;
 	color:$font_grey;
 	right:10px;
 	padding-left:15px;
@@ -75,7 +76,7 @@ p{
 }
 
 .location {
-	background:url("images/icon_location.png") no-repeat left center;
+	background:url("icon/icon_location.png") no-repeat left center;
 	color:$font_grey;
 	right:40px;
 	padding-left:15px;
@@ -94,8 +95,10 @@ p{
 	top:11px;
 	width:113px;	
 	font-weight:normal;
+	z-index: 9;
 
 	text-shadow:0px -1px 0px rgba(0,0,0,.3);
+	filter:Dropshadow(color=rgb(0,0,0),offx=0,offy=-1,Positive=0.3);
 
 	&.red {
 		background:url("images/ribbon_red.png") no-repeat left center;
@@ -136,7 +139,7 @@ p{
 	border-bottom:1px solid #82010D;
 	height:58px;
 	width:100%;
-
+	background-color: #9B1600;
 	background-image: linear-gradient(top, $red 0%, #9B1600 100%);
 	background-image: -o-linear-gradient(top, $red 0%, #9B1600 100%);
 	background-image: -moz-linear-gradient(top, $red 0%, #9B1600 100%);
@@ -145,7 +148,7 @@ p{
 
 	.content {
 		height:58px;
-		width:1000px;
+		width:75%;
 		margin:0px auto;
 
 		#logo {
@@ -193,6 +196,7 @@ p{
 					color:#ffffff;
 					height:38px;
 					text-shadow:0px 2px 0px rgba(0,0,0,.5);
+					filter:Dropshadow(color=rgb(0,0,0),offx=0,offy=2,Positive=0.5);
 				}
 
 				#me {
@@ -205,22 +209,22 @@ p{
 				}
 
 				#activity {
-					background:url("images/icon_activity.png") no-repeat 20px 16px;
+					background:url("icon/icon_activity.png") no-repeat 20px 16px;
 					padding-left:60px;
 
 					&:hover {
-						background-image:url("images/icon_activity.png"),url("images/header_hover_bg.png");
+						background-image:url("icon/icon_activity.png"),url("images/header_hover_bg.png");
 						background-position:20px 16px,left top;
 						//background-repeat:no-repeat;
 					}
 				}
 
 				#discover {
-					background:url("images/icon_discover.png") no-repeat 20px 16px;
+					background:url("icon/icon_discover.png") no-repeat 20px 16px;
 					padding-left:60px;
 
 					&:hover {
-						background-image:url("images/icon_discover.png"),url("images/header_hover_bg.png");
+						background-image:url("icon/icon_discover.png"),url("images/header_hover_bg.png");
 						background-position:20px 16px,left top;
 						//background-repeat:no-repeat;
 					}
@@ -232,10 +236,12 @@ p{
 
 /*btn*/
 @mixin btn($top_color, $hover_top_color, $bottom_color, $hover_bottom_color, $shadow_color, $v_shadow, $blur, $shadow_alpha, $inset_alpha, $text-shadow, $v_text_shadow, $text_shadow_alpha) {
+	behavior: url("/assets/PIE.htc");
 
 	position:relative;
 
 	/*background gradient color*/
+	background-color: $bottom_color;
 	background-image: linear-gradient(top, $top_color 0%, $bottom_color 100%);
 	background-image: -o-linear-gradient(top, $top_color 0%, $bottom_color 100%);
 	background-image: -moz-linear-gradient(top, $top_color 0%, $bottom_color 100%);
@@ -257,8 +263,10 @@ p{
 
 	/*text shadow*/
 	text-shadow:0px $v_text_shadow 0px rgba($text-shadow,$text-shadow,$text-shadow,$text_shadow_alpha);
+	filter:Dropshadow(color=rgb($text-shadow,$text-shadow,$text-shadow),offx=0,offy=-1,Positive=$text_shadow_alpha);
 
 	&:hover {
+		background-color: $hover_bottom_color;
 		background-image: linear-gradient(top, $hover_top_color 0%, $hover_bottom_color 100%);
 		background-image: -o-linear-gradient(top, $hover_top_color 0%, $hover_bottom_color 100%);
 		background-image: -moz-linear-gradient(top, $hover_top_color 0%, $hover_bottom_color 100%);
@@ -272,9 +280,12 @@ p{
 			color-stop(0, $hover_top_color),
 			color-stop(1, $hover_bottom_color)
 		);
+
+		color: #FFFFFF;
 	}
 
 	&:active {
+		background-color: $hover_top_color;
 		background-image: linear-gradient(top, $hover_bottom_color 0%, $hover_top_color 100%);
 		background-image: -o-linear-gradient(top, $hover_bottom_color 0%, $hover_top_color 100%);
 		background-image: -moz-linear-gradient(top, $hover_bottom_color 0%, $hover_top_color 100%);
@@ -298,6 +309,7 @@ p{
 }
 
 .btn_big {
+	behavior: url("/assets/PIE.htc");
 	border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -307,6 +319,7 @@ p{
 }
 
 .btn_middle {
+	behavior: url("/assets/PIE.htc");
 	border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -318,6 +331,7 @@ p{
 }
 
 .btn_small {
+	behavior: url("/assets/PIE.htc");
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -329,6 +343,10 @@ p{
 
 .btn_grey {
 	@include btn(#ffffff,#cfd1d2,#cfd1d2,#a5a7aa,0,1px,4px,0.8,1,255,2px,1);
+
+	&:hover {
+		color:#363636;
+	}
 }
 
 .btn_blue {
@@ -365,6 +383,7 @@ p{
 }
 
 .btn_round {
+	behavior: url("/assets/PIE.htc");
 	background-repeat:no-repeat;
 	background-position:3px center;
 	border:2px solid #D2CFCB;
@@ -381,6 +400,7 @@ p{
 	-webkit-box-shadow:0px 1px 0px rgba(255,255,255,1),inset 0px 1px 1px rgba(255,255,255,1);
 
 	text-shadow:0px 2px 0px rgba(255,255,255,1);
+	filter:Dropshadow(color=rgb(255,255,255),offx=0,offy=2,Positive=1);
 
 	&:visited {
 		color:$font_grey;
@@ -391,6 +411,7 @@ p{
 	}
 
 	&:active {
+		behavior: url("/assets/PIE.htc");
 		background-color:#666666;
 		background-position:5px center;
 		border:none;
@@ -403,11 +424,13 @@ p{
 		-webkit-box-shadow:0px 1px 0px rgba(255,255,255,1),inset 0px 0px 6px rgba(0,0,0,1);
 
 		text-shadow:0px 2px 0px rgba(0,0,0,.8);
+		filter:Dropshadow(color=rgb(0,0,0),offx=0,offy=2,Positive=0.8);
 	}
 }
 
 /*login btn*/
 #login {
+	behavior: url("/assets/PIE.htc");
 	border:2px solid #d8d8d8;
 	border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -422,6 +445,7 @@ p{
 	-webkit-box-shadow:0px 2px 0px rgba(0,0,0,.5),inset 0px 1px 1px rgba(0,0,0,.5);
 
 	text-shadow:0px 2px 0px rgba(0,0,0,.5);
+	filter:Dropshadow(color=rgb(0,0,0),offx=0,offy=2,Positive=0.5);
 
 	img {
 		opacity:0.5;
@@ -445,7 +469,7 @@ p{
 	float: right;
 	margin-right: 10px;
 
-	background-image:url("images/icon_like.png");
+	background-image:url("icon/icon_like.png");
 	padding:4px 10px 0px 28px;
 
 	&:active {
@@ -453,7 +477,7 @@ p{
 	}
 }
 .liked {
-	background-image:url("images/icon_liked.png");
+	background-image:url("icon/icon_liked.png");
 }
 
 .comment {
@@ -461,7 +485,7 @@ p{
 	float: right;
 	margin-right: 10px;
 
-	background-image:url("images/icon_comment.png");
+	background-image:url("icon/icon_comment.png");
 	padding:4px 10px 0px 28px;
 
 	&:active {
@@ -469,11 +493,12 @@ p{
 	}
 }
 .commented {
-	background-image:url("images/icon_commented.png");	
+	background-image:url("icon/icon_commented.png");	
 }
 
 /*popup container*/
 .popup_container {
+	behavior: url("/assets/PIE.htc");
 	@include btn(#414042, #282828, #1e1e1e, #000000, 0, 1px, 3px, 0.8, 0.3, 0, 2px, 0.8);
 	border:1px solid #000000;
 	border-radius: 8px;
@@ -487,6 +512,17 @@ p{
 		float:none;
 		padding:10px 15px;
 
+		&:first-child {
+			border-top:none;
+			border-top-left-radius:8px;
+			border-top-right-radius:8px;
+		}
+		&:last-child {
+			border-bottom:none;
+			border-bottom-left-radius:8px;
+			border-bottom-right-radius:8px;
+		}
+
 		font {
 			float:right;
 		}
@@ -497,6 +533,7 @@ p{
 
 		&.selectable {
 			&:hover {
+				background-color: #9b1600;
 				background-image: linear-gradient(top, #c71635 0%, #9b1600 100%);
 				background-image: -o-linear-gradient(top, #c71635 0%, #9b1600 100%);
 				background-image: -moz-linear-gradient(top, #c71635 0%, #9b1600 100%);
@@ -515,6 +552,7 @@ p{
 	}
 
 	&:hover, &:active {
+		background-color: #1e1e1e;
 		background-image: linear-gradient(top, #414042 0%, #1e1e1e 100%);
 		background-image: -o-linear-gradient(top, #414042 0%, #1e1e1e 100%);
 		background-image: -moz-linear-gradient(top, #414042 0%, #1e1e1e 100%);
@@ -577,7 +615,7 @@ p{
 	.list {
 
 		p{
-			background:url("images/icon_detail.png") no-repeat right center;
+			background:url("icon/icon_detail.png") no-repeat right center;
 			float:left;
 			padding:6px 0px 6px 10px;
 			width:280px;
@@ -595,12 +633,13 @@ p{
 	width:350px;
 
 	.tab {
+		behavior: url("/assets/PIE.htc");
 		border-radius: 6px;
 		-moz-border-radius: 6px;
 		-webkit-border-radius: 6px;
 		height:28px;
 		margin:10px 0px 10px 10px;
-		width:330px;
+		width:331px;
 
 		a {
 			@extend .btn_dark;
@@ -611,6 +650,17 @@ p{
 			padding-top:5px;
 			text-align:center;
 			width:163px;
+
+			&:first-child {
+				border-top-left-radius:6px;
+				border-bottom-left-radius:6px;
+			}
+
+			&:nth-child(2) {
+				border-left:1px solid #666666;
+				border-top-right-radius:6px;
+				border-bottom-right-radius:6px;
+			}
 
 			&:active {
 				color:#666666;
@@ -657,11 +707,24 @@ p{
 }
 
 #message {
-	max-height:300px;
+	max-height:400px;
 	width:350px;
 	overflow:auto;
 
+	.content {
+		color:$font_grey;
+		clear:both;
+		text-align: center;
+		padding: 5px;
+	}
+
 	.list {
+		.timer {
+			position: relative ;
+			top: 0 ;
+			right: 0 ;
+			float: right;
+		}
 
 		.avatar {
 			float:left;
@@ -681,12 +744,16 @@ p{
 			}
 
 			.content {
+				padding: 0;
 				color:$font_grey;
 				clear:both;
 				margin-bottom:10px;
+				width: 190px;
+				text-align: left;
 			}
 
 			.message_thumbnail {
+				behavior: url("/assets/PIE.htc");
 				@extend .avatar;
 				height:75px;
 				width:75px;
@@ -698,6 +765,12 @@ p{
 		}
 	}
 
+	.read {
+    	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    	filter:alpha(opacity=30);
+    	opacity: 0.3; 
+	}
+
 	img {
 		position:static;
 	}
@@ -705,6 +778,7 @@ p{
 
 /*photos*/
 .feature_user {
+	behavior: url("/assets/PIE.htc");
 	&:first-child { margin-left: 0px; }
 	margin-left: 10px;
 	background-color:$white;
@@ -776,6 +850,12 @@ p{
 		.btn_blue {
 			margin:25px 20px 0px 0px;
 		}
+		.btn_red {
+			margin:25px 20px 0px 0px;
+		}
+		.btn_dark {
+			margin:25px 20px 0px 0px;
+		}
 	}
 
 	&.normal {
@@ -818,9 +898,16 @@ p{
 		.btn_blue {
 			margin:25px 10px 0px 0px;
 		}
+		.btn_red {
+			margin:25px 10px 0px 0px;
+		}
+		.btn_dark {
+			margin:25px 10px 0px 0px;
+		}
 	}
 
 	.avatar {
+		behavior: url("/assets/PIE.htc");
 		border:2px solid #ffffff;
 		box-shadow:0px 1px 6px rgba(0,0,0,.3);
 		-moz-box-shadow:0px 1px 6px rgba(0,0,0,.3);
@@ -842,20 +929,29 @@ p{
 
 		h1 {
 			text-shadow:0px 2px 0px rgba(255,255,255,1);
+			filter:Dropshadow(color=rgb(255,255,255),offx=0,offy=2,Positive=1);
 		}
 
 		p {
 			color:$font_grey;
 			text-shadow:0px 2px 0px rgba(255,255,255,1);
+			filter:Dropshadow(color=rgb(255,255,255),offx=0,offy=2,Positive=1);
 		}
 	}
 
 	.btn_blue {
 		float: right;
 	}
+	.btn_red {
+		float: right;
+	}
+	.btn_dark {
+		float: right;
+	}
 }
 
 .thumbnail {
+	behavior: url("/assets/PIE.htc");
 	height:236px;
 	position:relative;
 
@@ -868,6 +964,7 @@ p{
 	-webkit-box-shadow:0px 1px 6px rgba(0,0,0,.3);
 	
 	.thumb {
+		behavior: url("/assets/PIE.htc");
 		height:100%;
 		width:100%;
 		overflow:hidden;
@@ -893,6 +990,7 @@ p{
 		a {
 			color:$font_grey;
 			text-shadow:0px 2px 0px rgba(255,255,255,1);
+			filter:Dropshadow(color=rgb(255,255,255),offx=0,offy=2,Positive=1);
 			margin:12px 0px 0px 10px;
 			float: left;
 
@@ -902,9 +1000,10 @@ p{
 		}
 
 		p {
-			background:url("images/icon_like_small.png") no-repeat left center;
+			background:url("icon/icon_like_small.png") no-repeat left center;
 			color:$font_grey;
 			text-shadow:0px 2px 0px rgba(255,255,255,1);
+			filter:Dropshadow(color=rgb(255,255,255),offx=0,offy=2,Positive=1);
 			float: right;
 			height:20px;
 			margin:12px 10px 0px 0px;
@@ -913,7 +1012,7 @@ p{
 	}
 
 	.thumb_like {
-		background:url("images/icon_like_white.png") no-repeat 8px center;
+		background:url("icon/icon_like_white.png") no-repeat 8px center;
 		display:none;
 		position:absolute;
 		right:10px;
@@ -927,6 +1026,7 @@ p{
 }
 
 .story_container {
+	behavior: url("/assets/PIE.htc");
 	background-color:$white;
 	border-radius: 12px;
 	-moz-border-radius: 12px;
@@ -938,6 +1038,7 @@ p{
 
 	width:450px;
 	position:relative;
+	overflow: hidden;
 
 	.info_container {
 		border-top:1px solid #ffffff;
@@ -945,21 +1046,26 @@ p{
 		padding:16px;
 		clear: both;
 
+		&:first-child { border-top: none ; }
+		&:last-child { border-bottom: none ; }
+
 		p {
 			font-size:14px;
 			text-shadow:0px 2px 0px rgba(255,255,255,1);
+			filter:Dropshadow(color=rgb(255,255,255),offx=0,offy=2,Positive=1);
 			padding-left:30px;
 		}
 
 		#story_description {
-			background:url("images/icon_description.png") no-repeat left top;
+			background:url("icon/icon_description.png") no-repeat left top;
 		}
 
 		#location_list {
-			background:url("images/icon_map.png") no-repeat left top;
+			background:url("icon/icon_map.png") no-repeat left top;
 		}
 
 		#map {
+			behavior: url("/assets/PIE.htc");
 			height:308px;
 			width:418px;
 			overflow:hidden;
@@ -986,7 +1092,7 @@ p{
 		.comment_container {
 			float: left;
 			padding:4px 0px 0px 10px;
-			width:366px;
+			width:353px;
 			position:relative;
 
 			p {
@@ -995,6 +1101,8 @@ p{
 
 			.photo_description {
 				color:$font_grey;
+				word-wrap: break-word;
+				overflow: hidden;
 			}
 
 			.timer {
@@ -1022,6 +1130,7 @@ p{
 		overflow:hidden;
 		border-top-left-radius:12px;
 		border-top-right-radius:12px;
+		width: 100%;
 
 		img {
 			height:auto;
@@ -1055,6 +1164,7 @@ p{
 #left_nav {
 	
 	margin:0px;
+	width:164px;
 	
 	li {
 		border-top:1px dashed #ffffff;
@@ -1069,20 +1179,42 @@ p{
 			width:149px;
 
 			text-shadow:0px 2px 0px rgba(255,255,255,1);
+			filter:Dropshadow(color=rgb(255,255,255),offx=0,offy=2,Positive=1);
 
 			&:hover {
 				background:url("images/left_nav_hover.png") no-repeat left center;
 				color:#ffffff;
 				text-shadow:0px 1px 2px rgba(0,0,0,.5);
+				filter:Dropshadow(color=rgb(0,0,0),offx=0,offy=1,Positive=0.5);
 			}
 		}
 
 		&#feature {
-			background:url("images/icon_feature_small.png") no-repeat 4px center;
+			background:url("icon/icon_feature_small.png") no-repeat 4px center;
 		}
 
 		&#star {
-			background:url("images/icon_star_small.png") no-repeat 4px center;
+			background:url("icon/icon_star_small.png") no-repeat 4px center;
+		}
+
+		&#food {
+			background:url("icon/icon_food_small.png") no-repeat 4px center;
+		}
+
+		&#travel {
+			background:url("icon/icon_travel_small.png") no-repeat 4px center;
+		}
+
+		&#mood {
+			background:url("icon/icon_mood_small.png") no-repeat 4px center;
+		}
+
+		&#kids {
+			background:url("icon/icon_children_small.png") no-repeat 4px center;
+		}
+
+		&#suipai {
+			background:url("icon/icon_random_small.png") no-repeat 4px center;
 		}
 
 		&:first-child { border-top: none; }

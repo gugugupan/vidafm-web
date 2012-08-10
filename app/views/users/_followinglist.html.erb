@@ -4,7 +4,7 @@
 	</a>
 	<%= link_to followinglist[ "name" ] , "/users/" + followinglist[ "id" ] .to_s , :class => "user_name" %>
 <% if button -%>
-	<%= link_to "取消关注" , following_user_url( followinglist[ 'id' ] ) + "?type=none" , :remote => true , :method => :put , :class => "btn_dark btn_small" , :id => "cancel-tag#{ followinglist[ 'id' ] }" %>
+	<%= render :partial => "widgets/followingbtn" , :locals => { :tag => 1 , :uid => followinglist[ "id" ] , :size => "btn_small"} %>
 <% end -%>
 	<div class="clearfix"></div>
 </li>

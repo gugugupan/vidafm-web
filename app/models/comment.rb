@@ -1,9 +1,9 @@
 class Comment 
 
-  def self.fetchPeer(options = {})
+  def self.fetch(options = {})
   	o = {
-  		:type => 'Activity',
-  		:type_id => options[:activity_id], 
+  		:type => options[:type],
+  		:type_id => options[:type_id], 
   	}
   	JSON.parse VIDA.call("comment/list?#{o.to_param}")
   end

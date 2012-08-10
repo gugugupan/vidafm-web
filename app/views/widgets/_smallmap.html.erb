@@ -1,3 +1,3 @@
-<div id="map">
-	<%= image_tag "http://ditu.google.cn/maps/api/staticmap?maptype=roadmap&markers=color%3Ared|size%3Amid|#{ lat }%2C#{ lng }&sensor=false&size=418x320&zoom=13" , :alt => "" , :id => "google_map" %>
-</div>
+<a href="javascript:showMap(<%= moment .to_json %>)">
+	<%= image_tag "http://ditu.google.cn/maps/api/staticmap?maptype=roadmap&markers=color%3Ared|size%3Amid|#{ moment[ 'lat' ] }%2C#{ moment[ 'lng' ] }&sensor=false&size=418x320&zoom=15" , :alt => "" , :id => "google_map" %>
+</a>

@@ -1,36 +1,30 @@
 #encoding: utf-8
 class MiscController < ApplicationController
-  def frontpage
-    if request.url =~ /is_mobile=/i || request.user_agent =~ /(android|ipod|iphone)/i
-      render :partial => "/misc/redirect", :layout => false 
-      return
-    end
-    save_url_in_cookies
-  end
-
-  def about
-    @feedback = Feedback.new
-  end
-
-  def create_feedback
-    response = Feedback.create(params[:feedback])
-    redirect_to :about, :notice => "感谢你的建议,我们将会尽快和你联系" if response['result'].to_i == 0
-  end
-
+  
   def android_download
   end
 
   def index
-    redirect_to "/home" if current_user
+    #redirect_to "/home" if current_user
     @moments = Moment.hot_story() [ "data"] [ "hottest_moments" ]
-    @staruser = User.fetch_star_user( nil ) [ "data" ] [ "recommended" ]
+    @data = User.fetch_star_user( current_user ) [ "data" ]
+    @data[ "recommended" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
+    @data[ "stars" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
   end
-=begin
-  def ajax_new_comment
-    return if params[ :comment_type ] .nil? || params[ :activity_id ] .nil? || params[ :content ] .nil?
-    data = Comment.create( :comment_type => params[ :comment_type ] , :type_id => params[ :activity_id ] , :content => params[ :content ] , :user => current_user ) [ "comments" ]
-    @comment = data[ data .size - 1 ]
-    render :layout => false 
+
+  def about
   end
-=end
+
+  def create_feedback
+    response = Feedback.create( :from => params[ :from ] , :content => params[ :content ] )
+    redirect_to :about, :notice => "感谢你的建议,我们将会尽快和你联系" if response['result'].to_i == 0
+  end
+
+  def ajax_notification
+    session[ :cur_user ] [ :notification_count ] = 0
+    @message = JSON.parse( VIDA.call("/notification/list" , {} , current_user ) ) [ "data" ]
+    @message[ "unread" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
+    @message[ "read" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
+    render "misc/notificationlist" , :layout => false 
+  end
 end

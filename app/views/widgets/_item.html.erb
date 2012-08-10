@@ -5,14 +5,14 @@
 			<%= item[ "name" ] %>
 		</a>
 	<% else -%>
-		<div id="header-pic"> 
+		<div class="header-pic"> 
 		<% if item[ "suggest_reason_users" ] .nil? -%>
 			<%= avatar_tag item[ "user" ] %> 
 		<% else -%>
 			<%= avatar_tag item[ "suggest_reason_users" ] [ 0 ] %> 
 		<% end -%>
 		</div>
-		<div style="float:left;margin-left:10px;">
+		<div style="float:left;margin-left:10px;" class="header-title">
 			<a class="font1" href="/moments/<%= item[ 'id' ] %>">
 		<% unless item[ "suggest_reason_users" ] .nil? -%>
 			<% if item[ "suggest_reason" ] == "liked" -%>
@@ -36,7 +36,7 @@
 	</div>
 
 	<div class="photo-row">
-		<%= render :partial => "widgets/pic", :collection => item['items'] [ 0 , 1 ] , :locals => { :first => true , :date => item['modified_at'] [ 0 .. 9 ] , :like_count => item[ "likes_count" ] , :like_link => "#" } %>
+		<%= render :partial => "widgets/pic", :collection => item['items'] [ 0 , 1 ] , :locals => { :first => true , :date => item['modified_at'] [ 0 .. 9 ] , :like_count => item[ "likes_count" ] } %>
 		<%= render :partial => "widgets/pic", :collection => item['items'] [ 1 , 2 ] , :locals => { :first => false } %>		
 		<div class="clearfix"> </div>
 	</div>

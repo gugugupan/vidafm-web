@@ -14,12 +14,17 @@ end
 group :assets do
   gem 'sass-rails', "~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
+  gem "yui-compressor"
   gem 'uglifier'
 end
 
 gem 'jquery-rails'
 
-gem 'omniauth', :git => 'git://github.com/stranbird/omniauth.git'
+gem "system_timer"
+
+gem 'omniauth'
+gem 'omniauth-oauth2'
+gem 'omniauth-oauth'
 gem 'anemone'
 gem "therubyracer"
 

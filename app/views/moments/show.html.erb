@@ -4,45 +4,18 @@
 
 <%= content_for :page_specific_asset do %>
 <script>
-    var lat = <%= @moment[ "lat" ] %> ;
-    var lng = <%= @moment[ "lng" ] %> ;
-    // GOOGLE MAP
-    $( document ) .ready( function() 
-    {
-        if ( lat != 0 || lng != 0 ) 
-        {
-            var options = {
-                size : GSize(lat, lng) , 
-                backgroundColor : "#BBBBBB" ,
-                mapTypes : [G_NORMAL_MAP,G_SATELLITE_MAP] ,
-                draggableCursor : "crosshair",
-                draggingCursor : "move"
-            };
-            var map = new GMap2(document.getElementById("map"), options);
-            var point = new GLatLng( lat , lng ) ;
-            var icon = new GIcon();
-            icon.image = "http://labs.google.com/ridefinder/images/mm_20_red.png";
-            var myMarker = new GMarker(point, icon);
-            
-            map .setCenter( point , 15 ) ;
-            map .enableDragging() ;
-            map .enableDoubleClickZoom() ;
-            map .enableContinuousZoom() ;
-            map .enableScrollWheelZoom() ;
-            map .addControl( new GLargeMapControl() ) ;
-            map .addControl( new GMapTypeControl() ) ;
-            map .addControl( new GScaleControl() ) ;
-        }
-    });
-</script>
-<script>
     //LAZY LOAD
-	var page_now = 1 ;
-	var comment_id = <%= params[ :id ] %> ;
-    var url_part = "moments" ;
     function goLazyLoad()
     {
+        var page_now = 1 ;
+        var comment_id = <%= params[ :id ] %> ;
+        var url_part = "moments" ;
         page_now = lazyload( url_part , comment_id , page_now ) ;
+    }
+    // Call comment box
+    function callComment( num )
+    {
+        $( "#" + num + "comment" ) .slideToggle() ;
     }
     // CLICK EVENT
 	$( document ) .ready( function() 
@@ -51,30 +24,7 @@
         $( "#title-place" ) .click( function() {
             $( "#story_info" ) .slideToggle() ;
         });
-
-        // New comment
-/*
-        $( "form.activity_comment" ) .submit( function() {
-            var $selector = $( this ) ;
-            var content = $( this ) .find( ".text_area" ) .eq( 0 ) .val() ;
-            var activity_id = parseInt( $( this ) .parent() .attr( "id" ) ) ;
-            $.ajax({
-                type: "GET" ,
-                url: "/misc/ajax_new_comment", 
-                data: { activity_id: activity_id, content: content, comment_type: "Activity"}
-            }) .done( function( data ) {
-                showCenterBox( "评论成功." ) ;
-                $selector .parent() .find( ".none_comment" ) .remove() ;
-                $selector .before( data ) ;
-                var $btnselector = $selector .parent() .parent() .find( "a.comment" ) .eq( 0 ) ;
-                var nowCommentedCountStr = $btnselector .text() ;
-                var nowCommentedCount = parseInt( nowCommentedCountStr ) + 1 ;
-                $btnselector .text( nowCommentedCount ) ;
-                $btnselector .addClass( "commented" ) ;
-            });
-            return false ;
-        });
-*/
+        if ( !<%= @need_show %> ) $( "#story_info" ) .slideToggle() ;
 	});
 </script>
 <% end -%>
@@ -84,32 +34,43 @@
     <%= render :partial => "widgets/cover" , :locals => { :cover => @moment_cover } %>
     <div id="main-block">
  		<div id="main-block-header"> 
+<% unless @current_user -%>
  			<div id="download-place">
  				<%= @moment[ "user" ] [ "name" ] %>正在使用<p>VIDA</p>记录生活,下载手机客户端,与其戏耍之!!!
  			</div>
+<% else -%>
+            <div id="download-place-blank" style="background:none; height:108px;"> </div>
+<% end -%>
             <%= render :partial => "header" , :locals => { :moment => @moment } %>
 <% if @current_user -%>
-            <%= render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] } %>
+            <%= render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] , :name => @moment[ 'name' ] } %>
             <div class="clearfix"> </div>
         </div>
 
         <div id="story_info">
-            <%= image_tag "images/icon_arrow.png" , :alt => "" , :class => "arrow" %>
-            <%= render :partial => "storycontainer" , :locals => { :moment => @moment } %>
+            <%= image_tag "icon/icon_arrow.png" , :alt => "" , :class => "arrow" %>
+            <%= render :partial => "storybanner" , :locals => { :moment => @moment } %>
         </div>
         <div id="pic-block">
             <%= render :partial => "moments/pic" , :collection => @moment[ "items" ] %>
             <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
             <div class="clearfix"> </div>
         </div>
+        <div class="story_container" id="comment-block">
+            <div class="info_container" style="padding-bottom: 0px; border-top: medium none;">
+                <p id="join_number">喜欢的人 <%= @moment[ "likes_count" ] %></p>
+                <%= render :partial => "participator" , :collection => @moment[ "likes_users" ] , :locals => { :image_url => "icon/icon_join_liked.png" } %>
+                <div class="clearfix"></div>
+            </div>
+            <%= render :partial => "commentbox" , :object => @moment , :locals => { :type => "moment" } %>
+        </div>
         <div class="clearfix"> </div>
     </div>
-    <!-- <a id="backtop_btn" href="#"> ↑ </a> -->
 <% else -%>
             <div class="clearfix"> </div>
         </div>
         <div class="text-info">
-            <p>登录后查看更多内容<p>
+            <p>登录后查看更多内容</p>
         </div>
     </div>
     <%= render :partial => "widgets/login" %>

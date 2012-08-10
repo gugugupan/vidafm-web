@@ -1,0 +1,19 @@
+.comments-list-container {
+	width: 100%;
+}
+
+form.comment-form-container {
+	padding: 16px;
+	border-top:1px solid #ffffff;
+
+	input.comment {
+		float: left;
+		width: 90%
+	}
+}
+
+.one_comment {
+	&:hover{
+		background-color: #EEEEEE ;
+	}
+}

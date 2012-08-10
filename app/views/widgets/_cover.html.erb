@@ -1,9 +1,25 @@
-<div class="cover-pic"> <%= image_tag cover , :alt => "TRY AGAIN" %> </div>
+<div class="cover-pic"> <%= image_tag cover , :id => "cover-image" %> </div>
+<div class="blur"> <canvas id="blur-canvas"> </canvas> </div>
 <script type="text/javascript">
-	var cover_address = $( ".cover-pic" ) .children() .attr( "src" ) ;
+	var cover_address = $( ".cover-pic" ) .find( "img" ) .eq( 0 ) .attr( "src" ) ;
 	$( ".cover-pic" ) .css({
-		"background":"url("+cover_address+")" ,		
+		"background" : "url("+cover_address+")" ,
 		"background-attachment" : "fixed" ,
-		"background-size" : "cover"
-	});
+		"background-size" : "cover" ,
+		"background-position" : "center" 
+	}) ;
+/*
+	stackBlurImage( 'cover-image', 'blur-canvas', 50 , false );
+	var width = $( "#blur-canvas" ) .width() ;
+	var height = $( "#blur-canvas" ) .height() ;
+	stackBlurCanvasRGBA( "blur-canvas", 0, 0, width, height, 50 );
+*/
 </script>
+<!--[if IE]>
+<script type="text/javascript">
+	$( ".cover-pic" ) .css({ "background":"none" });
+	$( ".cover-pic" ) .find( "img" ) .css({ 
+		"display" : "block" 
+	}) ;
+</script>
+<![endif]-->

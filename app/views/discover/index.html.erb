@@ -15,11 +15,19 @@ $( document ) .ready( function () {
 	<div id="main-main-block">
 		<%= render :partial => "discover/sidebar" %>
 		<div id="main-block">
-			<%= render :partial => "header" , :locals => { :category => "hot" , :titleimg =>"images/icon_feature_small@2x.png" , :sortbtn => nil } %>
-			<h1 class="ribbon red" style="top:76px;left:188px;z-index:10;"> 本周推荐 </h1>
+			<%= render :partial => "header" , :locals => { :name => "hot" , :titleimg =>"icon/icon_feature_big.png" , :sortbtn => nil } %>
+			<div style="width:100%;border-top:1px dashed white;"> </div>
 			<div class="thumbnail" style="width:100%;height:300px;margin:15px 0;" id="slide_show">
-			<% @moments .each() do |moment| -%>
-				<a class="thumb" style="display:none;" href="/moments/<%= moment[ 'id' ] %>">
+			<% @official .each() do |moment| -%>
+				<a class="thumb" style="display:none;" href=<%=URI::escape("/discover/public?name=#{moment['name']}")%>>
+					<p class="super-text">
+						<%= moment[ "name" ] %>
+					</p>
+					<%= image_tag moment[ "items" ] [ 0 ] [ "photo" ] [ "url_m" ] , :style => "height: auto; width: 100%; margin-top: -82px;" %>
+				</a>
+			<% end -%>
+			<% @official .each() do |moment| -%>
+				<a class="thumb" style="display:none;" href=<%=URI::escape("/discover/public?name=#{moment['name']}")%>>
 					<p class="super-text">
 						<%= moment[ "name" ] %>
 					</p>
@@ -27,6 +35,7 @@ $( document ) .ready( function () {
 				</a>
 			<% end -%>
 			</div>
+			<h1 class="ribbon red" style="top:76px;left:188px;z-index:10;"> 本周推荐 </h1>
 			<div style="width:100%;border-bottom:1px gray #D2CFCB;"> </div>
 			<%= render :partial => "widgets/item" , :collection => @moments , :locals => { :show_type => 2 } %>
 			<div class="clearfix"> </div>

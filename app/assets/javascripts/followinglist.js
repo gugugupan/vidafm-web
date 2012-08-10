@@ -1,6 +1,6 @@
 var prettyLoad = '\
 				<li class="list">\
-					<a class="user_name">请稍后..</a>\
+					<a class="user_name" style="margin:0px auto;">请稍侯..</a>\
 					<div class="clearfix"></div>\
 				</li>' ;
 
@@ -30,6 +30,15 @@ function showFollowingDialog( num , count_following , count_followed )
 		$( "#following_detail" ) .click( function() {
 			destroyDialog( 1 ) ;
 		});
+		$( "#follow_list" ) .click( function( event ) {
+			event .stopPropagation() ;
+		}) ;
+
+		if( $.browser.msie )
+		{
+			$( "#follow_list" ) .css( "position" , "absolute" ) ;
+			$( "#follow_list ul" ) .css({ "height":"300","overflow":"auto"}) ;
+		}
 
 		showFollowingList( num , 0 ) ;
 	}

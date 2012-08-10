@@ -1,43 +1,45 @@
 <div id="header">
 	<div class="content">
-		<%= image_tag "images/logo.png" , :alt => "" , :id => "logo" %>
+		<%= link_to image_tag( "images/logo.png" , :alt => "" , :id => "logo" ) , "/" %>
 		<ul>
 		<% unless user .nil? -%>
 			<li>
+				<%= avatar_tag user %>
+				<!-- 
 				<a href="/users/<%= user[ :id ] %>" class="avatar">
 					<%= image_tag user[ :avatar_file ] , :alt => "" %> 
 				</a>
-				<a href="/users/<%= user[ :id ] %>" id="me" class="link"><%= user[ :name ] %></a>
+				-->
+				<%= link_to user[ :name ] , "/users/#{ user[ :id ] }" , :id => "me" , :class => "link" %>
 			</li>
 			<li>
-				<a href="/home" id="activity" class="link">好友动态</a>
+				<%= link_to "好友动态" , "/home" , :id => "activity" , :class => "link" %>
 			</li>
 		<% end -%>
 			<li>
-				<a href="/discover/index" id="discover" class="link">发现</a>
+				<%= link_to "发现" , "/discover/index" , :id => "discover" , :class => "link" %>
 			</li>
 		</ul>
 
 	<% unless user .nil? %>
 		<div id="header_btn">
-			<!-- message btn 
-			<a href="#" class="btn_red btn_small">
-				<%= image_tag "images/icon_message.png" , :alt => "" %>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp消息
-			</a>
-			-->
+			<!-- message btn  -->
+			<%= link_to "javascript:callNotificationBox()" , :class => "btn_red btn_small" , :style => "padding-left:30px;" do %>
+				<%= image_tag "icon/icon_message.png" , :alt => "" %>
+				消息 <%= @cur_user[ :notification_count ] unless @cur_user[ :notification_count ] == 0 %>
+			<% end -%>
 			<!-- logout btn -->
-			<a href="/auth/logout" class="btn_red btn_small">
-				<%= image_tag "images/icon_logout.png" , :alt => "" %>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp登出
-			</a>
+			<%= link_to "/auth/logout" , :class => "btn_red btn_small" , :style => "padding-left:25px;" do %>
+				<%= image_tag "icon/icon_logout.png" , :alt => "" %>
+				登出
+			<% end -%>
 		</div>
 	<% else -%>
 		<div id="header_btn">
 			<!-- login btn -->
-			<a href="#" id="login-button" class="btn_red btn_small login_btn">
-				<%= image_tag "images/icon_logout.png" , :alt => "" %>
-				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp登入
+			<a href="#" id="login-button" class="btn_red btn_small login_btn" style="padding-left:25px">
+				<%= image_tag "icon/icon_logout.png" , :alt => "" %>
+				登入
 			</a>
 		</div>
 	<% end -%>

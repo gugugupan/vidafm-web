@@ -1,26 +1,23 @@
-<!DOCTYPE html
-PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title><%= yield :title %></title>
   <meta name="Description" content="<%= raw yield :meta_description %>">
   <%= yield :prerequisite_libraries %>
-  
-  <%= stylesheet_link_tag    "application" %>
+<!--[if IE 6]>
+<%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>
+<script type="text/javascript">
+  DD_belatedPNG.fix('img,img');
+  DD_belatedPNG.fix('a,background');
+  DD_belatedPNG.fix('p,background');
+  DD_belatedPNG.fix('.ribbon,background');
+</script>
+<![endif]--> 
   <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "application" %>
+
   <script src="http://ditu.google.com/maps?file=api&hl=zh-CN&v=2&key=AIzaSyA56gGBHbDHTB73xRHaI7ptDo1WZc8lORA" type="text/javascript"></script>
-  <!--[if IE]>
-    <%= stylesheet_link_tag    "moments/details.ie" %>
-  <![endif]-->
-  <!--[if lt IE 7]>
-  <style type="text/css">
-    img.user-avatar-shadow {
-      display: none;
-    }
-  </style>
-  <![endif]-->
   <%= csrf_meta_tags %>
 
   <%= yield :page_specific_asset %>
@@ -28,23 +25,59 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
 </head>
 <body>
+
+  <%= yield %>  
+  <div id="footer">
+    <%= link_to "联系我们", about_url %>
+    <span>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;沪ICP备10216111号-2</span>
+  </div>
+
+<!--[if IE 8]>
   <script type="text/javascript">
-      current_user =  <%= raw (@current_user || {}).slice(:avatar_file, :name, :id).to_json %>;
+    $( ".star-user-row .feature_user:first-child" ) .css( "margin-left" , "0" ) ;
+    $( ".photo-row .thumbnail:first-child" ) .css( "margin-left" , "0" ) ;
   </script>
-  
-  <%= yield %>
+<![endif]--> 
+<!--[if IE 7]>
+  <script type="text/javascript">
+    $( ".text-info" ) .css( "background-color" , "gray" ) ;
+    $( "#refresh-link" ) .css( "background-color" , "gray" ) ;
+    $( "#download-place" ) .css( "background-color" , "gray" ) ;
+    $( ".star-user-row .feature_user:first-child" ) .css( "margin-left" , "0" ) ;
+    $( ".photo-row .thumbnail:first-child" ) .css( "margin-left" , "0" ) ;
+  </script>
+<![endif]--> 
+<!--[if IE 6]>
+  <script type="text/javascript">
+    $( "div" ) .each( function(){
+      if ( $( this ) .css( "position" ) == "fixed" ) 
+        $( this ) .css( "position" , "absolute" ) ;
+    }) ;
+    $( ".photo-row .thumbnail:first-child" ) .css( "margin-left" , "0" ) ;
+    $( "#discover-page #main-main-block" ) .css( "width" , "964" ) ;
+    $( ".star-user-row .feature_user:first-child" ) .css( "margin-left" , "0" ) ;
+    $( ".text-info" ) .css( "background-color" , "gray" ) ;
+    $( "#refresh-link" ) .css( "background-color" , "gray" ) ;
+    $( "#download-place" ) .css( "background-color" , "gray" ) ;
+  </script>
+<![endif]--> 
 
   <script type="text/javascript">
-  /*
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-  */
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33663541-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
   </script>
+
   <script type="text/javascript">
-    try{ 
-    var pageTracker = _gat._getTracker("UA-19458693-4");
-    pageTracker._trackPageview();
-    } catch(err) {} 
+    $(function() {
+      $("img.lazy").lazyload();
+    }); 
   </script>
 </body>
 </html>

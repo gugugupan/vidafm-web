@@ -1,0 +1,19 @@
+<%= content_for :title do %>
+  VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
+<div id="discover-page">
+	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
+	<div id="main-main-block">
+		<%= render :partial => "discover/sidebar" %>
+		<div id="main-block">
+			<%= render :partial => "header" , :locals => { :name => params[ :name ] , :titleimg => "icon/icon_star_big.png" , :sortbtn => nil } %>
+			<%= render :partial => "widgets/item" , :collection => @moment , :locals => { :show_type => 2 } %> 
+			<div class="clearfix"> </div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+<% unless @current_user -%>
+	<%= render :partial => "widgets/login" %>
+<% end -%>
+</div>

@@ -82,14 +82,14 @@ module MomentsHelper
 			"travel" => "出游" ,
 			"children" => "亲子" ,
 			"mood" => "心情日记" ,
-			"misc" => "秀搭配" ,
 			"food" => "吃货" ,
-			"all" => "全部故事分类" ,
+			"misc" => "其他" ,
+			"all" => "所有故事分类" ,
 			"hot" => "精选故事" ,
 			"staruser" => "星用户" ,
 			nil => "空" ,
 		}
-		return alph[ str ] 
+		return alph[ str ] || str
 	end
 
 	def empty_descripe( str )

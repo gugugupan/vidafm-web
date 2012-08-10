@@ -7,8 +7,8 @@
 	<div id="main-main-block">
 		<%= render :partial => "discover/sidebar" %>
 		<div id="main-block">
-			<%= render :partial => "header" , :locals => { :category => params[ :category ] , :titleimg => "images/icon_star_small@2x.png" , :sortbtn => params[ :sort_type ] } %>
-			<%= render :partial => "widgets/item" , :collection => @moment[ "data" ] , :locals => { :show_type => 2 } %> 
+			<%= render :partial => "header" , :locals => { :name => params[ :category ] , :titleimg => "icon/icon_" + params[ :category ] + "_big.png" , :sortbtn => params[ :sort_type ] } %>
+			<%= render :partial => "widgets/item" , :collection => @moment , :locals => { :show_type => 2 } %> 
 			<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix"> </div>

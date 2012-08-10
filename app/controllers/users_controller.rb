@@ -2,13 +2,18 @@
 class UsersController < ApplicationController  
   def show
     if params[ :category ] .nil?
-      @moments = User.fetch_moments(params[:id], 0, current_user) if current_user
+      data = User.fetch_moments(params[:id], 0, current_user)
       params[ :category ] = "all"
     else
-      @moments = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user )
+      data = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user )
     end
+    if data[ "result" ] == 1 
+      render "misc/error"
+      return 
+    end
+    @moments = data[ "data" ] 
     @user = User.fetch( params[:id] , current_user ) ["data"] .symbolize_keys
-    @cur_user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys if current_user 
+    #@cur_user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys if current_user 
     @following_tag = get_relation_btn( @user[ :relation ] ) 
     save_url_in_cookies
   end

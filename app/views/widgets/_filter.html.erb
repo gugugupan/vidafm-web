@@ -2,13 +2,12 @@
 	<a href="#" id="top_menu">
 		<p><%= moment_category( now ) %></p>
 		<div>
-			<%= image_tag "images/icon_arrow.png" , :alt => "" %>
+			<%= image_tag "icon/icon_arrow.png" , :alt => "" %>
 		</div>
 	</a>
 
 	<div class="popup_container">		
-		<a href="?category=all" class="list selectable">全部故事分类
-		</a>
+		<a href="?category=all" class="list selectable">所有故事分类</a>
 	<% data = [] if data .nil? %>
 	<% data .each do | cate | -%>
 	<% unless cate[ "count" ] .nil? -%>

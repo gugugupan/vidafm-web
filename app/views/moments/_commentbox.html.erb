@@ -1,0 +1,14 @@
+<% if commentbox[ "comments" ] .size == 5 -%>
+	<% url = allcomments_moment_url( commentbox[ 'id' ] ) -%>
+	<% url = allcomments_activity_url( commentbox[ 'id' ] ) if type == "activity" -%>
+	<%= link_to "显示更多评论" , url , :remote => true , :class => "info_container more_comment mouse" , :style => "font-size:14px; color:#B3ADA6; width:93%" %>
+<% end -%>
+	<div class="comments-list-container">
+	<% if commentbox[ "comments" ] .size == 0 -%>
+		<div class="info_container none_comment" style="font-size:14px; color:#B3ADA6; width:93%"> 还没有人添加评论 </div>
+	<% end -%>
+		<%= render :partial => "comment" , :collection => commentbox[ "comments" ] %>
+	</div>
+	<div style="width:100%; border-bottom:1px solid #DDDDDD"> </div>
+	<%= render :partial => "newcomment" , :locals => { :pid => commentbox[ 'id' ] , :type => type } %>
+	<div class="clearfix"> </div>

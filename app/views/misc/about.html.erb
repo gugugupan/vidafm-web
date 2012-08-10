@@ -7,22 +7,17 @@ Vida 在西班牙语和葡萄牙语中是Life的意思，我们以此寓意为�
 <%  end-%>
 
 <div id="contact">
-  <a id="follow-us" href="http://weibo.com/vidafm" onClick="javascript: pageTracker._trackPageview('clicktrack-frontpage-followus');">关注我们的新浪微博 @vida_唯达</a>
-  <%= image_tag "about/contact-bg.png", :id => "bg" %>
   <div id="container">
     <%= link_to root_url do %>
       <%= image_tag "about/contact_us-logo.png", :id => "logo" %>
     <%  end -%>
     <%= form_tag(create_feedback_url, :method => :post) do  %>
-      <%= text_field_tag :from, :placeholder => "you@example.com" %> <br />
+      <%= text_field_tag :from , "" , :placeholder => "you@example.com" %> <br />
       <%= text_area_tag :content %> <br />
-      <%= submit_tag "", :id => "submit" %>
+      <%= submit_tag "提  交", :id => "submit" , :class => "btn_big btn_dark" %>
     <% end -%>
-    <div id="success-info"> <%= notice %> </div>
-  </div>
-
-  <div id="footer">
-    <%= link_to "联系我们", about_url %>
-    <span>&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;沪ICP备10216111号-2</span>
+  <% unless notice .nil? -%>
+    <div class="text-info"> <%= notice %> </div>
+  <% end -%>
   </div>
 </div>

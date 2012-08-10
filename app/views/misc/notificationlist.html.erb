@@ -1,0 +1,7 @@
+<div id="message" class="popup_container">
+	<% if @message[ "unread" ] .size == 0 -%>
+		<p class="content"> 没有新消息 </p>
+	<% end -%>
+	<%= render :partial => "widgets/notification" , :collection => @message["unread"] , :locals => { :unread => true } %>
+	<%= render :partial => "widgets/notification" , :collection => @message["read"] , :locals => { :unread => false } %>
+</div>

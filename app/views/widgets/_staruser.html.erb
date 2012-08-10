@@ -1,7 +1,9 @@
 <div class="feature_user<%= " " + type %>" style="float:left; width:<%= width %>;">
-	<!-- <h1 class="ribbon blue">官方推荐</h1> -->
+<% unless text .nil? -%>
+	<h1 class="ribbon blue"> <%= text %> </h1>
+<% end -%>
 	<a href="/users/<%= staruser[ 'id' ] %>" class="user_cover" style="width:<%=width%>;">
-		<%= image_tag staruser[ "photo" ] , :class => "user_cover_photo" , :style => "width:#{ width }" %>
+		<%= image_tag staruser[ "cover_file" ] , :class => "user_cover_photo" , :style => "width:#{ width }" %>
 		<%= image_tag "images/user_cover_shadow.png" , :class => "user_cover_shadow" %>
 	</a>
 	<%= avatar_tag staruser %>
@@ -16,4 +18,7 @@
 		<p>喜欢数</p>
 	</div>
 	<!-- <a href="#" class="btn_blue">+关注</a> -->
+	<% size = "btn_small" -%>
+	<% size = "btn_middle" if type == "big" -%>
+	<%= render :partial => "widgets/followingbtn" , :locals => { :uid => staruser[ :id ] , :tag => staruser[ :relation_tag ] , :size => size } %>
 </div>

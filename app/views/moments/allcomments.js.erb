@@ -1,0 +1,6 @@
+var $selector = $( "#comment-block" ) ;
+var text = "<div class='comments-list-container'>\
+			<%= j render :partial => 'comment' , :collection => @comments %>\
+			</div>" ;
+$selector .find( ".comments-list-container" ) .replaceWith( text ) ;
+$selector .find( ".more_comment" ) .remove() ;

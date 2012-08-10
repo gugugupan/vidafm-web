@@ -1,0 +1,13 @@
+<%= content_for :title do %>
+    出错了 - VIDA（唯达） - 你我的生活轨迹
+<% end -%>
+
+<div id="moment-show-page">
+    <%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
+    <div class="text-info" style="width:500px; margin:20px auto;">
+        <p> 很抱歉，您现在访问的页面无法访问 </p>
+    </div>
+<% unless @current_user -%>
+    <%= render :partial => "widgets/login" %>
+<% end -%>
+</div>

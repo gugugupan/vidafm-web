@@ -5,23 +5,27 @@
  *= require css_reset
  *= require screen
  *= require index
- *= require user_show
+ *= require user/user_show
  *= require discover
- *= require moment_show
- *= require friend_show
- *= require moment_list
- *= require _login
+ *= require moment/moment_show
+ *= require user/friend_show
+ *= require moment/moment_list
+ *= require widgets/_login
+ *= require widgets/_cover
  *= require misc
  *= require android_download
-*/
+ *= require moment/comment_form
+ *= require about
 
-@import "variables";
+ *= require video-js
+*/
 
 body {
   letter-spacing:normal;
   color: black;
 	margin: 0px auto;
   width:100%;
+  font-size: 12px;
 }
 
 .container {
@@ -50,3 +54,6 @@ img {
 .clearfix {
   clear: both;
 }
+
+input,button,select,textarea{ outline:none;} 
+textarea{ font-size:13px; resize:none;} 

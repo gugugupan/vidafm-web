@@ -8,7 +8,7 @@
 
  	<div id="main-block">
  		<div id="user-info">
- 			<div style="float:left;"> <%= avatar_tag @user %> </div>
+ 			<div style="float:left;"> <%= avatar_tag @user , :nolink => true %> </div>
  			<h1 id="detail"> <%= @user[ :name ] %> 的好友动态 </h1>
  			<div class="clearfix"> </div>
  		</div>
@@ -16,5 +16,10 @@
  			<%= render :partial => "widgets/item" , :collection => @moment , :locals => { :show_type => 2 } %>
  			<div class="clearfix"> </div>
  		</div>
+ 	<% if @moment .size == 0 -%>
+ 		<div class="text-info">
+ 			<p> 你还没有添加好友, 赶快去发现更多的朋友吧! </p>
+ 		</div>
+ 	<% end -%>
  	</div>
  </div>

@@ -7,15 +7,9 @@
 	<div id="main-main-block">
 		<%= render :partial => "discover/sidebar" %>
 		<div id="main-block">
-			<%= render :partial => "header" , :locals => { :category => "staruser" , :titleimg => "images/icon_star_small@2x.png" , :sortbtn => nil } %>
-			<div style="width:100%;border-top:1px dashed rgb(255,255,255); padding-top:10px;">
-				<%= render :partial => "widgets/staruser" , :collection => @staruser[ 0 , 2 ] , :locals => { :type => "big" , :width => "372.5px" } %>
-				<div class="clearfix"> </div>
-			</div>
-			<div style="margin-top:10px;">
-				<%= render :partial => "widgets/staruser" , :collection => @staruser[ 2 , 3 ] , :locals => { :type => "normal" , :width => "245px" } %>
-				<div class="clearfix"> </div>
-			</div>
+			<%= render :partial => "header" , :locals => { :name => "staruser" , :titleimg => "icon/icon_star_small@2x.png" , :sortbtn => nil } %>
+			<div style="border-top:1px dashed white;width:100%;"> </div>
+			<%= render :partial => "widgets/staruserlist" , :locals => { :stars => @data[ "stars" ] , :recommended => @data[ "recommended" ] , :wb => "372.5px" , :wn => "245px" , :count => 3 } %>
 			<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix"> </div>
@@ -24,3 +18,4 @@
 	<%= render :partial => "widgets/login" %>
 <% end -%>
 </div>
+ 

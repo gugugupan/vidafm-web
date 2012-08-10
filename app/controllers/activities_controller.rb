@@ -14,4 +14,8 @@ class ActivitiesController < ApplicationController
 			render "misc/need_authentication"
 		end
 	end
+
+	def allcomments 
+		@comments = Comment.fetch( :type => "Activity" , :type_id => params[ :id ] ) [ "data" ]
+	end
 end

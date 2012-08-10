@@ -1,0 +1,26 @@
+.cover-pic {
+	width: 100%;
+	height: 250px;
+	overflow: hidden;
+	background-color: gray;
+	z-index: 1;
+
+	img { 
+		width: 100%;
+		display: none;
+		z-index: -20;
+	}
+}
+
+.blur {
+	width: 100%;
+	height: 250px;
+	position: absolute;
+	top: 59px;
+	left: 0px;
+
+	canvas {
+		width: 100%;
+		height: 100%;
+	}
+}

@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  <%= get_name( @cur_user ) %>VIDA（唯达） - 你我的生活轨迹
+  <%= get_name( @user ) %>VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
@@ -10,11 +10,13 @@
     var url_part = "users" ;
     function goLazyLoad()
     {
-        if ( page_now < max_page )
-        {
-            page_now = lazyload( url_part , user_id , page_now ) ;
-        }
+        page_now = lazyload( url_part , user_id , page_now ) ;
     }
+    $( document ) .ready( function() {
+        $("#me_filter").hover(function(){
+            $("#me_filter .popup_container").slideToggle(100);
+        });
+    });
 </script>
 <% end -%>
 
@@ -24,29 +26,31 @@
 
  	<div id="main-block">
  		<div id="user-info">
- 			<div style="float:left;"> <%= avatar_tag @user %> </div>
+ 			<div style="float:left;"> <%= avatar_tag @user , :nolink => true %> </div>
  			<h1> <%= @user[ :name ] %> </h1>
  		<% if @current_user %>
  			<div id="user-info-button"> 				
  				<%= render :partial => "widgets/filter" , :locals => { :now => params[ :category ] , :data => @user[ :categories ] } %>
                 <%= render :partial => "widgets/followdialogbtn" , :locals => { :user => @user } %>
-				<%= render :partial => "widgets/followingbtn" , :locals => { :tag => @following_tag , :uid => @user[ :id ] } %>
+				<%= render :partial => "widgets/followingbtn" , :locals => { :tag => @following_tag , :uid => @user[ :id ] , :size => "btn_middle" } %>
  			</div>
  		<% end %>
  			<div class="clearfix"> </div>
  		</div>
- 	<% if @current_user -%>
+ <% if @current_user -%>
  		<div id="following-list">
- 			<%= render :partial => "widgets/item", :collection => @moments['data'] , :locals => { :show_type => 1 } %>
+ 			<%= render :partial => "widgets/item", :collection => @moments , :locals => { :show_type => 1 } %>
+        <% if params[ :category ] == "all" -%>
             <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
+        <% end -%>
  			<div class="clearfix"> </div>
  		</div>
  	</div>
- 	<% else -%>
+ <% else -%>
  		<div class="text-info">
- 			<p>登录后查看更多内容<p>
+ 			<p>登录后查看更多内容</p>
  		</div>
  	</div>
   	<%= render :partial => "widgets/login" %>
- 	<% end -%>
+ <% end -%>
 </div>
