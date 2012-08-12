@@ -13,7 +13,7 @@ $white:#f4f4f4;
 body{
 	background:url("images/bg.png");
 	color:$font_dark;
-	font-family:黑体,$font;
+	font-family:$font,微软雅黑,黑体;
 	height:100%;
 	//padding:20px;
 }

@@ -1,14 +1,14 @@
 <div class="story_container">
 <% if ( @moment[ "description" ] != "" && !@moment[ "description" ] .nil? ) -%>
     <div class="info_container">
-        <p id="story_description">
+        <p id="story_description" title="故事简介">
             <%= empty_descripe( moment[ "description" ] ) %>
         </p>
     </div>
 <% end -%>
 <% if @moment[ "location" ] != "" -%>
     <div class="info_container">
-        <p id="location_list">
+        <p id="location_list" title="故事地点">
             <%= empty_descripe( moment[ "location" ] ) %>
         </p>
         <%= render :partial => "widgets/smallmap" , :locals => { :moment => moment } %>
