@@ -5,11 +5,11 @@
 <%= content_for :page_specific_asset do %>
 <script>
     //LAZY LOAD
+    var page_now = 1 ;
+    var comment_id = <%= params[ :id ] %> ;
+    var url_part = "moments" ;
     function goLazyLoad()
     {
-        var page_now = 1 ;
-        var comment_id = <%= params[ :id ] %> ;
-        var url_part = "moments" ;
         page_now = lazyload( url_part , comment_id , page_now ) ;
     }
     // Call comment box
