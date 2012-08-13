@@ -1,7 +1,9 @@
 <div id="login_with" class="popup_container need_destroy">
 	<p class="list">选择一个分享方式:</p>
+<% check = false -%>
 <% for sns in sharelist -%>
 <% if sns[ "status" ] == 0 -%>
+	<% check = true -%>
 	<a class="list selectable sharelist mouse">
 		<%= image_tag @sns_hash[ sns[ "vendor" ] ] [ :img ] %>
 		<p> <%= @sns_hash[ sns[ "vendor" ] ] [ :name ] %> </p>
@@ -13,5 +15,8 @@
 		<% end -%>
 	</a>
 <% end -%>
+<% end -%>
+<% unless check -%>
+	<p class="list">您并没有设置分享选项,请下载唯达客户端并进行设置.</p>
 <% end -%>
 </div>

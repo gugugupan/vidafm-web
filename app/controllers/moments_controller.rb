@@ -1,10 +1,10 @@
 class MomentsController < ApplicationController
   def show
-    data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 3 )    
+    data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 3 )
     render "misc/error" and return if data[ 'result' ] == 1 
+    redirect_to(user_url(data['data']['user_id'])) and return if data[ 'result' ] == 401 
     @moment = data[ "data" ]
     @moment_cover = @moment[ "cover_file" ]
-    @need_show = ( @moment[ "description" ] != "" && !@moment[ "description" ] .nil? ) || @moment[ "location" ] != ""
     save_url_in_cookies
   end
 

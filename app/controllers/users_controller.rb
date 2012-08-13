@@ -6,11 +6,13 @@ class UsersController < ApplicationController
     @user = data["data"] .symbolize_keys
     @following_tag = get_relation_btn( @user[ :relation ] ) 
     if params[ :category ] .nil?
-      @moments = User.fetch_moments(params[:id], 0, current_user) [ "data" ]
+      data = User.fetch_moments(params[:id], 0, current_user)
       params[ :category ] = "all"
     else
-      @moments = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user ) [ "data" ]
+      data = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user )
     end
+    @result = data[ "result" ]
+    @moments = data[ "data" ]
     save_url_in_cookies
   end
 

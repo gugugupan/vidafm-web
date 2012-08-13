@@ -1,3 +1,5 @@
+<% if ( @moment[ "description" ] != "" && !@moment[ "description" ] .nil? ) || @moment[ "location" ] != "" -%>
+<%= image_tag "icon/icon_arrow.png" , :alt => "" , :class => "arrow" %>
 <div class="story_container">
 <% if ( @moment[ "description" ] != "" && !@moment[ "description" ] .nil? ) -%>
     <div class="info_container">
@@ -16,3 +18,4 @@
     </div>
 <% end -%>
 </div>
+<% end -%>

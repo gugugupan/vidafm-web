@@ -24,7 +24,6 @@
         $( "#title-place" ) .click( function() {
             $( "#story_info" ) .slideToggle() ;
         });
-        if ( !<%= @need_show %> ) $( "#story_info" ) .slideToggle() ;
 	});
 </script>
 <% end -%>
@@ -35,9 +34,9 @@
     <div id="main-block">
  		<div id="main-block-header"> 
 <% unless @current_user -%>
- 			<div id="download-place">
+            <%= link_to root_url , :id => "download-place" do %>
  				<%= @moment[ "user" ] [ "name" ] %>正在使用<p>VIDA</p>记录生活,下载手机客户端,与其戏耍之!!!
- 			</div>
+            <% end -%>
 <% else -%>
             <div id="download-place-blank" style="background:none; height:108px;"> </div>
 <% end -%>
@@ -48,20 +47,22 @@
         </div>
 
         <div id="story_info">
-            <%= image_tag "icon/icon_arrow.png" , :alt => "" , :class => "arrow" %>
             <%= render :partial => "storybanner" , :locals => { :moment => @moment } %>
         </div>
+
         <div id="pic-block">
             <%= render :partial => "moments/pic" , :collection => @moment[ "items" ] %>
             <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
             <div class="clearfix"> </div>
         </div>
+
         <div class="story_container" id="comment-block">
             <div class="info_container" style="padding-bottom: 0px; border-top: medium none;">
                 <p id="join_number">喜欢的人 <%= @moment[ "likes_count" ] %></p>
                 <%= render :partial => "participator" , :collection => @moment[ "likes_users" ] , :locals => { :image_url => "icon/icon_join_liked.png" } %>
                 <div class="clearfix"></div>
             </div>
+            <div style="border-top:1px solid #FFFFFF"> </div>
             <%= render :partial => "commentbox" , :object => @moment , :locals => { :type => "moment" } %>
         </div>
         <div class="clearfix"> </div>

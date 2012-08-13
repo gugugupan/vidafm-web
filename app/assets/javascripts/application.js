@@ -54,16 +54,19 @@ function randomNumber( n )
 // center text box function
 function showCenterBox( str )
 {
-	var showDiv = '<div id="temp-center-box">' + str + "</div>" ;
-	$( "body" ) .append( showDiv ) ;
-	var $select = $( "#temp-center-box" ) ;
-	var top  = ( $( window ) .height() - $select .height() ) / 2 ;
-	var left = ( $( window ) .width () - $select .width() ) / 2 ;
-	$select .css( { "top" : top , "left" : left } ) ;
-	if( $.browser.msie )
-		$select .css( "background-color" , "gray" ) ;
-	$select .fadeIn( 400 , function() { setTimeout( function() { $select .remove() ; } , 500 ) } ) ;
-	//$select .fadeIn( 400 , function() { $( this ) .hide() ; } ) ;	
+	if ( $( "#temp-center-box" ) .length == 0 )
+	{
+		var showDiv = '<div id="temp-center-box">' + str + "</div>" ;
+		$( "body" ) .append( showDiv ) ;
+		var $select = $( "#temp-center-box" ) ;
+		var top  = ( $( window ) .height() - $select .height() ) / 2 ;
+		var left = ( $( window ) .width () - $select .width() ) / 2 ;
+		$select .css( { "top" : top , "left" : left } ) ;
+		if( $.browser.msie )
+			$select .css( "background-color" , "gray" ) ;
+		$select .fadeIn( 400 , function() { setTimeout( function() { $select .remove() ; } , 500 ) } ) ;
+		//$select .fadeIn( 400 , function() { $( this ) .hide() ; } ) ;	
+	}
 }
 
 // Adjust avatar picture

@@ -1,0 +1,74 @@
+<head>
+	<title> VIDA - 你我的生活轨迹 </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<style type="text/css">
+		body {
+			margin:0;
+			background-color: black;
+			position:relative;
+			width:100%;
+			margin-bottom: 200px;
+		}
+
+		div#main-container {
+			width:640px;
+			margin:0px auto;
+			position:relative;
+		}
+
+		img#icon {
+			position:absolute;
+			top:90px;
+			left:28px;
+		}
+
+		a.head-btn {
+			position:absolute;
+			top:250px;
+			margin-left:-141px;
+			left: 50%;
+		}
+
+		a.foot-btn {
+			position:absolute;
+			bottom:-100px;
+			left:50%;
+			margin-left:-141px;
+		}
+
+		img#bg_pic {
+			position: absolute;
+			top: 0px;
+			width: 100%;
+			z-index: -1;
+		}
+	</style>
+
+</head>
+<body>
+	<div id="main-container">
+		<%= image_tag "wap/image_bg.png" , :id => "bg_pic" %>
+		<%= image_tag "wap/content.png" , :style => "display:block; margin:0px auto;"%>
+		<%= image_tag "wap/icon.png" , :id => "icon" %>
+	<% if @is_ios -%>
+		<%= link_to "/d/iphone" , :class => "head-btn" do %>
+			<%= image_tag "wap/app_store_download.png" %>
+		<% end -%>
+	<% else -%>
+		<%= link_to "/d/android" , :class => "head-btn" do %>
+			<%= image_tag "wap/android_download.png" %>
+		<% end -%>
+	<% end -%>
+	</div>
+<% if @is_ios -%>
+	<%= link_to "/d/iphone" , :class => "foot-btn" do %>
+		<%= image_tag "wap/app_store_download.png" %>
+	<% end -%>
+<% else -%>
+	<%= link_to "/d/android" , :class => "foot-btn" do %>
+		<%= image_tag "wap/android_download.png" %>
+	<% end -%>
+<% end -%>
+</body>

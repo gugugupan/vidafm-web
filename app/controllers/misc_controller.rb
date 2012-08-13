@@ -5,7 +5,12 @@ class MiscController < ApplicationController
   end
 
   def index
-    #redirect_to "/home" if current_user
+    if request.url =~ /is_mobile=/i || request.user_agent =~ /(android|ipod|iphone)/i
+      @is_ios = ( request.user_agent =~ /(ipod|iphone)/i )
+      render "/misc/wap" , :layout => false
+      return
+    end
+
     @moments = Moment.hot_story() [ "data"] [ "hottest_moments" ]
     @data = User.fetch_star_user( current_user ) [ "data" ]
     @data[ "recommended" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }

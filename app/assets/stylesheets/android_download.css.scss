@@ -14,11 +14,14 @@
     background-size: cover;
     position: relative;
 
+    #this_header {
+      margin: 0px auto;
+      width: 945px;
+    }
+
     #preview-col {
       float: left;
       position: relative;
-      margin-left: 105px;
-      width: 499px;
     }
 
     #intro-col {
