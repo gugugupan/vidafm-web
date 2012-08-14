@@ -3,8 +3,8 @@
 	<h1> <%= moment_category( name ) %> </h1>
 <% unless sortbtn .nil? -%>
 	<div id="sort-method"> 
-		<a class="btn_round" href="/discover/category?category=<%= name %>&sort_type=hottest">最热</a>
-		<a class="btn_round" href="/discover/category?category=<%= name %>&sort_type=latest">最新</a>
+		<%= link_to "最热" , "/discover/category?category=#{ name }&sort_type=hottest" , :class => "btn_round" , :id => "hottest" %>
+		<%= link_to "最新" , "/discover/category?category=#{ name }&sort_type=latest" , :class => "btn_round" , :id => "latest" %>
 	</div>
 <% end -%>
 	<div class="clearfix"> </div>

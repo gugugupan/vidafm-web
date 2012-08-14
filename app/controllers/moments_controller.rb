@@ -1,6 +1,6 @@
 class MomentsController < ApplicationController
   def show
-    data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 3 )
+    data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 5 )
     render "misc/error" and return if data[ 'result' ] == 1 
     redirect_to(user_url(data['data']['user_id'])) and return if data[ 'result' ] == 401 
     @moment = data[ "data" ]
@@ -11,7 +11,7 @@ class MomentsController < ApplicationController
   def ajax_get_new_page
     return if params[ :page ] .nil?
     params[ :page ] = params[ :page ] .to_i - 1
-    @moment = Moment.fetch(params[ :id ] , current_user , :page => params[ :page ] , :page_size => 3 ) [ 'data' ] 
+    @moment = Moment.fetch(params[ :id ] , current_user , :page => params[ :page ] , :page_size => 5 ) [ 'data' ] 
     render :layout => false
   end
 

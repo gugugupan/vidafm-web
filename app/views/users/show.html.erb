@@ -23,6 +23,9 @@
 <div id="user-show">
  	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
  	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ :cover_file ] } %>
+<% if @result == 401 -%>
+    <%= image_tag "images/lock.png" , :id => "lock" -%>
+<% end -%>
 
  	<div id="main-block">
  		<div id="user-info">
@@ -39,7 +42,7 @@
     <% end %>
  			<div class="clearfix"> </div>
  		</div>
- <% if @current_user && @result == 0 -%>
+ <% if @current_user -%>
  		<div id="following-list">
  			<%= render :partial => "widgets/item", :collection => @moments , :locals => { :show_type => 1 } %>
         <% if params[ :category ] == "all" -%>
@@ -48,8 +51,6 @@
  			<div class="clearfix"> </div>
  		</div>
  	</div>
- <% elsif @result == 401 -%>
-        <%= image_tag "images/lock.png" , :style => "margin:0px auto; display:block;"%>
  <% else -%>
  		<div class="text-info">
  			<p>登录后查看更多内容</p>

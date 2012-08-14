@@ -4,6 +4,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title><%= yield :title %></title>
   <meta name="Description" content="<%= raw yield :meta_description %>">
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5, user-scalable=true">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <%= yield :prerequisite_libraries %>
 <!--[if IE 6]>
 <%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>

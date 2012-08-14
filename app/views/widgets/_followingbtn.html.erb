@@ -9,13 +9,13 @@
 		:remote => true , :method => :put %>
 <% else %>
 <% if tag == 2 %>
-	<a class="btn_dark <%= size %>" style="margin-left:10px" id="waiting-tag<%= uid %>">等待</a>
+	<a class="btn_dark <%= size %>" style="margin-left:10px" id="waiting-tag<%= uid %>">等待对方批准</a>
 <% end %>
 <% end %>
 <% end %>
 <script type="text/javascript">
 	$( "#following-tag<%= uid %>,#cancel-tag<%= uid %>" ) .click( function() {
-		$( this ) .text( "请稍后.." ) ;
+		$( this ) .text( "请稍侯.." ) ;
 		$( this ) .trigger( "click.rails" ) ;
 		return false ;
 	});

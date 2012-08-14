@@ -41,14 +41,11 @@
             <div id="download-place-blank" style="background:none; height:108px;"> </div>
 <% end -%>
             <%= render :partial => "header" , :locals => { :moment => @moment } %>
-<% if @current_user -%>
             <%= render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] , :name => @moment[ 'name' ] } %>
             <div class="clearfix"> </div>
         </div>
 
-        <div id="story_info">
-            <%= render :partial => "storybanner" , :locals => { :moment => @moment } %>
-        </div>
+        <%= render :partial => "storybanner" , :locals => { :moment => @moment } %>
 
         <div id="pic-block">
             <%= render :partial => "moments/pic" , :collection => @moment[ "items" ] %>
@@ -67,13 +64,7 @@
         </div>
         <div class="clearfix"> </div>
     </div>
-<% else -%>
-            <div class="clearfix"> </div>
-        </div>
-        <div class="text-info">
-            <p>登录后查看更多内容</p>
-        </div>
-    </div>
+<% unless @current_user -%>
     <%= render :partial => "widgets/login" %>
 <% end -%>
 </div>
