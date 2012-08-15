@@ -29,15 +29,17 @@
 			<div class="clearfix"> </div>
 		</div>
 	<% end -%>
+	<% if item[ "photo_count" ] > 3 -%>
 		<a class="btn_round" href="/moments/<%= item[ 'id' ] %>">
-			所有 <%= item[ "photo_count" ] %>
+			照片总数 <%= item[ "photo_count" ] %>
 		</a>
+	<% end -%>
 		<div class="clearfix"> </div>
 	</div>
 
 	<div class="photo-row">
-		<%= render :partial => "widgets/pic", :collection => item['items'] [ 0 , 1 ] , :locals => { :first => true , :date => item['modified_at'] [ 0 .. 9 ] , :like_count => item[ "likes_count" ] } %>
-		<%= render :partial => "widgets/pic", :collection => item['items'] [ 1 , 2 ] , :locals => { :first => false } %>		
+		<%= render :partial => "widgets/pic", :collection => item['items'] [ 0 , 1 ] , :locals => { :first => true , :date => item['modified_at'] [ 0 .. 9 ] } %>
+		<%= render :partial => "widgets/pic", :collection => item['items'] [ 1 , 2 ] , :locals => { :first => false } %>
 		<div class="clearfix"> </div>
 	</div>
 </div>

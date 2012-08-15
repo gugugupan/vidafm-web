@@ -31,7 +31,7 @@ class Moment
   end
 
   def self.hot_story
-    JSON.parse VIDA.call( "moment/list_featured" )
+    JSON.parse VIDA.call( "moment/list_featured" , { :limit => 20 } )
   end
 
   def self.share( current_user , options = {} )

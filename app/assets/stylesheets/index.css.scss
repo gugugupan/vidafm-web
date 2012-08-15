@@ -9,7 +9,7 @@
 		width: 100%;
 		min-width: 1200px;
 		height: 522px;
-		background-image: url("images/sky_desk_photodoom.jpg");
+		background-image: image-url("images/sky_desk_photodoom.jpg");
 		background-position: center;
 		background-attachment: fixed;
 		background-size: cover;
@@ -62,7 +62,7 @@
 					p.font3 {
 						font-size: 17px;
 						color: rgb(255,255,255);
-						text-shadow:gray 1px 1px 0;
+						text-shadow:black 1px 1px 0;
 					}
 				}
 
@@ -70,7 +70,7 @@
 					color: white;
 					font-size: 12px;
 					margin: 13px;
-					text-shadow:gray 1px 1px 0;
+					text-shadow:black 1px 1px 0;
 				}
 
 				.download-bar {

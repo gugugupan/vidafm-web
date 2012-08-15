@@ -15,8 +15,8 @@
 (function($){
 	// LIVE function
 	$( ".thumbnail" ) .live({
-		mouseover : function() { $( this ) .find( ".thumb_like" ) .fadeIn( "fast" ) ; } , 
-		mouseout : function() { $( this ) .find( ".thumb_like" ) .fadeOut( "fast" ) ; }
+		mouseenter : function() { $( this ) .find( ".thumb_like" ) .fadeIn( "fast" ) ; } , 
+		mouseleave : function() { $( this ) .find( ".thumb_like" ) .fadeOut( "fast" ) ; }
 	}) ;
 	$( "form" ) .live( "submit" , function() { 
 		$( this ) .find( "input,textarea" ) .css( "background-color" , "rgba(0,0,0,0.3)" ) ; 

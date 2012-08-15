@@ -1,9 +1,9 @@
 @font-face {
 	font-family:myFont;
-	src:url("/assets/helvetica_neue_condensed_bold.ttf");
+	src:asset-url("helvetica_neue_condensed_bold.ttf",font);
 }
 
-$font:myFont, Helvetica, Arial, sans-serif;
+$font:myFont, Helvetica, Arial, sans-serif,"Microsoft YaHei",Hei;
 $font_dark:#363636;
 $font_grey:#B3ADA6;
 $red:#C61635;
@@ -11,9 +11,9 @@ $blue:#27A8DF;
 $white:#f4f4f4;
 
 body{
-	background:url("images/bg.png");
+	background:image-url("images/bg.png");
 	color:$font_dark;
-	font-family:$font,微软雅黑,黑体;
+	font-family:$font;
 	height:100%;
 	//padding:20px;
 }
@@ -43,7 +43,7 @@ p{
 
 /*avatar*/
 .avatar {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	height:40px;
 	width:40px;
 
@@ -67,7 +67,7 @@ p{
 }
 
 .timer {
-	background:url("icon/icon_clock.png") no-repeat left center;
+	background:image-url("icon/icon_clock.png") no-repeat left center;
 	color:$font_grey;
 	right:10px;
 	padding-left:15px;
@@ -76,7 +76,7 @@ p{
 }
 
 .location {
-	background:url("icon/icon_location.png") no-repeat left center;
+	background:image-url("icon/icon_location.png") no-repeat left center;
 	color:$font_grey;
 	right:40px;
 	padding-left:15px;
@@ -101,11 +101,11 @@ p{
 	filter:Dropshadow(color=rgb(0,0,0),offx=0,offy=-1,Positive=0.3);
 
 	&.red {
-		background:url("images/ribbon_red.png") no-repeat left center;
+		background:image-url("images/ribbon_red.png") no-repeat left center;
 	}
 
 	&.blue {
-		background:url("images/ribbon_blue.png") no-repeat left center;
+		background:image-url("images/ribbon_blue.png") no-repeat left center;
 	}
 }
 
@@ -167,7 +167,7 @@ p{
 		}
 
 		ul {
-			background:url("images/header_link_bg.png") no-repeat left top;
+			background:image-url("images/header_link_bg.png") no-repeat left top;
 			float: left;
 			height:58px;
 			list-style-type:none;
@@ -175,7 +175,7 @@ p{
 			padding:0px;
 
 			li {
-				background:url("images/header_link_bg.png") no-repeat right top;
+				background:image-url("images/header_link_bg.png") no-repeat right top;
 				height:58px;
 				float: left;
 				padding-right:2px;
@@ -203,28 +203,28 @@ p{
 					padding-left:80px;
 
 					&:hover {
-						background-image:url("images/header_hover_bg.png");
+						background-image:image-url("images/header_hover_bg.png");
 						background-position:left top;
 					}
 				}
 
 				#activity {
-					background:url("icon/icon_activity.png") no-repeat 20px 16px;
+					background:image-url("icon/icon_activity.png") no-repeat 20px 16px;
 					padding-left:60px;
 
 					&:hover {
-						background-image:url("icon/icon_activity.png"),url("images/header_hover_bg.png");
+						background-image:image-url("icon/icon_activity.png"),image-url("images/header_hover_bg.png");
 						background-position:20px 16px,left top;
 						//background-repeat:no-repeat;
 					}
 				}
 
 				#discover {
-					background:url("icon/icon_discover.png") no-repeat 20px 16px;
+					background:image-url("icon/icon_discover.png") no-repeat 20px 16px;
 					padding-left:60px;
 
 					&:hover {
-						background-image:url("icon/icon_discover.png"),url("images/header_hover_bg.png");
+						background-image:image-url("icon/icon_discover.png"),image-url("images/header_hover_bg.png");
 						background-position:20px 16px,left top;
 						//background-repeat:no-repeat;
 					}
@@ -236,7 +236,7 @@ p{
 
 /*btn*/
 @mixin btn($top_color, $hover_top_color, $bottom_color, $hover_bottom_color, $shadow_color, $v_shadow, $blur, $shadow_alpha, $inset_alpha, $text-shadow, $v_text_shadow, $text_shadow_alpha) {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 
 	position:relative;
 
@@ -309,7 +309,7 @@ p{
 }
 
 .btn_big {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -319,7 +319,7 @@ p{
 }
 
 .btn_middle {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -331,7 +331,7 @@ p{
 }
 
 .btn_small {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -383,7 +383,7 @@ p{
 }
 
 .btn_round {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	background-repeat:no-repeat;
 	background-position:3px center;
 	border:2px solid #D2CFCB;
@@ -412,7 +412,7 @@ p{
 	}
 
 	&:active {
-		behavior: url("/assets/PIE.htc");
+		behavior: asset-url("PIE.htc",htc);
 		background-color:#666666;
 		background-position:5px center;
 		border:none;
@@ -431,7 +431,7 @@ p{
 
 /*login btn*/
 #login {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	border:2px solid #d8d8d8;
 	border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -470,7 +470,7 @@ p{
 	float: right;
 	margin-right: 10px;
 
-	background-image:url("icon/icon_like.png");
+	background-image:image-url("icon/icon_like.png");
 	padding:4px 10px 0px 28px;
 
 	&:active {
@@ -478,7 +478,7 @@ p{
 	}
 }
 .liked {
-	background-image:url("icon/icon_liked.png");
+	background-image:image-url("icon/icon_liked.png");
 }
 
 .comment {
@@ -486,7 +486,7 @@ p{
 	float: right;
 	margin-right: 10px;
 
-	background-image:url("icon/icon_comment.png");
+	background-image:image-url("icon/icon_comment.png");
 	padding:4px 10px 0px 28px;
 
 	&:active {
@@ -494,12 +494,12 @@ p{
 	}
 }
 .commented {
-	background-image:url("icon/icon_commented.png");	
+	background-image:image-url("icon/icon_commented.png");	
 }
 
 /*popup container*/
 .popup_container {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	@include btn(#414042, #282828, #1e1e1e, #000000, 0, 1px, 3px, 0.8, 0.3, 0, 2px, 0.8);
 	border:1px solid #000000;
 	border-radius: 8px;
@@ -616,7 +616,7 @@ p{
 	.list {
 
 		p{
-			background:url("icon/icon_detail.png") no-repeat right center;
+			background:image-url("icon/icon_detail.png") no-repeat right center;
 			float:left;
 			padding:6px 0px 6px 10px;
 			width:280px;
@@ -634,7 +634,7 @@ p{
 	width:350px;
 
 	.tab {
-		behavior: url("/assets/PIE.htc");
+		behavior: asset-url("PIE.htc",htc);
 		border-radius: 6px;
 		-moz-border-radius: 6px;
 		-webkit-border-radius: 6px;
@@ -754,7 +754,7 @@ p{
 			}
 
 			.message_thumbnail {
-				behavior: url("/assets/PIE.htc");
+				behavior: asset-url("PIE.htc",htc);
 				@extend .avatar;
 				height:75px;
 				width:75px;
@@ -779,7 +779,7 @@ p{
 
 /*photos*/
 .feature_user {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	&:first-child { margin-left: 0px; }
 	margin-left: 10px;
 	background-color:$white;
@@ -908,7 +908,7 @@ p{
 	}
 
 	.avatar {
-		behavior: url("/assets/PIE.htc");
+		behavior: asset-url("PIE.htc",htc);
 		border:2px solid #ffffff;
 		box-shadow:0px 1px 6px rgba(0,0,0,.3);
 		-moz-box-shadow:0px 1px 6px rgba(0,0,0,.3);
@@ -952,7 +952,7 @@ p{
 }
 
 .thumbnail {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	height:236px;
 	position:relative;
 
@@ -965,7 +965,7 @@ p{
 	-webkit-box-shadow:0px 1px 6px rgba(0,0,0,.3);
 	
 	.thumb {
-		behavior: url("/assets/PIE.htc");
+		behavior: asset-url("PIE.htc",htc);
 		height:100%;
 		width:100%;
 		overflow:hidden;
@@ -1001,7 +1001,7 @@ p{
 		}
 
 		p {
-			background:url("icon/icon_like_small.png") no-repeat left center;
+			background:image-url("icon/icon_like_small.png") no-repeat left center;
 			color:$font_grey;
 			text-shadow:0px 2px 0px rgba(255,255,255,1);
 			filter:Dropshadow(color=rgb(255,255,255),offx=0,offy=2,Positive=1);
@@ -1013,7 +1013,7 @@ p{
 	}
 
 	.thumb_like {
-		background:url("icon/icon_like_white.png") no-repeat 8px center;
+		background:image-url("icon/icon_like_white.png") no-repeat 8px center;
 		display:none;
 		position:absolute;
 		right:10px;
@@ -1027,7 +1027,7 @@ p{
 }
 
 .story_container {
-	behavior: url("/assets/PIE.htc");
+	behavior: asset-url("PIE.htc",htc);
 	background-color:$white;
 	border-radius: 12px;
 	-moz-border-radius: 12px;
@@ -1058,15 +1058,15 @@ p{
 		}
 
 		#story_description {
-			background:url("icon/icon_description.png") no-repeat left top;
+			background:image-url("icon/icon_description.png") no-repeat left top;
 		}
 
 		#location_list {
-			background:url("icon/icon_map.png") no-repeat left top;
+			background:image-url("icon/icon_map.png") no-repeat left top;
 		}
 
 		#map {
-			behavior: url("/assets/PIE.htc");
+			behavior: asset-url("PIE.htc",htc);
 			height:308px;
 			width:418px;
 			overflow:hidden;
@@ -1183,7 +1183,7 @@ p{
 			filter:Dropshadow(color=rgb(255,255,255),offx=0,offy=2,Positive=1);
 
 			&:hover {
-				background:url("images/left_nav_hover.png") no-repeat left center;
+				background:image-url("images/left_nav_hover.png") no-repeat left center;
 				color:#ffffff;
 				text-shadow:0px 1px 2px rgba(0,0,0,.5);
 				filter:Dropshadow(color=rgb(0,0,0),offx=0,offy=1,Positive=0.5);
@@ -1191,31 +1191,31 @@ p{
 		}
 
 		&#feature {
-			background:url("icon/icon_feature_small.png") no-repeat 4px center;
+			background:image-url("icon/icon_feature_small.png") no-repeat 4px center;
 		}
 
 		&#star {
-			background:url("icon/icon_star_small.png") no-repeat 4px center;
+			background:image-url("icon/icon_star_small.png") no-repeat 4px center;
 		}
 
 		&#food {
-			background:url("icon/icon_food_small.png") no-repeat 4px center;
+			background:image-url("icon/icon_food_small.png") no-repeat 4px center;
 		}
 
 		&#travel {
-			background:url("icon/icon_travel_small.png") no-repeat 4px center;
+			background:image-url("icon/icon_travel_small.png") no-repeat 4px center;
 		}
 
 		&#mood {
-			background:url("icon/icon_mood_small.png") no-repeat 4px center;
+			background:image-url("icon/icon_mood_small.png") no-repeat 4px center;
 		}
 
 		&#kids {
-			background:url("icon/icon_children_small.png") no-repeat 4px center;
+			background:image-url("icon/icon_children_small.png") no-repeat 4px center;
 		}
 
 		&#suipai {
-			background:url("icon/icon_random_small.png") no-repeat 4px center;
+			background:image-url("icon/icon_random_small.png") no-repeat 4px center;
 		}
 
 		&:first-child { border-top: none; }

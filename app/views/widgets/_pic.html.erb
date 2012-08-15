@@ -2,8 +2,9 @@
 	<%= link_to image_tag( "empty.png" , "data-original" => pic[ "photo" ] [ "url_m" ] , :class => "show-photo lazy" , :cwidth => pic[ "photo" ] [ "width" ] , :cheight => pic[ "photo" ] [ "height" ] ) , "/moments/#{ pic[ 'moment_id' ] }#activity#{ pic[ 'id' ] }" , :class => "thumb" , :title => pic[ "description" ] %>
 <% if first %>
 	<h1 class="ribbon red"> <%= date %> </h1>
-	<%= link_to like_count , "/moments/#{ pic[ 'moment_id' ] }" , :class => "thumb_like btn_dark btn_small" , :title => pic[ "description" ] %>
 <% end %>
+	<%= link_to pic[ "likes_count" ] .to_s , like_activity_url( pic[ "id" ] ) , 
+		:class => "thumb_like btn_dark btn_small" , :id => pic[ "id" ] ,
+		:title => pic[ "description" ] , :remote => true , :method => :put %>
 </div>
-
 <!-- , :style => "width:#{pic['photo']['width']}px;height:#{pic['photo']['height']}px;" -->
