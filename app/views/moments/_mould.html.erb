@@ -1,0 +1,21 @@
+<% if category == "food" -%>
+	<div class="info_container" style="padding:0;">
+		<div style="float:left;border-right:1px solid #DDDDDD;padding:20px;padding-right:0px;">
+			<% rating = mould[ "additional_params" ] [ "template_rating" ] .to_i -%>
+			<% for i in 1..rating -%>
+				<%= image_tag "mould/star_on.png" , :style => "margin-right:20px;" %>
+			<% end -%>
+			<% for i in 1..( 5 - rating ) -%>
+				<%= image_tag "mould/star_off.png" , :style => "margin-right:20px;" %>
+			<% end -%>
+		</div>
+		<div style="float:left;border-left:1px solid #FFFFFF;padding:20px;font-size:20px;">
+			<%= mould[ "additional_params" ] [ "template_price" ] %>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+<% end -%>
+<% if category == "mood" -%>
+	<%= image_tag "mould/icon_emotion_" + mould[ "additional_params" ] [ "template_emotion" ] + ".png" , 
+		:style => "position:absolute;bottom:65px;left:50%;margin-left:-45px;" %>
+<% end -%>
