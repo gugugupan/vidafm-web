@@ -81,19 +81,20 @@ module MomentsHelper
 			"random" => "随拍" ,
 			"travel" => "出游" ,
 			"children" => "亲子" ,
-			"mood" => "心情日记" ,
-			"food" => "吃货" ,
+			"mood" => "心情" ,
+			"food" => "美食" ,
 			"misc" => "其他" ,
 			"all" => "所有故事分类" ,
 			"hot" => "精选故事" ,
 			"staruser" => "星用户" ,
+			"photograph" => "摄影" ,
 			nil => "空" ,
 		}
 		return alph[ str ] || str
 	end
 
 	def empty_descripe( str )
-		str = "(没有描述)" if str .nil? || str .length == 0
+		str = "" if str .nil? || str .length == 0
 		str 
 	end
 

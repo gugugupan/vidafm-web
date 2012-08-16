@@ -11,6 +11,7 @@
 		<%= image_tag "images/play.png" , :style => "position:absolute; bottom:5px; left:5px; width: 82px;" %>
 <% end -%>
 	</a>
+	<%= render :partial => "mould" , :object => pic , :locals => { :category => category } %>
 	<div class="info_container">
 		<%= avatar_tag pic[ 'user' ] %>
 		<div class="comment_container">

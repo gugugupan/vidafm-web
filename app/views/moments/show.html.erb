@@ -48,14 +48,14 @@
         <%= render :partial => "storybanner" , :locals => { :moment => @moment } %>
 
         <div id="pic-block">
-            <%= render :partial => "moments/pic" , :collection => @moment[ "items" ] %>
+            <%= render :partial => "pic" , :collection => @moment[ "items" ] , :locals => { :category => @moment[ "category" ] } %>
             <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
             <div class="clearfix"> </div>
         </div>
 
         <div class="story_container" id="comment-block">
             <div class="info_container" style="padding-bottom: 0px; border-top: medium none;">
-                <p id="join_number">喜欢的人 <%= @moment[ "likes_count" ] %></p>
+                <p id="join_number">喜欢数 <%= @moment[ "likes_count" ] %></p>
                 <%= render :partial => "participator" , :collection => @moment[ "likes_users" ] , :locals => { :image_url => "icon/icon_join_liked.png" } %>
                 <div class="clearfix"></div>
             </div>

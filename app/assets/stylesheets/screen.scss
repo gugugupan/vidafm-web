@@ -440,6 +440,7 @@ p{
 	font-size:18px;
 	height:31px;
 	padding:5px 10px 0px 10px;
+	z-index:20;
 
 	box-shadow:0px 2px 0px rgba(0,0,0,.5),inset 0px 1px 1px rgba(0,0,0,.5);
 	-moz-box-shadow:0px 2px 0px rgba(0,0,0,.5),inset 0px 1px 1px rgba(0,0,0,.5);
@@ -1216,6 +1217,10 @@ p{
 
 		&#suipai {
 			background:image-url("icon/icon_random_small.png") no-repeat 4px center;
+		}
+
+		&#photograph {
+			background:image-url("icon/icon_star_small.png") no-repeat 4px center;
 		}
 
 		&:first-child { border-top: none; }

@@ -19,7 +19,7 @@ class MomentsController < ApplicationController
     if current_user
       @result = Comment.create( :comment_type => "Moment" , :type_id => params[ :id ] , :content => params[ :content ] , :user => current_user )
     else
-      render "misc/need_authentication"
+      render "misc/need_authentication" , :locals => { :comment_box => "comment-block" }
     end
   end
 

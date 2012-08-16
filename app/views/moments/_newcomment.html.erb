@@ -1,11 +1,11 @@
 <% if type == "activity" -%>
 	<%= form_tag( comment_activity_url( pid ) , { :remote => true , :class => "comment-form-container" } ) do %>
-		<%= text_field_tag "content" , nil , :class => "comment" , :placeholder => "写评论.." %>
+		<%= text_field_tag "content" , nil , :class => "comment" , :placeholder => "回复.." %>
 		<div class="clearfix"> </div>
 	<% end %>
 <% else -%>
 	<%= form_tag( comment_moment_url( pid ) , { :remote => true , :class => "comment-form-container" } ) do %>
-		<%= text_field_tag "content" , nil , :class => "comment" , :placeholder => "写评论.." %>
+		<%= text_field_tag "content" , nil , :class => "comment" , :placeholder => "回复.." %>
 		<div class="clearfix"> </div>
 	<% end %>
 <% end -%>

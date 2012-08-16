@@ -7,9 +7,11 @@
 	<% unless notification[ "activity" ] .nil? -%>
 		<%= link_to image_tag( notification[ "activity" ] [ "photo" ] [ "url_s" ] , :class => "message_thumbnail" ) , "/moments/" + notification[ "activity" ] [ "moment_id" ] .to_s %>
 	<% end -%>
+	<!--
 	<% if [ 11 , 13 , 51 , 52 ] .find { |x| x == notification[ "notification_type" ] } -%>
 		<%= render :partial => "widgets/followingbtn" , :locals => { :uid => notification[ "actor" ] [ :id ] , :tag => 0 , :size => "btn_small" } %>
 	<% end -%>
+	-->
 	</span>	
 	<div class="clearfix"></div>
 </div>

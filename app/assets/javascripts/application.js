@@ -64,7 +64,7 @@ function showCenterBox( str )
 		$select .css( { "top" : top , "left" : left } ) ;
 		if( $.browser.msie )
 			$select .css( "background-color" , "gray" ) ;
-		$select .fadeIn( 400 , function() { setTimeout( function() { $select .remove() ; } , 500 ) } ) ;
+		$select .fadeIn( 400 , function() { setTimeout( function() { $select .remove() ; } , 1000 ) } ) ;
 		//$select .fadeIn( 400 , function() { $( this ) .hide() ; } ) ;	
 	}
 }

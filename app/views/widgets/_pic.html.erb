@@ -4,7 +4,7 @@
 	<h1 class="ribbon red"> <%= date %> </h1>
 <% end %>
 	<%= link_to pic[ "likes_count" ] .to_s , like_activity_url( pic[ "id" ] ) , 
-		:class => "thumb_like btn_dark btn_small" , :id => pic[ "id" ] ,
+		:class => "thumb_like btn_dark btn_small" , :id => "like#{pic[ 'id' ]}" ,
 		:title => pic[ "description" ] , :remote => true , :method => :put %>
 </div>
 <!-- , :style => "width:#{pic['photo']['width']}px;height:#{pic['photo']['height']}px;" -->

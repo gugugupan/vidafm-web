@@ -6,6 +6,9 @@
 	border-bottom: 1px solid #D2CFCB;
 	border-top: 1px solid white;
 
+	&:first-child { border-top: none ; }
+	&:last-child { border-bottom: none ; }
+
 	.user-story-head {
 		width: 100%;
 		clear: both;
@@ -14,11 +17,11 @@
 
 		.header-pic {
 			float: left;
+			width: 80%;
 		}
 
 		.header-title {
 			float: left;
-			width: 80%;
 		}
 
 		a.font0 {

@@ -8,30 +8,37 @@
 		<div class="header-pic"> 
 		<% if item[ "suggest_reason_users" ] .nil? -%>
 			<%= avatar_tag item[ "user" ] %> 
+			<div style="float:left;margin-left:10px;" class="header-title">
+				<a class="font1" href="/moments/<%= item[ 'id' ] %>">
+					[<%= moment_category( item[ "category" ] ) %>] <%= item[ "name" ] %> 
+				</a>
+				<a class="font2" href="/users/<%= item[ "user" ] [ :id ] %>">
+					<%= item[ "user" ] [ :name ] %> 
+				</a>
+				<div class="clearfix"> </div>
+			</div>
 		<% else -%>
 			<%= avatar_tag item[ "suggest_reason_users" ] [ 0 ] %> 
+			<div style="float:left;margin-left:10px;" class="header-title">
+				<a class="font1" href="/moments/<%= item[ 'id' ] %>">
+					<% if item[ "suggest_reason" ] == "liked" -%>
+						<%= item[ "suggest_reason_names" ] + " 喜欢了 " %>
+					<% else -%>
+						<%= item[ "suggest_reason_names" ] + " 新建了故事 " %>
+					<% end -%>
+					[<%= moment_category( item[ "category" ] ) %>] <%= item[ "name" ] %> 
+				</a>
+				<a class="font2" href="/users/<%= item[ "suggest_reason_users" ] [ 0 ] [ :id ] %>">
+					<%= item[ "suggest_reason_users" ] [ 0 ] [ :name ] %> 
+				</a>
+				<div class="clearfix"> </div>
+			</div>
 		<% end -%>
-		</div>
-		<div style="float:left;margin-left:10px;" class="header-title">
-			<a class="font1" href="/moments/<%= item[ 'id' ] %>">
-		<% unless item[ "suggest_reason_users" ] .nil? -%>
-			<% if item[ "suggest_reason" ] == "liked" -%>
-				<%= item[ "suggest_reason_names" ] + " 喜欢了 " %>
-			<% else -%>
-				<%= item[ "suggest_reason_names" ] + " 新建了故事 " %>
-			<% end -%>
-		<% end -%>
-				[<%= moment_category( item[ "category" ] ) %>] <%= item[ "name" ] %> 
-			</a>
-			<a class="font2" href="/users/<%= item[ "user" ] [ "id" ] || item[ "user" ] [ :id ] %>">
-				<%= item[ "user" ] [ "name" ] || item[ "user" ] [ :name ] %> 
-			</a>
-			<div class="clearfix"> </div>
 		</div>
 	<% end -%>
 	<% if item[ "photo_count" ] > 3 -%>
 		<a class="btn_round" href="/moments/<%= item[ 'id' ] %>">
-			照片总数 <%= item[ "photo_count" ] %>
+			照片 <%= item[ "photo_count" ] %>
 		</a>
 	<% end -%>
 		<div class="clearfix"> </div>

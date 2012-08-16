@@ -43,11 +43,15 @@
  <% if @current_user -%>
  		<div id="following-list">
  			<%= render :partial => "widgets/item", :collection => @moments , :locals => { :show_type => 1 } %>
+    <% if @moments .length == 0 -%>
+            <div class="text-info"> <p>TA还没有发布过照片和故事</p> </div>
+    <% else -%>
         <% if params[ :category ] == "all" -%>
             <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
         <% end -%>
  			<div class="clearfix"> </div>
  		</div>
+    <% end -%>
  	</div>
  <% else -%>
  		<div class="text-info">

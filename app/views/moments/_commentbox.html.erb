@@ -5,7 +5,7 @@
 <% end -%>
 	<div class="comments-list-container">
 	<% if commentbox[ "comments" ] .size == 0 -%>
-		<div class="info_container none_comment" style="font-size:14px; color:#B3ADA6; width:93%"> 还没有人添加评论 </div>
+		<div class="info_container none_comment" style="font-size:14px; color:#B3ADA6; width:93%"> 还没有人回复 </div>
 	<% end -%>
 		<%= render :partial => "comment" , :collection => commentbox[ "comments" ] %>
 	</div>

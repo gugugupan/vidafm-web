@@ -9,7 +9,10 @@
 <% end -%>
 	<div class="clearfix"> </div>
 </div>
+<% for i in 0..( ( count - 1 ) / unit ) -%>
+<% break if recommended[ "users" ] .length < x + i * 3 + 2 -%>
 <div class="star-user-row" style="margin-top:20px;">
-	<%= render :partial => "widgets/staruser" , :collection => recommended[ "users" ] [ x , count ] , :locals => { :type => "normal" , :width => wn , :text => nil } %>
+	<%= render :partial => "widgets/staruser" , :collection => recommended[ "users" ] [ x + i * 3 , unit ] , :locals => { :type => "normal" , :width => wn , :text => nil } %>
 	<div class="clearfix"> </div>
 </div>
+<% end -%>

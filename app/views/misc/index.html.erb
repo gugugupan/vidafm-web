@@ -87,6 +87,7 @@ jQuery( function() {
 
 <div id="index">
   <div id="index-header">
+    <div id="index-header-shadow"> </div>
       <div id="index-header-block">
           <div id="preview-col">
             <%= image_tag "images/preview@2x.png" , :style => "width:100%;" %>
@@ -112,7 +113,7 @@ jQuery( function() {
   <div style="border-top:1px solid white;width:100%;"> </div>
 
 <% unless @current_user -%>
-  <a id="login" style="position: absolute;right: 50px;top: 50px;" class="login_btn mouse">
+  <a id="login" style="position:absolute;right:50px;top:50px;" class="login_btn mouse">
     登入
     <%= image_tag "icon/icon_detail.png" %>
   </a>
@@ -127,16 +128,20 @@ jQuery( function() {
   <div id="star-user">
     <div class="header-title">
       <%= image_tag "icon/icon_star_big.png" %>
-      <h1>星用户</h1>
+      <%= link_to "/discover/staruser" do %>
+        <h1 class="mouse">星用户</h1>
+      <% end -%>
       <div class="clearfix"> </div>
     </div>
-    <%= render :partial => "widgets/staruserlist" , :locals => { :stars => @data[ "stars" ] , :recommended => @data[ "recommended" ] , :wb => "505px" , :wn => "247.5px" , :count => 4 } %>
+    <%= render :partial => "widgets/staruserlist" , :locals => { :stars => @data[ "stars" ] , :recommended => @data[ "recommended" ] , :wb => "505px" , :wn => "247.5px" , :count => 4 , :unit => 4 } %>
   </div>
 
   <div id="hot-story">
     <div class="header-title">
       <%= image_tag "icon/icon_hot_big.png" %>
-      <h1>热门故事</h1>
+      <%= link_to "/discover/index" do %>
+        <h1 class="mouse">热门故事</h1>
+      <% end -%>
       <div class="clearfix"> </div>
     </div>
     <div id="hot-story-block"> </div>

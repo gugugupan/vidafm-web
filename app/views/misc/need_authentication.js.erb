@@ -1,1 +1,5 @@
+<% if defined? comment_box -%>
+	var $selector = $( "#<%= comment_box %>" ) ;
+	$selector .find( "input" ) .css( "background-color" , "white" ) ;
+<% end -%>
 showCenterBox( "对不起,请登录后再操作." ) ;
