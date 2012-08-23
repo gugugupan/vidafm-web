@@ -34,11 +34,14 @@
     <div id="main-block">
  		<div id="main-block-header"> 
 <% unless @current_user -%>
-            <%= link_to root_url , :id => "download-place" do %>
- 				<%= @moment[ "user" ] [ "name" ] %>正在使用<p>VIDA</p>记录生活,下载手机客户端,与其戏耍之!!!
-            <% end -%>
+            <div href="/" id="download-place">
+                <p class="font1"> <%= @moment[ "user" ] [ "name" ] %>正在使用 </p>
+                <p class="red_font">VIDA</p>
+                <p class="font1"> 记录生活,下载手机客户端,与其戏耍之!!! </p>
+                <%= render :partial => "widgets/download_bar" %>
+            </div>
 <% else -%>
-            <div id="download-place-blank" style="background:none; height:108px;"> </div>
+            <div id="download-place-blank"> </div>
 <% end -%>
             <%= render :partial => "header" , :locals => { :moment => @moment } %>
             <%= render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] , :name => @moment[ 'name' ] } %>

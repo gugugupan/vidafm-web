@@ -154,7 +154,7 @@ p{
 		#logo {
 			display:block;
 			float: left;
-			padding-top:17px;
+			padding-top:10px;
 		}
 
 		#header_btn {
@@ -471,7 +471,7 @@ p{
 	float: right;
 	margin-right: 10px;
 
-	background-image:image-url("icon/icon_like.png");
+	background-image:image-url("icon/icon_like2.png");
 	padding:4px 10px 0px 28px;
 
 	&:active {
@@ -487,7 +487,7 @@ p{
 	float: right;
 	margin-right: 10px;
 
-	background-image:image-url("icon/icon_comment.png");
+	background-image:image-url("icon/icon_comment2.png");
 	padding:4px 10px 0px 28px;
 
 	&:active {
@@ -1220,7 +1220,7 @@ p{
 		}
 
 		&#photograph {
-			background:image-url("icon/icon_star_small.png") no-repeat 4px center;
+			background:image-url("icon/icon_photograph_small.png") no-repeat 4px center;
 		}
 
 		&:first-child { border-top: none; }

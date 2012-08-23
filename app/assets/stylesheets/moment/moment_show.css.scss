@@ -5,7 +5,7 @@
 		width: 450px;
 		margin: 0px auto;
 		position: relative;
-		top: -200px;
+		top: -240px;
 
 		#main-block-header {
 			width: 100%;
@@ -14,31 +14,50 @@
 			#download-place {
 				width: 90%;
 				float: left;
-				padding: 25px;
+				padding: 10px 20px 20px;
 				background-color: rgba(0,0,0,0.3);
-				font-size: 20px;
-				color: rgb(255,255,255);
 				text-indent: 0em;
 				line-height: 30px;
-				text-shadow: black 0.1em 0.1em 0.2em;
 				border-radius: 8px;
 				-moz-border-radius: 8px;
 				-webkit-border-radius: 8px;
 
-				p {
+				p.font1 {
 					display: inline;
-					color: rgb(255,0,0);
-					font-size: 20px;
+					font-size: 16px;
+					color: rgb(255,255,255);
 					text-shadow: black 0.1em 0.1em 0.2em;
 				}
+
+				p.red_font {
+					display: inline;
+					color: rgb(255,0,0);
+					font-size: 16px;
+					text-shadow: black 0.1em 0.1em 0.2em;
+				}
+
+				.download-bar {
+					width: 100%px;
+					float: left;
+					line-height: 18px;
+					margin-top: 10px;
+
+	      			a {
+	      				&.android { margin-left: 15px; }
+	        			float: left;
+	        			margin-right: 5px;
+	        		}
+	        	}
+
 			}
 
 			#download-place-blank {
 				width: 90%;
-				height: 50px;
+				height: 145px;
 				float: left;
 				font-size: 20px;
 				border-radius: 8px;
+				background: none;
 				-moz-border-radius: 8px;
 				-webkit-border-radius: 8px;
 			}

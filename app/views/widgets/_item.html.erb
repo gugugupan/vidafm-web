@@ -36,6 +36,7 @@
 		<% end -%>
 		</div>
 	<% end -%>
+	<% item[ "photo_count" ] = 0 if item[ "photo_count" ] .nil? -%>
 	<% if item[ "photo_count" ] > 3 -%>
 		<a class="btn_round" href="/moments/<%= item[ 'id' ] %>">
 			照片 <%= item[ "photo_count" ] %>
