@@ -11,7 +11,7 @@ class MiscController < ApplicationController
       return
     end
 
-    @moments = Moment.hot_story() [ "data"] [ "hottest_moments" ]
+    @moments = [] #Moment.hot_story() [ "data" ] [ "hottest_moments" ]
     @data = User.fetch_star_user( current_user ) [ "data" ]
     @data[ "recommended" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
     @data[ "stars" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
