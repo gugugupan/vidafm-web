@@ -32,8 +32,8 @@ function arangeImage(){
             //_imageObjects.css({"margin-left":x+"px"});
         } else if($(".mlcontainer:eq("+i+") .mlbox .image_box").length == 2){
             //console.log("have 2 image");
-            $(".mlcontainer:eq("+i+") .mlbox").height("252px");
-            $(".mlcontainer:eq("+i+") .mlinfo").css({"position":"absolute","bottom":"0px"});
+            $(".mlcontainer:eq("+i+") .mlbox .image_container").height("214px");
+            //$(".mlcontainer:eq("+i+") .mlinfo").css({"position":"absolute","bottom":"0px"});
             _boxObjects.eq(0).addClass("image_box_big");
             _boxObjects.eq(1).addClass("image_box_middle");
 
@@ -42,8 +42,8 @@ function arangeImage(){
             }
         } else {
             //console.log("have 3 image");
-            $(".mlcontainer:eq("+i+") .mlbox").height("252px");
-            $(".mlcontainer:eq("+i+") .mlinfo").css({"position":"absolute","bottom":"0px"});
+            $(".mlcontainer:eq("+i+") .mlbox .image_container").height("215px");
+            //$(".mlcontainer:eq("+i+") .mlinfo").css({"position":"absolute","bottom":"0px"});
             _boxObjects.eq(0).addClass("image_box_big");
             _boxObjects.eq(1).addClass("image_box_small").css({"top":"8px"});
             _boxObjects.eq(2).addClass("image_box_small");
