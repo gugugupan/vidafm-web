@@ -17,7 +17,7 @@ class VIDA
 		end
 
 		def dev_api_url
-			"http://elbrus.vida.fm:15097"
+			"http://api2.vida.fm:15097"
 		end
 	end
 end
