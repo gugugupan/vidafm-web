@@ -23,7 +23,8 @@ module UsersHelper
 
 	def avatar_tag user, options = {}
 		user.symbolize_keys!
-		inner_html = link_to( image_tag( user[ :avatar_file ] ) , "/users/#{ user[ :id ] }" , :class => 'avatar' , :title => user[ :name ] )
+		class_str = "avatar #{ options[ :class ] }"
+		inner_html = link_to( image_tag( user[ :avatar_file ] ) , "/users/#{ user[ :id ] }" , :class => class_str , :title => user[ :name ] )
 		inner_html = image_tag( user[ :avatar_file ] , :class => 'avatar' ) if options[ :nolink ]
 		raw inner_html
 	end

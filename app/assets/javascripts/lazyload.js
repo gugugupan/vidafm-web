@@ -17,8 +17,8 @@ function lazyload( url_part , id , page_now )
 			$( "#refresh-link" ) .before( data ) ;
 			$( "#refresh-link" ) .text( "点击显示更多" ) ;
 		}
-        autoWidthPhoto() ;
         avatarShow() ;
+    	arangeImage() ;
 	} ) ;
 	return page_now ; 
 }

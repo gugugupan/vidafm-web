@@ -1,7 +1,6 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require autowidth
 //= require autoresize
 //= require followinglist
 //= require lazyload
@@ -14,10 +13,6 @@
 
 (function($){
 	// LIVE function
-	$( ".thumbnail" ) .live({
-		mouseenter : function() { $( this ) .find( ".thumb_like" ) .fadeIn( "fast" ) ; } , 
-		mouseleave : function() { $( this ) .find( ".thumb_like" ) .fadeOut( "fast" ) ; }
-	}) ;
 	$( "form" ) .live( "submit" , function() { 
 		$( this ) .find( "input,textarea" ) .css( "background-color" , "rgba(0,0,0,0.3)" ) ; 
 	}) ;
@@ -35,7 +30,7 @@
 
 jQuery( function() {
 	avatarShow() ;
-    autoWidthPhoto() ;
+    arangeImage() ;
 	// Login function
 	$( ".login_btn" ) .click( function() {
 		$( "#login_detail" ) .fadeIn( 400 ) ;

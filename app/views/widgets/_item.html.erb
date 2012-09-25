@@ -1,54 +1,26 @@
-<div class="user-story">
-	<div class="user-story-head">
-	<% if show_type == 1 -%>
-		<a class="font0" href="/moments/<%= item[ 'id' ] %>"> 
-			<%= item[ "name" ] %>
-		</a>
-	<% else -%>
-		<div class="header-pic"> 
-		<% if item[ "suggest_reason_users" ] .nil? -%>
-			<%= avatar_tag item[ "user" ] %> 
-			<div style="float:left;margin-left:10px;" class="header-title">
-				<a class="font1" href="/moments/<%= item[ 'id' ] %>">
-					[<%= moment_category( item[ "category" ] ) %>] <%= item[ "name" ] %> 
-				</a>
-				<a class="font2" href="/users/<%= item[ "user" ] [ :id ] %>">
-					<%= item[ "user" ] [ :name ] %> 
-				</a>
-				<div class="clearfix"> </div>
+<% is_left = ( item_counter % 2 == 0 ) -%>
+<div class="feed">
+	<div class="mlcontainer <%= is_left ? "feed_left" : "feed_right"%>"> <!-- mlcontainer star -->
+		<div class="mlbox">
+			<%= render :partial => "widgets/pic" , :collection => item[ "items" ] [ 0 , 3 ] %>
+			<div class="mlinfo">
+				<p class="mltitle">#<%= moment_category item[ "category" ] %> <%= item[ "name" ] %> </p>
+				<div class="mldata">
+					<p class="mllike"> <%= item[ "likes_count" ] %> </p>
+					<p class="mlnumber"> <%= item[ "items_count" ] %> </p>
+					<p class="mltime"> <%= time_ago_now( item[ "created_at" ] ) %> </p>
+					<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
-		<% else -%>
-			<%= avatar_tag item[ "suggest_reason_users" ] [ 0 ] %> 
-			<div style="float:left;margin-left:10px;" class="header-title">
-				<a class="font1" href="/moments/<%= item[ 'id' ] %>">
-					<% if item[ "suggest_reason" ] == "liked" -%>
-						<%= item[ "suggest_reason_names" ] + " 喜欢了 " %>
-					<% else -%>
-						<%= item[ "suggest_reason_names" ] + " 新建了故事 " %>
-					<% end -%>
-					[<%= moment_category( item[ "category" ] ) %>] <%= item[ "name" ] %> 
-				</a>
-				<a class="font2" href="/users/<%= item[ "suggest_reason_users" ] [ 0 ] [ :id ] %>">
-					<%= item[ "suggest_reason_users" ] [ 0 ] [ :name ] %> 
-				</a>
-				<div class="clearfix"> </div>
-			</div>
-		<% end -%>
+			<div class="clearfix"></div>
 		</div>
+	<% if is_left -%>
+		<%= image_tag "images/mlarrow_right.png" , :class => "mlarrow mlarrow_right" %>
+	<% else -%>
+		<%= image_tag "images/mlarrow_left.png" , :class => "mlarrow mlarrow_left" %>
 	<% end -%>
-	<% item[ "photo_count" ] = 0 if item[ "photo_count" ] .nil? -%>
-	<% if item[ "photo_count" ] > 3 -%>
-		<a class="btn_round" href="/moments/<%= item[ 'id' ] %>">
-			照片 <%= item[ "photo_count" ] %>
-		</a>
-	<% end -%>
-		<div class="clearfix"> </div>
-	</div>
-
-	<div class="photo-row">
-		<%= render :partial => "widgets/pic", :collection => item['items'] [ 0 , 1 ] , :locals => { :first => true , :date => item['modified_at'] [ 0 .. 9 ] } %>
-		<%= render :partial => "widgets/pic", :collection => item['items'] [ 1 , 2 ] , :locals => { :first => false } %>
-		<div class="clearfix"> </div>
-	</div>
+	</div><!-- mlcontainer end -->
+	<%= avatar_tag item[ "user" ] , :class => is_left ? "feed_left" : "feed_right" %>
+	<div class="clearfix"> </div>
 </div>
-
