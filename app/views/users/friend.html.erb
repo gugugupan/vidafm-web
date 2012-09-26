@@ -13,7 +13,7 @@
  			<div class="clearfix"> </div>
  		</div>
  		<div id="following-list">
- 			<%= render :partial => "widgets/item" , :collection => @moment , :locals => { :show_type => 2 } %>
+ 			<%= render :partial => "widgets/timeline" , :object => @moment , :locals => { :show_type => "user" } %>
  			<div class="clearfix"> </div>
  		</div>
  	<% if @moment .size == 0 -%>

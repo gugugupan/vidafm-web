@@ -52,7 +52,7 @@
 
         <div id="pic-block">
             <%= render :partial => "pic" , :collection => @moment[ "items" ] , :locals => { :category => @moment[ "category" ] } %>
-            <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
+            <a id="refresh-link" class="mouse" style="width:100%;margin-left:0;" href=javascript:goLazyLoad()>点击显示更多</a>
             <div class="clearfix"> </div>
         </div>
 

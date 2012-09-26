@@ -23,21 +23,11 @@ $( document ) .ready( function () {
 					<p class="super-text">
 						<%= moment[ "name" ] %>
 					</p>
-					<%= image_tag moment[ "items" ] [ 0 ] [ "photo" ] [ "url_m" ] , :style => "height: auto; width: 100%; margin-top: -82px;" %>
-				</a>
-			<% end -%>
-			<% @official .each() do |moment| -%>
-				<a class="thumb" style="display:none;" href=<%=URI::escape("/discover/public?name=#{moment['name']}")%>>
-					<p class="super-text">
-						<%= moment[ "name" ] %>
-					</p>
-					<%= image_tag moment[ "items" ] [ 0 ] [ "photo" ] [ "url_m" ] , :style => "height: auto; width: 100%; margin-top: -82px;" %>
+					<%= image_tag moment[ "cover_file" ] , :style => "height: auto; width: 100%; margin-top: -82px;" %>
 				</a>
 			<% end -%>
 			</div>
 			<h1 class="ribbon red" style="top:76px;left:188px;z-index:10;"> 本周推荐 </h1>
-			<div style="width:100%;border-bottom:1px solid #D2CFCB;"> </div>
-			<%= render :partial => "widgets/item" , :collection => @moments , :locals => { :show_type => 2 } %>
 			<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix"> </div>

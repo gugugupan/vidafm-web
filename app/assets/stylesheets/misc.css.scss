@@ -36,11 +36,13 @@
 
 a#refresh-link, a#none-link{
 	behavior: url("/assets/PIE.htc");
+	width: 50%;
+	margin-left: 25%;
 	display: block;
-	width: 100%;
 	background-color: rgba(0,0,0,0.3);
 	text-align: center;
 	padding: 10px 0px;
+
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;

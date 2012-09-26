@@ -19,6 +19,7 @@ function lazyload( url_part , id , page_now )
 		}
         avatarShow() ;
     	arangeImage() ;
+    	$("img.lazy").lazyload();
 	} ) ;
 	return page_now ; 
 }

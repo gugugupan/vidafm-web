@@ -24,6 +24,13 @@
 		<%= image_tag "images/mlarrow_left.png" , :class => "mlarrow mlarrow_left" %>
 	<% end -%>
 	</div><!-- mlcontainer end -->
+<% if show_type == "user" -%>
 	<%= avatar_tag item[ "user" ] , :class => is_left ? "feed_left" : "feed_right" %>
+<% else -%>
+	<div class="datebox <%= is_left ? "feed_left" : "feed_right" %>">
+		<p class="month"><%= item[ "created_at" ] [ 0 , 7 ] %></p>
+		<p class="day"><%= item[ "created_at" ] [ 8 , 2 ] %></p>
+	</div>
+<% end -%>
 	<div class="clearfix"> </div>
 </div>

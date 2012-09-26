@@ -4,8 +4,7 @@ class DiscoverController < ApplicationController
   before_filter :save_url_in_cookies
   def index
     data = Moment.hot_story() [ "data" ]
-    @moments = [] #data[ "hottest_moments" ]
-    @official = [] #data[ "public_moments" ]
+    @official = data[ "public_moments" ]
   end
 
   def category
