@@ -1,4 +1,6 @@
 <div id="feed_container">
+	<%= image_tag show_type == "user" ? "icon/icon_feeds.png" : "icon/icon_timeline.png" , 
+		:class => "header_icon" %>
 	<%= render :partial => "widgets/item" , :collection => timeline , :locals => { :show_type => show_type } %>
 	<div class="clearfix"> </div>
 </div>

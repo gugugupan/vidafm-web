@@ -3,6 +3,13 @@
 	position: relative;
 	margin-top: 20px;
 	width: 100%;
+
+	.header_icon {
+		position: absolute;
+		left: 50%;
+		top: -23px;
+		margin-left: -12px;
+	}
 }
 
 .feed {
