@@ -22,7 +22,7 @@ function set_feed_height( i )
     var _last_feed = $( ".feed:eq("+( i - 1 ) +")") ;
     var s = _last_feed .css( "margin-top" ) ;
     var x = Number( s .substring( 0 , s .length - 2 ) ) ;
-    var move = Math .min( _last_feed .height() - 86 , _last_feed .height() + x - 20 ) ;
+    var move = Math .min( _last_feed .height() - 86 , _last_feed .height() + x ) ;
     if ( move > 0 ) move = -move ; else move = 0 ;
     _feed .css( { "margin-top" : move + "px" } ) ;
 }
