@@ -139,6 +139,8 @@ p{
 	border-bottom:1px solid #82010D;
 	height:58px;
 	width:100%;
+	position: fixed;
+	z-index: 255;
 	background-color: #9B1600;
 	background-image: linear-gradient(top, $red 0%, #9B1600 100%);
 	background-image: -o-linear-gradient(top, $red 0%, #9B1600 100%);
