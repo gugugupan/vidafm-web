@@ -32,8 +32,7 @@
  			<div style="float:left;"> <%= avatar_tag @user , :nolink => true %> </div>
  			<h1> <%= @user[ :name ] %> </h1>
  	<% if @current_user %>
- 			<div id="user-info-button"> 				
- 				<%= render :partial => "widgets/filter" , :locals => { :now => params[ :category ] , :data => @user[ :categories ] } %>
+ 			<div id="user-info-button">
                 <%= render :partial => "widgets/followdialogbtn" , :locals => { :user => @user } %>
 				<%= render :partial => "widgets/followingbtn" , :locals => { :tag => @following_tag , :uid => @user[ :id ] , :size => "btn_middle" } %>
  			</div>

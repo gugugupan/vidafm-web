@@ -1,3 +1,8 @@
+<!--
+USAGE:
+render :partial => "widgets/filter" , :locals => { :now => params[ :category ] , :data => @user[ :categories ] }
+-->
+
 <div id="me_filter">
 	<a href="#" id="top_menu">
 		<p><%= moment_category( now ) %></p>
