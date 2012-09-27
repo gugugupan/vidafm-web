@@ -39,7 +39,7 @@ Bluerain::Application.routes.draw do
     get "allcomments", :on => :member 
   end
 
-  resources :activities, :only => [] , :constraints => {:id => /[0-9]+/} do
+  resources :activities, :only => "show" , :constraints => {:id => /[0-9]+/} do
     put "like", :on => :member 
     post "comment", :on => :member
     get "allcomments", :on => :member 

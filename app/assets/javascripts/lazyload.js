@@ -14,8 +14,12 @@ function lazyload( url_part , id , page_now )
 			$( "#refresh-link" ) .removeAttr( "href" ) ;
 		} else
 		{
-			$( "#feed_container" ) .append( data ) ;
-			$( "#feed_container" ) .append( "<div class='clearfix'> </div>" ) ;
+			if ( $( "#feed_container" ) .length > 0 )
+			{
+				$( "#feed_container" ) .append( data ) ;
+				$( "#feed_container" ) .append( "<div class='clearfix'> </div>" ) ;	
+			} else 
+				$( "#refresh-link" ) .before( data ) ;
 			$( "#refresh-link" ) .text( "点击显示更多" ) ;
 		}
         avatarShow() ;
