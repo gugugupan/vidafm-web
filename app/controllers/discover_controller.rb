@@ -13,7 +13,7 @@ class DiscoverController < ApplicationController
   end
 
   def public
-    @moment = Moment.fetch_by_name( params[ :name ] , "latest" ) [ "data" ]
+    @moment = Moment.fetch_by_name( params[ :name ] , "latest" ) [ "data" ] [ "moments" ]
   end
 
   def staruser
