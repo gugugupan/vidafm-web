@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     else
       data = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user )
     end
-    @result = data[ "result" ]
+    @result = notice #data[ "result" ]
     @moments = data[ "data" ]
     save_url_in_cookies
   end
