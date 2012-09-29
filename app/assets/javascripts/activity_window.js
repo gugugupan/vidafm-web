@@ -68,6 +68,7 @@ function showActivityPhoto( activity_url , img_width )
         $( "#activity_detail" ) .append( imageDiv ) ;
         $( "#activity_detail" ) .css( "width"  , $( document ) .width () ) ;
         $( "#activity_detail" ) .css( "height" , $( document ) .height() ) ;
+        $( "#activity_detail_img" ) .css( "max-width" , "1000px" ) ;
         $( "#activity_detail_img" ) .css( "height" , "auto" ) ;
         $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
         $( "#activity_detail_img" ) .css( "left" , ( $( window ) .width() - img_width ) / 2 ) ;

@@ -85,7 +85,7 @@ module MomentsHelper
 			"food" => "美食" ,
 			"misc" => "其他" ,
 			"all" => "所有故事分类" ,
-			"hot" => "精选故事" ,
+			"hot" => "主题活动" ,
 			"staruser" => "星用户" ,
 			"photograph" => "摄影" ,
 			nil => "空" ,

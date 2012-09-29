@@ -61,5 +61,5 @@ Bluerain::Application.configure do
   config.active_support.deprecation = :notify
 
   #config.action_controller.asset_host = "static.vida.fm"
-  config.action_controller.asset_host = "montblanc.vida.fm"
+  config.action_controller.asset_host = "static.vida.fm"
 end
