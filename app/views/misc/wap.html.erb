@@ -26,32 +26,36 @@
 
 		a.head-btn {
 			position:absolute;
-			top:250px;
+			top:388px;
 			margin-left:-141px;
 			left: 50%;
 		}
 
 		a.foot-btn {
 			position:absolute;
-			bottom:-100px;
+			bottom:60px;
 			left:50%;
 			margin-left:-141px;
 		}
 
 		img#bg_pic {
-			position: absolute;
-			top: 0px;
 			width: 100%;
 			z-index: -1;
+			float: left;
+		}
+
+		.clearfix {
+			clear: both;
 		}
 	</style>
 
 </head>
 <body>
 	<div id="main-container">
-		<%= image_tag "wap/image_bg.png" , :id => "bg_pic" %>
-		<%= image_tag "wap/content.png" , :style => "display:block; margin:0px auto;"%>
-		<%= image_tag "wap/icon.png" , :id => "icon" %>
+		<%= image_tag "wap/mobile_web.jpg" , :id => "bg_pic" %>
+		<div class="clearfix"> </div>
+	</div>
+
 	<% if @is_ios -%>
 		<%= link_to "/d/iphone" , :class => "head-btn" do %>
 			<%= image_tag "wap/app_store_download.png" %>
@@ -61,14 +65,14 @@
 			<%= image_tag "wap/android_download.png" %>
 		<% end -%>
 	<% end -%>
-	</div>
-<% if @is_ios -%>
-	<%= link_to "/d/iphone" , :class => "foot-btn" do %>
-		<%= image_tag "wap/app_store_download.png" %>
+
+	<% if @is_ios -%>
+		<%= link_to "/d/iphone" , :class => "foot-btn" do %>
+			<%= image_tag "wap/app_store_download.png" %>
+		<% end -%>
+	<% else -%>
+		<%= link_to "/d/android" , :class => "foot-btn" do %>
+			<%= image_tag "wap/android_download.png" %>
+		<% end -%>
 	<% end -%>
-<% else -%>
-	<%= link_to "/d/android" , :class => "foot-btn" do %>
-		<%= image_tag "wap/android_download.png" %>
-	<% end -%>
-<% end -%>
 </body>

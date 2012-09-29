@@ -60,6 +60,7 @@ function showMap( moment )
 
 function showActivityPhoto( activity_url , img_width )
 {
+    if ( img_width > 1000 ) img_width = 1000 ;
     if ( $( "#activity_detail" ) .length == 0 ) 
     {
         var showDiv = "<div class='need_destroy' id='activity_detail'> </div>" ;
