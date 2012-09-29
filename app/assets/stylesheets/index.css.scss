@@ -152,12 +152,9 @@
 		float: left;
 		width: 245px;
 		height: 151px;
-		margin-right: 10px;
 		margin-bottom: 10px;
-	}
 
-	div.thumbnail {
-		float: left;
+		&:nth-child(odd) { margin-right: 10px; }
 	}
 
 	.thumb_info {

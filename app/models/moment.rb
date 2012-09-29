@@ -27,7 +27,7 @@ class Moment
   end
 
   def self.fetch_by_name( name , sort_type ) 
-    JSON.parse VIDA.call( "moment/search?name=#{ name }&order=#{ sort_type }&limit=20" , nil )
+    JSON.parse VIDA.call( "moment/search?q=#{ name }&order=#{ sort_type }&limit=20" , nil )
   end
 
   def self.hot_story

@@ -8,6 +8,7 @@ VIDA-唯达，记录分享生活中每次精彩，用照片串起你我的生活
 
 <%= content_for :page_specific_asset do %>
 <script type="text/javascript">
+/*
 jQuery( function() {
     var sum = $( "#hidden-place" ) .children() .length ;
     while ( sum > 0 ) 
@@ -82,6 +83,7 @@ jQuery( function() {
     }
     $( "#hot-story-block" ) .append( "<div class='clearfix'> </div>" ) ;
 });
+*/
 </script>
 <% end -%>
 
@@ -140,24 +142,13 @@ jQuery( function() {
     <div class="header-title">
       <%= image_tag "icon/icon_hot_big.png" %>
       <%= link_to "/discover/index" do %>
-        <h1 class="mouse">热门故事</h1>
+        <h1 class="mouse">官方故事</h1>
       <% end -%>
       <div class="clearfix"> </div>
     </div>
-    <div id="hot-story-block"> 
+    <div id="hot-story-block">
+      <%= render :partial => "widgets/hotstory" , :collection => @moments , :locals => { :width => 505 , :height => 258 } %>
     </div>
     <div class="clearfix"> </div>
-  </div>
-
-  <div id="hidden-place" style="display:none;">
-  <% for moment in @moments -%>
-    <div class="thumbnail">
-      <%= link_to image_tag( moment[ "cover_file" ] , :style => "width:100%;margin-top:-125px;") , URI::escape("/discover/public?name=#{moment['name']}") , :class => "thumb" %>
-      <div class="thumb_info">
-        <%= link_to moment[ "name" ] , URI::escape("/discover/public?name=#{moment['name']}") %>
-        <p> <%= moment[ "count_likes" ] %> </p>
-      </div>
-    </div>
-  <% end -%>
   </div>
 </div>

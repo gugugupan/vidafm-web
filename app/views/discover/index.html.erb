@@ -2,14 +2,6 @@
   精选故事 - VIDA（唯达） - 你我的生活轨迹
 <% end -%>
 
-<%= content_for :page_specific_asset do -%>
-<script>
-$( document ) .ready( function () {
-	$( "#slide_show" ) .cycle() ;
-});
-</script>
-<% end -%>
-
 <div id="discover-page">
 	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
 	<div id="main-main-block">
@@ -17,17 +9,9 @@ $( document ) .ready( function () {
 		<div id="main-block">
 			<%= render :partial => "header" , :locals => { :name => "hot" , :titleimg =>"icon/icon_feature_big.png" , :sortbtn => nil } %>
 			<div style="width:100%;border-top:1px dashed white;"> </div>
-			<div class="thumbnail" style="width:100%;height:300px;margin:15px 0;" id="slide_show">
-			<% @official .each() do |moment| -%>
-				<a class="thumb" style="display:none;" href=<%=URI::escape("/discover/public?name=#{moment['name']}")%>>
-					<p class="super-text">
-						<%= moment[ "name" ] %>
-					</p>
-					<%= image_tag moment[ "cover_file" ] , :style => "height: auto; width: 100%; margin-top: -82px;" %>
-				</a>
-			<% end -%>
+    		<div id="hot-story">
+				<%= render :partial => "widgets/hotstory" , :collection => @official , :locals => { :width => 422 , :height => 212 } %>
 			</div>
-			<h1 class="ribbon red" style="top:76px;left:188px;z-index:10;"> 本周推荐 </h1>
 			<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix"> </div>

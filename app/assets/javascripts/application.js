@@ -6,8 +6,6 @@
 //= require lazyload
 //= require activity_window
 
-//= require blur.js
-//= require jquery.cycle.lite
 //= require jquery.lazyload
 //= require video
 
