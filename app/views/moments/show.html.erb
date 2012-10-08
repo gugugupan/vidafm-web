@@ -27,7 +27,7 @@
 
         // pre show <- fix #148
         <% unless notice .nil? -%>
-            activity = <%= raw notice .to_json %> ;
+            activity = <%= raw @activity .to_json %> ;
             if ( activity .activity_type == 1 )
                 showActivityPhoto( activity .photo .url_l , activity .photo .width ) ;
             else 

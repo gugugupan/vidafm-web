@@ -2,8 +2,7 @@ class ActivitiesController < ApplicationController
 	def show
 		data = Moment.fetch( nil, current_user , { :activity_id => params[ :id ] , :page => 0 , :page_size => 1 } ) 
     	render "misc/error" and return if data[ 'result' ] == 1 
-		activity = data[ "data" ] [ "items" ] [ 0 ]
-		redirect_to "/moments/#{ activity[ "moment_id" ] }" , :notice => activity 
+		redirect_to "/moments/#{ data[ "data" ] [ "items" ] [ 0 ] [ "moment_id" ] }" , :notice => params[ :id ]
 	end
 
 	def like 
