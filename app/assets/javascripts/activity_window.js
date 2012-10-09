@@ -1,22 +1,34 @@
+function beginTheatre()
+{
+    $( "body" ) .css( "overflow" , "hidden" ) ;
+    $( "#theatre" ) .css( "top" , $( window ) .scrollTop() ) ;
+    $( "#theatre" ) .css( "width"  , $( window ) .width () ) ;
+    $( "#theatre" ) .css( "height" , $( window ) .height() ) ;
+    $( "#theatre" ) .fadeIn( 300 ) ;
+}
+
+function destroyTheatre()
+{
+    $( "#theatre" ) .fadeOut( 500 ) ;
+    setTimeout( function() { 
+        $( "#theatre" ) .text( '<div class="theatre_blank"> </div>' ) ; 
+        $( "body" ) .css( "overflow" , "scroll" ) ;
+    } , 500 ) ;
+}
+
 function showMap( moment )
 {
     var lat = moment .lat ;
     var lng = moment .lng ;
     if ( lat != 0 || lng != 0 )
     {
-        var showDiv = "<div class='need_destroy' id='activity_detail'> </div>" ;
         var mapDiv = "<div id='map'> </div>"
-        $( "body" ) .append( showDiv ) ;
-        $( "#activity_detail" ) .append( mapDiv ) ;
-        $( "#activity_detail" ) .css( "width"  , $( document ) .width () ) ;
-        $( "#activity_detail" ) .css( "height" , $( document ) .height() ) ;
+        $( "#theatre" ) .append( mapDiv ) ;
         $( "#map" ) .css( "left" , ( $( window ) .width() - 800 ) / 2 ) ;
         $( "#map" ) .css( "top" , $( window ) .height() * 0.025 + $( window ) .scrollTop() ) ;
-        $( "#activity_detail" ) .fadeIn( 1000 ) ;
+        beginTheatre() ;
 
-        $( "#activity_detail" ) .click( function() {
-            destroyDialog( 1 ) ;
-        }) ;
+        $( "#theatre" ) .click( destroyTheatre() ) ;
         $( "#map" ) .click( function( event ) {
             event .stopPropagation() ;
         }) ;
@@ -61,42 +73,28 @@ function showMap( moment )
 function showActivityPhoto( activity_url , img_width )
 {
     if ( img_width > 1000 ) img_width = 1000 ;
-    if ( $( "#activity_detail" ) .length == 0 ) 
-    {
-        var showDiv = "<div class='need_destroy' id='activity_detail'> </div>" ;
-        var imageDiv = "<img src=" + activity_url + " id='activity_detail_img'>" ;
-        $( "body" ) .append( showDiv ) ;
-        $( "#activity_detail" ) .append( imageDiv ) ;
-        $( "#activity_detail" ) .css( "width"  , $( document ) .width () ) ;
-        $( "#activity_detail" ) .css( "height" , $( document ) .height() ) ;
-        $( "#activity_detail_img" ) .css( "max-width" , "1000px" ) ;
-        $( "#activity_detail_img" ) .css( "height" , "auto" ) ;
-        $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
-        $( "#activity_detail_img" ) .css( "left" , ( $( window ) .width() - img_width ) / 2 ) ;
-        $( "#activity_detail_img" ) .css( "top" , $( window ) .height() * 0.05 + $( window ) .scrollTop() ) ;
-        $( "#activity_detail" ) .fadeIn( 300 ) ;
+    var imageDiv = "<img src=" + activity_url + " id='activity_detail_img'>" ;
+    $( "#theatre" ) .prepend( imageDiv ) ;
+    $( "#activity_detail_img" ) .css( "max-width" , "1000px" ) ;
+    $( "#activity_detail_img" ) .css( "height" , "auto" ) ;
+    $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
+    $( "#activity_detail_img" ) .css( "left" , ( $( window ) .width() - img_width ) / 2 ) ;
+    beginTheatre() ;
 
-        $( "#activity_detail" ) .click( function() {
-            destroyDialog( 1 ) ;
-        }) ;
-    }
+    $( "#theatre" ) .click( destroyTheatre ) ;
 }
 
 function showActivityVideo( video )
 {
     if ( video .playable )
     {
-        var showDiv = "<div class='need_destroy' id='activity_detail'> </div>" ;
         var videoDiv = '<video id="my_video_1" class="video-js vjs-default-skin"\
         controls preload="auto" width="648" height="648" poster="">\
             <source src="' + video .url_iphone + '" type="video/mp4">\
         </video>' ;
 
-        $( "body" ) .append( showDiv ) ;
-        $( "#activity_detail" ) .append( videoDiv ) ;
-        $( "#activity_detail" ) .css( "width"  , $( document ) .width () ) ;
-        $( "#activity_detail" ) .css( "height" , $( document ) .height() ) ;
-        $( "#activity_detail" ) .fadeIn( 300 ) ;
+        $( "#theatre" ) .prepend( videoDiv ) ;
+        beginTheatre ;
 
         _V_("my_video_1", { "controls": true, "preload": "auto" }, function(){
         });
@@ -104,9 +102,7 @@ function showActivityVideo( video )
         $( "#my_video_1" ) .css( "left" , ( $( window ) .width() - 648 ) / 2 ) ;
         $( "#my_video_1" ) .css( "top" , $( window ) .height() * 0.05 + $( window ) .scrollTop() ) ;
 
-        $( "#activity_detail" ) .click( function() {
-            destroyDialog( 1 ) ;
-        }) ;
+        $( "#theatre" ) .click( destroyTheatre ) ;
         $( "#my_video_1" ) .click( function( event ) {
             event .stopPropagation() ;
         }) ;
