@@ -94,13 +94,12 @@ function showActivityVideo( video )
         </video>' ;
 
         $( "#theatre" ) .prepend( videoDiv ) ;
-        beginTheatre ;
+        beginTheatre() ;
 
         _V_("my_video_1", { "controls": true, "preload": "auto" }, function(){
         });
 
         $( "#my_video_1" ) .css( "left" , ( $( window ) .width() - 648 ) / 2 ) ;
-        $( "#my_video_1" ) .css( "top" , $( window ) .height() * 0.05 + $( window ) .scrollTop() ) ;
 
         $( "#theatre" ) .click( destroyTheatre ) ;
         $( "#my_video_1" ) .click( function( event ) {
