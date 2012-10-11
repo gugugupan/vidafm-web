@@ -43,7 +43,6 @@ p{
 
 /*avatar*/
 .avatar {
-	behavior: asset-url("PIE.htc",htc);
 	height:40px;
 	width:40px;
 
@@ -238,7 +237,6 @@ p{
 
 /*btn*/
 @mixin btn($top_color, $hover_top_color, $bottom_color, $hover_bottom_color, $shadow_color, $v_shadow, $blur, $shadow_alpha, $inset_alpha, $text-shadow, $v_text_shadow, $text_shadow_alpha) {
-	behavior: asset-url("PIE.htc",htc);
 
 	position:relative;
 
@@ -311,7 +309,6 @@ p{
 }
 
 .btn_big {
-	behavior: asset-url("PIE.htc",htc);
 	border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -321,7 +318,6 @@ p{
 }
 
 .btn_middle {
-	behavior: asset-url("PIE.htc",htc);
 	border-radius: 8px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
@@ -333,7 +329,6 @@ p{
 }
 
 .btn_small {
-	behavior: asset-url("PIE.htc",htc);
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -385,7 +380,6 @@ p{
 }
 
 .btn_round {
-	behavior: asset-url("PIE.htc",htc);
 	background-repeat:no-repeat;
 	background-position:3px center;
 	border:2px solid #D2CFCB;
@@ -414,7 +408,6 @@ p{
 	}
 
 	&:active {
-		behavior: asset-url("PIE.htc",htc);
 		background-color:#666666;
 		background-position:5px center;
 		border:none;
@@ -433,7 +426,6 @@ p{
 
 /*login btn*/
 #login {
-	behavior: asset-url("PIE.htc",htc);
 	border:2px solid #d8d8d8;
 	border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -502,7 +494,6 @@ p{
 
 /*popup container*/
 .popup_container {
-	behavior: asset-url("PIE.htc",htc);
 	@include btn(#414042, #282828, #1e1e1e, #000000, 0, 1px, 3px, 0.8, 0.3, 0, 2px, 0.8);
 	border:1px solid #000000;
 	border-radius: 8px;
@@ -637,7 +628,6 @@ p{
 	width:350px;
 
 	.tab {
-		behavior: asset-url("PIE.htc",htc);
 		border-radius: 6px;
 		-moz-border-radius: 6px;
 		-webkit-border-radius: 6px;
@@ -757,7 +747,6 @@ p{
 			}
 
 			.message_thumbnail {
-				behavior: asset-url("PIE.htc",htc);
 				@extend .avatar;
 				height:75px;
 				width:75px;
@@ -782,7 +771,6 @@ p{
 
 /*photos*/
 .feature_user {
-	behavior: asset-url("PIE.htc",htc);
 	&:first-child { margin-left: 0px; }
 	margin-left: 10px;
 	background-color:$white;
@@ -911,7 +899,6 @@ p{
 	}
 
 	.avatar {
-		behavior: asset-url("PIE.htc",htc);
 		border:2px solid #ffffff;
 		box-shadow:0px 1px 6px rgba(0,0,0,.3);
 		-moz-box-shadow:0px 1px 6px rgba(0,0,0,.3);
@@ -955,7 +942,6 @@ p{
 }
 
 .thumbnail {
-	behavior: asset-url("PIE.htc",htc);
 	height:236px;
 	position:relative;
 
@@ -968,7 +954,6 @@ p{
 	-webkit-box-shadow:0px 1px 6px rgba(0,0,0,.3);
 	
 	.thumb {
-		behavior: asset-url("PIE.htc",htc);
 		height:100%;
 		width:100%;
 		overflow:hidden;
@@ -1030,7 +1015,6 @@ p{
 }
 
 .story_container {
-	behavior: asset-url("PIE.htc",htc);
 	background-color:$white;
 	border-radius: 12px;
 	-moz-border-radius: 12px;
@@ -1069,7 +1053,6 @@ p{
 		}
 
 		#map {
-			behavior: asset-url("PIE.htc",htc);
 			height:308px;
 			width:418px;
 			overflow:hidden;
