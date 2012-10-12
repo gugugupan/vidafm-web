@@ -2,7 +2,7 @@
 	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
 <% else -%>
 	<% data = @result[ "data" ] [ "comments" ] -%>	
-	var text = "<%= j render :partial => 'moments/comment' , :object => data[ 4 ] %>" ;
+	var text = "<%= j render :partial => 'moments/comment' , :object => data[ data .size - 1 ] %>" ;
 	var num = <%= params[ :id ] %> ;
 	var $selector = $( "#comment-block" ) ;
 	$selector .find( ".none_comment" ) .remove() ;
