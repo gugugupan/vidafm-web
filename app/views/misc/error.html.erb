@@ -1,8 +1,17 @@
-<%= content_for :title do %>
-  你迷路了？
-<% end -%>
-<%= content_for :page_specific_asset do %>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>你迷路了？</title>
+</head>
+<%= stylesheet_link_tag "application" %>
+<%= javascript_include_tag "application" %>
 <style type="text/css">
+    body {
+        background-image: url(/assets/images/bg.png);
+        overflow: hidden;
+        margin: 0;
+    }
     #code {
         font-family: helvetica;
         font-size: 50px;
@@ -18,8 +27,8 @@
         margin: 0 auto;
     }    
     #img {
-    	display: block;
-        margin: 100px auto 20px;
+        display: block;
+        margin: 180px auto 20px;
     }
     a#back {
         color: #E5253D;
@@ -28,8 +37,14 @@
         float: right;
     }
 </style>
+<body>
+    <%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
+    <img id="img" src="/assets/share/404.png">
+    <div id="text">什么都没发生，你什么都没看见  <a id="back" href="/"> 点击返回首页</a></div>
+    <div class="clearfix"></div>
+    
+<% unless @current_user -%>
+    <%= render :partial => "widgets/login" %>
 <% end -%>
-<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
-<img id="img" src="/assets/share/404.png">
-<div id="text">什么都没发生，你什么都没看见  <a id="back" href="/"> 点击返回首页</a></div>
-<div class="clearfix"></div>
+</body>
+</html>

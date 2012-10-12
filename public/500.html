@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>VIDA出错啦！</title>
+    <meta charset="UTF-8">
+    <title>VIDA出错啦！</title>
 </head>
 <style type="text/css">
     body {
-        background-image: url(/assets/share/404_bg.jpg);
+        background-image: url(/assets/images/bg.png);
         overflow: hidden;
         margin: 0;
     }
@@ -20,26 +20,24 @@
     }
     #text {
         font-size: 12px;
-        color: white;
-        width: 280px;
+        color: black;
+        width: 284px;
         margin: 0 auto;
+    }    
+    #img {
+        display: block;
+        margin: 220px auto 20px;
     }
-    a {
+    a#back {
         color: #E5253D;
-    }
-
-    #wrapper {
-        margin-top: -250px;
-        position: absolute;
-        z-index: -1;
-        width: 2000px;
-        height: 2000px; 
-        background-image: url(/assets/people/bit_mask.png);
+        display: block;
+        margin: 0 auto;
+        float: right;
     }
 </style>
 <body>
-    <div id="wrapper"></div>
-    <div id="code">500</div>
-    <div id="text">程序居然出错了，WebDev蹲墙角去... <a href="/"> 点击返回首页</a></div>
+    <img id="img" src="/assets/share/500.png">
+    <div id="text">程序居然出错了，WebDev蹲墙角去..<a id="back" href="/"> 点击返回首页</a></div>
+    <div class="clearfix"></div>
 </body>
 </html>
