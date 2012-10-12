@@ -1,15 +1,8 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>VIDA迷路啦。</title>
-</head>
+<%= content_for :title do %>
+  你迷路了？
+<% end -%>
+<%= content_for :page_specific_asset do %>
 <style type="text/css">
-    body {
-        background-image: url(/assets/share/404_bg.jpg);
-        overflow: hidden;
-        margin: 0;
-    }
     #code {
         font-family: helvetica;
         font-size: 50px;
@@ -20,29 +13,23 @@
     }
     #text {
         font-size: 12px;
-        color: white;
+        color: black;
         width: 250px;
         margin: 0 auto;
     }    
     #img {
     	display: block;
-        margin: 200px auto 20px;
+        margin: 100px auto 20px;
     }
-    a {
+    a#back {
         color: #E5253D;
-    }
-
-    #wrapper {
-        margin-top: -250px;
-        position: absolute;
-        z-index: -1;
-        width: 2000px;
-        height: 2000px; 
-        background-image: url(/assets/people/bit_mask.png);
+        display: block;
+        margin: 0 auto;
+        float: right;
     }
 </style>
-<body>
-    <img id="img" src="/assets/share/404.png">
-    <div id="text">什么都没发生，你什么都没看见, <a href="/"> 点击返回首页</a></div>
-</body>
-</html>
+<% end -%>
+<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
+<img id="img" src="/assets/share/404.png">
+<div id="text">什么都没发生，你什么都没看见  <a id="back" href="/"> 点击返回首页</a></div>
+<div class="clearfix"></div>

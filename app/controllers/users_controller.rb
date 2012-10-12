@@ -2,7 +2,7 @@
 class UsersController < ApplicationController  
   def show
     data = User.fetch( params[:id] , current_user )
-    render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1 
+    render "misc/error" and return if data[ "result" ] == 1 
     @user = data[ "data" ] .symbolize_keys
     @following_tag = get_relation_btn( @user[ :relation ] ) 
     if params[ :category ] .nil?

@@ -1,7 +1,7 @@
 class MomentsController < ApplicationController
   def show
     data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 5 )
-    render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1 
+    render "misc/error" and return if data[ 'result' ] == 1 
     redirect_to( user_url(data['data']['user_id']) , :notice => 401 ) and return if data[ 'result' ] == 401 
     @activity = Moment.fetch( nil, current_user , { :activity_id => notice , :page => 0 , :page_size => 1 } ) [ "data" ] [ "items" ] [ 0 ] unless notice .nil?
     @moment = data[ "data" ]
