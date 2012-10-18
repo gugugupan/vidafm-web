@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  <%= get_name( @moment ) %>VIDA（唯达） - 你我的生活轨迹
+  <%= get_name( @moment ) %>Vida（微达） - 你我的生活轨迹
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
@@ -45,7 +45,7 @@
 <% unless @current_user -%>
             <div href="/" id="download-place">
                 <p class="font1"> <%= @moment[ "user" ] [ "name" ] %>正在使用 </p>
-                <p class="red_font">VIDA</p>
+                <p class="red_font">Vida</p>
                 <p class="font1"> 记录生活,下载手机客户端.</p>
                 <%= render :partial => "widgets/download_bar" %>
             </div>
@@ -64,7 +64,7 @@
         <% if @moment[ "items_count" ] > 5 -%>
             <a id="refresh-link" class="mouse" style="width:100%;margin-left:0;" href=javascript:goLazyLoad()>点击显示更多</a>
         <% else -%>
-            <a id="refresh-link" style="width:100%;margin-left:0;">TA没有更多照片和故事了</a>
+            <a id="refresh-link" style="width:100%;margin-left:0;">没有更多了</a>
         <% end -%>
             <div class="clearfix"> </div>
         </div>

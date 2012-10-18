@@ -3,7 +3,7 @@
 	<div class="mlcontainer <%= is_left ? "feed_left" : "feed_right"%>"> <!-- mlcontainer star -->
 		<div class="mlbox">
 			<div class="image_container">
-				<%= render :partial => "widgets/pic" , :collection => item[ "items" ] [ 0 , 3 ] %>
+				<%= render :partial => "widgets/pic" , :collection => item[ "items" ] [ [ 0 , item[ "items" ] .size - 3 ] .max , 3 ] .reverse %>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="mlinfo">
