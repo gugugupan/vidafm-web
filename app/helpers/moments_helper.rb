@@ -101,4 +101,11 @@ module MomentsHelper
 	def time_ago_now( time_str )
 		time_ago_in_words Time.parse( time_str )
 	end
+
+	def moment_name( item )
+		if item[ "category" ] = "random" and item[ "name" ] .empty?
+			item[ "name" ] = "#{ item[ 'created_at' ] [ 5 , 2 ] }月#{ item[ 'created_at' ] [ 8 , 2 ]}日" 
+		end
+		item[ "name" ]
+	end
 end
