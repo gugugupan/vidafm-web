@@ -1,5 +1,6 @@
 <%= content_for :title do %>
-  <%= get_name( @moment ) %>Vida（微达） - 你我的生活轨迹
+    <% moment_name @moment %>
+    <%= get_name( @moment ) %>Vida（微达） - 你我的生活轨迹
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
@@ -53,7 +54,7 @@
             <div id="download-place-blank"> </div>
 <% end -%>
             <%= render :partial => "header" , :locals => { :moment => @moment } %>
-            <% #render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] , :name => @moment[ 'name' ] } %>
+            <%= render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] , :name => @moment[ 'name' ] } %>
             <div class="clearfix"> </div>
         </div>
 

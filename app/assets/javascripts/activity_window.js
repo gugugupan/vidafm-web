@@ -18,20 +18,30 @@ function destroyTheatre()
 
 function showMap( moment )
 {
-    var lat = moment .lat ;
-    var lng = moment .lng ;
+    var lat = 0 ;
+    var lng = 0 ;
+    var count = 0 ;
+    for ( var i = 0 ; i < moment .items .length ; i ++ )
+        if ( moment .items[ i ] .lat != 0 || moment .items[ i ] .lng != 0 )
+        {
+            lat = lat + moment .items[ i ] .lat ;
+            lng = lng + moment .items[ i ] .lng ;
+            count = count + 1 ;
+        }
+    lat = lat / count ;
+    lng = lng / count ;
+
     if ( lat != 0 || lng != 0 )
     {
         var mapDiv = "<div id='map'> </div>"
-        $( "#theatre" ) .append( mapDiv ) ;
+        $( "#theatre" ) .prepend( mapDiv ) ;
         $( "#map" ) .css( "left" , ( $( window ) .width() - 800 ) / 2 ) ;
-        $( "#map" ) .css( "top" , $( window ) .height() * 0.025 + $( window ) .scrollTop() ) ;
         beginTheatre() ;
 
-        $( "#theatre" ) .click( destroyTheatre() ) ;
         $( "#map" ) .click( function( event ) {
             event .stopPropagation() ;
         }) ;
+        //$( "#theatre" ) .click( destroyTheatre() ) ;
 
         var options = {
             size : GSize(lat, lng) , 
