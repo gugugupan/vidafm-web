@@ -7,6 +7,14 @@ function beginTheatre()
     $( "#theatre" ) .fadeIn( 300 ) ;
 }
 
+function new_close_button( $insert_div )
+{
+    $insert_div .append( "<div id='close_button' class='mouse'> </div>" ) ;
+    $insert_div .mouseover( function() { $( "#close_button" ) .fadeIn( 300 ) } ) ;
+    $insert_div .mouseleave( function() { $( "#close_button" ) .fadeOut( 300 ) } ) ;
+    $( "#close_button" ) .click( destroyTheatre ) ;
+}
+
 function destroyTheatre()
 {
     $( "#theatre" ) .fadeOut( 500 ) ;
@@ -76,9 +84,7 @@ function showMap( moment )
             var nMarker = new GMarker( npoint , nIcon ) ;
             map .addOverlay( nMarker ) ;
         }
-
-        $( "#map" ) .append( "<div id='close_button' class='mouse'> </div>" ) ;
-        $( "#close_button" ) .click( destroyTheatre ) ;
+        new_close_button( $( "#map" ) ) ;
     }
 }
 
@@ -92,8 +98,7 @@ function showActivityPhoto( activity_url , img_width )
     $( "#image_div" ) .css( "width" , img_width ) ;
     beginTheatre() ;
 
-    $( "#image_div" ) .append( "<div id='close_button' class='mouse'> </div>" ) ;
-    $( "#close_button" ) .click( destroyTheatre ) ;
+    new_close_button( $( "#image_div" ) ) ;
 }
 
 function showActivityVideo( video )
@@ -112,6 +117,7 @@ function showActivityVideo( video )
         $( "#my_video_1" ) .css( "left" , ( $( window ) .width() - 648 ) / 2 ) ;
 
         $( "#my_video_1" ) .append( "<div id='close_button' class='mouse'> </div>" ) ;
+        $( "#close_button" ) .fadeIn( 0 ) ;
         $( "#close_button" ) .click( destroyTheatre ) ;
     } else
     {
