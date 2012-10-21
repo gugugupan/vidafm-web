@@ -71,6 +71,10 @@ class ApplicationController < ActionController::Base
   end
 
   def get_notification_sentence( noti ) 
+    if noti[ 'moment' ][ "category" ] = "random" and noti[ 'moment' ][ "name" ] .empty?
+      noti[ 'moment' ][ "name" ] = "#{ noti[ 'moment' ][ 'created_at' ] [ 5 , 2 ] }月#{ noti[ 'moment' ][ 'created_at' ] [ 8 , 2 ]}日随拍" 
+    end
+
     if noti[ "notification_type" ] == 1 
       return "喜欢您的照片" if noti[ "activity" ] [ "activity_type" ] == 1 ;
       return "喜欢您的视频" if noti[ "activity" ] [ "activity_type" ] == 3 ;
