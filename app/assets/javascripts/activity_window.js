@@ -11,7 +11,7 @@ function destroyTheatre()
 {
     $( "#theatre" ) .fadeOut( 500 ) ;
     setTimeout( function() { 
-        $( "#theatre" ) .text( '<div class="theatre_blank"> </div>' ) ; 
+        $( "#theatre" ) .html( '<div class="theatre_blank"> </div>' ) ; 
         $( "body" ) .css( "overflow" , "scroll" ) ;
     } , 500 ) ;
 }
@@ -60,7 +60,6 @@ function showMap( moment )
         map .enableContinuousZoom() ;
         map .enableScrollWheelZoom() ;
         map .addControl( new GLargeMapControl() ) ;
-        map .addControl( new GMapTypeControl() ) ;
         map .addControl( new GScaleControl() ) ;
         map .addOverlay( myMarker ) ;
 
@@ -77,21 +76,24 @@ function showMap( moment )
             var nMarker = new GMarker( npoint , nIcon ) ;
             map .addOverlay( nMarker ) ;
         }
+
+        $( "#map" ) .append( "<div id='close_button' class='mouse'> </div>" ) ;
+        $( "#close_button" ) .click( destroyTheatre ) ;
     }
 }
 
 function showActivityPhoto( activity_url , img_width )
 {
-    if ( img_width > 1000 ) img_width = 1000 ;
-    var imageDiv = "<img src=" + activity_url + " id='activity_detail_img'>" ;
+    var imageDiv = "<div id=image_div> <img src=" + activity_url + " id='activity_detail_img'> </div>" ;
     $( "#theatre" ) .prepend( imageDiv ) ;
     $( "#activity_detail_img" ) .css( "max-width" , "1000px" ) ;
     $( "#activity_detail_img" ) .css( "height" , "auto" ) ;
     $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
-    $( "#activity_detail_img" ) .css( "left" , ( $( window ) .width() - img_width ) / 2 ) ;
+    $( "#image_div" ) .css( "width" , img_width ) ;
     beginTheatre() ;
 
-    $( "#theatre" ) .click( destroyTheatre ) ;
+    $( "#image_div" ) .append( "<div id='close_button' class='mouse'> </div>" ) ;
+    $( "#close_button" ) .click( destroyTheatre ) ;
 }
 
 function showActivityVideo( video )
@@ -106,15 +108,11 @@ function showActivityVideo( video )
         $( "#theatre" ) .prepend( videoDiv ) ;
         beginTheatre() ;
 
-        _V_("my_video_1", { "controls": true, "preload": "auto" }, function(){
-        });
-
+        _V_("my_video_1", { "controls": true, "preload": "auto" }, function(){});
         $( "#my_video_1" ) .css( "left" , ( $( window ) .width() - 648 ) / 2 ) ;
 
-        $( "#theatre" ) .click( destroyTheatre ) ;
-        $( "#my_video_1" ) .click( function( event ) {
-            event .stopPropagation() ;
-        }) ;
+        $( "#my_video_1" ) .append( "<div id='close_button' class='mouse'> </div>" ) ;
+        $( "#close_button" ) .click( destroyTheatre ) ;
     } else
     {
         showCenterBox( "视频处理中,请稍后再试." ) ;

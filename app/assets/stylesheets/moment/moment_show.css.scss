@@ -132,12 +132,18 @@
 	overflow-y: scroll;
 	padding-top: 20px;
 
-	#activity_detail_img {
-		position: relative;
+	#image_div {
 		border: 10px white solid;
+		position: relative;
+		margin: 0 auto;
+
+		#activity_detail_img {
+			position: relative;
+		}
 	}
 
 	#my_video_1 {
+		border: 10px white solid;
 		position: relative;
 	}
 
@@ -151,6 +157,15 @@
 		width: 100%;
 		height: 30px;
 		position: relative;
+	}
+
+	#close_button {
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		background:white image-url("icon/icon_close.png") no-repeat left center;
 	}
 }
 
