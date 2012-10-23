@@ -1,0 +1,21 @@
+<%= content_for :title do %>
+	商务合作 - Vida（微达） - 你我的生活轨迹
+<% end -%>
+
+ <%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
+<div id="business_body">
+	<div id="pic_body">
+		<div id="cover"></div>
+		<div id="sign">
+			<p>商务合作、媒体广告</p>
+			<div class="btn_middle btn_blue">
+				Jingxiang.shan@moregg.com
+			</div>
+		</div>
+		<%= image_tag "business_cooperate/1.png" , :class => "pic" %>
+		<%= image_tag "business_cooperate/2.png" , :class => "pic" %>
+		<%= image_tag "business_cooperate/3.png" , :class => "pic" %>
+		<%= image_tag "business_cooperate/4.png" , :class => "pic" %>
+	</div>
+	<%= image_tag "business_cooperate/5.png" , :id => "pic_last" %>
+</div>

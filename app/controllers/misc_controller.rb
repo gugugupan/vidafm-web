@@ -32,4 +32,8 @@ class MiscController < ApplicationController
     @message[ "read" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
     render "misc/notificationlist" , :layout => false 
   end
+
+  def business
+    render :layout => "application_nofooter"
+  end
 end

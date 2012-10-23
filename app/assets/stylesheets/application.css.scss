@@ -5,17 +5,19 @@
  *= require css_reset
  *= require screen
  *= require index
- *= require user/user_show
  *= require discover
- *= require moment/moment_show
+ *= require misc
+ *= require user/user_show
  *= require user/friend_show
+ *= require moment/moment_show
+ *= require moment/comment_form
+ *= require moment/timeline
  *= require widgets/_login
  *= require widgets/_cover
- *= require misc
+
  *= require android_download
- *= require moment/comment_form
  *= require about
- *= require moment/timeline
+ *= require business
 
  *= require video-js
 */
