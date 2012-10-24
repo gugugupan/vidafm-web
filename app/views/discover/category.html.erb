@@ -3,16 +3,7 @@
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
-<script type="text/javascript">
-jQuery( function() {
-	var type = "<%= params[ :sort_type ] %>" ;
-	$( "#" + type ) .css({
-		"background-color" : "rgba(0,0,0,0.3)" ,
-		"color" : "white" ,
-		"text-shadow" : "none" 
-	}) ;
-});
-</script>
+	<%= render :partial => "dark_sort_type" , :locals => { :sort_type => params[ :sort_type ] } %>
 <% end -%>
 
 <div id="discover-page">

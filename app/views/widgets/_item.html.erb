@@ -28,8 +28,8 @@
 	<%= avatar_tag item[ "user" ] , :class => is_left ? "feed_left" : "feed_right" %>
 <% else -%>
 	<div class="datebox <%= is_left ? "feed_left" : "feed_right" %>">
-		<p class="month"><%= item[ "created_at" ] [ 0 , 7 ] %></p>
-		<p class="day"><%= item[ "created_at" ] [ 8 , 2 ] %></p>
+		<p class="month"><%= item[ "me_modified_at" ] [ 0 , 7 ] %></p>
+		<p class="day"><%= item[ "me_modified_at" ] [ 8 , 2 ] %></p>
 	</div>
 <% end -%>
 	<div class="clearfix"> </div>

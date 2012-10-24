@@ -2,12 +2,16 @@
   Vida（微达） - 你我的生活轨迹
 <% end -%>
 
+<%= content_for :page_specific_asset do %>
+	<%= render :partial => "dark_sort_type" , :locals => { :sort_type => params[ :sort_type ] } %>
+<% end -%>
+
 <div id="discover-page">
 	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
 	<div id="main-main-block">
 		<%= render :partial => "discover/sidebar" %>
 		<div id="main-block">
-			<%= render :partial => "header" , :locals => { :name => params[ :name ] , :titleimg => "icon/icon_star_big.png" , :sortbtn => nil } %>
+			<%= render :partial => "header" , :locals => { :name => params[ :name ] , :titleimg => "icon/icon_star_big.png" , :sortbtn => params[ :sort_type ] } %>
 			<%= render :partial => "widgets/timeline" , :object => @moment , :locals => { :show_type => "user" } %> 
 			<div class="clearfix"> </div>
 		</div>

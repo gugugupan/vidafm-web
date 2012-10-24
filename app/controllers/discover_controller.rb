@@ -13,7 +13,8 @@ class DiscoverController < ApplicationController
   end
 
   def public
-    @moment = Moment.fetch_by_name( params[ :name ] , "latest" ) [ "data" ] [ "moments" ]
+    params[ :sort_type ] = "latest" if params[ :sort_type ] .nil? || ( params[ :sort_type ] != "hottest" && params[ :sort_type ] != "latest" )
+    @moment = Moment.fetch_by_name( params[ :name ] , params[ :sort_type ] ) [ "data" ] [ "moments" ]
   end
 
   def staruser
