@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     redirect_to "/" and return unless current_user
     @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
     @moment = User.fetch_friend_moments( current_user ) [ "data" ]
+    puts @moment .to_json
   end
 =begin
   def ajax_following

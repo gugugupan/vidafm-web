@@ -6,11 +6,11 @@
 <script>
     //LAZY LOAD
 	var page_now = 1 ;
-	var user_id = <%= params[ :id ] %> ;
-    var url_part = "users" ;
     function goLazyLoad()
     {
-        page_now = lazyload( url_part , user_id , page_now ) ;
+        page_now = page_now + 1 ;
+        var params = "page=" + page_now ;
+        lazyload( "users" , <%= params[ :id ] %> , params ) ;
     }
     $( document ) .ready( function() {
         $("#me_filter").hover(function(){

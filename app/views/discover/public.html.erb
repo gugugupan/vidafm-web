@@ -4,6 +4,17 @@
 
 <%= content_for :page_specific_asset do %>
 	<%= render :partial => "dark_sort_type" , :locals => { :sort_type => params[ :sort_type ] } %>
+
+<script type="text/javascript">
+    //LAZY LOAD
+	var page_now = 1 ;
+    function goLazyLoad()
+    {
+    	page_now = page_now + 1 ;
+    	var params = "name=<%= params[ :name ] %>&sort_type=<%= params[ :sort_type ] %>&page=" + page_now ;
+        lazyload( "public" , -255 , params ) ;
+    }
+</script>
 <% end -%>
 
 <div id="discover-page">
@@ -13,6 +24,7 @@
 		<div id="main-block">
 			<%= render :partial => "header" , :locals => { :name => params[ :name ] , :titleimg => "icon/icon_star_big.png" , :sortbtn => params[ :sort_type ] } %>
 			<%= render :partial => "widgets/timeline" , :object => @moment , :locals => { :show_type => "user" } %> 
+			<a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
 			<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix"> </div>

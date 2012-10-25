@@ -22,12 +22,12 @@ class Moment
     j = JSON.parse VIDA.call("moment/list?#{o.to_param}", nil, options[:current_user])
   end
 =end
-  def self.fetch_by_category( category , sort_type ) 
-    JSON.parse VIDA.call( "moment/search?category=#{ category }&order=#{ sort_type }&limit=20" , nil )
+  def self.fetch_by_category( category , sort_type , offset ) 
+    JSON.parse VIDA.call( "moment/search" , { :category => category , :order => sort_type , :offset => offset , :limit => 20 } )
   end
 
-  def self.fetch_by_name( name , sort_type ) 
-    JSON.parse VIDA.call( "moment/search?q=#{ name }&order=#{ sort_type }&limit=20" , nil )
+  def self.fetch_by_name( name , sort_type , offset ) 
+    JSON.parse VIDA.call( "moment/search" , { :q => name , :order => sort_type , :offset => offset , :limit => 20 } )
   end
 
   def self.hot_story

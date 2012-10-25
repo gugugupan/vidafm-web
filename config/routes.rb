@@ -45,10 +45,11 @@ Bluerain::Application.routes.draw do
     get "allcomments", :on => :member 
   end
 
-  get "discover/index"
-  get "discover/category"
-  get "discover/staruser"
-  get "discover/public"
+  get "/discover/index" 
+  get "/discover/category" 
+  get "/discover/staruser" 
+  get "/discover/public" 
+  get "/discover/ajax_get_new_page" 
 
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'sessions#failure'

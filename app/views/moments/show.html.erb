@@ -7,11 +7,11 @@
 <script>
     //LAZY LOAD
     var page_now = 1 ;
-    var comment_id = <%= params[ :id ] %> ;
-    var url_part = "moments" ;
     function goLazyLoad()
     {
-        page_now = lazyload( url_part , comment_id , page_now ) ;
+        page_now = page_now + 1 ;
+        var params = "page=" + page_now ;
+        page_now = lazyload( "moments" , <%= params[ :id ] %> , params ) ;
     }
     // Call comment box
     function callComment( num )

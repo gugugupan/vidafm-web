@@ -1,9 +1,15 @@
 // Call for lazy load
-function lazyload( url_part , id , page_now )
+function lazyload( url_part , id , params )
 {
 	$( "#refresh-link" ) .text( "载入中,请稍侯.." ) ;
-	page_now = page_now + 1 ;
-	var get_url = "/" + url_part + "/" + id + "/ajax_get_new_page?page=" + page_now ;
+	var get_url ;
+	if ( id == -255 )
+		get_url = "/discover/ajax_get_new_page?action_name=" + url_part + "&" + params ;
+	else
+		get_url = "/" + url_part + "/" + id + "/ajax_get_new_page?" + params ;
+
+	//alert( get_url ) ;
+
 	$.get( get_url , function( data ) 
 	{
 		if ( data .length < 10 )
@@ -24,7 +30,6 @@ function lazyload( url_part , id , page_now )
 		}
         avatarShow() ;
     	arangeImage() ;
-    	$("img.lazy").lazyload();
+    	$( "img.lazy" ) .lazyload() ;
 	} ) ;
-	return page_now ; 
 }
