@@ -1,4 +1,4 @@
-<% if @moment[ "moment_type" ] != 1 #&& ( ( @moment[ "description" ] != "" && !@moment[ "description" ] .nil? ) || @moment[ "location" ] != "" ) -%>
+<% if @moment[ "moment_type" ] != 1 && ( ( @moment[ "description" ] != "" && !@moment[ "description" ] .nil? ) || @moment[ "location" ] != "" ) -%>
 <div id="story_info">
     <%= image_tag "icon/icon_arrow.png" , :alt => "" , :class => "arrow" %>
     <div class="story_container">
@@ -9,7 +9,7 @@
             </p>
         </div>
     <% end -%>
-    <% #if @moment[ "location" ] != "" -%>
+    <% if @moment[ "location" ] != "" -%>
         <div class="info_container">
             <p id="location_list" title="故事地点">
                 <%= empty_descripe( moment[ "location" ] ) %>
@@ -17,7 +17,7 @@
             <%= render :partial => "widgets/smallmap" , :locals => { :moment => moment } %>
             <div class="clearfix"> </div>
         </div>
-    <% #end -%>
+    <% end -%>
     </div>
 </div>
 <% end -%>

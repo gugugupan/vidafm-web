@@ -3,9 +3,8 @@
 
 	#main-block {
 		width: 450px;
-		margin: 0px auto;
+		margin: -225px auto 0;
 		position: relative;
-		top: -240px;
 
 		#main-block-header {
 			width: 100%;
@@ -82,9 +81,8 @@
 					display: block;
 					margin-bottom: 5px;
 					color: white;
-					text-shadow:1px 1px gray;
-					font-size: 30px;
-					line-height: 35px;
+					text-shadow:1px 1px rgba(0,0,0,.5);
+					font-size: 20px;
 				}
 
 				p {

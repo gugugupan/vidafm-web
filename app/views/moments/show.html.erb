@@ -4,6 +4,7 @@
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
+<script src="http://ditu.google.cn/maps?file=api&hl=zh-CN&v=2&key=AIzaSyA56gGBHbDHTB73xRHaI7ptDo1WZc8lORA" type="text/javascript"></script>
 <script>
     //LAZY LOAD
     var page_now = 1 ;
@@ -47,7 +48,7 @@
             <div href="/" id="download-place">
                 <p class="font1"> <%= @moment[ "user" ] [ "name" ] %>正在使用 </p>
                 <p class="red_font">Vida</p>
-                <p class="font1"> 记录生活,下载手机客户端<% unless notice %>,与其戏耍之<% end %>.</p>
+                <p class="font1"> 分享生活,下载手机客户端.</p>
                 <%= render :partial => "widgets/download_bar" %>
             </div>
 <% else -%>
