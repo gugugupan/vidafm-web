@@ -5,6 +5,8 @@ function lazyload( url_part , id , params )
 	var get_url ;
 	if ( id == -255 )
 		get_url = "/discover/ajax_get_new_page?action_name=" + url_part + "&" + params ;
+	else if ( id == -256 )
+		get_url = "/" + url_part + "/ajax_get_new_page?" + params ;
 	else
 		get_url = "/" + url_part + "/" + id + "/ajax_get_new_page?" + params ;
 

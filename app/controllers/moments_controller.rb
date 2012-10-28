@@ -6,7 +6,6 @@ class MomentsController < ApplicationController
     @activity = Moment.fetch( nil, current_user , { :activity_id => notice , :page => 0 , :page_size => 1 } ) [ "data" ] [ "items" ] [ 0 ] unless notice .nil?
     @moment = data[ "data" ]
     @moment_cover = @moment[ "cover_file" ]
-    puts @moment .to_json
     save_url_in_cookies
   end
 

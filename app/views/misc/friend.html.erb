@@ -1,0 +1,39 @@
+<%= content_for :title do %>
+  <%= @user[ :name ] %> - Vida（微达） - 你我的生活轨迹
+<% end -%>
+
+<%= content_for :page_specific_asset do %>
+<script>
+    //LAZY LOAD
+	var page_now = 1 ;
+    function goLazyLoad()
+    {
+        page_now = page_now + 1 ;
+        var params = "page=" + page_now ;
+        lazyload( "misc" , -256 , params ) ;
+    }
+</script>
+<% end -%>
+
+<div id="friend-show">
+ 	<%= render :partial => "widgets/header" , :locals => { :user => @user } %>
+ 	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ :cover_file ] } %>
+
+ 	<div id="main-block">
+ 		<div id="user-info">
+ 			<div style="float:left;"> <%= avatar_tag @user , :nolink => true %> </div>
+ 			<h1 id="detail"> <%= @user[ :name ] %> 关注的动态 </h1>
+ 			<div class="clearfix"> </div>
+ 		</div>
+ 		<div id="following-list">
+ 			<%= render :partial => "widgets/timeline" , :object => @moment , :locals => { :show_type => "user" } %>
+            <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
+ 			<div class="clearfix"> </div>
+ 		</div>
+ 	<% if @moment .size == 0 -%>
+ 		<div class="text-info">
+ 			<p> 你还没有添加好友, 赶快去发现更多的朋友吧! </p>
+ 		</div>
+ 	<% end -%>
+ 	</div>
+ </div>

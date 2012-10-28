@@ -28,16 +28,13 @@ function showMap( moment )
 {
     var lat = 0 ;
     var lng = 0 ;
-    var count = 0 ;
     for ( var i = 0 ; i < moment .items .length ; i ++ )
         if ( moment .items[ i ] .lat != 0 || moment .items[ i ] .lng != 0 )
         {
             lat = lat + moment .items[ i ] .lat ;
             lng = lng + moment .items[ i ] .lng ;
-            count = count + 1 ;
+            break ;
         }
-    lat = lat / count ;
-    lng = lng / count ;
 
     if ( lat != 0 || lng != 0 )
     {
@@ -49,10 +46,8 @@ function showMap( moment )
         $( "#map" ) .click( function( event ) {
             event .stopPropagation() ;
         }) ;
-        //$( "#theatre" ) .click( destroyTheatre() ) ;
 
         var options = {
-            size : GSize(lat, lng) , 
             backgroundColor : "#BBBBBB" ,
             mapTypes : [G_NORMAL_MAP,G_SATELLITE_MAP] ,
             draggableCursor : "crosshair",
@@ -60,16 +55,18 @@ function showMap( moment )
         };
         var map = new GMap2(document.getElementById("map"), options);
         var point = new GLatLng( lat , lng ) ;
-        var myMarker = new GMarker( point ) ;
+        //var myMarker = new GMarker( point ) ;
         
         map .setCenter( point , 13 ) ;
+        
         map .enableDragging() ;
         map .enableDoubleClickZoom() ;
         map .enableContinuousZoom() ;
         map .enableScrollWheelZoom() ;
         map .addControl( new GLargeMapControl() ) ;
         map .addControl( new GScaleControl() ) ;
-        map .addOverlay( myMarker ) ;
+
+        //map .addOverlay( myMarker ) ;
 
         for ( var i = 0 ; i < moment .items .length ; i ++ )
         {
@@ -81,7 +78,7 @@ function showMap( moment )
                                  } ) ;
             if ( nlat == 0 && nlng == 0 ) continue ;
             var npoint = new GLatLng( nlat , nlng ) ;
-            var nMarker = new GMarker( npoint , nIcon ) ;
+            var nMarker = new GMarker( npoint ) ;
             map .addOverlay( nMarker ) ;
         }
         new_close_button( $( "#map" ) ) ;
@@ -97,6 +94,7 @@ function showActivityPhoto( activity_url , img_width )
     $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
     $( "#image_div" ) .css( "width" , img_width ) ;
     beginTheatre() ;
+    $( "#theatre" ) .click( destroyTheatre ) ;
 
     new_close_button( $( "#image_div" ) ) ;
 }

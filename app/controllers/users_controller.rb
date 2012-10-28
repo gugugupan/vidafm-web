@@ -16,12 +16,6 @@ class UsersController < ApplicationController
     save_url_in_cookies
   end
 
-  def friend
-    redirect_to "/" and return unless current_user
-    @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
-    @moment = User.fetch_friend_moments( current_user ) [ "data" ]
-    puts @moment .to_json
-  end
 =begin
   def ajax_following
     params[ :type ] = "following" if params[ :type ] .nil?

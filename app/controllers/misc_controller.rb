@@ -36,4 +36,17 @@ class MiscController < ApplicationController
   def business
     render :layout => "application_nofooter"
   end
+
+  def friend
+    redirect_to "/" and return unless current_user
+    @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
+    @moment = User.fetch_friend_moments( current_user , 0 , 20 ) [ "data" ]
+  end
+
+  def ajax_get_new_page
+    params[ :page ] = 1 if params[ :page ] .nil?
+    params[ :page ] = params[ :page ] .to_i - 1 ;
+    @moment = User.fetch_friend_moments( current_user , params[ :page ] , 20 ) [ "data" ]
+    render :layout => false 
+  end
 end

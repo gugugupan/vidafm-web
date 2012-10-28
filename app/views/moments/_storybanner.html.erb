@@ -1,15 +1,15 @@
-<% if @moment[ "moment_type" ] != 1 && ( ( @moment[ "description" ] != "" && !@moment[ "description" ] .nil? ) || @moment[ "location" ] != "" ) -%>
+<% if moment[ "moment_type" ] != 1 && ( ( moment[ "description" ] != "" && !moment[ "description" ] .nil? ) || moment[ "category" ] == "travel" ) -%>
 <div id="story_info">
     <%= image_tag "icon/icon_arrow.png" , :alt => "" , :class => "arrow" %>
     <div class="story_container">
-    <% if ( @moment[ "description" ] != "" && !@moment[ "description" ] .nil? ) -%>
+    <% if ( moment[ "description" ] != "" && !moment[ "description" ] .nil? ) -%>
         <div class="info_container">
             <p id="story_description" title="故事简介">
                 <%= empty_descripe( moment[ "description" ] ) %>
             </p>
         </div>
     <% end -%>
-    <% if @moment[ "location" ] != "" -%>
+    <% if moment[ "category" ] == "travel" -%>
         <div class="info_container">
             <p id="location_list" title="故事地点">
                 <%= empty_descripe( moment[ "location" ] ) %>
