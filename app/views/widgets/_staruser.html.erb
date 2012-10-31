@@ -2,7 +2,7 @@
 <% unless text .nil? -%>
 	<h1 class="ribbon blue"> <%= text %> </h1>
 <% end -%>
-	<a href="/users/<%= staruser[ 'id' ] %>" class="user_cover" style="width:<%=width%>;">
+	<a href="/users/<%= staruser[ 'id' ] %>" class="user_cover" style="width:<%=width%>">
 		<%= image_tag staruser[ "photo" ] , :class => "user_cover_photo" , :style => "width:#{ width }" %>
 		<%= image_tag "images/user_cover_shadow.png" , :class => "user_cover_shadow" %>
 	</a>

@@ -27,8 +27,8 @@ class User
 			JSON.parse VIDA.call("/user/relationships", {:id => user_id, :type => relations}, current_user)
 		end
 
-		def fetch_friend_moments( current_user , page , page_size )
-			JSON.parse VIDA.call( "/moment/list_following" , { :page => page , :page_size => 20 } , current_user )
+		def fetch_friend_moments( current_user , page )
+			JSON.parse VIDA.call( "/moment/list_following" , { :page => page } , current_user )
 		end
 
 		def fetch_current_user( current_user )

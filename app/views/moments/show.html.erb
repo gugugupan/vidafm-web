@@ -40,12 +40,10 @@
 <% end -%>
 
 <div id="moment-show-page">
-    <% puts @moment[ "category" ] -%>
     <%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
     <%= render :partial => "widgets/cover" , :locals => { :cover => @moment_cover } %>
     <div id="main-block">
- 		<div id="main-block-header"> 
-    <% puts @moment[ "category" ] -%>
+ 		<div id="main-block-header">
 <% unless @current_user -%>
             <div href="/" id="download-place">
                 <p class="font1"> <%= @moment[ "user" ] [ "name" ] %>正在使用 </p>

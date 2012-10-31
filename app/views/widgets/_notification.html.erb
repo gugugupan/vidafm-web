@@ -5,7 +5,7 @@
 		<a href="/users/<%=notification["actor"][:id]%>" class="user_name"> <%= notification[ "actor" ][ :name ] %> </a>
 		<p class="content"> <%= notification[ "sentence" ] %> </p>
 	<% unless notification[ "activity" ] .nil? -%>
-		<%= link_to image_tag( notification[ "activity" ] [ "photo" ] [ "url_s" ] , :class => "message_thumbnail" ) , "/moments/" + notification[ "activity" ] [ "moment_id" ] .to_s %>
+		<%= link_to image_tag( notification[ "activity" ] [ "photo" ] [ "url_s" ] , :class => "message_thumbnail" ) , "/moments/#{notification[ "activity" ] [ "moment_id" ]}#activity#{notification[ "activity" ] [ "id" ]}" %>
 	<% end -%>
 	<!--
 	<% if [ 11 , 13 , 51 , 52 ] .find { |x| x == notification[ "notification_type" ] } -%>

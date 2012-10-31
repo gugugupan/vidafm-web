@@ -1,15 +1,15 @@
 <% if tag == 0 %>
 	<%= link_to "+关注" , following_user_url( uid ) + "?type=following" , 
-		:class => "btn_blue " + size , :style => "margin-left:10px" , :id => "following-tag#{ uid }" , 
+		:class => "btn_blue " + size , :id => "following-tag#{ uid }" , 
 		:remote => true , :method => :put %>
 <% else %>
 <% if tag == 1 %>
 	<%= link_to "取消关注" , following_user_url( uid ) + "?type=none" , 
-		:class => "btn_red " + size , :style => "margin-left:10px" , :id => "cancel-tag#{ uid }" , 
+		:class => "btn_red " + size , :id => "cancel-tag#{ uid }" , 
 		:remote => true , :method => :put %>
 <% else %>
 <% if tag == 2 %>
-	<a class="btn_dark <%= size %>" style="margin-left:10px" id="waiting-tag<%= uid %>">等待对方批准</a>
+	<a class="btn_dark <%= size %>" id="waiting-tag<%= uid %>">等待对方批准</a>
 <% end %>
 <% end %>
 <% end %>

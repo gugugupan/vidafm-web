@@ -1,7 +1,5 @@
-<% height = 258 unless defined? height -%>
-<% width = 400 unless defined? width -%>
 <div class="thumbnail" style="width:<%= width %>px;height:<%= height %>px;">
-  <%= link_to image_tag( hotstory[ "cover_file" ] , :style => "width:100%;margin-top:-125px;") , URI::escape("/discover/public?name=#{hotstory['name']}") , :class => "thumb" %>
+  <%= link_to image_tag( hotstory[ "cover_file" ] , :style => "width:100%;margin-top:-#{ width / 6 }px;") , URI::escape("/discover/public?name=#{hotstory['name']}") , :class => "thumb" %>
   <div class="thumb_info">
     <%= link_to hotstory[ "name" ] , URI::escape("/discover/public?name=#{hotstory['name']}") %>
     <!-- <p> <%= hotstory[ "count_likes" ] %> </p> -->

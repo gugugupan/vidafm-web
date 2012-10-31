@@ -15,6 +15,7 @@ class MiscController < ApplicationController
     @data = User.fetch_star_user( current_user ) [ "data" ]
     @data[ "recommended" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
     @data[ "stars" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
+    render "misc/index2"
   end
 
   def about
@@ -40,13 +41,14 @@ class MiscController < ApplicationController
   def friend
     redirect_to "/" and return unless current_user
     @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
-    @moment = User.fetch_friend_moments( current_user , 0 , 20 ) [ "data" ]
+    @moment = User.fetch_friend_moments( current_user , 0 ) [ "data" ]
+    puts @moment .to_json
   end
 
   def ajax_get_new_page
     params[ :page ] = 1 if params[ :page ] .nil?
     params[ :page ] = params[ :page ] .to_i - 1 ;
-    @moment = User.fetch_friend_moments( current_user , params[ :page ] , 20 ) [ "data" ]
+    @moment = User.fetch_friend_moments( current_user , params[ :page ] ) [ "data" ]
     render :layout => false 
   end
 end

@@ -53,7 +53,7 @@
 
 					a {
 						margin-left: 5px;
-						color: #646464;	
+						color: #77706f;	
 					}
 				}
 			}
@@ -77,4 +77,46 @@ p.super-text {
 	font-size: 30px;
 	top: 40%;
 	left: 10%;
+}
+
+
+#hot-story {
+	width: 1020px;
+	margin: 30px auto;	
+	margin-top: 30px;
+	text-align: left;
+	
+	.header-title {
+		margin-top: 20px;
+		margin-bottom: 10px;
+
+		img {
+			float: left;
+		}
+
+		h1 {
+			font-size: 21px;
+			color: #333333;
+			font-weight: normal;
+			float: left;
+			margin: 5px 10px;
+		}
+	}
+
+	.thumbnail {
+		float: left;
+		width: 245px;
+		height: 151px;
+		margin-bottom: 10px;
+
+		&:nth-child(odd) { margin-right: 10px; }
+	}
+
+	.thumb_info {
+		a {
+			width: 150px;
+			height: 16px;
+			overflow: hidden;
+		}
+	}
 }
