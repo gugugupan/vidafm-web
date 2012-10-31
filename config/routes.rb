@@ -57,6 +57,6 @@ Bluerain::Application.routes.draw do
   match '/auth/logout' => 'sessions#destroy'
 
   match "contact" => "misc#about", :as => :about  # Hack to rename the legal route "about" to "contact".
-  #match "business" => "misc#business", :as => :business
+  match "business" => "misc#business", :as => :business
   post "create_feedback" => "misc#create_feedback"
 end
