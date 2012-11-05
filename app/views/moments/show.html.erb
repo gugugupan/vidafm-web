@@ -56,6 +56,7 @@
 <% end -%>
             <%= render :partial => "header" , :locals => { :moment => @moment } %>
             <%= render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] , :name => @moment[ 'name' ] } %>
+            <%= render :partial => "mapbtn" , :locals => { :moment => @moment } -%>
             <div class="clearfix"> </div>
         </div>
 

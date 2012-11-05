@@ -1,5 +1,5 @@
 <% is_left = ( item_counter % 2 == 0 ) -%>
-<div class="feed">
+<div class="feed" id="moment<%= item[ 'id' ] %>">
 	<div class="mlcontainer <%= is_left ? "feed_left" : "feed_right"%>"> <!-- mlcontainer star -->
 		<div class="mlbox">
 			<div class="image_container">
@@ -11,7 +11,7 @@
 				<div class="mldata">
 					<p class="mllike"> <%= item[ "likes_count" ] %> </p>
 					<p class="mlnumber"> <%= item[ "items_count" ] %> </p>
-					<p class="mltime"> <%= time_ago_now( item[ "modified_at" ] ) %>前 </p>
+					<p class="mltime"> <%= time_ago_now( get_time( item ) ) %>前 </p>
 					<div class="clearfix"></div>
 				</div>
 				<div class="clearfix"></div>

@@ -384,7 +384,7 @@ p{
 .btn_round {
 	background-repeat:no-repeat;
 	background-position:3px center;
-	border:2px solid #77706f;
+	border:2px solid #D2CFCB;
 	border-radius: 15px;
 	-moz-border-radius: 15px;
 	-webkit-border-radius: 15px;
@@ -436,11 +436,11 @@ p{
 	padding:8px 15px 0px 15px;
 	z-index:20;
 
-	box-shadow:0px 2px 0px rgba(0,0,0,.5),inset 0px 1px 1px rgba(0,0,0,.5);
+	/*box-shadow:0px 2px 0px rgba(0,0,0,.5),inset 0px 1px 1px rgba(0,0,0,.5);
 	-moz-box-shadow:0px 2px 0px rgba(0,0,0,.5),inset 0px 1px 1px rgba(0,0,0,.5);
 	-webkit-box-shadow:0px 2px 0px rgba(0,0,0,.5),inset 0px 1px 1px rgba(0,0,0,.5);
 
-	text-shadow:0px 2px 0px rgba(0,0,0,.5);
+	text-shadow:0px 2px 0px rgba(0,0,0,.5);*/
 
 	img {
 		opacity:0.5;
@@ -878,7 +878,7 @@ p{
 		}
 
 		.user_data {
-			margin:25px 20px 0px 12px;
+			margin:25px 0px 0px 12px;
 
 			h1 {
 				font-size:24px;

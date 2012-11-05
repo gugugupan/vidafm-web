@@ -1,167 +1,115 @@
 #index {
 	width: 100%;
 	position: relative;
-	display: block;
-	margin: 0px auto;
-	font-size: 100%;
 
-	#index-header {
+	#index_head {
 		width: 100%;
-		min-width: 1200px;
-		height: 522px;
-		background-image: image-url("images/sky_desk_photodoom.jpg");
-		background-position: center;
-		background-attachment: fixed;
-		background-size: cover;
-		position: relative;
-		z-index:1;
+		height: 430px;
+		overflow: hidden;
 
-		#index-header-block {
-			margin: 0px auto;
-			width: 960px;
+		#red_block {
+			width: 100%;
+			height: 360px;
+			background-color: #e70e32;
 
-			#preview-col {
-				float: left;
-				position: relative;
-				width: 499px;
-				z-index:3;
-				margin-top: 8px;
+			#pic_col {
+				position: absolute;
+				margin-left: -450px;
+				left: 50%;
 			}
 
-			#intro-col {
-				float: left;
-				position: relative;
-				margin-top: 205px;
-				margin-left: 91px;
-				width: 370px;
-				height: 286px;	
-				z-index:3;
+			#intro_col {
+				position: absolute ;
+				margin-left: 45px;
+				margin-top: 230px;
+				left: 50%;
 
-				.intro-text {
-					float: left;
-					width: 100%;
-
-					#vida-logo {
-						float: left;
-						width: 92;
-						height: 36;
-						margin-right: 23px;
-					}
-
-					h1.font1 {
-						font-size: 50px;
-						color: white;
-						float: left;
-						text-shadow: 1px 1px black;
-					}
-
-					p.font2 {
-						float: left;
-						margin-top: 21px;
-						font-size: 25px;
-						color: rgb(255,255,255);
-						text-shadow:black 1px 1px 0;
-					}		
-
-					p.font3 {
-						font-size: 17px;
-						color: rgb(255,255,255);
-						text-shadow:black 1px 1px 0;
-					}
+				#text {
+					margin-bottom: 20px;
+					margin-left: 55px;
 				}
 
-				li {
+				p {
 					color: white;
-					font-size: 12px;
-					margin: 13px;
-					text-shadow:black 1px 1px 0;
+					font-size: 24px;
+					display: inline;
 				}
+			}
+		}
 
-				.download-bar {
-					width: 371px;
-					margin: 30px 0px;
-					float: left;
+		#grey_bar{
+			background: image-url( "index/grey_bar_bg.png");
+			width: 100%;
+			height: 70px;
 
-	      			a {
-	        			float: left;
-	        			margin-right: 5px;
-	        		}
-	        	}
-	        }      		
+			img{
+				left: 50%;
+				position: absolute;
+				margin-left: -410px;
+			}
 		}
 	}
-}
 
-#index-header-shadow {
-	width: 100%;
-	height: 522px;
-	min-width: 1200px;
-	position: absolute;
-	background:rgba(0,0,0,.2) image-url( "grey_point.png" ) repeat scroll center;
-	top:0;
-	z-index:2;
-}
+	#staruser_block
+	{
+		width: 900px;
+		margin: 30px auto 15px;
 
-#star-user {
-	width: 1020px;
-	margin: 30px auto;
-	margin-top: 30px;
+		p#staruser_head
+		{
+			display: block;
+			padding-left: 50px;
+			padding-bottom: 15px;
+			border-bottom: 1px dashed rgba(0,0,0,0.3);
 
-	.header-title {
-		margin-top: 20px;
-		margin-bottom: 10px;
-
-		img {
-			float: left;
-		}
-
-		h1 {
+			background:image-url("icon/icon_star_big.png") no-repeat left top;
 			font-size: 21px;
-			color: #333333;
-			font-weight: normal;
-			float: left;
-			margin: 0px 10px;
+		}
+
+		#staruser_list
+		{
+			padding-top: 15px;
+			border-top: 1px dashed white;
+
+			.feature_user
+			{
+				float: left;
+				margin-right: 20px;
+				margin-left: 0;
+				&:last-child { margin-right: 0; }
+			}
 		}
 	}
-}
 
-#hot-story {
-	width: 1020px;
-	margin: 30px auto;	
-	margin-top: 30px;
-	text-align: left;
-	
-	.header-title {
-		margin-top: 20px;
-		margin-bottom: 10px;
+	#theme_moment
+	{
+		width: 900px;
+		margin: 30px auto;
 
-		img {
-			float: left;
-		}
+		#theme_head
+		{
+			display: block;
+			padding-left: 40px;
+			padding-bottom: 15px;
+			border-bottom: 1px dashed rgba(0,0,0,0.3);
 
-		h1 {
+			background:image-url("icon/icon_theme.png") no-repeat left top;
 			font-size: 21px;
-			color: #333333;
-			font-weight: normal;
-			float: left;
-			margin: 5px 10px;
 		}
-	}
 
-	.thumbnail {
-		float: left;
-		width: 245px;
-		height: 151px;
-		margin-bottom: 10px;
+		#theme_list
+		{
+			padding-top: 15px;
+			border-top: 1px dashed white;
 
-		&:nth-child(odd) { margin-right: 10px; }
-	}
-
-	.thumb_info {
-		a {
-			width: 150px;
-			height: 16px;
-			overflow: hidden;
+			.thumbnail
+			{
+				float: left;
+				margin-right: 30px;
+				margin-left: 0px;
+				margin-bottom: 15px;
+				&:nth-child( 3n ) { margin-right: 0; }
+			}
 		}
 	}
 }

@@ -102,6 +102,8 @@ class ApplicationController < ActionController::Base
     return "刚加入了 VIDA" if noti[ "notification_type" ] == 11
     return "邀请您在 #{ noti[ 'moment' ] [ 'name' ] } 中添加照片" if noti[ "notification_type" ] == 12
     return "也在使用 VIDA，赶紧关注吧！" if noti[ "notification_type" ] == 13 
+    return "喜欢你的故事 #{ noti[ 'moment' ] [ 'name' ] }" if noti[ "notification_type" ] == 14
+    return "回复了你的故事 #{ noti[ 'moment' ] [ 'name' ] }" if noti[ "notification_type" ] == 15
     return "关注了您" if noti[ "notification_type" ] == 51 
     return "希望关注您" if noti[ "notification_type" ] == 52
     return "" if noti[ "notification_type" ] == 99

@@ -1,34 +1,27 @@
 <%= content_for :title do %>
-  Vida（微达） - 你我的生活轨迹
+	Vida（微达） - 你我的生活轨迹
 <% end -%>
 
 <%= content_for :meta_description do %>
-Vida-微达 Android版下载
+	Vida-微达 Android版下载
 <%  end-%>
 
+<%= content_for :page_specific_asset do %>
+<% end -%>
+
+<div id="android_download_background">
 <div id="android_download">
-  <div id="android_download_header">
-    <div id="index-header-shadow"> </div>
-    <div id="this_header">
-      <div id="preview-col">
-        <%= image_tag "android_download/index_androidTemplate.png" , :style => "max-width:100%;" %>
-      </div>
-      <div id="intro-col">
-        <%= link_to root_url do %>
-          <%= image_tag "android_download/android_logo.png" , :alt => "Vida(微达) for Android." %>
-        <% end -%>
-        
-        <p id="text1">分享每个生活故事。</p>
-        <p id="text0">适用于Android 2.3 以上手机</p>
-        <div id="android_download_bar">
-          <%= link_to "点击直接下载" , "/d/android" , :class => "btn_big btn_grey mouse" %>
-          <%= link_to "通过豌豆荚一键安装" , "/d/android" , :class => "btn_big btn_blue mouse" %>
-        </div>
-        <%= image_tag "android_download/android_b_btn.png" , :id => "two_code_download" %>
-        <div class="clearfix"> </div>
-      </div>
-      <div class="clearfix"> </div>
-    </div>
-    <div class="clearfix"> </div>
-  </div>
+	<%= image_tag "android_download/android_mockup 11.35.14 AM.png" , :id => "android_phone_pic" %>
+	<div id="android_content_block">
+		<%= image_tag( "android_download/android_logo.png" ) %>
+		<p id="text0">适用于Android 2.3 以上手机</p>
+		<div id="android_download_bar">
+			<%= link_to image_tag( "android_download/icon_download.png" , :style => "margin-top:9px; margin-left:9px;" ) + "点击直接下载" , "/d/android" , :class => "btn_grey btn_big" , :style => "padding-left:45px;" %>
+			<%= link_to image_tag( "android_download/icon_download.png" , :style => "margin-top:9px; margin-left:9px;" ) + "豌豆荚一键下载" , "/d/android" , :class => "btn_grey btn_big" , :style => "padding-left:45px; margin-left: 15px;" %>
+		</div>
+		<%= image_tag "android_download/qrcode.png" , :id => "qrcode_img" %>
+	</div>
+	<div class="clearfix"> </div>
+</div>
+<div class="clearfix"> </div>
 </div>

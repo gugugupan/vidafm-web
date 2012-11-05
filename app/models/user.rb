@@ -28,7 +28,7 @@ class User
 		end
 
 		def fetch_friend_moments( current_user , page )
-			JSON.parse VIDA.call( "/moment/list_following" , { :page => page } , current_user )
+			JSON.parse VIDA.call( "moment/list_following" , { :page => page } , current_user )
 		end
 
 		def fetch_current_user( current_user )

@@ -15,7 +15,6 @@ class MiscController < ApplicationController
     @data = User.fetch_star_user( current_user ) [ "data" ]
     @data[ "recommended" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
     @data[ "stars" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
-    render "misc/index2"
   end
 
   def about
@@ -29,6 +28,7 @@ class MiscController < ApplicationController
   def ajax_notification
     session[ :cur_user ] [ :notification_count ] = 0
     @message = JSON.parse( VIDA.call("/notification/list" , {} , current_user ) ) [ "data" ]
+    puts @message .to_json
     @message[ "unread" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
     @message[ "read" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
     render "misc/notificationlist" , :layout => false 
@@ -42,7 +42,6 @@ class MiscController < ApplicationController
     redirect_to "/" and return unless current_user
     @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
     @moment = User.fetch_friend_moments( current_user , 0 ) [ "data" ]
-    puts @moment .to_json
   end
 
   def ajax_get_new_page

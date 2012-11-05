@@ -101,6 +101,8 @@ module MomentsHelper
 	def time_ago_now( time_str )
 		s = time_ago_in_words Time.parse( time_str )
 		s = "1天" if s == "一天"
+		s = "1小时" if s == "一小时"
+		s = "1分钟" if s == "一分钟"
 		s
 	end
 
@@ -109,5 +111,11 @@ module MomentsHelper
 			item[ "name" ] = "#{ item[ 'created_at' ] [ 5 , 2 ] }月#{ item[ 'created_at' ] [ 8 , 2 ]}日" 
 		end
 		item[ "name" ]
+	end
+
+	def get_time( moment )
+		return moment[ "suggest_at" ] unless moment[ "suggest_at" ] .nil?
+		return moment[ "modified_at" ] unless moment[ "modified_at" ] .nil?
+		moment[ "created_at" ] 
 	end
 end
