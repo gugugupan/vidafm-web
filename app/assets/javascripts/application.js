@@ -9,23 +9,6 @@
 //= require jquery.lazyload
 //= require video
 
-(function($){
-	// LIVE function
-	$( "form" ) .live( "submit" , function() { 
-		$( this ) .find( "input,textarea" ) .css( "background-color" , "rgba(0,0,0,0.3)" ) ; 
-	}) ;
-	$( ".more_comment" ) .live( "click" , function() {
-		$( this ) .text( "载入中.." ) ;
-	}) ;
-	$( ".one_comment" ) .live( "click" , function() {
-		var name = $( this ) .find( ".user_name" ) .eq( 0 ) .text() ;
-		name = name .replace( " " , "" ) ;
-		var text = $( this ) .parent() .parent() .find( "input" ) .val() ;
-		$( this ) .parent() .parent() .find( "input" ) .val( "回复@" + name + ":" ) ;
-		$( this ) .parent() .parent() .find( "input" ) .focus() ;
-	}) ;
-})(jQuery);
-
 jQuery( function() {
 	avatarShow() ;
     arangeImage() ;

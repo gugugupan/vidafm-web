@@ -11,10 +11,14 @@
 		margin-top: 304px;
 		float: left;
 
+		#logo_pic {
+			width: 100%;
+		}
+
 		#text0 {
 			font-size: 15px;
 			color: white;
-			margin-top: 10px;
+			margin-top: 50px;
 			margin-bottom: 15px;
 		}
 
@@ -22,9 +26,4 @@
 			margin-top: 20px;
 		}		
 	}
-}
-
-#android_download_background {
-	background: #e70e32 ;
-	width: 100%;
 }

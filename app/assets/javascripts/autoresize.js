@@ -65,3 +65,21 @@ function arangeImage(){
         };
     };
 };
+
+function repeat_check( callback )
+{
+    for ( var i = $( ".feed" ) .length - 1 ; i >= 0 ; i -- ) 
+    {
+        var check_flag = false ;
+        var _boxObjects = $( ".feed:eq(" + i + ")" ) ;
+        var id_i = _boxObjects .attr( "id" ) ;
+        for ( var j = i - 1 ; j >= 0 ; j -- )
+            if ( id_i == $( ".feed:eq(" + j + ")" ) .attr( "id" ) )
+            {
+                check_flag = true ;
+                break ;
+            }
+        if ( check_flag ) _boxObjects .remove() ;
+        if ( i == 0 ) callback() ;
+    }
+}

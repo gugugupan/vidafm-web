@@ -22,16 +22,17 @@ function lazyload( url_part , id , params )
 			$( "#refresh-link" ) .removeAttr( "href" ) ;
 		} else
 		{
+			$( "#refresh-link" ) .text( "点击显示更多" ) ;
 			if ( $( "#feed_container" ) .length > 0 )
 			{
 				$( "#feed_container" ) .append( data ) ;
-				$( "#feed_container" ) .append( "<div class='clearfix'> </div>" ) ;	
+				$( "#feed_container" ) .append( "<div class='clearfix'> </div>" ) ;
 			} else 
 				$( "#refresh-link" ) .before( data ) ;
-			$( "#refresh-link" ) .text( "点击显示更多" ) ;
+
+			avatarShow() ;
+			repeat_check( arangeImage ) ;
+			$( "img.lazy" ) .lazyload() ;
 		}
-        avatarShow() ;
-    	arangeImage() ;
-    	$( "img.lazy" ) .lazyload() ;
 	} ) ;
 }

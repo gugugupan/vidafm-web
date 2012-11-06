@@ -7,21 +7,23 @@
 <%  end-%>
 
 <%= content_for :page_specific_asset do %>
+<style type="text/css">
+	body {
+		background: #e70e32 ;
+	}
+</style>
 <% end -%>
 
-<div id="android_download_background">
 <div id="android_download">
 	<%= image_tag "android_download/android_mockup 11.35.14 AM.png" , :id => "android_phone_pic" %>
 	<div id="android_content_block">
-		<%= image_tag( "android_download/android_logo.png" ) %>
+		<%= link_to image_tag( "android_download/android_logo.png" ) , root_url , :id => "logo_pic" %>
 		<p id="text0">适用于Android 2.3 以上手机</p>
 		<div id="android_download_bar">
 			<%= link_to image_tag( "android_download/icon_download.png" , :style => "margin-top:9px; margin-left:9px;" ) + "点击直接下载" , "/d/android" , :class => "btn_grey btn_big" , :style => "padding-left:45px;" %>
-			<%= link_to image_tag( "android_download/icon_download.png" , :style => "margin-top:9px; margin-left:9px;" ) + "豌豆荚一键下载" , "/d/android" , :class => "btn_grey btn_big" , :style => "padding-left:45px; margin-left: 15px;" %>
+			<%= link_to image_tag( "android_download/icon_wandoujia.png" , :style => "margin-top:9px; margin-left:9px;" ) + "豌豆荚一键下载" , "/d/android" , :class => "btn_grey btn_big" , :style => "padding-left:45px; margin-left: 15px;" %>
 		</div>
 		<%= image_tag "android_download/qrcode.png" , :id => "qrcode_img" %>
 	</div>
 	<div class="clearfix"> </div>
-</div>
-<div class="clearfix"> </div>
 </div>
