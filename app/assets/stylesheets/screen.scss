@@ -743,11 +743,13 @@ p{
 				margin-bottom:10px;
 				width: 190px;
 				text-align: left;
+				max-width: 100%;
+				word-wrap: break-word;
 			}
 
 			.message_thumbnail {
 				@extend .avatar;
-				height:75px;
+				height:auto;
 				width:75px;
 
 				box-shadow:0px 1px 0px rgba(255,255,255,.3),inset 0px 1px 1px rgba(255,255,255,1);

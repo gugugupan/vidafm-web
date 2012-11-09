@@ -2,15 +2,7 @@
 	<!--
 	<h1 class="ribbon red">第一天</h1>
 	-->
-<% if pic[ "activity_type" ] == 1 -%>
-	<a href=javascript:showActivityPhoto("<%=pic['photo']['url_l']%>","<%=pic['photo']['width']%>") class="photo_container">
-		<%= image_tag pic[ 'photo' ] [ 'url_m' ] %>
-<% else -%>
-	<a href="javascript:showActivityVideo(<%=pic['video'].to_json%>)" class="photo_container" style="position:relative">
-		<%= image_tag pic[ 'photo' ] [ 'url_m' ] %>
-		<%= image_tag "images/play.png" , :style => "position:absolute; bottom:5px; left:5px; width: 82px;" %>
-<% end -%>
-	</a>
+	<%= render :partial => "activitydeatail" , :locals => { :pic => pic } -%>
 	<% category = nil if !defined? category -%>
 	<%= render :partial => "mould" , :object => pic , :locals => { :category => category } %>
 	<div class="info_container">

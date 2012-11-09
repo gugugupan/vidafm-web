@@ -85,18 +85,27 @@ function showMap( moment )
     }
 }
 
-function showActivityPhoto( activity_url , img_width )
+function showAudio( audio )
 {
-    var imageDiv = "<div id=image_div> <img src=" + activity_url + " id='activity_detail_img'> </div>" ;
+    $( "#broadcast" ) .empty() ;
+    $( "#broadcast" ) .append( '<audio src="' + audio .url + '" preload="auto" autoplay="autoplay">' ) ;
+    audiojs.events.ready(function() { var as = audiojs.createAll(); });
+}
+
+function showActivityPhoto( activity )
+{
+    var imageDiv = "<div id=image_div> <img src=" + activity .activity_url + " id='activity_detail_img'> </div>" ;
     $( "#theatre" ) .prepend( imageDiv ) ;
     $( "#activity_detail_img" ) .css( "max-width" , "1000px" ) ;
     $( "#activity_detail_img" ) .css( "height" , "auto" ) ;
     $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
-    $( "#image_div" ) .css( "width" , img_width ) ;
+    $( "#image_div" ) .css( "width" , activity .img_width ) ;
     beginTheatre() ;
     $( "#theatre" ) .click( destroyTheatre ) ;
 
     new_close_button( $( "#image_div" ) ) ;
+
+    if ( activity .autio != null ) showAudio( activity .audio ) ;
 }
 
 function showActivityVideo( video )
