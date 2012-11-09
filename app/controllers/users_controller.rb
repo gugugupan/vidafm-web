@@ -1,7 +1,8 @@
 #encoding: utf-8
 class UsersController < ApplicationController  
   def show
-    data = User.fetch( params[:id] , current_user )
+    #data = User.fetch( params[:id] , current_user )
+    data = api_call( "User" , :fetch , params[ :id ] , nil )
     render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
     @user = data[ "data" ] .symbolize_keys
     @following_tag = get_relation_btn( @user[ :relation ] ) 

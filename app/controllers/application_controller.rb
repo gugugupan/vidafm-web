@@ -109,4 +109,10 @@ class ApplicationController < ActionController::Base
     return "" if noti[ "notification_type" ] == 99
   end
 
+  def api_call( model , method , id , params )
+    data = Moment .send( method , id , current_user , params ) if model == "Moment" 
+    data = User   .send( method , id , current_user , params ) if model == "User" 
+    session[ :cur_user ] [ :notification_count ] = data[ "notification_count" ] if current_user 
+    data
+  end
 end

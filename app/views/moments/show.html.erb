@@ -4,7 +4,6 @@
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
-<script src="http://ditu.google.cn/maps?file=api&hl=zh-CN&v=2&key=AIzaSyA56gGBHbDHTB73xRHaI7ptDo1WZc8lORA" type="text/javascript"></script>
 <script>
     //LAZY LOAD
     var page_now = 1 ;
@@ -53,6 +52,11 @@
 	});
 </script>
 <% end -%>
+
+<%= content_for :page_specific_asset_tail do %>
+<script src="http://ditu.google.cn/maps?file=api&hl=zh-CN&v=2&key=AIzaSyA56gGBHbDHTB73xRHaI7ptDo1WZc8lORA" type="text/javascript"></script>
+<% end -%>
+
 
 <div id="moment-show-page">
     <%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>

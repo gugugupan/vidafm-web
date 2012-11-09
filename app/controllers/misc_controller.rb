@@ -11,8 +11,9 @@ class MiscController < ApplicationController
       return
     end
 
-    @moments = Moment.hot_story() [ "data" ] [ "public_moments" ]
-    @data = User.fetch_star_user( current_user ) [ "data" ]
+    #@moments = Moment.hot_story() [ "data" ] [ "public_moments" ]
+    @moments = api_call( "Moment" , :hot_story , nil , nil ) [ "data" ] [ "public_moments" ]
+    @data = User.fetch_star_user( nil , current_user , nil ) [ "data" ]
     @data[ "recommended" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
     @data[ "stars" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
   end
@@ -28,7 +29,6 @@ class MiscController < ApplicationController
   def ajax_notification
     session[ :cur_user ] [ :notification_count ] = 0
     @message = JSON.parse( VIDA.call("/notification/list" , {} , current_user ) ) [ "data" ]
-    puts @message .to_json
     @message[ "unread" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
     @message[ "read" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
     render "misc/notificationlist" , :layout => false 
@@ -41,13 +41,14 @@ class MiscController < ApplicationController
   def friend
     redirect_to "/" and return unless current_user
     @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
-    @moment = User.fetch_friend_moments( current_user , 0 ) [ "data" ]
+    #@moment = User.fetch_friend_moments( current_user , 0 ) [ "data" ]
+    @moment = api_call( "User" , :fetch_friend_moments , 0 , { :page => 0 } ) [ "data" ]
   end
 
   def ajax_get_new_page
     params[ :page ] = 1 if params[ :page ] .nil?
     params[ :page ] = params[ :page ] .to_i - 1 ;
-    @moment = User.fetch_friend_moments( current_user , params[ :page ] ) [ "data" ]
+    @moment = User.fetch_friend_moments( nil , current_user , :page => params[ :page ] ) [ "data" ]
     render :layout => false 
   end
 end

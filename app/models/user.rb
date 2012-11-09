@@ -14,7 +14,7 @@ class User
 			JSON.parse VIDA.call( "moment/search?category=#{ category }&order=latest&user_id=#{ user_id }&limit=20" , nil )
 		end
 
-		def fetch(user_id , current_user )
+		def fetch( user_id , current_user , params )
 			# check whether the user_id is a number.
 			return nil unless user_id =~ /[0-9]+/
 
@@ -27,8 +27,8 @@ class User
 			JSON.parse VIDA.call("/user/relationships", {:id => user_id, :type => relations}, current_user)
 		end
 
-		def fetch_friend_moments( current_user , page )
-			JSON.parse VIDA.call( "moment/list_following" , { :page => page } , current_user )
+		def fetch_friend_moments( id , current_user , params )
+			JSON.parse VIDA.call( "moment/list_following" , params , current_user )
 		end
 
 		def fetch_current_user( current_user )
@@ -40,7 +40,7 @@ class User
 			JSON.parse VIDA.call( "/user/set_relation" , { :user_id => user_id , :type => commond } , current_user )
 		end
 
-		def fetch_star_user( current_user )
+		def fetch_star_user( id , current_user , params )
 			JSON.parse VIDA.call( "/user/list_featured" , {} , current_user )
 		end
 	end
