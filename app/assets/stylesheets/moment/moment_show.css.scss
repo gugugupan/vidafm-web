@@ -136,9 +136,18 @@
 		border: 10px white solid;
 		position: relative;
 		margin: 0 auto;
+		overflow: hidden;
 
 		#activity_detail_img {
 			position: relative;
+		}
+
+		#photo_black_cover {
+			background:rgba(0,0,0,.7) image-url("images/loading_photo.png") no-repeat center center;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
 		}
 	}
 

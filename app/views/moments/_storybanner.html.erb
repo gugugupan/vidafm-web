@@ -1,4 +1,4 @@
-<% if moment[ "moment_type" ] != 1 && ( ( moment[ "description" ] != "" && !moment[ "description" ] .nil? ) || moment[ "category" ] == "travel" ) -%>
+<% if ( moment[ "description" ] != "" && !moment[ "description" ] .nil? ) || moment[ "category" ] == "travel" -%>
 <div id="story_info">
     <%= image_tag "icon/icon_arrow.png" , :alt => "" , :class => "arrow" %>
     <div class="story_container">

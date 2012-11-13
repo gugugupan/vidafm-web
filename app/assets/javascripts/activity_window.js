@@ -94,8 +94,14 @@ function showAudio( audio )
 
 function showActivityPhoto( activity )
 {
-    var imageDiv = "<div id=image_div> <img src=" + activity .activity_url + " id='activity_detail_img'> </div>" ;
+    var imageDiv = "<div id=image_div> \
+        <img src=" + activity .activity_url + " id='activity_detail_img'> \
+        <div id='photo_black_cover'> </div> \
+    </div>" ;
     $( "#theatre" ) .prepend( imageDiv ) ;
+    $( "#activity_detail_img" ) .load( function() { 
+        $( "#photo_black_cover" ) .css( "display" , "none" ) 
+    }) ;
     $( "#activity_detail_img" ) .css( "max-width" , "1000px" ) ;
     $( "#activity_detail_img" ) .css( "height" , "auto" ) ;
     $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
