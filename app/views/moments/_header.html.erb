@@ -1,4 +1,13 @@
+<% unless moment[ 'v_clickable' ] -%>
 <div id="title-place" class="mouse">
 	<h1>#<%= moment_category( moment[ "category" ] ) %> <%= moment_name moment %> </h1>
 	<p> <%= "#{ moment[ "modified_at" ] [ 0 .. 9 ] }" %> </p>
 </div>
+<% else -%>
+<div id="title-place" class="mouse">
+	<%= link_to URI::escape("/discover/public?name=#{moment['name']}") , :id => "vclick" , :class => "btn_dark btn_middle" do %>
+		<%= image_tag "icon/icon_zhuti.png" %>
+		<p> <%= moment_name moment %> </p>
+	<% end -%>
+</div>
+<% end -%>

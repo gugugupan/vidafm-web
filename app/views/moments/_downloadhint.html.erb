@@ -1,0 +1,10 @@
+<% unless @current_user -%>
+<div href="/" id="download-place">
+    <p class="font1"> <%= moment[ "user" ] [ "name" ] %>正在使用 </p>
+    <p class="red_font">Vida</p>
+    <p class="font1"> 分享生活,下载手机客户端.</p>
+    <%= render :partial => "widgets/download_bar" %>
+</div>
+<% else -%>
+<div id="download-place-blank"> </div>
+<% end -%>

@@ -68,16 +68,7 @@
     <%= render :partial => "widgets/cover" , :locals => { :cover => @moment_cover } %>
     <div id="main-block">
  		<div id="main-block-header">
-            <% unless @current_user -%>
-            <div href="/" id="download-place">
-                <p class="font1"> <%= @moment[ "user" ] [ "name" ] %>正在使用 </p>
-                <p class="red_font">Vida</p>
-                <p class="font1"> 分享生活,下载手机客户端.</p>
-                <%= render :partial => "widgets/download_bar" %>
-            </div>
-            <% else -%>
-            <div id="download-place-blank"> </div>
-            <% end -%>
+            <%= render :partial => "downloadhint" , :locals => { :moment => @moment } %>
             <%= render :partial => "header" , :locals => { :moment => @moment } %>
             <%= render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] , :name => @moment[ 'name' ] } %>
             <%= render :partial => "mapbtn" , :locals => { :moment => @moment } -%>
