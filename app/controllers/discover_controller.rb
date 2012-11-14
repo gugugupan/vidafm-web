@@ -19,9 +19,11 @@ class DiscoverController < ApplicationController
   def public
     params[ :sort_type ] = "latest" if params[ :sort_type ] .nil? || ( params[ :sort_type ] != "hottest" && params[ :sort_type ] != "latest" )
     #@moment = Moment.fetch_by_name( params[ :name ] , params[ :sort_type ] , 0 ) [ "data" ] [ "moments" ]
-    @moment = api_call( "Moment" , :fetch_by_name , nil ,
+    data = api_call( "Moment" , :fetch_by_name , nil ,
         { :q => params[ :name ] , :order => params[ :sort_type ] , :offset => 0 }
-    ) [ "data" ] [ "moments" ]
+    )
+    @moment = data[ "data" ] [ "moments" ] 
+    @description = data[ "data" ] [ "description" ] 
   end
 
   def staruser
