@@ -87,9 +87,21 @@ function showMap( moment )
 
 function showAudio( audio )
 {
-    $( "#broadcast" ) .empty() ;
-    $( "#broadcast" ) .append( '<audio src="' + audio .url + '" preload="auto" autoplay="autoplay">' ) ;
-    audiojs.events.ready(function() { var as = audiojs.createAll(); });
+    $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
+    var audio_to_play = soundManager.createSound({
+        id: audio .id ,
+        url: audio .filename ,
+        //url: "/456.aac",
+        onfinish: function() {
+            /* finish callback */
+            $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
+        } ,
+        onfailure: function() {
+            $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
+            showCenterBox( "WRONG" ) ;
+        }
+    });
+    audio_to_play .play() ;
 }
 
 function showActivityPhoto( activity )
@@ -111,7 +123,7 @@ function showActivityPhoto( activity )
 
     new_close_button( $( "#image_div" ) ) ;
 
-    if ( activity .autio != null ) showAudio( activity .audio ) ;
+    if ( activity .audio != null ) showAudio( activity .audio ) ;
 }
 
 function showActivityVideo( video )

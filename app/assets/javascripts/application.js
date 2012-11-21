@@ -8,7 +8,7 @@
 
 //= require jquery.lazyload
 //= require video
-//= require audio.min
+//= require soundmanager2
 
 jQuery( function() {
 	avatarShow() ;

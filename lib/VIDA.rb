@@ -3,7 +3,7 @@ class VIDA
 		def call(methods, *options)
 			params = options[0]
 			user = options[1].try(:symbolize_keys)
-			resource = "'#{api_url}/#{methods}'"
+			resource = "'#{dev_api_url}/#{methods}'"
 			cmd = "curl -A 'Platform/web' -d " + '"' + "#{params.to_param}" + '" '
 			cmd += "-s "
 			cmd += "-u #{user[:token]}:#{user[:secret]} " if user

@@ -41,6 +41,14 @@
             $( this ) .parent() .parent() .find( "input" ) .focus() ;
         }) ;
 
+        // Load Audio library
+        soundManager.setup({
+          // where to find flash audio SWFs, as needed
+          url: '/'
+        });
+        soundManager.flashVersion = 9;
+        soundManager.useFlashBlock = true;
+
         // pre show <- fix #148
         <% unless notice .nil? -%>
             var activity = <%= raw ( {

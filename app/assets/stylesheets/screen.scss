@@ -1086,11 +1086,17 @@ p{
 				color:$font_grey;
 				word-wrap: break-word;
 				overflow: hidden;
+				float: left;
 			}
 
 			.timer {
 				top:5px;
 				right:0px;
+			}
+
+			.user_name {
+				font-size: 14px;
+				float: left;
 			}
 		}
 

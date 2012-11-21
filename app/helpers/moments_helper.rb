@@ -99,6 +99,7 @@ module MomentsHelper
 	end
 
 	def time_ago_now( time_str )
+		return "" if time_str .nil?
 		s = time_ago_in_words Time.parse( time_str )
 		s = "1天" if s == "一天"
 		s = "1小时" if s == "一小时"

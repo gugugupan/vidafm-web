@@ -1,0 +1,12 @@
+<div class="audio_block" id="audio<%= audio[ 'id' ] %>">
+	<%= link_to "javascript:showAudio( #{ audio .to_json } )" , :class => "audio_button" do %>
+		<%= image_tag( "audio/btn_play.png" , :class => "playbtn" ) %> 
+		<p class="audio_duration">
+			<%= ( audio[ "duration" ] + 0.99 ) .to_i .to_s + '"' %>
+		</p>
+	<% end -%>
+
+	<div class="audio_button_black">
+		<%= image_tag( "audio/playing.gif" , :class => "playingbtn" ) %> 
+	</div>
+</div>

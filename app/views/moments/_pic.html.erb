@@ -8,10 +8,14 @@
 	<div class="info_container">
 		<%= avatar_tag pic[ 'user' ] %>
 		<div class="comment_container">
-			<p class="user_name"> 
+			<div class="user_name"> 
 				<a href="/users/<%= pic[ "user" ] [ :id ] %>"> <%= pic[ "user" ] [ :name ] %> </a> 
 				<div class="clearfix"> </div>
-			</p>
+			</div>
+		<% unless pic[ "audio" ] .nil? -%>
+			<%= render :partial => "audiobutton" , :locals => { :audio => pic[ "audio" ] } %>
+		<% end -%>
+		<% pic[ "description" ] = "abfgdgkjaskjfhkajshfkajshfoaidgh" -%>
 		<% unless pic[ "description" ] .length == 0 -%>
 			<p class="photo_description"> <%= empty_descripe( pic[ "description" ] ) %> </p>
 		<% end -%>
