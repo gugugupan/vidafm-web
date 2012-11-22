@@ -116,7 +116,7 @@ module MomentsHelper
 
 	def get_time( moment )
 		return moment[ "suggest_at" ] unless moment[ "suggest_at" ] .nil?
-		return moment[ "modified_at" ] unless moment[ "modified_at" ] .nil?
-		moment[ "created_at" ] 
+		return moment[ "created_at" ] unless moment[ "created_at" ] .nil?
+		moment[ "modified_at" ] 
 	end
 end

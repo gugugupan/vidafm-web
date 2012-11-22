@@ -15,7 +15,6 @@
 		<% unless pic[ "audio" ] .nil? -%>
 			<%= render :partial => "audiobutton" , :locals => { :audio => pic[ "audio" ] } %>
 		<% end -%>
-		<% pic[ "description" ] = "abfgdgkjaskjfhkajshfkajshfoaidgh" -%>
 		<% unless pic[ "description" ] .length == 0 -%>
 			<p class="photo_description"> <%= empty_descripe( pic[ "description" ] ) %> </p>
 		<% end -%>

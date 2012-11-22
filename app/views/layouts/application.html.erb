@@ -30,8 +30,8 @@
 
   <%= yield %>  
   <div id="footer">
-    <%#= link_to "商务合作" , business_url , :class => "footer_text" %>
-    <!--<p class="footer_text">&nbsp;&nbsp;|&nbsp;&nbsp;</p>-->
+    <%= link_to "商务合作" , business_url , :class => "footer_text" %>
+    <p class="footer_text">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
     <%= link_to "联系我们" , about_url , :class => "footer_text" %>
     <p class="footer_text">&nbsp;&nbsp;|&nbsp;&nbsp;沪ICP备10216111号-2</p>
   </div>
@@ -39,33 +39,25 @@
   <div id="theatre"> <div class="theatre_blank"> </div> </div>
   <!-- <div id="broadcast" style="display:none;"> </div> -->
 
-<!--[if IE 8]>
+<!--[if IE]>
   <script type="text/javascript">
+    $( "#staruser_list .feature_user:nth-child(4n)" ) .css( "margin-right" , "0" ) ;
     $( ".star-user-row .feature_user:first-child" ) .css( "margin-left" , "0" ) ;
-    $( ".photo-row .thumbnail:first-child" ) .css( "margin-left" , "0" ) ;
-  </script>
-<![endif]--> 
-<!--[if IE 7]>
-  <script type="text/javascript">
+    $( "#theme_list .thumbnail:nth-child(3n)" ) .css( "margin-right" , "0" ) ;
+    $( "#hot-story .thumbnail:nth-child(2n)" ) .css( "margin-right" , "0" ) ;
     $( ".text-info" ) .css( "background-color" , "gray" ) ;
     $( "#refresh-link" ) .css( "background-color" , "gray" ) ;
     $( "#download-place" ) .css( "background-color" , "gray" ) ;
-    $( ".star-user-row .feature_user:first-child" ) .css( "margin-left" , "0" ) ;
-    $( ".photo-row .thumbnail:first-child" ) .css( "margin-left" , "0" ) ;
   </script>
 <![endif]--> 
+
 <!--[if IE 6]>
   <script type="text/javascript">
     $( "div" ) .each( function(){
       if ( $( this ) .css( "position" ) == "fixed" ) 
         $( this ) .css( "position" , "absolute" ) ;
     }) ;
-    $( ".photo-row .thumbnail:first-child" ) .css( "margin-left" , "0" ) ;
-    $( "#discover-page #main-main-block" ) .css( "width" , "964" ) ;
-    $( ".star-user-row .feature_user:first-child" ) .css( "margin-left" , "0" ) ;
-    $( ".text-info" ) .css( "background-color" , "gray" ) ;
-    $( "#refresh-link" ) .css( "background-color" , "gray" ) ;
-    $( "#download-place" ) .css( "background-color" , "gray" ) ;
+    $( "#discover-page #main-main-block" ) .css( "width" , "1050" ) ;
   </script>
 <![endif]--> 
 

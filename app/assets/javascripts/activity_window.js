@@ -87,21 +87,27 @@ function showMap( moment )
 
 function showAudio( audio )
 {
-    $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
-    var audio_to_play = soundManager.createSound({
-        id: audio .id ,
-        url: audio .filename ,
-        //url: "/456.aac",
-        onfinish: function() {
-            /* finish callback */
-            $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
-        } ,
-        onfailure: function() {
-            $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
-            showCenterBox( "WRONG" ) ;
-        }
-    });
-    audio_to_play .play() ;
+    if ( soundManager.ok() ) 
+    {
+        $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
+        var audio_to_play = soundManager.createSound({
+            id: audio .id ,
+            url: audio .filename ,
+            //url: "/789.m4a",
+            onfinish: function() {
+                /* finish callback */
+                $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
+            } ,
+            onfailure: function() {
+                $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
+                showCenterBox( "声音播放错误." ) ;
+            }
+        });
+        audio_to_play .play() ;
+    } else
+    {
+        showCenterBox( "声音播放错误." ) ;
+    }
 }
 
 function showActivityPhoto( activity )

@@ -52,7 +52,7 @@
 
 	#staruser_block
 	{
-		width: 900px;
+		width: 880px;
 		margin: 30px auto 15px;
 
 		p#staruser_head
@@ -76,14 +76,14 @@
 				float: left;
 				margin-right: 20px;
 				margin-left: 0;
-				&:last-child { margin-right: 0; }
+				&:nth-child( 4n ) { margin-right: 0; }
 			}
 		}
 	}
 
 	#theme_moment
 	{
-		width: 900px;
+		width: 880px;
 		margin: 30px auto;
 
 		#theme_head
@@ -105,7 +105,7 @@
 			.thumbnail
 			{
 				float: left;
-				margin-right: 30px;
+				margin-right: 20px;
 				margin-left: 0px;
 				margin-bottom: 15px;
 				&:nth-child( 3n ) { margin-right: 0; }
