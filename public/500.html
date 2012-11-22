@@ -34,8 +34,41 @@
         margin: 0 auto;
         float: right;
     }
+
+
+    #header {
+        border-bottom:1px solid #82010D;
+        height:58px;
+        width:100%;
+        position: absolute;
+        top: 0;
+        z-index: 255;
+        background-color: #9B1600;
+        background-image: linear-gradient(top, #C61635 0%, #9B1600 100%);
+        background-image: -o-linear-gradient(top, #C61635 0%, #9B1600 100%);
+        background-image: -moz-linear-gradient(top, #C61635 0%, #9B1600 100%);
+        background-image: -webkit-linear-gradient(top, #C61635 0%, #9B1600 100%);
+        background-image: -ms-linear-gradient(top, #C61635 0%, #9B1600 100%);
+    }
+
+    .content {
+        height:58px;
+        width:75%;
+        margin:0px auto;
+    }
+
+    #logo {
+        display:block;
+        float: left;
+        padding-top:10px;
+    }
 </style>
 <body>
+    <div id="header">
+        <div class="content">
+            <a href="/"><img alt="" id="logo" src="/assets/images/logo.png"></a>
+        </div>
+    </div>
     <img id="img" src="/assets/share/500.png">
     <div id="text">程序居然出错了，WebDev蹲墙角去..<a id="back" href="/"> 点击返回首页</a></div>
     <div class="clearfix"></div>
