@@ -85,33 +85,77 @@ function showMap( moment )
     }
 }
 
-function showAudio( audio )
+/*================================Audio part============================================*/
+
+function playAudio( audio ) 
+{ 
+    $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
+    $( "#audio" + audio .id + " .audio_button_black .pausebtn" ) .eq( 0 ) .fadeOut( 0 ) ;
+    $( "#audio" + audio .id + " .audio_button_black .playingbtn" ) .eq( 0 ) .fadeIn( 0 ) ;
+    soundManager .play( "my_audio" + audio .id ) ; 
+}
+
+function pauseAudio( audio ) 
+{ 
+    $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
+    $( "#audio" + audio .id + " .audio_button_black .playingbtn" ) .eq( 0 ) .fadeOut( 0 ) ;
+    $( "#audio" + audio .id + " .audio_button_black .pausebtn" ) .eq( 0 ) .fadeIn( 0 ) ;
+    soundManager .pause( "my_audio" + audio .id ) ; 
+}
+
+function createAudio( audio )
+{
+    $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
+    $( "#audio" + audio .id + " .audio_button_black .pausebtn" ) .eq( 0 ) .fadeOut( 0 ) ;
+    $( "#audio" + audio .id + " .audio_button_black .playingbtn" ) .eq( 0 ) .fadeIn( 0 ) ;
+    soundManager.createSound( {
+        id: "my_audio" + audio .id ,
+        url: audio .filename ,
+        //url: "/789.m4a",
+        onfinish: function() {
+            /* finish callback */
+            $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
+        } ,
+        onfailure: function() {
+            $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
+            showCenterBox( "声音播放错误." ) ;
+        }
+    } ) .play() ;
+}
+
+function touchAudio( audio )
 {
     if ( soundManager.ok() ) 
     {
-        $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
-        var audio_to_play = soundManager.createSound({
-            id: audio .id ,
-            url: audio .filename ,
-            //url: "/789.m4a",
-            onfinish: function() {
-                /* finish callback */
-                $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
-            } ,
-            onfailure: function() {
-                $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
-                showCenterBox( "声音播放错误." ) ;
-            }
-        });
-        audio_to_play .play() ;
+        var my_audio = soundManager .getSoundById( "my_audio" + audio .id ) ;
+        if ( !my_audio )
+        {
+            createAudio( audio ) ;
+        } else
+        {
+            if ( my_audio .playState == 0 || my_audio .paused )
+                playAudio( audio ) ;
+            else 
+                pauseAudio( audio ) ; 
+        }
     } else
     {
         showCenterBox( "声音播放错误." ) ;
     }
 }
 
+function pauseAllAudio()
+{
+    soundManager.pauseAll();
+    $( ".audio_button_black .playingbtn" ) .eq( 0 ) .fadeOut( 0 ) ;
+    $( ".audio_button_black .pausebtn" ) .eq( 0 ) .fadeIn( 0 ) ;
+}
+
+/*================================Photo part=============================================*/
+
 function showActivityPhoto( activity )
 {
+    pauseAllAudio() ;
     var imageDiv = "<div id=image_div> \
         <img src=" + activity .activity_url + " id='activity_detail_img'> \
         <div id='photo_black_cover'> </div> \
@@ -129,33 +173,36 @@ function showActivityPhoto( activity )
 
     new_close_button( $( "#image_div" ) ) ;
 
-    if ( activity .audio != null ) showAudio( activity .audio ) ;
+    //if ( activity .audio != null ) showAudio( activity .audio ) ;
 }
 
+/*================================Video part=============================================*/
+
+var video_count = 0 ;
 function showActivityVideo( video )
 {
+    pauseAllAudio() ;
     if ( video .playable )
     {
-        var videoDiv = '<video id="my_video_1" class="video-js vjs-default-skin"\
+        video_count = video_count + 1 ;
+        var video_name = "my_video_" + video_count ;
+        var videoDiv = '<video id="' + video_name + '" class="video-js vjs-default-skin my_video"\
         controls preload="auto" width="648" height="648" poster="">\
             <source src="' + video .url_iphone + '" type="video/mp4">\
         </video>' ;
 
         $( "#theatre" ) .prepend( videoDiv ) ;
         beginTheatre() ;
-
-        _V_("my_video_1", { "controls": true, "preload": "auto" }, function(){});
-        $( "#my_video_1" ) .css( "left" , ( $( window ) .width() - 648 ) / 2 ) ;
-
-        $( "#my_video_1" ) .append( "<div id='close_button' class='mouse'> </div>" ) ;
-        $( "#close_button" ) .fadeIn( 0 ) ;
-        $( "#close_button" ) .click( destroyTheatre ) ;
+        _V_( video_name , { "controls": true, "preload": "auto" }, function(){} ) ;
+        $( "#" + video_name ) .css( "left" , ( $( window ) .width() - 648 ) / 2 ) ;
+        new_close_button( $( "#" + video_name ) ) ;
     } else
     {
         showCenterBox( "视频处理中,请稍后再试." ) ;
     }
 }
 
+/*================================Notification part=============================================*/
 
 function callNotificationBox()
 {

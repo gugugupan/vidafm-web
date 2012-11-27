@@ -163,7 +163,7 @@
 		}
 	}
 
-	#my_video_1 {
+	.my_video {
 		border: 10px white solid;
 		position: relative;
 	}
@@ -257,6 +257,13 @@
 		display: none;
 
 		.playingbtn {
+			height: 36px;
+			margin-left: 10px;
+			margin-top: 2px;
+		}
+
+		.pausebtn {
+			display: none;
 			height: 36px;
 			margin-left: 10px;
 			margin-top: 2px;

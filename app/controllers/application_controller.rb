@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     (json_data['result'] || json_data[:result]).to_i == 401
   end
   
-  def get_relation_btn( r ) 
+  def get_relation_btn( r )
     alph = {
       "none" => 0 , "followed_by" => 0 , "pending_approve" => 0 , "pending_ignore" => 0 , "suggest_follow" => 0 ,
       "following" => 1 , "favourite" => 1 , "two_way_following" => 1 ,
@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
     return alph[ r ]
   end
 
-  def get_notification_sentence( noti ) 
+  def get_notification_sentence( noti )
     unless {2,2,3,3,4,4,9,9,10,10,12,12} [ noti[ "notification_type" ] ] .nil?
       if noti[ 'moment' ][ "category" ] = "random" and noti[ 'moment' ][ "name" ] .empty?
         noti[ 'moment' ][ "name" ] = "#{ noti[ 'moment' ][ 'created_at' ] [ 5 , 2 ] }月#{ noti[ 'moment' ][ 'created_at' ] [ 8 , 2 ]}日随拍" 
