@@ -57,10 +57,10 @@
         // pre show <- fix #148 <- if come from activity link
         <% unless notice .nil? -%>
             var activity = <%= raw ( {
-                :activity_url => pic[ 'photo' ] [ 'url_l' ] ,
-                :img_width => pic[ 'photo' ] [ 'width' ] ,
-                :audio => pic[ 'audio' ] ,
-                :video => pic[ 'video' ]
+                :activity_url => @activity[ 'photo' ] [ 'url_l' ] ,
+                :img_width => @activity[ 'photo' ] [ 'width' ] ,
+                :audio => @activity[ 'audio' ] ,
+                :video => @activity[ 'video' ]
             } .to_json ) %> ;
             showActivity( activity ) ;
         <% end -%>
