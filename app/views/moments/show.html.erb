@@ -54,18 +54,15 @@
         });
 
 
-        // pre show <- fix #148
+        // pre show <- fix #148 <- if come from activity link
         <% unless notice .nil? -%>
             var activity = <%= raw ( {
-                :activity_url => @activity[ 'photo' ] [ 'url_l' ] ,
-                :img_width => @activity[ 'photo' ] [ 'width' ] ,
-                :audio => @activity[ 'audio' ] ,
-                :activity_type => @activity[ 'activity_type' ] 
+                :activity_url => pic[ 'photo' ] [ 'url_l' ] ,
+                :img_width => pic[ 'photo' ] [ 'width' ] ,
+                :audio => pic[ 'audio' ] ,
+                :video => pic[ 'video' ]
             } .to_json ) %> ;
-            if ( activity .activity_type == 1 )
-                showActivityPhoto( activity ) ;
-            else 
-                showActivityVideo( activity .video ) ;
+            showActivity( activity ) ;
         <% end -%>
 	});
 </script>

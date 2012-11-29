@@ -22,7 +22,10 @@ function destroyTheatre()
         $( "#theatre" ) .html( '<div class="theatre_blank"> </div>' ) ; 
         $( "body" ) .css( "overflow" , "scroll" ) ;
     } , 500 ) ;
+    stopAllAudio() ;
 }
+
+/*==============================map section==============================================*/
 
 function showMap( moment )
 {
@@ -89,36 +92,53 @@ function showMap( moment )
 
 function playAudio( audio ) 
 { 
-    $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
-    $( "#audio" + audio .id + " .audio_button_black .pausebtn" ) .eq( 0 ) .fadeOut( 0 ) ;
-    $( "#audio" + audio .id + " .audio_button_black .playingbtn" ) .eq( 0 ) .fadeIn( 0 ) ;
+    if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
+        $( "#audio_playing_block" ) .fadeIn( 300 ) ;
+    else 
+        $( "#audio" + audio .id + " .audio_button_black" ) .fadeIn( 300 ) ;
     soundManager .play( "my_audio" + audio .id ) ; 
 }
 
-function pauseAudio( audio ) 
+function stopAudio( audio ) 
 { 
-    $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
-    $( "#audio" + audio .id + " .audio_button_black .playingbtn" ) .eq( 0 ) .fadeOut( 0 ) ;
-    $( "#audio" + audio .id + " .audio_button_black .pausebtn" ) .eq( 0 ) .fadeIn( 0 ) ;
-    soundManager .pause( "my_audio" + audio .id ) ; 
+    if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
+        $( "#audio_playing_block" ) .fadeOut( 300 ) ;
+    else 
+        $( "#audio" + audio .id + " .audio_button_black" ) .fadeOut( 300 ) ;
+    soundManager .stop( "my_audio" + audio .id ) ; 
 }
 
 function createAudio( audio )
 {
-    $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeIn( 300 ) ;
-    $( "#audio" + audio .id + " .audio_button_black .pausebtn" ) .eq( 0 ) .fadeOut( 0 ) ;
-    $( "#audio" + audio .id + " .audio_button_black .playingbtn" ) .eq( 0 ) .fadeIn( 0 ) ;
+    if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
+        $( "#audio_playing_block" ) .fadeIn( 300 ) ;
+    else 
+        $( "#audio" + audio .id + " .audio_button_black" ) .fadeIn( 300 ) ;
+
     soundManager.createSound( {
         id: "my_audio" + audio .id ,
         url: audio .filename ,
-        //url: "/789.m4a",
         onfinish: function() {
             /* finish callback */
-            $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
+            if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
+                $( "#audio_playing_block" ) .fadeOut( 300 ) ;
+            else 
+                $( "#audio" + audio .id + " .audio_button_black" ) .fadeOut( 300 ) ;
         } ,
         onfailure: function() {
-            $( "#audio" + audio .id + " .audio_button_black" ) .eq( 0 ) .fadeOut( 300 ) ;
+            if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
+                $( "#audio_playing_block" ) .fadeOut( 300 ) ;
+            else
+                $( "#audio" + audio .id + " .audio_button_black" ) .fadeOut( 300 ) ;
             showCenterBox( "声音播放错误." ) ;
+        } ,
+        whileplaying: function() {
+            if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
+            {
+                var s = ( this .position / 1000 ) .toString() ;
+                var now_position = s .substr( 0 , s .indexOf( '.' ) + 2 ) + '"' ;
+                $( "#audio_playing_block #duration_time" ) .text( now_position ) ;
+            }
         }
     } ) .play() ;
 }
@@ -127,16 +147,17 @@ function touchAudio( audio )
 {
     if ( soundManager.ok() ) 
     {
+        $( "#audio_playing_block #duration_time" ) .text( '0.0"' ) ;
         var my_audio = soundManager .getSoundById( "my_audio" + audio .id ) ;
         if ( !my_audio )
         {
             createAudio( audio ) ;
         } else
         {
-            if ( my_audio .playState == 0 || my_audio .paused )
+            if ( my_audio .playState == 0 )
                 playAudio( audio ) ;
             else 
-                pauseAudio( audio ) ; 
+                stopAudio( audio ) ; 
         }
     } else
     {
@@ -144,62 +165,87 @@ function touchAudio( audio )
     }
 }
 
-function pauseAllAudio()
+function stopAllAudio()
 {
-    soundManager.pauseAll();
-    $( ".audio_button_black .playingbtn" ) .eq( 0 ) .fadeOut( 0 ) ;
-    $( ".audio_button_black .pausebtn" ) .eq( 0 ) .fadeIn( 0 ) ;
-}
-
-/*================================Photo part=============================================*/
-
-function showActivityPhoto( activity )
-{
-    pauseAllAudio() ;
-    var imageDiv = "<div id=image_div> \
-        <img src=" + activity .activity_url + " id='activity_detail_img'> \
-        <div id='photo_black_cover'> </div> \
-    </div>" ;
-    $( "#theatre" ) .prepend( imageDiv ) ;
-    $( "#activity_detail_img" ) .load( function() { 
-        $( "#photo_black_cover" ) .css( "display" , "none" ) 
-    }) ;
-    $( "#activity_detail_img" ) .css( "max-width" , "1000px" ) ;
-    $( "#activity_detail_img" ) .css( "height" , "auto" ) ;
-    $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
-    $( "#image_div" ) .css( "width" , activity .img_width ) ;
-    beginTheatre() ;
-    $( "#theatre" ) .click( destroyTheatre ) ;
-
-    new_close_button( $( "#image_div" ) ) ;
-
-    //if ( activity .audio != null ) showAudio( activity .audio ) ;
+    soundManager .stopAll();
+    $( ".audio_button_black" ) .fadeOut( 300 ) ;
 }
 
 /*================================Video part=============================================*/
 
 var video_count = 0 ;
-function showActivityVideo( video )
+function showVideo( video )
 {
-    pauseAllAudio() ;
+    stopAllAudio() ;
     if ( video .playable )
     {
+        $( "#theatre" ) .html( '<div class="theatre_blank"> </div>' ) ;
         video_count = video_count + 1 ;
         var video_name = "my_video_" + video_count ;
         var videoDiv = '<video id="' + video_name + '" class="video-js vjs-default-skin my_video"\
-        controls preload="auto" width="648" height="648" poster="">\
+        controls preload="auto" width="648" height="648" poster="" autoplay>\
             <source src="' + video .url_iphone + '" type="video/mp4">\
         </video>' ;
 
         $( "#theatre" ) .prepend( videoDiv ) ;
-        beginTheatre() ;
         _V_( video_name , { "controls": true, "preload": "auto" }, function(){} ) ;
         $( "#" + video_name ) .css( "left" , ( $( window ) .width() - 648 ) / 2 ) ;
         new_close_button( $( "#" + video_name ) ) ;
+
+        $( "#" + video_name ) .click( function( event ) {
+            event .stopPropagation() ;
+        }) ;
     } else
     {
         showCenterBox( "视频处理中,请稍后再试." ) ;
     }
+}
+
+/*================================ Avtivity MAIN =============================================*/
+
+function showActivity( activity )
+{
+    stopAllAudio() ;
+    var imageDiv = "<div id=image_div> \
+        <img src=" + activity .activity_url + " id='activity_detail_img'> \
+        <div id='photo_black_cover'> </div> \
+        <div id='btn_part'> </div> \
+        <div id='audio_playing_block'> <p id='duration_time'>0.0" + '"' + "</p> </div> \
+    </div>" ;
+    $( "#theatre" ) .prepend( imageDiv ) ;
+    $( "#activity_detail_img" ) .load( function() { 
+        $( "#photo_black_cover" ) .css( "display" , "none" ) ;
+    }) ;
+    $( "#activity_detail_img" ) .css( "max-width" , "1000px" ) ;
+    $( "#activity_detail_img" ) .css( "height" , "auto" ) ;
+    $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
+    $( "#image_div" ) .css( "width" , activity .img_width ) ;
+    new_close_button( $( "#image_div" ) ) ;
+
+    // activity btn show
+    var params_count = 0 ;
+    if ( activity .audio != null )
+    {
+        var audio_json = '{"id":' + activity .audio .id + ',"filename":"' + activity .audio .filename + '"}'
+        $( "#btn_part" ) .append( "<a href=javascript:touchAudio(" + audio_json + ") class='btn has_audio'> </a>" );
+        params_count ++ ;
+    }
+    if ( activity .video != null )
+    {
+        var video_json = '{"playable":' + activity .video .playable + 
+                        ',"url_iphone":"' + activity .video .url_iphone + '"}' ;
+        $( "#btn_part" ) .append( "<a href=javascript:showVideo(" + video_json + ") class='btn has_video'> </a>" ) ;
+        params_count ++ ;
+    }
+    if ( params_count == 1 ) $( "#btn_part" ) .css( "margin-left" , "-35px" ) ;
+    if ( params_count == 2 ) $( "#btn_part" ) .css( "margin-left" , "-90px" ) ;
+
+    // Theatre show
+    beginTheatre() ;
+    $( "#image_div" ) .click( function( event ) {
+        event .stopPropagation() ;
+    }) ;
+    $( "#theatre" ) .click( destroyTheatre ) ;
 }
 
 /*================================Notification part=============================================*/

@@ -97,6 +97,22 @@
 				height:100%;
 				width:100%;
 			}
+
+			.has_audio_box {
+				position: absolute;
+				bottom: 2px;
+				right: 2px;
+				height: 20%;
+			}
+
+			.has_video_box {
+				position: absolute;
+				height: 40px;
+				top: 50%;
+				left: 50%;
+				margin-top: -20px;
+				margin-left: -20px;
+			}
 		}
 
 		.image_box_big {

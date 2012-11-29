@@ -1121,10 +1121,18 @@ p{
 		border-top-left-radius:12px;
 		border-top-right-radius:12px;
 		width: 100%;
+		position: relative;
 
 		img {
 			height:auto;
 			width:100%;
+		}
+
+		.video_btn {
+			position:absolute; 
+			bottom:5px; 
+			left:5px; 
+			width: 82px;
 		}
 	}
 

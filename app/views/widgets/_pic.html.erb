@@ -2,4 +2,10 @@
 	<%= link_to image_tag( "empty.png" , "data-original" => pic[ "photo" ] [ "url_m" ] , :class => "lazy" , 
 		:cwidth => pic[ "photo" ] [ "width" ] , :cheight => pic[ "photo" ] [ "height" ] ) , 
 		"/moments/#{ pic[ 'moment_id' ] }#activity#{ pic[ 'id' ] }" , :class => "mlimage" %>
+	<% unless pic[ "audio" ] .nil? -%>
+		<%= image_tag "audio/icon_micro.png" , :class => "has_audio_box" -%>
+	<% end -%>
+	<% unless pic[ "video" ] .nil? -%>
+		<%= image_tag "audio/play.png" , :class => "has_video_box" -%>
+	<% end -%>
 </div>

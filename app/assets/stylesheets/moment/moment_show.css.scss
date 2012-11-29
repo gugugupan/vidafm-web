@@ -161,6 +161,45 @@
 			position: absolute;
 			top: 0;
 		}
+
+		#btn_part {
+			position: absolute;
+			bottom: 35%;
+			left: 50%;
+
+			.btn {
+				width: 70px;
+				height: 70px;
+				float: left;
+				margin-left: 40px;
+				&:first-child { margin-left: 0px; }
+			}
+
+			.has_audio { background:image-url("audio/audio.png") no-repeat center center; }
+			.has_video { background:image-url("audio/play.png") no-repeat center center; }
+		}
+
+		#audio_playing_block {
+			display: none;
+			position: absolute;
+			width: 139px;
+			height: 139px;
+			background:image-url("audio/playing.png") no-repeat center center; 
+			bottom: 47%;
+			left: 50%;
+			margin-left: -70px;
+
+			#duration_time {
+				position: absolute;
+				width: 50px;
+				color: white ;
+				bottom: 14px;
+				left: 50%;
+				margin-left: -25px;
+				text-align: center;
+				font-size: 20px;
+			}
+		}
 	}
 
 	.my_video {
@@ -257,13 +296,6 @@
 		display: none;
 
 		.playingbtn {
-			height: 36px;
-			margin-left: 10px;
-			margin-top: 2px;
-		}
-
-		.pausebtn {
-			display: none;
 			height: 36px;
 			margin-left: 10px;
 			margin-top: 2px;
