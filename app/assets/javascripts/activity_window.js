@@ -183,7 +183,7 @@ function showVideo( video )
         video_count = video_count + 1 ;
         var video_name = "my_video_" + video_count ;
         var videoDiv = '<video id="' + video_name + '" class="video-js vjs-default-skin my_video"\
-        controls preload="auto" width="648" height="648" poster="" autoplay>\
+        controls preload="auto" width="648" height="648" poster="">\
             <source src="' + video .url_iphone + '" type="video/mp4">\
         </video>' ;
 
@@ -246,6 +246,7 @@ function showActivity( activity )
         event .stopPropagation() ;
     }) ;
     $( "#theatre" ) .click( destroyTheatre ) ;
+    if ( activity .audio != null ) touchAudio( activity .audio ) ;
 }
 
 /*================================Notification part=============================================*/

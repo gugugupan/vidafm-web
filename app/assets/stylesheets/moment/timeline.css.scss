@@ -91,6 +91,7 @@
 
 		.image_box {
 			overflow: hidden;
+			position: relative;
 
 			.mlimage {
 				display:block;
@@ -102,7 +103,7 @@
 				position: absolute;
 				bottom: 2px;
 				right: 2px;
-				height: 20%;
+				height: 25px;
 			}
 
 			.has_video_box {
