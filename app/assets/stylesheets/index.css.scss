@@ -19,20 +19,23 @@
 			}
 
 			#intro_col {
+				background: image-url( 'index/QRcode.png' ) no-repeat left center;
+				padding-left: 120px;
+				height: 120px;
 				position: absolute ;
-				margin-left: 45px;
-				margin-top: 230px;
+				margin-left: 95px;
+				margin-top: 200px;
 				left: 50%;
 
 				#text {
-					margin-bottom: 20px;
-					margin-left: 55px;
+					margin-bottom: 14px;
 				}
 
 				p {
 					color: white;
-					font-size: 24px;
-					display: inline;
+					font-size: 18px;
+					display: block;
+					margin-top: 14px;
 				}
 			}
 		}
@@ -45,7 +48,7 @@
 			img{
 				left: 50%;
 				position: absolute;
-				margin-left: -410px;
+				margin-left: -482px;
 			}
 		}
 	}
@@ -112,4 +115,23 @@
 			}
 		}
 	}
+}
+
+#download_ios {
+	float: left;
+	width: 99px;
+	height: 36px;
+	background: image-url( 'index/iphone_download.png' ) no-repeat center center;
+
+	&:hover { background: image-url( 'index/iphone_download_hover.png' ) no-repeat center center; }
+}
+
+#download_android {
+	float: left;
+	margin-left: 20px;
+	width: 107px;
+	height: 36px;
+	background: image-url( 'index/android_download.png' ) no-repeat center center;
+
+	&:hover { background: image-url( 'index/android_download_hover.png' ) no-repeat center center; }
 }

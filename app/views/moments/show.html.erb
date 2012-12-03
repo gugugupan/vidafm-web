@@ -42,28 +42,23 @@
         }) ;
 
         // Load Audio library
-        soundManager.setup({
-          //url: 'http://vida.fm/swf/',
+        soundManager.setup( {
           url: '/swf/' , 
-          flashVersion: 9, // optional: shiny features (default = 8)
-          useFlashBlock: false, // optionally, enable when you're ready to dive in
+          flashVersion: 9 ,
+          useFlashBlock: false ,
           onready: function() {
-            // Ready to use; soundManager.createSound() etc. can now be called.
-            //alert( "SUCCESS" ) ;
+            // pre show <- fix #148 <- if come from activity link
+            <% unless notice .nil? -%>
+                var activity = <%= raw ( {
+                    :activity_url => @activity[ 'photo' ] [ 'url_l' ] ,
+                    :img_width => @activity[ 'photo' ] [ 'width' ] ,
+                    :audio => @activity[ 'audio' ] ,
+                    :video => @activity[ 'video' ]
+                } .to_json ) %> ;
+                showActivity( activity ) ;
+            <% end -%>
           }
-        });
-
-
-        // pre show <- fix #148 <- if come from activity link
-        <% unless notice .nil? -%>
-            var activity = <%= raw ( {
-                :activity_url => @activity[ 'photo' ] [ 'url_l' ] ,
-                :img_width => @activity[ 'photo' ] [ 'width' ] ,
-                :audio => @activity[ 'audio' ] ,
-                :video => @activity[ 'video' ]
-            } .to_json ) %> ;
-            showActivity( activity ) ;
-        <% end -%>
+        } ) ;
 	});
 </script>
 <% end -%>

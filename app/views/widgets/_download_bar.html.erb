@@ -1,15 +1,10 @@
 <div class="download-bar">
-	<!--
-	<a href="/d/iphone" class="btn_grey btn_big" style="padding-left:45px;">
-		<%= image_tag "images/iphone_icon.png" , :alt => "" %>
-		iPhone客户端下载 &nbsp
-	</a>
-	<a href="#" class="btn_grey btn_big" style="padding-left:55px;">
-		<%= image_tag "images/android_icon.png" , :alt => "" %>
-		Android客户端下载 &nbsp
-	</a>
-	-->
-	<%= link_to image_tag( "icon/iphone_icon.png" ) + "iPhone 客户端下载" , "/d/iphone" , :class => "btn_grey btn_big" , :style => "padding-left:45px;" %>
-	<%= link_to image_tag( "icon/android_icon.png" ) + "Android 客户端下载" , "/android_download" , :class => "btn_grey btn_big android" , :style => "padding-left:55px; margin-left: 20px;" %>
+	<% if style == "old" -%>
+		<%= link_to image_tag( "icon/iphone_icon.png" ) + "iPhone 客户端下载" , "/d/iphone" , :class => "btn_grey btn_big" , :style => "padding-left:45px;" %>
+		<%= link_to image_tag( "icon/android_icon.png" ) + "Android 客户端下载" , "/android_download" , :class => "btn_grey btn_big android" , :style => "padding-left:55px; margin-left: 20px;" %>
+	<% else -%>
+		<%= link_to "" , "/d/iphone" , :id => "download_ios" %>
+		<%= link_to "" , "/android_download" , :id => "download_android" %> 
 	<div class="clearfix"> </div>
+	<% end -%>
 </div>

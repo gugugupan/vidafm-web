@@ -70,6 +70,13 @@ class ApplicationController < ActionController::Base
     return alph[ r ]
   end
 
+  def get_haslocation( item )
+    for a in item
+      return true if ( a[ 'lat' ] != 0 && a[ 'lng' ] != 0 )
+    end
+    return false 
+  end
+
   def get_notification_sentence( noti )
     unless {2,2,3,3,4,4,9,9,10,10,12,12} [ noti[ "notification_type" ] ] .nil?
       if noti[ 'moment' ][ "category" ] = "random" and noti[ 'moment' ][ "name" ] .empty?

@@ -8,6 +8,7 @@ class MomentsController < ApplicationController
     @activity = api_call( "Moment" , :fetch , nil , { :activity_id => notice , :page => 0 , :page_size => 1 } ) [ "data" ] [ "items" ] [ 0 ] unless notice .nil?
     @moment = data[ "data" ]
     @moment_cover = @moment[ "cover_file" ]
+    @moment[ "haslocation" ] = get_haslocation( @moment[ "items" ] ) 
     save_url_in_cookies
   end
 

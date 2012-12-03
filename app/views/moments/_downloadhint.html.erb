@@ -3,7 +3,7 @@
     <p class="font1"> <%= moment[ "user" ] [ "name" ] %>正在使用 </p>
     <p class="red_font">Vida</p>
     <p class="font1"> 分享生活,下载手机客户端.</p>
-    <%= render :partial => "widgets/download_bar" %>
+    <%= render :partial => "widgets/download_bar" , :locals => { :style => "old" } %>
 </div>
 <% else -%>
 <div id="download-place-blank"> </div>
