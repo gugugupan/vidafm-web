@@ -18,7 +18,7 @@
 		<% unless pic[ "description" ] .length == 0 -%>
 			<p class="photo_description"> <%= empty_descripe( pic[ "description" ] ) %> </p>
 		<% end -%>
-			<font class="timer" title="拍摄时间"> <%= time_ago_now( pic[ "created_at" ] ) %>前 </font>
+			<font class="timer" title="拍摄时间"> <%= time_ago_now( get_time( pic ) ) %>前 </font>
 			<!--
 			<font class="location">照片地址</font>
 			-->
