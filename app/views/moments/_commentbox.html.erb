@@ -1,3 +1,4 @@
+<% commentbox[ "comments" ] = [] if commentbox[ "comments" ] .nil? -%>
 <% if commentbox[ "comments" ] .size == 5 -%>
 	<% url = allcomments_moment_url( commentbox[ 'id' ] ) -%>
 	<% url = allcomments_activity_url( commentbox[ 'id' ] ) if type == "activity" -%>

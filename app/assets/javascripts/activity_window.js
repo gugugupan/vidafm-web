@@ -90,46 +90,46 @@ function showMap( moment )
 
 /*================================Audio part============================================*/
 
-function playAudio( audio ) 
-{ 
-    if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
-        $( "#audio_playing_block" ) .fadeIn( 300 ) ;
-    else 
-        $( "#audio" + audio .id + " .audio_button_black" ) .fadeIn( 300 ) ;
-    soundManager .play( "my_audio" + audio .id ) ; 
-}
-
-function stopAudio( audio ) 
-{ 
-    if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
-        $( "#audio_playing_block" ) .fadeOut( 300 ) ;
-    else 
-        $( "#audio" + audio .id + " .audio_button_black" ) .fadeOut( 300 ) ;
-    soundManager .stop( "my_audio" + audio .id ) ; 
-}
-
-function createAudio( audio )
+function startPlayingWindow( audio )
 {
     if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
         $( "#audio_playing_block" ) .fadeIn( 300 ) ;
     else 
         $( "#audio" + audio .id + " .audio_button_black" ) .fadeIn( 300 ) ;
+}
 
+function finishPlayingWindow( audio )
+{
+    if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
+        $( "#audio_playing_block" ) .fadeOut( 300 ) ;
+    else 
+        $( "#audio" + audio .id + " .audio_button_black" ) .fadeOut( 300 ) ;
+}
+
+function playAudio( audio ) 
+{ 
+    startPlayingWindow( audio ) ;
+    soundManager .play( "my_audio" + audio .id ) ; 
+}
+
+function stopAudio( audio ) 
+{ 
+    finishPlayingWindow( audio ) ;
+    soundManager .stop( "my_audio" + audio .id ) ; 
+}
+
+function createAudio( audio )
+{
+    startPlayingWindow( audio ) ;
     soundManager.createSound( {
         id: "my_audio" + audio .id ,
         url: audio .filename ,
+        autoPlay: true ,
         onfinish: function() {
-            /* finish callback */
-            if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
-                $( "#audio_playing_block" ) .fadeOut( 300 ) ;
-            else 
-                $( "#audio" + audio .id + " .audio_button_black" ) .fadeOut( 300 ) ;
+            finishPlayingWindow( audio ) ;
         } ,
         onfailure: function() {
-            if ( $( "#audio_playing_block #duration_time" ) .length > 0 )
-                $( "#audio_playing_block" ) .fadeOut( 300 ) ;
-            else
-                $( "#audio" + audio .id + " .audio_button_black" ) .fadeOut( 300 ) ;
+            finishPlayingWindow( audio ) ;
             showCenterBox( "声音播放错误." ) ;
         } ,
         whileplaying: function() {
@@ -140,7 +140,7 @@ function createAudio( audio )
                 $( "#audio_playing_block #duration_time" ) .text( now_position ) ;
             }
         }
-    } ) .play() ;
+    } ) ;
 }
 
 function touchAudio( audio )
