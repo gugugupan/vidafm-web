@@ -30,9 +30,16 @@
             $( this ) .text( "载入中.." ) ;
         }) ;
         $( ".commentbtn" ) .live( "click" , function() {
+            $( this ) .attr( "href" , "javascript:void(0)" ) ;
+            $( this ) .attr( "data-remote" , false ) ;
             var s = $( this ) .attr( 'id' ) ;
-            $( "#" + s .substr( 0 , s .length - 3 ) + " .none_comment" ) .text( "载入中.." ) ;
-            $( "#" + s .substr( 0 , s .length - 3 ) ) .slideToggle() ;
+            var $selector = $( "#" + s .substr( 0 , s .length - 3 ) ) ;
+            if ( $selector .css( "display" ) == "none" )
+            {
+                $selector .find( ".none_comment" ) .text( "载入中.." ) ;
+                $selector .find( ".none_comment" ) .removeClass( "none_comment" ) ;
+            }
+            $selector .slideToggle() ;
         })
         $( ".one_comment" ) .live( "click" , function() {
             var name = $( this ) .find( ".user_name" ) .eq( 0 ) .text() ;

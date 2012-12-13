@@ -6,9 +6,10 @@
 <% end -%>
 	<div class="comments-list-container">
 	<% if commentbox[ "comments" ] .size == 0 -%>
-		<div class="info_container none_comment" style="font-size:14px; color:#77706f; width:93%"> 还没有人回复 </div>
+		<a class="info_container none_comment comment_text" style="font-size:14px; color:#77706f; width:93%"> 还没有人回复 </a>
 	<% end -%>
 		<%= render :partial => "comment" , :collection => commentbox[ "comments" ] %>
+		<div class="clearfix"> </div>
 	</div>
 	<div style="width:100%; border-bottom:1px solid #DDDDDD"> </div>
 	<%= render :partial => "newcomment" , :locals => { :pid => commentbox[ 'id' ] , :type => type } %>

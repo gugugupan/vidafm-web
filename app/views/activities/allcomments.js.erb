@@ -1,8 +1,28 @@
 var num = <%= params[ :id ] %> ;
 var $selector = $( "#" + num + "comment" ) ;
-var text = "<div class='comments-list-container'>\
-			<%= j render :partial => 'moments/comment' , :collection => @comments %>\
-			</div>" ;
-$selector .find( ".comments-list-container" ) .replaceWith( text ) ;
-$selector .find( ".more_comment" ) .remove() ;
+if ( <%= @comments .length > 0 %> )
+{
+	var text = "<%= j render :partial => 'moments/comment' , :collection => @comments %>" ;
+	$selector .find( ".comments-list-container" ) .append( text ) ;
+}
+if ( $selector .find( ".one_comment" ) .size() > 5 )
+{
+	for ( var i = 0 ; i < $selector .find( ".one_comment" ) .size() - 5 ; i ++ )
+		$selector .find( ".one_comment" ) .eq( i ) .css( "display" , "none" ) ;
+
+	$selector .find( ".comment_text" ) .text( "显示更多评论" ) ;
+	$selector .find( ".comment_text" ) .attr( "href" , "javascript:void(0)" ) ;
+	$selector .find( ".comment_text" ) .bind( "click" , function() {
+		$( this ) .parent() .find( ".one_comment" ) .css( "display" , "block" ) ;
+		$( this ) .parent() .find( ".one_comment" ) .eq( 0 ) .css( "border-top" , "none" ) ;
+		$( this ) .remove() ;
+	}) ;
+} else
+{
+	$selector .find( ".one_comment" ) .eq( 0 ) .css( "border-top" , "none" ) ;
+	if ( $selector .find( ".one_comment" ) .size() == 0 )
+		$selector .find( ".comment_text" ) .text( "没有更多评论了" ) ;
+	else
+		$selector .find( ".comment_text" ) .remove() ;
+}
 avatarShow() ;
