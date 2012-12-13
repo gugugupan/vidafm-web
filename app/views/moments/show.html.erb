@@ -13,11 +13,7 @@
         var params = "page=" + page_now ;
         lazyload( "moments" , <%= params[ :id ] %> , params ) ;
     }
-    // Call comment box
-    function callComment( num )
-    {
-        $( "#" + num + "comment" ) .slideToggle() ;
-    }
+
     // CLICK EVENT
 	$( document ) .ready( function() 
 	{
@@ -33,6 +29,11 @@
         $( ".more_comment" ) .live( "click" , function() {
             $( this ) .text( "载入中.." ) ;
         }) ;
+        $( ".commentbtn" ) .live( "click" , function() {
+            var s = $( this ) .attr( 'id' ) ;
+            $( "#" + s .substr( 0 , s .length - 3 ) + " .none_comment" ) .text( "载入中.." ) ;
+            $( "#" + s .substr( 0 , s .length - 3 ) ) .slideToggle() ;
+        })
         $( ".one_comment" ) .live( "click" , function() {
             var name = $( this ) .find( ".user_name" ) .eq( 0 ) .text() ;
             name = name .replace( " " , "" ) ;
@@ -42,6 +43,7 @@
         }) ;
 
         // Load Audio library
+        soundManager.defaultOptions .autoPlay = true ;
         soundManager.setup( {
           url: '/swf/' , 
           flashVersion: 9 ,

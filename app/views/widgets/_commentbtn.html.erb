@@ -1,3 +1,3 @@
-<a class="comment<%= ' commented' if commented %>" href=javascript:callComment(<%= pid %>)>
-	<%= count %>
-</a>
+<% url = allcomments_activity_url( pid ) -%>
+<%= link_to count , url , :class => "comment#{ ' commented' if commented} commentbtn" , 
+	:id => "#{ pid }commentbtn" , :remote => true %>

@@ -1,22 +1,3 @@
-<!--
-<% if pic[ "activity_type" ] == 1 -%>
-	<a href="javascript:showActivityPhoto(<%= {
-			:activity_url => pic[ 'photo' ] [ 'url_l' ] ,
-			:img_width => pic[ 'photo' ] [ 'width' ] ,
-			:audio => pic[ 'audio' ]
-		} .to_json %>)" class="photo_container">
-		<%= image_tag pic[ 'photo' ] [ 'url_m' ] %>
-	</a>
-<% else -%>
-	<a href="javascript:showActivityVideo(<%= {
-		:playable => pic[ 'video' ] [ 'playable' ] ,
-		:url_iphone => pic[ 'video' ] [ 'url_iphone' ] 
-	} .to_json %>)" class="photo_container" style="position:relative">
-		<%= image_tag pic[ 'photo' ] [ 'url_m' ] %>
-		<%= image_tag "images/play.png" , :style => "position:absolute; bottom:5px; left:5px; width: 82px;" %>
-	</a>
-<% end -%>
--->
 <a href="javascript:showActivity(<%= {
 		:activity_url => pic[ 'photo' ] [ 'url_l' ] ,
 		:img_width => pic[ 'photo' ] [ 'width' ] ,
