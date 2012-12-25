@@ -43,7 +43,11 @@
  		<div id="following-list">
  			<%= render :partial => "widgets/timeline", :object => @moments , :locals => { :show_type => "date" } %>
     <% if @moments .length == 0 -%>
+        <% if @following_tag .nil? -%>
+            <div class="text-info"> <p>您还没有发布过照片和故事</p> </div>
+        <% else -%>
             <div class="text-info"> <p>TA还没有发布过照片和故事</p> </div>
+        <% end -%>
     <% else -%>
         <% if params[ :category ] == "all" -%>
             <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>

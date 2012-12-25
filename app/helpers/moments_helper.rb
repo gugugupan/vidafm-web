@@ -108,7 +108,7 @@ module MomentsHelper
 	end
 
 	def moment_name( item )
-		if item[ "category" ] == "random" and item[ "name" ] .empty?
+		if item[ "category" ] == "random" or item[ "name" ] .nil?
 			item[ "name" ] = "#{ item[ 'created_at' ] [ 5 , 2 ] }月#{ item[ 'created_at' ] [ 8 , 2 ]}日" 
 		end
 		item[ "name" ]

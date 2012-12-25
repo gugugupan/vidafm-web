@@ -11,7 +11,8 @@
     function goLazyLoad()
     {
     	page_now = page_now + 1 ;
-    	var params = "name=<%= params[ :name ] %>&sort_type=<%= params[ :sort_type ] %>&page=" + page_now ;
+    	var params = "name=<%= URI::escape( params[ :name ] ) %>&sort_type=<%= params[ :sort_type ] %>&page=" + page_now ;
+    	alert( params ) ;
         lazyload( "public" , -255 , params ) ;
     }
 </script>
