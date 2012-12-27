@@ -1,8 +1,10 @@
 function centerImage(_box,_image){
     var boxRatio = _box.width() / _box.height();
     var imageRatio = _image.attr("cwidth") / _image.attr("cheight");
-
-    if (boxRatio > imageRatio) {
+    if ( isNaN( imageRatio ) )
+    {
+        _image .css( { "width" : "100%" , "margin-top" : "-" + ( _box .height() / 3 ) + "px" } ) ;
+    }else if (boxRatio > imageRatio) {
         var p = _box.width() / _image.attr("cwidth") ; 
         var new_height = _image.attr("cheight") * p ;
         var y = ( _box.height() - new_height ) / 2;
@@ -13,6 +15,7 @@ function centerImage(_box,_image){
         var x = ( _box.width() - new_width ) / 2;
         _image.css({ "margin-left" : x+"px" , "height" : "100%" });
     }else if(boxRatio == imageRatio) {
+        _image.css({ "width" : "100%" });
     };
 };
 
@@ -64,6 +67,13 @@ function arangeImage(){
             if ( i > 0 ) set_feed_height( i ) ;
         };
     };
+
+    // Arrange list_featured img
+    for ( var i = 0 ; i < $( ".thumb" ) .length ; i ++ )
+    {
+        var $box_container = $( ".thumb" ) .eq( i ) ;
+        centerImage( $box_container , $box_container .find( "img" ) .eq( 0 ) ) ;
+    }
 };
 
 function repeat_check( callback )

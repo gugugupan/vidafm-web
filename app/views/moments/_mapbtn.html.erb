@@ -1,8 +1,8 @@
 <% lat = 0 -%>
 <% lng = 0 -%>
 <% moment[ "items" ] .each do | item |
-	lat = lat + item[ 'lat' ] 
-	lng = lng + item[ 'lng' ] 
+	lat = lat + item[ 'lat' ] .to_f
+	lng = lng + item[ 'lng' ] .to_f
 end -%>
 <% if lat != 0 || lng != 0 -%>
 <%= link_to image_tag("icon/icon_location_button.png") , "javascript:showMap(#{moment .to_json})" , :class=>"btn_dark btn_middle" ,:style=>"margin-top:17px; float:right; margin-right:5px;padding-left:0px;" %>
