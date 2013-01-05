@@ -206,12 +206,12 @@ function showVideo( video )
 function showActivity( activity )
 {
     stopAllAudio() ;
-    var imageDiv = "<div id=image_div> \
+    var imageDiv = "<div id=box_container> <div id=image_div> \
         <img src=" + activity .activity_url + " id='activity_detail_img'> \
         <div id='photo_black_cover'> </div> \
         <div id='btn_part'> </div> \
         <div id='audio_playing_block'> <p id='duration_time'>0.0" + '"' + "</p> </div> \
-    </div>" ;
+    </div> </div>" ;
     $( "#theatre" ) .prepend( imageDiv ) ;
     $( "#activity_detail_img" ) .load( function() { 
         $( "#photo_black_cover" ) .css( "display" , "none" ) ;
@@ -219,7 +219,7 @@ function showActivity( activity )
     $( "#activity_detail_img" ) .css( "max-width" , "1000px" ) ;
     $( "#activity_detail_img" ) .css( "height" , "auto" ) ;
     $( "#activity_detail_img" ) .css( "width" , "auto" ) ;
-    $( "#image_div" ) .css( "width" , activity .img_width ) ;
+    //$( "#image_div" ) .css( "width" , activity .img_width ) ;
     new_close_button( $( "#image_div" ) ) ;
 
     // activity btn show

@@ -144,11 +144,18 @@
 	overflow-y: scroll;
 	padding-top: 20px;
 
+	#box_container {
+		position: relative;
+		left: 50%;
+		float: left;
+	}
+
 	#image_div {
 		border: 10px white solid;
 		position: relative;
-		margin: 0 auto;
 		overflow: hidden;
+		left: -50%;
+		width: auto;
 
 		#activity_detail_img {
 			position: relative;
@@ -185,7 +192,7 @@
 			width: 139px;
 			height: 139px;
 			background:image-url("audio/playing.png") no-repeat center center; 
-			bottom: 47%;
+			bottom: 50%;
 			left: 50%;
 			margin-left: -70px;
 

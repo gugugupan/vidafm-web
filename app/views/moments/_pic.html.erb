@@ -1,7 +1,4 @@
 <div class="story_container" id="activity<%= pic[ 'id' ] %>">
-	<!--
-	<h1 class="ribbon red">第一天</h1>
-	-->
 	<%= render :partial => "activitydeatail" , :locals => { :pic => pic } -%>
 	<% category = nil if !defined? category -%>
 	<%= render :partial => "mould" , :object => pic , :locals => { :category => category } %>
@@ -19,9 +16,6 @@
 			<p class="photo_description"> <%= empty_descripe( pic[ "description" ] ) %> </p>
 		<% end -%>
 			<font class="timer" title="拍摄时间"> <%= time_ago_now( pic[ "created_at" ] ) %>前 </font>
-			<!--
-			<font class="location">照片地址</font>
-			-->
 		</div>
 		<div class="clearfix"></div>
 	</div>
