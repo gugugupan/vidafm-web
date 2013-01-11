@@ -4,7 +4,7 @@
 		:audio => pic[ 'audio' ] ,
 		:video => pic[ 'video' ] 
 	} .to_json %>)" class="photo_container">
-	<%= image_tag pic[ 'photo' ] [ 'url_m' ] %>
+	<%= image_tag pic[ 'photo' ] [ 'url_l' ] %>
 	<% if pic[ "activity_type" ] == 3 -%>
 		<%= image_tag "images/play.png" , :class => "video_btn" %>
 	<% end -%>
