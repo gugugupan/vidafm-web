@@ -136,3 +136,24 @@
 
 	&:hover { background: image-url( 'index/android_download_hover.png' ) no-repeat center center; }
 }
+
+#footer {
+	width: 240px;
+	position: absolute;
+	left: 50%;
+	margin-left: -88px;
+	margin-top: 20px;
+	padding-bottom: 20px;
+
+	.footer_text {
+		display: block;
+		float: left;
+	}
+
+	.gov_icon {
+		width: 100px;
+		float: left;
+		margin-left: 75px;
+		margin-top: 5px;
+	}
+}

@@ -30,10 +30,11 @@
 
   <%= yield %>  
   <div id="footer">
-    <%= link_to "商务合作" , business_url , :class => "footer_text" %>
+    <%= link_to "商务合作" , business_url , :class => "footer_text mouse" %>
     <p class="footer_text">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
-    <%= link_to "联系我们" , about_url , :class => "footer_text" %>
-    <p class="footer_text">&nbsp;&nbsp;|&nbsp;&nbsp;沪ICP备10216111号-2</p>
+    <%= link_to "联系我们" , about_url , :class => "footer_text mouse" %>
+    <p class="footer_text">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.miitbeian.gov.cn" style="float:right" class="mouse">沪ICP备10216111号-2</a></p>
+    <%= image_tag( "index/bb3.png" , :class => "gov_icon" ) %>
   </div>
 
   <div id="theatre"> <div class="theatre_blank"> </div> </div>

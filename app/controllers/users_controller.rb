@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       data = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user )
     end
     @result = notice #data[ "result" ]
-    @result = 401 if @user[ :following_limited ] == 1 && get_relation_btn( @user[ :relation ] ) != 1
+    @result = 401 if @current_user && @user[ :following_limited ] == 1 && get_relation_btn( @user[ :relation ] ) != 1
     @moments = data[ "data" ]
     save_url_in_cookies
   end
