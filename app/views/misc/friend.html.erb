@@ -5,11 +5,18 @@
 <%= content_for :page_specific_asset do %>
 <script>
     //LAZY LOAD
-	var page_now = 1 ;
     function goLazyLoad()
     {
-        page_now = page_now + 1 ;
-        var params = "page=" + page_now ;
+        var activity = $( ".activity_ids_before" ) .attr( "value" ) ,
+            comment = $( ".comment_ids_before" ) .attr( "value" ) ,
+            like = $( ".like_ids_before" ) .attr( "value" ) ;
+        $( ".divparams" ) .remove() ;
+        /*
+        alert( activity ) ;
+        alert( comment ) ;
+        alert( like ) ;
+        */
+        var params = "activity=" + activity + "&comment=" + comment + "&like=" + like ;
         lazyload( "misc" , -256 , params ) ;
     }
 </script>
@@ -20,13 +27,8 @@
  	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ :cover_file ] } %>
 
  	<div id="main-block">
- 		<div id="user-info">
- 			<div style="float:left;"> <%= avatar_tag @user , :nolink => true %> </div>
- 			<h1 id="detail"> <%= @user[ :name ] %> 关注的动态 </h1>
- 			<div class="clearfix"> </div>
- 		</div>
  		<div id="following-list">
- 			<%= render :partial => "widgets/timeline" , :object => @moment , :locals => { :show_type => "user" } %>
+ 			<%= render :partial => "widgets/timeline" , :object => @moment , :locals => { :is_feed => true , :show_type => "user" , :block_style => "puzzle" , :qparams => @qparams } %>
             <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
  			<div class="clearfix"> </div>
  		</div>

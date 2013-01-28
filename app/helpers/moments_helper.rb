@@ -93,6 +93,18 @@ module MomentsHelper
 		return alph[ str ] || str
 	end
 
+	def moment_category_by_num( num )
+	    alph = {
+	        "random" => 0,
+	        "food" => 1,
+	        "travel" => 2,
+	        "children" => 3,
+	        "mood" => 4,
+	        "photography" => 6
+	    } .invert
+	    return moment_category( alph[ num ] )
+	end
+
 	def empty_descripe( str )
 		str = "" if str .nil? || str .length == 0
 		str 
@@ -109,7 +121,7 @@ module MomentsHelper
 
 	def moment_name( item )
 		item[ "name" ] = "" if item[ "name" ] .nil?
-		if item[ "category" ] == "random" and item[ "name" ] .empty?
+		if ( item[ "category" ] == "random" || item[ "category_id" ] == 0 ) and item[ "name" ] .empty?
 			item[ "name" ] = "#{ item[ 'created_at' ] [ 5 , 2 ] }月#{ item[ 'created_at' ] [ 8 , 2 ]}日" 
 		end
 		item[ "name" ]

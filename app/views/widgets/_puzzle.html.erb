@@ -1,0 +1,23 @@
+<% while puzzle .length > 0 -%>
+	<% 
+		icount = 0
+		maxheight = 0 
+	-%>
+	<div class="image_container_row">
+		<% while true -%>
+			<% 
+				break if puzzle .length == 0 
+				photo = puzzle[ 0 ]
+				this_count = 2
+				this_count = 3 if photo[ "width" ] > photo[ "height" ] 
+				this_count = 5 if photo[ "width" ] > 2 * photo[ "height" ] 
+				break if icount + this_count > 7 
+				icount = icount + this_count 
+				maxheight = photo[ "height" ] > maxheight ? photo[ "height" ] : maxheight
+			-%>
+			<%= render :partial => "widgets/pic" , :collection => puzzle[ 0 , 1 ] , :locals => { :puzzle_type => true } %>
+			<% puzzle .delete_at( 0 ) -%>
+		<% end -%>
+		<div class="divparams" maxheight="<%= maxheight -%>"> </div>
+	</div>
+<% end -%>

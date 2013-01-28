@@ -1,9 +1,13 @@
-<% is_left = ( item_counter % 2 == 0 ) -%>
 <div class="feed" id="moment<%= item[ 'id' ] %>">
-	<div class="mlcontainer <%= is_left ? "feed_left" : "feed_right"%>"> <!-- mlcontainer star -->
+	<div class="mlcontainer"> <!-- mlcontainer star -->
 		<div class="mlbox">
 			<div class="image_container">
-				<%= render :partial => "widgets/pic" , :collection => item[ "items" ] [ 0 , 3 ] %>
+				<% if block_style == "block" -%>
+					<%= render :partial => "widgets/pic" , :collection => item[ "items" ] [ 0 , 3 ] %>
+				<% end -%>
+				<% if block_style == "puzzle" -%>
+					<%= render :partial => "widgets/puzzle" , :object => item[ "items" ] [ 0 , 9 ] %>
+				<% end -%>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="mlinfo">
@@ -17,20 +21,11 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="clearfix"></div>
+			<%= image_tag "images/mlarrow_right.png" , :class => "mlarrow mlarrow_right" %>
+			<%= image_tag "images/mlarrow_left.png" , :class => "mlarrow mlarrow_left" %> 
+			<%= image_tag "icon/icon_timeline_story.png" , :class => "feeds_icon feeds_icon_left" -%>
+			<%= image_tag "icon/icon_timeline_story.png" , :class => "feeds_icon feeds_icon_right" -%>
 		</div>
-	<% if is_left -%>
-		<%= image_tag "images/mlarrow_right.png" , :class => "mlarrow mlarrow_right" %>
-	<% else -%>
-		<%= image_tag "images/mlarrow_left.png" , :class => "mlarrow mlarrow_left" %>
-	<% end -%>
-	</div><!-- mlcontainer end -->
-<% if show_type == "user" -%>
-	<%= avatar_tag item[ "user" ] , :class => is_left ? "feed_left" : "feed_right" %>
-<% else -%>
-	<div class="datebox <%= is_left ? "feed_left" : "feed_right" %>">
-		<p class="month"><%= item[ "modified_at" ] [ 0 , 7 ] %></p>
-		<p class="day"><%= item[ "modified_at" ] [ 8 , 2 ] %></p>
 	</div>
-<% end -%>
 	<div class="clearfix"> </div>
 </div>

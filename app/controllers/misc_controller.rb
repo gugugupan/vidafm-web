@@ -42,13 +42,20 @@ class MiscController < ApplicationController
     redirect_to "/" and return unless current_user
     @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
     #@moment = User.fetch_friend_moments( current_user , 0 ) [ "data" ]
-    @moment = api_call( "User" , :fetch_friend_moments , 0 , { :page => 0 } ) [ "data" ]
+    data = api_call( "User" , :fetch_friend_moments , 0 , {} ) [ "data" ]
+    @moment = data[ "feeds" ] 
+    @qparams = data[ "next_query_parameters" ] 
   end
 
   def ajax_get_new_page
-    params[ :page ] = 1 if params[ :page ] .nil?
-    params[ :page ] = params[ :page ] .to_i - 1 ;
-    @moment = User.fetch_friend_moments( nil , current_user , :page => params[ :page ] ) [ "data" ]
+    next_query = {
+      "activity_ids[before]" => params[ "activity" ] ,
+      "comment_ids[before]" => params[ "comment" ] ,
+      "like_ids[before]" => params[ "like" ] 
+    }
+    data = User.fetch_friend_moments( nil , current_user , next_query ) [ "data" ]
+    @moment = data[ "feeds" ] 
+    @qparams = data[ "next_query_parameters" ] 
     render :layout => false 
   end
 end

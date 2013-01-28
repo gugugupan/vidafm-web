@@ -1,6 +1,15 @@
-<div id="feed_container">
-	<%= image_tag show_type == "user" ? "icon/icon_feeds.png" : "icon/icon_timeline.png" , 
-		:class => "header_icon" %>
-	<%= render :partial => "widgets/item" , :collection => timeline , :locals => { :show_type => show_type } %>
-	<div class="clearfix"> </div>
+<% block_style = "block" if block_style .nil? -%>
+<% is_feed = false if is_feed .nil? -%>
+<div id="feed_container" blockstyle="<%= block_style %>">
+	<% if is_feed -%>
+		<div id="feeds_title">动态</div>
+		<%= render :partial => "widgets/feeds" , :collection => timeline -%>
+		<div class="divparams activity_ids_before" value="<%= qparams[ "activity_ids" ] [ "before" ] %>"> </div>
+		<div class="divparams comment_ids_before" value="<%= qparams[ "comment_ids" ] [ "before" ] %>"> </div>
+		<div class="divparams like_ids_before" value="<%= qparams[ "like_ids" ] [ "before" ] %>"> </div>
+	<% else -%>
+		<%= image_tag show_type == "user" ? "icon/icon_feeds.png" : "icon/icon_timeline.png" , :class => "header_icon" %>
+		<%= render :partial => "widgets/item" , :collection => timeline , :locals => { :show_type => show_type , :block_style => block_style } %>
+	<% end -%>
+	<div class="clearfix last_clearfix"> </div>
 </div>

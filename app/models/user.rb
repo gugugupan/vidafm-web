@@ -28,7 +28,7 @@ class User
 		end
 
 		def fetch_friend_moments( id , current_user , params )
-			JSON.parse VIDA.call( "moment/list_following" , params , current_user )
+			JSON.parse VIDA.call( "/feeds" , params , current_user , "GET" )
 		end
 
 		def fetch_current_user( current_user )

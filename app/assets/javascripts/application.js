@@ -57,7 +57,7 @@ function avatarShow()
 			"background-repeat" : "no-repeat" , 
 			"background-position" : "center" , 
 			"background-color" : "white" ,
-			"background-size" : "contain"
+			"background-size" : "cover"
 		});
 	};
 }
