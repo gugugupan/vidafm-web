@@ -1,23 +1,26 @@
+require "rubygems"
+require "faraday"
+
 class VIDA
 	class << self
-		def call(methods, *options)
-			params = options[0]
-			user = options[1].try(:symbolize_keys)
-			html_method = options[ 2 ] 
-			html_method = "POST" if html_method .nil?
-			resource = "#{ dev_api_url }/#{ methods }"
-			cmd = case html_method
+		def call( methods , *options )
+			http_params = options[ 0 ] 
+			user = options[ 1 ] .symbolize_keys
+			http_method = options[ 2 ]
+			http_method = "POST" if http_method .nil?
+
+			puts "\n CMD : #{ http_method }   #{ http_params .to_param }   #{ user[ :token ] }:#{ user[ :secret ] }"
+
+			@connection = Faraday.new( :url => dev_api_url ) 
+			@connection .basic_auth( user[ :token ] , user[ :secret ] )
+
+			case http_method
 			when "GET"
-				resource += "?#{ params .to_param }"
-				"curl -A 'Platform/web' "
+				res = @connection .get methods , http_params
 			when "POST"
-				"curl -A 'Platform/web' -d " + '"' + "#{params.to_param}" + '" '
+				res = @connection .post methods , http_params
 			end
-			cmd += "-s "
-			cmd += "-u #{user[:token]}:#{user[:secret]} " if user
-			cmd += "'#{ resource }'"
-			puts "\nCMD:#{cmd}\n"
-			`#{cmd}`
+			res .body
 		end
 
 		def api_url
@@ -29,3 +32,5 @@ class VIDA
 		end
 	end
 end
+
+# VIDA .call( "feeds" , "" , { :token => "douban35598887" , :secret => "h7p7bb" } , "GET" )
