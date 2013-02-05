@@ -5,64 +5,140 @@
 <%= content_for :page_specific_asset do %>
 <script>
     //LAZY LOAD
-	var page_now = 1 ;
-    function goLazyLoad()
+	var page_now = 0 ;
+    var userid_now = <%= params[ :id ] %> ;
+    function clearME()
     {
-        page_now = page_now + 1 ;
-        var params = "page=" + page_now ;
-        lazyload( "users" , <%= params[ :id ] %> , params ) ;
+        $( ".user_nav p" ) .css( "color" , "" ) ;
+        $( "#feed_container" ) .empty() ;
+        $( "#refresh-link" ) .addClass( "mouse" ) ;
+        page_now = 1 ;
     }
-    $( document ) .ready( function() {
-        $("#me_filter").hover(function(){
-            $("#me_filter .popup_container").slideToggle(100);
-        });
-    });
+
+    function showStory()
+    {
+        if ( $( "#feed_container" ) .attr( "type" ) != "story" )
+        {
+            clearME() ;
+
+            left_px = 0 , right_px = 0 ;
+            $( "#story_nav p" ) .css( "color" , "crimson" ) ;
+            $( "#main_block" ) .width( 900 ) ;
+            $( "#feed_container" ) .attr( "type" , "story" ) ;
+            $( "#feed_container" ) .removeAttr( "dontarange" ) ;
+            $( "#feed_container" ) .css( "background" , "" ) ;
+            $( "#feed_container" ) .attr( "blockstyle" , "puzzle" ) ;
+            $( "#refresh-link" ) .attr( "href" , "javascript:showStory()" ) ;
+            $( "#refresh-link" ) .css( { width : "" , "margin-left" : "" } ) ;
+
+            var param = "type=story" ;
+            lazyload( "users" , userid_now , param ) ;
+        } else 
+        {
+            var activity = $( ".activity_ids_before" ) .attr( "value" ) ;
+            $( ".divparams" ) .remove() ;
+            var param = "type=story&activity=" + activity ;
+            lazyload( "users" , userid_now , param ) ;
+        }
+    }
+
+    function showLikecomment()
+    {
+        if ( $( "#feed_container" ) .attr( "type" ) != "commentlike" )
+        {
+            clearME() ;
+
+            $( "#lc_nav p" ) .css( "color" , "crimson" ) ;
+            $( "#main_block" ) .width( 370 ) ;
+            $( "#feed_container" ) .attr( "type" , "commentlike" ) ;
+            $( "#feed_container" ) .attr( "dontarange" , "true" ) ;
+            $( "#feed_container" ) .css( "background" , "none" ) ;
+            $( "#feed_container" ) .attr( "blockstyle" , "" ) ;
+            $( "#refresh-link" ) .attr( "href" , "javascript:showLikecomment()" ) ;
+            $( "#refresh-link" ) .css( { width : "100%" , "margin-left" : "0" } ) ;
+
+            var param = "type=commentlike" ;
+            lazyload( "users" , userid_now , param ) ;
+        } else 
+        {
+            var comment = $( ".comment_ids_before" ) .attr( "value" ) ,
+                like = $( ".like_ids_before" ) .attr( "value" ) ;
+            $( ".divparams" ) .remove() ;
+            var param = "type=commentlike&comment=" + comment + "&like=" + like ;
+            lazyload( "users" , userid_now , param ) ;
+        }
+    }
+
+    function showFollowing()
+    {
+        if ( $( "#feed_container" ) .attr( "type" ) != "following" )
+        {
+            clearME() ;
+
+            $( "#fing_nav p" ) .css( "color" , "crimson" ) ;
+            $( "#main_block" ) .width( 370 ) ;
+            $( "#feed_container" ) .attr( "type" , "following" ) ;
+            $( "#feed_container" ) .attr( "blockstyle" , "" ) ;
+            $( "#feed_container" ) .css( "background" , "none" ) ;
+            $( "#refresh-link" ) .attr( "href" , "javascript:showFollowing()" ) ;
+            $( "#refresh-link" ) .css( { width : "100%" , "margin-left" : "0" } ) ;
+
+            var param = "type=following&page=" + page_now ;
+            lazyload( "users" , userid_now , param ) ;
+        } else 
+        {
+            page_now = page_now + 1 ;
+            var param = "type=following&page=" + page_now ;
+            lazyload( "users" , userid_now , param ) ;
+        }
+    }
+
+    function showFollowers()
+    {
+        if ( $( "#feed_container" ) .attr( "type" ) != "followers" )
+        {
+            clearME() ;
+
+            $( "#fer_nav p" ) .css( "color" , "crimson" ) ;
+            $( "#main_block" ) .width( 370 ) ;
+            $( "#feed_container" ) .attr( "type" , "followers" ) ;
+            $( "#feed_container" ) .attr( "blockstyle" , "" ) ;
+            $( "#feed_container" ) .css( "background" , "none" ) ;
+            $( "#refresh-link" ) .attr( "href" , "javascript:showFollowers()" ) ;
+            $( "#refresh-link" ) .css( { width : "100%" , "margin-left" : "0" } ) ;
+
+            var param = "type=followers&page=" + page_now ;
+            lazyload( "users" , userid_now , param ) ;
+        } else 
+        {
+            page_now = page_now + 1 ;
+            var param = "type=followers&page=" + page_now ;
+            lazyload( "users" , userid_now , param ) ;
+        }
+    }
 </script>
 <% end -%>
 
 <div id="user-show">
  	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
- 	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ :cover_file ] } %>
-<% if @result == 401 -%>
-    <%= image_tag "images/private_tips.png" , :id => "lock" -%>
-<% end -%>
-
- 	<div id="main-block">
- 		<div id="user-info">
- 			<div style="float:left;"> <%= avatar_tag @user , :nolink => true %> </div>
- 			<h1> <%= @user[ :name ] %> </h1>
- 	<% if @current_user %>
- 			<div id="user-info-button">
-                <%= render :partial => "widgets/followdialogbtn" , :locals => { :user => @user } %>
-				<%= render :partial => "widgets/followingbtn" , :locals => { :tag => @following_tag , :uid => @user[ :id ] , :size => "btn_middle" } %>
- 			</div>
-    <% end %>
- 			<div class="clearfix"> </div>
- 		</div>
-
- <% if @current_user -%>
- 		<div id="following-list">
- 			<%= render :partial => "widgets/timeline", :object => @moments , :locals => { :show_type => "date" } %>
-    <% if @moments .length == 0 -%>
-        <% if @following_tag .nil? -%>
-            <div class="text-info"> <p>您还没有发布过照片和故事</p> </div>
-        <% else -%>
-            <div class="text-info"> <p>TA还没有发布过照片和故事</p> </div>
-        <% end -%>
-    <% else -%>
-        <% if params[ :category ] == "all" -%>
-            <a id="refresh-link" class="mouse" href=javascript:goLazyLoad()>点击显示更多</a>
-        <% end -%>
- 			<div class="clearfix"> </div>
- 		</div>
+ 	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ "cover_file" ] } %>
+    <% if @result == 401 -%>
+        <%= image_tag "images/private_tips.png" , :id => "nopermission" -%>
     <% end -%>
+
+    <div id="main_block">
+        <div id="user_info">
+            <%= render :partial => "users/userfeed" , :object => @user , :locals => { :is_self => false } -%>
+            <%= render :partial => "users/usernav" , :object => @user -%>
+        </div>
+        <div id="feed_container" type="story" blockstyle="puzzle">
+            <%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox" } -%>
+            <%= render :partial => "widgets/feedsparam" , :locals => { :qparams => @qparams } -%>
+            <div class="clearfix last_clearfix"> </div>
+        </div>
+        <a id="refresh-link" class="mouse" href=javascript:showStory()>点击显示更多</a>
         <div class="clearfix"> </div>
- 	</div>
- <% else -%>
- 		<div class="text-info">
- 			<p>登录后查看更多内容</p>
- 		</div>
- 	</div>
+    </div>
+
   	<%= render :partial => "widgets/login" %>
- <% end -%>
 </div>

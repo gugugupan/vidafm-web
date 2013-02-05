@@ -29,7 +29,7 @@ Bluerain::Application.routes.draw do
   resources :users, :only => "show", :constraints => {:id => /[0-9]+/} do
     get "ajax_following_list" , :on => :member
     get "ajax_get_new_page" , :on => :member
-    put "following", :on => :member 
+    put "following" , :on => :member
   end
 
   resources :moments, :only => "show", :constraints => {:id => /[0-9]+/} do

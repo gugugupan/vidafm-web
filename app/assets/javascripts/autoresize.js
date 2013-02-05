@@ -70,6 +70,7 @@ function adjust_image( callback )
             if ( i == $( ".mlcontainer" ) .length - 1 ) callback() ;
         };
     } else if ( $( "#feed_container" ) .attr( "blockstyle" ) == "puzzle" ) {
+        if ( $( ".image_container_row" ) .length == 0 ) callback() ;
         for ( var i = 0 ; i < $( ".image_container_row" ) .length ; i ++ )
         {
             $row = $( ".image_container_row:eq(" + i + ")" ) ;
@@ -156,6 +157,9 @@ var left_px = 0 , right_px = 0 ;
 function arangeImage()
 {
     adjust_image( function() {
+        // If feeds dont need arange
+        if ( $( "#feed_container" ) .attr( "dontarange" ) == "true" ) return ;
+
         // This function is using for make feed to left or right
         for ( var i = 0 ; i < $( ".feed" ) .length ; i ++ )
         {
@@ -163,7 +167,7 @@ function arangeImage()
             if ( $feed .hasClass( "feed_left" ) || $feed .hasClass( "feed_right" ) ) continue ;
             if ( Math .abs( left_px - right_px ) <= 20 )
             {
-                if ( left_px > right_px )
+                if ( left_px < right_px )
                 {
                     $feed .before( '<div class="feed feed_left empty_feed"> </div>' ) ;
                     left_px = 21 ;
@@ -203,6 +207,7 @@ function repeat_check( callback )
         var check_flag = false ;
         var _boxObjects = $( ".feed:eq(" + i + ")" ) ;
         var id_i = _boxObjects .attr( "id" ) ;
+        if ( !id_i ) continue ;
         if ( id_i .substr( 0 , 6 ) != "moment" ) continue ;
         for ( var j = i - 1 ; j >= 0 ; j -- )
             if ( id_i == $( ".feed:eq(" + j + ")" ) .attr( "id" ) )

@@ -1,0 +1,9 @@
+<%# Usage : %>
+<%# 	Create a feed just include user info and following button %>
+<%# Param : %>
+<%# 	is_self - Indicates the feeds if need to separate %>
+<div class="<%= is_self ? "user_feed_self" : "user_feed" %>">
+	<%= avatar_tag_b userfeed %>
+	<p class="username"> <%= userfeed[ "name" ] %> </p>
+	<div class="clearfix"> </div>
+</div>

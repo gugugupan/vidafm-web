@@ -1,10 +1,23 @@
+<%# 
+	Usage :
+		Create a feed bubble~
+
+	Params :
+		boxtype - [ "datebox" , "userbox" (define)]
+%>
+<% boxtype = "userbox" if boxtype .nil? -%>
 <div class="feed"> <!-- feeds id missed 'moment1325523'-->
 	<div class="mlcontainer"> <!-- mlcontainer star -->
 		<div class="mlbox">
 
+			<%# Activity feed %>
 			<% if feeds[ "feed_type" ] == "activity_feed" -%>
 				<p class="float_likes"> <%= feeds[ "moment" ] [ "likes_count" ] %> </p>
-				<%= link_to "" , "/users/#{ feeds[ "user" ] [ "id" ] }" , :class => "float_avatar" , :style => "background:url('#{ feeds[ "user" ] [ "avatar_file" ] }') no-repeat scroll center center white; background-size: contain;" -%>
+				<% if boxtype == "userbox" -%>
+					<%= avatar_tag_b( feeds[ "user" ] , { :class => "float_avatar" } ) %>
+				<% else -%>
+					<%= datebox_tag( get_time( feeds[ "moment" ] ) ) %>
+				<% end -%>
 				<div class="image_container">
 					<%= render :partial => "widgets/puzzle" , :object => feeds[ "activities" ] [ 0 , 9 ] %>
 					<div class="clearfix"> </div>
@@ -25,9 +38,10 @@
 				<%= image_tag "icon/icon_timeline_story.png" , :class => "feeds_icon feeds_icon_right" -%>
 			<% end -%>
 
+			<%# Comment feed %>
 			<% if feeds[ "feed_type" ] == "comment_feed" -%>
 				<div class="mlcomment">
-					<%= link_to "" , "/users/#{ feeds[ "user" ] [ "id" ] }" , :class => "mlcomment_image_left" , :style => "background:url('#{ feeds[ "user" ] [ "avatar_file" ] }') no-repeat scroll center center white; background-size: contain;" , :title => feeds[ "user" ] [ "name" ] -%>
+					<%= avatar_tag_b( feeds[ "user" ] , { :class => "mlcomment_image_left" } ) %>
 					<div class="mlcomment_content">
 						<p> 
 							<span>评论了</span> <%= feeds[ "content" ] -%>
@@ -37,7 +51,7 @@
 					<% if feeds[ "type" ] == "moment" -%>
 						<%= link_to "" , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "mlcomment_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 					<% else #is activity -%>
-						<%= link_to "" , "/activities/#{ feeds[ "activity" ][ "id" ] }" , :class => "mlcomment_image_right" , :style => "background:url('#{ feeds[ "activity" ][ "image"] }') no-repeat scroll center center white; background-size: cover;" -%>
+						<%= link_to "" , "/activities/#{ feeds[ "activity" ] [ "id" ] }" , :class => "mlcomment_image_right" , :style => "background:url('#{ feeds[ "activity" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 					<% end -%>
 					<div class="clearfix"> </div>
 				</div>
@@ -45,10 +59,11 @@
 				<%= image_tag "icon/icon_timeline_comment.png" , :class => "feeds_icon feeds_icon_right" -%>
 			<% end -%>
 
+			<%# Like feed %>
 			<% if feeds[ "feed_type" ] == "like_feed" -%>
 				<div class="mllike">
 					<% for user in feeds[ "users" ] do -%>
-						<%= link_to "" , "/users/#{ user[ "id" ] }" , :class => "mllike_image_left" , :style => "background:url('#{ user[ "avatar_file" ] }') no-repeat scroll center center white; background-size: contain;" , :title => user[ "name" ] -%>
+						<%= avatar_tag_b user , { :class => "mllike_image_left" } %>
 					<% end -%>
 
 					<% if feeds[ "type" ] == "moment" -%>

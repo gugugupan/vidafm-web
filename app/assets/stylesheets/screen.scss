@@ -46,7 +46,11 @@ p{
 	height:40px;
 	width:40px;
 
-	border:1px solid gray;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: white; 
+	background-size: contain;
+
 	border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;

@@ -29,6 +29,23 @@ module UsersHelper
 		raw inner_html
 	end
 
+	# Params :
+	# 	{ :class => "" , :style => "" }
+	def avatar_tag_b user , options = {}
+		inner_html = link_to( "" , "/users/#{ user[ "id" ] }" , :class => "avatar #{ options[ :class ] }" , :style => "background-image:url('#{ user[ "avatar_file" ] }');" , :title => user[ "name" ] )
+		raw inner_html
+	end
+
+	# Params :
+	# 	none
+	def datebox_tag time # time str like "2012-10-18 11:03:08 AM UTC (2012-10-18 07:03:08 PM Local)"
+		inner_html = '<div class="float_datebox">
+			<p class="month">' + time[ 0 , 4 ] + '/' + time[ 5 , 2 ] + '</p>
+			<p class="day">' + time[ 8 , 2 ] + '</p>
+		</div>'
+		raw inner_html
+	end
+
 	def relation_in_zh(word)
 		alph = {
 			'followings' => '关注',

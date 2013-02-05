@@ -52,13 +52,14 @@ function avatarShow()
 	var avatar = $("a.avatar");
 	for (var i = 0; i<$(".avatar").length; i++) {
 		var avatarAddress = $(avatar[i]).children().attr("src");
-		$(avatar[i]).css({
-			"background" : "url("+avatarAddress+")" ,
-			"background-repeat" : "no-repeat" , 
-			"background-position" : "center" , 
-			"background-color" : "white" ,
-			"background-size" : "cover"
-		});
+		if ( avatarAddress )
+			$(avatar[i]).css({
+				"background" : "url("+avatarAddress+")" ,
+				"background-repeat" : "no-repeat" , 
+				"background-position" : "center" , 
+				"background-color" : "white" ,
+				"background-size" : "cover"
+			});
 	};
 }
 

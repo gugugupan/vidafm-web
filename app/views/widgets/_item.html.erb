@@ -1,6 +1,12 @@
 <div class="feed" id="moment<%= item[ 'id' ] %>">
 	<div class="mlcontainer"> <!-- mlcontainer star -->
 		<div class="mlbox">
+			<% if show_type == "user" -%>
+				<%= avatar_tag_b( item[ "user" ] , { :class => "float_avatar" } ) %>
+			<% else -%>
+				<%= datebox_tag( item[ "moment" ] [ "created_at" ] ) %>
+			<% end -%>
+
 			<div class="image_container">
 				<% if block_style == "block" -%>
 					<%= render :partial => "widgets/pic" , :collection => item[ "items" ] [ 0 , 3 ] %>

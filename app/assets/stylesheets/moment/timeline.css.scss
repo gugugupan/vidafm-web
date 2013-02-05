@@ -35,12 +35,13 @@
 }
 
 .empty_feed{
-	width: 354px;
+	width: 370px;
 	height: 21px;
+	clear: both;
 }
 
 .feed {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 
 	.feeds_icon {
 		position: absolute;
@@ -49,11 +50,11 @@
 	}
 
 	.feeds_icon_right {
-		right: -55.5px;
+		right: -92px;
 	}
 
 	.feeds_icon_left {
-		left: -55.5px;
+		left: -92px;
 	}
 
 	.mlarrow {
@@ -69,50 +70,10 @@
 	.mlarrow_left {
 		left: -13px;
 	}
-
-
-	.datebox {
-		behavior: asset-url("PIE.htc",htc);
-		height:50px;
-		width:50px;
-		margin: 45px 5px 0px;
-
-		border: 1px solid white;		
-		border-radius: 6px;
-		-moz-border-radius: 6px;
-		-webkit-border-radius: 6px;
-		overflow:hidden;
-
-		box-shadow:0px 1px 6px gray;
-		-moz-box-shadow:0px 1px 6px gray;
-		-webkit-box-shadow:0px 1px 6px gray;
-
-		.month {
-			width: 100%;
-			float: left;
-
-			background-color: crimson ; 
-			font-size: 12px ;
-			color: white;
-			text-align: center ;
-		}
-
-		.day {
-			width: 100%;
-			height: 36px;
-			float: left;
-
-			background-color: white;
-			font-size: 28px;
-			color: black;
-			text-align: center;
-		}
-	}
 }
 
 .mlcontainer {
 	float: left;
-	padding:0px 13px;
 	position: relative;
 
 	.mlbox {
@@ -120,9 +81,9 @@
 		border-radius:8px;
 		-moz-border-radius:8px; /* Firefox 3.6 and earlier */
 		box-shadow: 0px 1px 3px #888888;
-		padding:8px 8px 8px 8px;
+		padding:8px;
 		position: relative;
-		width:354px;
+		width: 354px;
 
 		.image_container {
 			width: 100%;
@@ -190,6 +151,42 @@
 			border-radius: 10px;
 			-moz-border-radius: 10px;
 			-webkit-border-radius: 10px;
+		}
+
+		.float_datebox {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			height:40px;
+			width:40px;
+			z-index: 10;
+
+			border: 2px solid white;		
+			border-radius: 10px;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+			overflow:hidden;
+
+			.month {
+				width: 100%;
+				float: left;
+
+				background-color: crimson ; 
+				font-size: 10px ;
+				color: white;
+				text-align: center ;
+			}
+
+			.day {
+				width: 100%;
+				height: 36px;
+				float: left;
+
+				background-color: white;
+				font-size: 26px;
+				color: black;
+				text-align: center;
+			}
 		}
 
 		.image_box_big {
@@ -305,7 +302,7 @@
 		}
 
 		.mllike_content {
-			width: 227px;
+			width: 224px;
 			float: left;
 			margin: 0px 10px;
 			font-size: 14px;

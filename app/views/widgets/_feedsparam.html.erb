@@ -1,0 +1,8 @@
+<%#
+	Usage :
+		Create feeds lazyload param div
+%>
+<% %w{ activity_ids comment_ids like_ids } .each { | param | qparams[ param ] = { "before" => nil } if qparams[ param ] .nil? } -%>
+<div class="divparams activity_ids_before" value="<%= qparams[ "activity_ids" ] [ "before" ] %>"> </div>
+<div class="divparams comment_ids_before" value="<%= qparams[ "comment_ids" ] [ "before" ] %>"> </div>
+<div class="divparams like_ids_before" value="<%= qparams[ "like_ids" ] [ "before" ] %>"> </div>

@@ -5,11 +5,11 @@ class VIDA
 	class << self
 		def call( methods , *options )
 			http_params = options[ 0 ] 
-			user = options[ 1 ] .symbolize_keys
+			user = options[ 1 ] .nil? ? { :token => nil , :secret => nil } : options[ 1 ] .symbolize_keys
 			http_method = options[ 2 ]
 			http_method = "POST" if http_method .nil?
 
-			puts "\n CMD : #{ http_method }   #{ http_params .to_param }   #{ user[ :token ] }:#{ user[ :secret ] }"
+			puts "\n CMD : [#{ http_method }] for [#{ methods }] with [#{ http_params .to_param }] login by [#{ user[ :token ] }:#{ user[ :secret ] }]"
 
 			@connection = Faraday.new( :url => dev_api_url ) 
 			@connection .basic_auth( user[ :token ] , user[ :secret ] )

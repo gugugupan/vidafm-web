@@ -49,13 +49,18 @@ class MiscController < ApplicationController
 
   def ajax_get_new_page
     next_query = {
-      "activity_ids[before]" => params[ "activity" ] ,
-      "comment_ids[before]" => params[ "comment" ] ,
-      "like_ids[before]" => params[ "like" ] 
+      "activity_ids[before]" => params[ :activity ] ,
+      "comment_ids[before]" => params[ :comment ] ,
+      "like_ids[before]" => params[ :like ] 
     }
     data = User.fetch_friend_moments( nil , current_user , next_query ) [ "data" ]
     @moment = data[ "feeds" ] 
+
     @qparams = data[ "next_query_parameters" ] 
+    @qparams[ "activity_ids" ] = { "before" => params[ :activity ] } if @qparams[ "activity_ids" ] .nil?
+    @qparams[ "comment_ids" ] = { "before" => params[ :comment ] } if @qparams[ "comment_ids" ] .nil?
+    @qparams[ "like_ids" ] = { "before" => params[ :like ] } if @qparams[ "like_ids" ] .nil?
+
     render :layout => false 
   end
 end

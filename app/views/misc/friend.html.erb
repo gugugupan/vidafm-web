@@ -23,7 +23,7 @@
 <% end -%>
 
 <div id="friend-show">
- 	<%= render :partial => "widgets/header" , :locals => { :user => @user } %>
+ 	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
  	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ :cover_file ] } %>
 
  	<div id="main-block">

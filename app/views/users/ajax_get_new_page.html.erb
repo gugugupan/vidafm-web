@@ -1,1 +1,7 @@
-<%= render :partial => "widgets/item", :collection => @moments['data'] , :locals => { :show_type => "date" } %>
+<% case params[ :type ] -%>
+<% when "following" , "followers" -%>
+	<%= render :partial => "users/userfeed" , :collection => @user_list , :locals => { :is_self => true } -%>
+<% when "commentlike" , "story" -%>
+	<%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox" } -%>
+	<%= render :partial => "widgets/feedsparam" , :locals => { :qparams => @qparams } -%>
+<% end -%>

@@ -1,7 +1,7 @@
 #user-show {
 	width: 100%;
 
-	img#lock{
+	img#nopermission{
 		position: absolute ;
 		top: 100px ;
 		left: 50% ;
@@ -13,48 +13,92 @@
 		-webkit-border-radius: 8px;
 		background-color: rgba(0,0,0,.5);
 	}
-
-	#main-block {
+	
+	#main_block {
+		width: 900px;
+		margin: 0px auto;
 		position: relative;
-		width: 755px;
-		margin: -80px auto 0;
 
+		#user_info {
+			width: 370px;
+			left: 50%;
+			top: -105px;
+			margin: 0px auto;
+			position: absolute;
+			margin-left: -185px;
+			background-color: white;
 
-		#user-info {
-			position: relative;
-			width: 100%;
+			border-radius: 6px;
+			-moz-border-radius: 6px;
+			-webkit-border-radius: 6px;
 
-			img.avatar {
-				margin: 10px;
-				width: 80px;
-				height: 80px;
-				border: 2px solid rgb(255, 255, 255);
-				box-shadow:0px 1px 6px rgba(0,0,0,.3);
-				-moz-box-shadow:0px 1px 6px rgba(0,0,0,.3);
-				-webkit-box-shadow:0px 1px 6px rgba(0,0,0,.3);
-			}
+			box-shadow:0px 1px 6px gray;
+			-moz-box-shadow:0px 1px 6px gray;
+			-webkit-box-shadow:0px 1px 6px gray;
 
-			h1 {
-				float: left;
-				display: block;
-				margin-top: 35px;
-				margin-left: 10px;
-				font-size: 25px;
-				color: white;
-				text-shadow:black 1px 1px 0;
-			}
-			
-			#user-info-button {
-				margin-top: 20px;
-				margin-left: 25px;
-				float: left;
+			z-index: 233;
+
+			#user_nav_bar {
+				width: 100%;
+				border-top: 1px solid #BBBBBB;
+
+				.user_nav {
+					width: 91.5px;
+					height: auto;
+					border-left: 1px solid #BBBBBB;
+					float: left;
+					padding: 5px 0;
+
+					p.number {
+						font-size: 20px;
+						text-align: center;
+						color: #4d4d4d;
+					}
+
+					p.title {
+						font-size: 12px;
+						text-align: center;
+						color: #BBBBBB;
+					}
+
+					&:first-child { border : none ; }
+				}
 			}
 		}
 
-		#following-list {
-			width: 854px;
-			margin: 10px 0px;
-			margin-left: -50px;
+		#feed_container {
+			padding-top: 30px;
 		}
 	}
+}
+
+.user_feed {
+	height: autp;
+	padding: 8px;
+
+	.avatar {
+		float: left;
+	}
+
+	p.username {
+		float: left; 
+		width: 200px;
+		font-size: 16px;
+		margin: 10px 0 10px 15px;
+		color: #4d4d4d;
+	}
+}
+.user_feed_self {
+	@extend .user_feed;
+	margin-bottom: 10px;
+	background-color: white;
+	z-index: 232;
+
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+
+	box-shadow:0px 1px 6px gray;
+	-moz-box-shadow:0px 1px 6px gray;
+	-webkit-box-shadow:0px 1px 6px gray;
 }
