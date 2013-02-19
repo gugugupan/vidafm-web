@@ -1,6 +1,7 @@
 Bluerain::Application.routes.draw do
 
   match "/d/iphone" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
+  match "/d/android_sina" => redirect("http://pics.vida.fm/vida_sina_20130117.apk")
   android_url = ""
   YAML::load_documents(File.open("config/download.yml")) do |doc|
     android_url = doc["android"]["base_url"] + doc["android"]["path"]
@@ -29,7 +30,7 @@ Bluerain::Application.routes.draw do
   resources :users, :only => "show", :constraints => {:id => /[0-9]+/} do
     get "ajax_following_list" , :on => :member
     get "ajax_get_new_page" , :on => :member
-    put "following" , :on => :member
+    put "following", :on => :member 
   end
 
   resources :moments, :only => "show", :constraints => {:id => /[0-9]+/} do

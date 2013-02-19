@@ -1,5 +1,5 @@
 #android_download {
-	width: 900px;
+	width: 920px;
 	margin: 0 auto;
 
 	#android_phone_pic {
@@ -24,6 +24,17 @@
 
 		#qrcode_img {
 			margin-top: 20px;
-		}		
+		}
+
+		.downloadbtn {
+			padding-left: 45px;
+			width: 100px;
+			text-align: center;
+
+			img {
+				margin-top: 9px; 
+				margin-left: 9px;
+			}
+		}
 	}
 }

@@ -14,14 +14,22 @@
 </style>
 <% end -%>
 
+<%= content_for :page_specific_asset_tail do %>
+	<script src="http://zhushou.360.cn/script/360mobilemgrdownload.js"></script>
+<% end -%>
+
 <div id="android_download">
 	<%= image_tag "android_download/android_mockup 11.35.14 AM.png" , :id => "android_phone_pic" %>
 	<div id="android_content_block">
 		<%= link_to image_tag( "android_download/android_logo.png" ) , root_url , :id => "logo_pic" %>
 		<p id="text0">适用于Android 2.3 以上手机</p>
 		<div id="android_download_bar">
-			<%= link_to image_tag( "android_download/icon_download.png" , :style => "margin-top:9px; margin-left:9px;" ) + "点击直接下载" , "/d/android" , :class => "btn_grey btn_big" , :style => "padding-left:45px;" %>
-			<%= link_to image_tag( "android_download/icon_wandoujia.png" , :style => "margin-top:9px; margin-left:9px;" ) + "豌豆荚一键下载" , "/d/android" , :class => "btn_grey btn_big" , :style => "padding-left:45px; margin-left: 15px;" %>
+			<%= link_to image_tag( "android_download/icon_download.png" ) + "点击直接下载" , "/d/android" , :class => "btn_grey btn_big downloadbtn" %>
+
+			<%= link_to image_tag( "android_download/icon_wandoujia.png" ) + "豌豆荚一键下载" , "/d/android" , :class => "btn_grey btn_big downloadbtn" , :style => "margin-left:15px;" %>
+			<div class='clearfix'> </div>
+			<%= link_to image_tag( "android_download/icon_360.png" ) + "360一键安装" , "zhushou360://type=apk&name=Vida&url=#{ @android_url }" , :class => "btn_grey btn_big downloadbtn" , :style => "margin-top: 20px;" %>
+			<div class='clearfix'> </div>
 		</div>
 		<%= image_tag "android_download/qrcode.png" , :id => "qrcode_img" %>
 	</div>
