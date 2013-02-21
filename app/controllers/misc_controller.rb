@@ -2,9 +2,7 @@
 class MiscController < ApplicationController
   
   def android_download
-    YAML::load_documents(File.open("config/download.yml")) do |doc|
-      @android_url = doc["android"]["base_url"] + doc["android"]["path"]
-    end
+    @android_url = "http://zhushou.360.cn/detail/index/soft_id/4945?recrefer=SE_D_vida"
   end
 
   def index
