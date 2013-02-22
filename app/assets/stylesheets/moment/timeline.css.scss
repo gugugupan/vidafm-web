@@ -252,7 +252,7 @@ $info_color: #a6a099 ;
 			height: 40px;
 			border: none;
 			float: left;
-			margin: 5px 0;
+			margin: 5px 5px 5px 0;
 
 			@include all_border_radius( 8px ) ;
 		}
@@ -268,7 +268,7 @@ $info_color: #a6a099 ;
 		.mlcommentlike_content {
 			width: 240px;
 			float: left;
-			margin: 5px 10px;
+			margin: 5px;
 			font-size: 14px;
 			color: $content_color ;
 
