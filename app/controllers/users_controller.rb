@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 =end
     data = User.fetch_moments( params[ :id ] , current_user , {} ) [ "data" ]
     @feeds = data[ "moments" ] 
+    puts @feeds.to_json
     @feeds .each do | moment | 
       moment[ "feed_type" ] = "activity_feed" 
       moment[ "created_at" ] = moment[ "moment" ] [ "modified_at" ] 

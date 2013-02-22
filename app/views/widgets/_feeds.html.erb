@@ -7,12 +7,14 @@
 %>
 <% boxtype = "userbox" if boxtype .nil? -%>
 <div class="feed"> <!-- feeds id missed 'moment1325523'-->
-	<div class="mlcontainer"> <!-- mlcontainer star -->
+	<div class="mlcontainer"> 
 		<div class="mlbox">
 
 			<%# Activity feed %>
 			<% if feeds[ "feed_type" ] == "activity_feed" -%>
-				<p class="float_likes"> <%= feeds[ "moment" ] [ "likes_count" ] %> </p>
+				<p class="float_likes <%= feeds[ 'moment' ] [ 'liked' ] ? 'liked' : 'unlike' %>">
+					<%= feeds[ "moment" ] [ "likes_count" ] %> 
+				</p>
 				<% if boxtype == "userbox" -%>
 					<%= avatar_tag_b( feeds[ "user" ] , { :class => "float_avatar" } ) %>
 				<% else -%>
@@ -40,18 +42,18 @@
 
 			<%# Comment feed %>
 			<% if feeds[ "feed_type" ] == "comment_feed" -%>
-				<div class="mlcomment">
-					<%= avatar_tag_b( feeds[ "user" ] , { :class => "mlcomment_image_left" } ) %>
-					<div class="mlcomment_content">
+				<div class="mlcommentlike">
+					<%= avatar_tag_b( feeds[ "user" ] , { :class => "mlcommentlike_image_left" } ) %>
+					<div class="mlcommentlike_content">
 						<p> 
 							<span>评论了</span> <%= feeds[ "content" ] -%>
 						</p>
 						<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
 					</div>
 					<% if feeds[ "type" ] == "moment" -%>
-						<%= link_to "" , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "mlcomment_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
+						<%= link_to "" , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 					<% else #is activity -%>
-						<%= link_to "" , "/activities/#{ feeds[ "activity" ] [ "id" ] }" , :class => "mlcomment_image_right" , :style => "background:url('#{ feeds[ "activity" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
+						<%= link_to "" , "/activities/#{ feeds[ "activity" ] [ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "activity" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 					<% end -%>
 					<div class="clearfix"> </div>
 				</div>
@@ -61,29 +63,29 @@
 
 			<%# Like feed %>
 			<% if feeds[ "feed_type" ] == "like_feed" -%>
-				<div class="mllike">
+				<div class="mlcommentlike">
 					<% for user in feeds[ "users" ] do -%>
-						<%= avatar_tag_b user , { :class => "mllike_image_left" } %>
+						<%= avatar_tag_b user , { :class => "mlcommentlike_image_left" } %>
 					<% end -%>
 
 					<% if feeds[ "type" ] == "moment" -%>
 						<% feeds[ "moment" ] [ "created_at" ] = feeds[ "created_at" ] -%>
-						<div class="mllike_content">
+						<div class="mlcommentlike_content">
 							<p> 
-								<span>喜欢了</span>#<%= moment_category_by_num feeds[ "moment" ] [ "category_id" ] %> <%= moment_name( feeds[ "moment" ] ) -%>
+								<span>喜欢了</span> #<%= moment_category_by_num feeds[ "moment" ] [ "category_id" ] %> <%= moment_name( feeds[ "moment" ] ) -%>
 							</p>
 							<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
 						</div>
-						<%= link_to "" , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "mllike_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
+						<%= link_to "" , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 					<% else #is activity -%>
-						<div class="mllike_content" style="width:90px">
+						<div class="mlcommentlike_content" style="width:90px">
 							<p> 
 								<span>喜欢了</span>
 							</p>
 							<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
 						</div>
 						<% for activity in feeds[ "activities" ] [ 0 , 3 ] do -%>
-							<%= link_to "" , "/activities/#{ activity[ "id" ] }" , :class => "mllike_image_right" , :style => "background:url('#{ activity[ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
+							<%= link_to "" , "/activities/#{ activity[ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ activity[ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 						<% end -%>
 					<% end -%>
 					<div class="clearfix"> </div>

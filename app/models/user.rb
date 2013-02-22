@@ -19,7 +19,6 @@ class User
 		def fetch( user_id , current_user , params )
 			# check whether the user_id is a number.
 			return nil unless user_id =~ /[0-9]+/
-
 			JSON.parse VIDA.call( "users/#{ user_id }/brief" , {} , current_user , "GET" )
 		end	
 

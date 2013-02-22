@@ -165,18 +165,18 @@ function arangeImage()
         {
             $feed = $( ".feed:eq(" + i + ")" ) ;
             if ( $feed .hasClass( "feed_left" ) || $feed .hasClass( "feed_right" ) ) continue ;
-            if ( Math .abs( left_px - right_px ) <= 20 )
+            if ( Math .abs( left_px - right_px ) <= 25 )
             {
                 if ( left_px < right_px )
                 {
-                    $feed .before( '<div class="feed feed_left empty_feed"> </div>' ) ;
-                    left_px = 21 ;
-                    right_px = 0 ;
+                    $feed .before( '<div class="feed feed_right empty_feed"> </div>' ) ;
+                    right_px = 30 ;
+                    left_px = 0 ;
                 } else 
                 {
-                    $feed .before( '<div class="feed feed_right empty_feed"> </div>' ) ;
-                    right_px = 21 ;
-                    left_px = 0 ;
+                    $feed .before( '<div class="feed feed_left empty_feed"> </div>' ) ;
+                    left_px = 30 ;
+                    right_px = 0 ;
                 }
                 continue ;
             } else if ( left_px < right_px )
@@ -184,13 +184,13 @@ function arangeImage()
                 $feed .addClass( "feed_left" ) ;
                 $feed .find( ".mlarrow_right" ) .eq( 0 ) .css( "display" , "block" ) ;
                 $feed .find( ".feeds_icon_right" ) .eq( 0 ) .css( "display" , "block" ) ;
-                left_px += 20 + $feed .height() ;
+                left_px += 10 + $feed .height() ;
             } else 
             {
                 $feed .addClass( "feed_right" ) ;
                 $feed .find( ".mlarrow_left" ) .eq( 0 ) .css( "display" , "block" ) ;
                 $feed .find( ".feeds_icon_left" ) .eq( 0 ) .css( "display" , "block" ) ;
-                right_px += 20 + $feed .height() ;
+                right_px += 10 + $feed .height() ;
             }
         }
     } ) ;

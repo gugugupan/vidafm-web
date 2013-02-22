@@ -1,8 +1,17 @@
+@mixin all_border_radius( $radius ) {
+	border-radius: $radius ;
+	-moz-border-radius: $radius ;
+	-webkit-border-radius: $radius ;	
+}
+$text_color: #B9B2AA ;
+$content_color : #6d6e71 ;
+$info_color: #a6a099 ;
+
 #feed_container {
 	background: image-url( "line.png" ) repeat-y scroll center;
 	position: relative;
 	margin-top: 30px;
-	padding-top: 30px;
+	padding-top: 15px;
 	width: 100%;
 
 	.header_icon {
@@ -16,11 +25,11 @@
 		position: absolute;
 		display: block;
 		left: 50%;
-		top: -40px;
+		top: -38px;
 		margin-left: -20px;
 		font-size: 20px;
 		color: white;
-		text-shadow:1px 1px 0px rgba(0,0,0,.8);
+		text-shadow:0px 2px 0px rgba(0,0,0,.5);
 	}
 }
 
@@ -36,8 +45,7 @@
 
 .empty_feed{
 	width: 370px;
-	height: 21px;
-	clear: both;
+	height: 30px;
 }
 
 .feed {
@@ -50,11 +58,11 @@
 	}
 
 	.feeds_icon_right {
-		right: -92px;
+		right: -67px;
 	}
 
 	.feeds_icon_left {
-		left: -92px;
+		left: -67px;
 	}
 
 	.mlarrow {
@@ -77,13 +85,12 @@
 	position: relative;
 
 	.mlbox {
+		@include all_border_radius( 8px ) ;
 		background-color:white;
-		border-radius:8px;
-		-moz-border-radius:8px; /* Firefox 3.6 and earlier */
 		box-shadow: 0px 1px 3px #888888;
-		padding:8px;
+		padding:5px;
 		position: relative;
-		width: 354px;
+		width: 360px;
 
 		.image_container {
 			width: 100%;
@@ -125,7 +132,6 @@
 			position: absolute;
 			top: 14px;
 			right: 14px;
-			background:rgba(0,0,0,.7) image-url("icon/icon_mllike2.png") left center no-repeat;
 			display: block;
 			z-index: 10;
 			height: 20px;
@@ -134,9 +140,13 @@
 			font-size: 14px;
 
 			border:10px solid rgba(0,0,0,0);
-			border-radius: 20px;
-			-moz-border-radius: 20px;
-			-webkit-border-radius: 20px;
+			@include all_border_radius( 20px ) ;
+		}
+		.unlike {
+			background:rgba(0,0,0,.7) image-url("icon/icon_mllike2.png") left center no-repeat;
+		}
+		.liked {
+			background:rgba(0,0,0,.7) image-url("icon/icon_timeline_liked.png") left center no-repeat;
 		}
 
 		.float_avatar {
@@ -147,10 +157,8 @@
 			width: 40px;
 			z-index: 10;
 
-			border: 8px solid white;
-			border-radius: 10px;
-			-moz-border-radius: 10px;
-			-webkit-border-radius: 10px;
+			border: 5px solid white;
+			@include all_border_radius( 6px ) ;
 		}
 
 		.float_datebox {
@@ -161,10 +169,8 @@
 			width:40px;
 			z-index: 10;
 
-			border: 2px solid white;		
-			border-radius: 10px;
-			-moz-border-radius: 10px;
-			-webkit-border-radius: 10px;
+			border: 2px solid white;
+			@include all_border_radius( 10px ) ;
 			overflow:hidden;
 
 			.month {
@@ -212,8 +218,8 @@
 	}
 
 	.mlinfo {
-		width: 354px;
-		margin: 5px 0;
+		width: auto;
+		margin: 5px 10px 5px 5px;
 
 		.mltitle {
 			float:left;
@@ -234,88 +240,47 @@
 		}
 
 		p {
-			color:#77706f;
+			color: $info_color ;
 			font-size:14px;
-			text-shadow: 0px 2px 0px #ffffff;
+			text-shadow: 0px 1px 2px rgba(0,0,0,.1);
 		}
 	}
 
-	.mlcomment {
-		.mlcomment_image_left {
+	.mlcommentlike {
+		.mlcommentlike_image_left {
 			width: 40px;
 			height: 40px;
 			border: none;
 			float: left;
 			margin: 5px 0;
 
-			border-radius: 3px;
-			-moz-border-radius: 3px;
-			-webkit-border-radius: 3px;
+			@include all_border_radius( 8px ) ;
 		}
 
-		.mlcomment_image_right {
-			width: 50px;
-			height: 50px;
-			border: none;
-			float: left;
-		}
-
-		.mlcomment_content {
-			width: 244px;
-			float: left;
-			margin: 5px 10px;
-			font-size: 14px;
-			color: #4d4d4d;
-
-			span {
-				color: #b9b2aa;
-			}
-
-			p.mltime {
-				float: left;
-				padding-left: 17px;
-				margin-top: 8px;
-			}
-		}
-	}
-
-	.mllike {
-		.mllike_image_left {
-			width: 40px;
-			height: 40px;
-			border: none;
-			float: left;
-			margin: 5px 0;
-			margin-right: 8px;
-
-			border-radius: 3px;
-			-moz-border-radius: 3px;
-			-webkit-border-radius: 3px;
-		}
-
-		.mllike_image_right {
+		.mlcommentlike_image_right {
 			width: 50px;
 			height: 50px;
 			border: none;
 			float: right;
-			margin-left: 8px;
+			margin-left: 5px;
 		}
 
-		.mllike_content {
-			width: 224px;
+		.mlcommentlike_content {
+			width: 240px;
 			float: left;
-			margin: 0px 10px;
+			margin: 5px 10px;
 			font-size: 14px;
-			color: #4d4d4d;
+			color: $content_color ;
 
 			span {
-				color: #b9b2aa;
+				color: $text_color ;
 			}
 
 			p.mltime {
 				float: left;
 				padding-left: 17px;
-				margin-top: 8px;
+				margin-top: 12px;
+				font-size: 12px;
 			}
 		}
 	}

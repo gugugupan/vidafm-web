@@ -8,4 +8,4 @@ config/database.yml
 db/*
 OLD/
 *~
-*.DS_Store
+.DS_Store
