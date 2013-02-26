@@ -7,6 +7,7 @@
     //LAZY LOAD
 	var page_now = 0 ;
     var userid_now = <%= params[ :id ] %> ;
+    var is_current_user = <%= @current_user ? ( params[ :id ] .to_i == @cur_user[ :id ] .to_i ) .to_s : "false" %> ;
     function clearME()
     {
         $( ".user_nav p" ) .css( "color" , "" ) ;
@@ -23,7 +24,7 @@
 
             left_px = 0 , right_px = 0 ;
             $( "#story_nav p" ) .css( "color" , "crimson" ) ;
-            $( "#main_block" ) .width( 900 ) ;
+            $( "#main_block" ) .width( 850 ) ;
             $( "#feed_container" ) .attr( "type" , "story" ) ;
             $( "#feed_container" ) .removeAttr( "dontarange" ) ;
             $( "#feed_container" ) .css( "background" , "" ) ;
@@ -83,12 +84,12 @@
             $( "#refresh-link" ) .attr( "href" , "javascript:showFollowing()" ) ;
             $( "#refresh-link" ) .css( { width : "100%" , "margin-left" : "0" } ) ;
 
-            var param = "type=following&page=" + page_now ;
+            var param = "type=following&page=" + page_now + "&current=" + is_current_user ;
             lazyload( "users" , userid_now , param ) ;
         } else 
         {
             page_now = page_now + 1 ;
-            var param = "type=following&page=" + page_now ;
+            var param = "type=following&page=" + page_now + "&current=" + is_current_user ;
             lazyload( "users" , userid_now , param ) ;
         }
     }
@@ -107,12 +108,12 @@
             $( "#refresh-link" ) .attr( "href" , "javascript:showFollowers()" ) ;
             $( "#refresh-link" ) .css( { width : "100%" , "margin-left" : "0" } ) ;
 
-            var param = "type=followers&page=" + page_now ;
+            var param = "type=followers&page=" + page_now + "&current=" + is_current_user ;
             lazyload( "users" , userid_now , param ) ;
         } else 
         {
             page_now = page_now + 1 ;
-            var param = "type=followers&page=" + page_now ;
+            var param = "type=followers&page=" + page_now + "&current=" + is_current_user ;
             lazyload( "users" , userid_now , param ) ;
         }
     }
@@ -145,7 +146,7 @@
 
     <div id="main_block">
         <div id="user_info">
-            <%= render :partial => "users/userfeed" , :object => @user , :locals => { :is_self => false } -%>
+            <%= render :partial => "users/userfeed" , :object => @user , :locals => { :is_self => false , :need_btn => @relation } -%>
             <%= render :partial => "users/usernav" , :object => @user -%>
         </div>
 

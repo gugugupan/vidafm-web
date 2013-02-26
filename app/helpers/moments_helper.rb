@@ -128,8 +128,10 @@ module MomentsHelper
 	end
 
 	def get_time( moment )
-		return moment[ "suggest_at" ] unless moment[ "suggest_at" ] .nil?
-		return moment[ "created_at" ] unless moment[ "created_at" ] .nil?
-		moment[ "modified_at" ] 
+		time = moment[ "modified_at" ] 
+		time = moment[ "created_at" ] unless moment[ "created_at" ] .nil?
+		time = moment[ "suggest_at" ] unless moment[ "suggest_at" ] .nil?
+		time = time .to_time - 8 .hour
+		time .to_s
 	end
 end

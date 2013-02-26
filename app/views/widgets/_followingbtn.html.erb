@@ -1,3 +1,10 @@
+<%#
+	关注, 取消关注按钮
+	Params :
+		tag - 关注情况(0未关注 1关注 2等待回应)
+		uid - user id 
+		size - btn size ( btn_big btn_middle btn_small )
+-%>
 <% if tag == 0 %>
 	<%= link_to "+关注" , following_user_url( uid ) + "?type=following" , 
 		:class => "btn_blue " + size , :id => "following-tag#{ uid }" , 

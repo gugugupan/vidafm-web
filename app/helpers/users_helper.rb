@@ -39,9 +39,10 @@ module UsersHelper
 	# Params :
 	# 	none
 	def datebox_tag time # time str like "2012-10-18 11:03:08 AM UTC (2012-10-18 07:03:08 PM Local)"
+		time = time .to_time
 		inner_html = '<div class="float_datebox">
-			<p class="month">' + time[ 0 , 4 ] + '/' + time[ 5 , 2 ] + '</p>
-			<p class="day">' + time[ 8 , 2 ] + '</p>
+			<p class="month">' + time .year .to_s + '/' + time .month .to_s + '</p>
+			<p class="day">' + time .day .to_s + '</p>
 		</div>'
 		raw inner_html
 	end

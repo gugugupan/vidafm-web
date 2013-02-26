@@ -1,9 +1,15 @@
-<%# Usage : %>
-<%# 	Create a feed just include user info and following button %>
-<%# Param : %>
-<%# 	is_self - Indicates the feeds if need to separate %>
+<%# Usage :
+		Create a feed just include user info and following button 
+	Param :
+		is_self - 是否是显示在feeds状态下的
+		need_btn - 是否需要显示关注按钮(内容为关注情况, nil表示不显示)
+%>
+<% need_btn = nil unless defined? need_btn -%>
 <div class="<%= is_self ? "user_feed_self" : "user_feed" %>">
 	<%= avatar_tag_b userfeed %>
 	<p class="username"> <%= userfeed[ "name" ] %> </p>
+	<% unless need_btn .nil? -%>
+		<%= render :partial => "widgets/followingbtn" , :locals => { :tag => need_btn , :uid => userfeed[ "id" ] , :size => "btn_small" } %>
+	<% end -%>
 	<div class="clearfix"> </div>
 </div>

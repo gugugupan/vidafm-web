@@ -1,5 +1,7 @@
 <% case params[ :type ] -%>
-<% when "following" , "followers" -%>
+<% when "following" -%>
+	<%= render :partial => "users/userfeed" , :collection => @user_list , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 1 : nil } -%>
+<% when "followers" -%>
 	<%= render :partial => "users/userfeed" , :collection => @user_list , :locals => { :is_self => true } -%>
 <% when "commentlike" , "story" -%>
 	<%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox" } -%>

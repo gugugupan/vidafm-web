@@ -5,27 +5,15 @@ class UsersController < ApplicationController
     render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
     @user = data[ "data" ] 
     @status = data[ "status" ]
+    @relation = @user[ "followed" ] ? 1 : 0
+    @relation = nil if @user[ "followed" ] .nil? || ( cur_user && params[ :id ] .to_i == cur_user[ :id ] .to_i ) || !current_user
 
     data = User.fetch_moments( params[ :id ] , current_user , {} ) [ "data" ]
     @feeds = data[ "moments" ] 
-    @feeds .each do | moment | 
-      moment[ "feed_type" ] = "activity_feed" 
-      moment[ "created_at" ] = moment[ "moment" ] [ "modified_at" ] 
-    end
     @qparams = data[ "next_query_parameters" ] 
 
     save_url_in_cookies
   end
-
-=begin
-  def ajax_following
-    params[ :type ] = "following" if params[ :type ] .nil?
-    result = User.set_relation( params[ :id ] , current_user , params[ :type ] )
-    respond_to do |format|
-      format .json { render :json => result }
-    end
-  end
-=end
 
   def ajax_following_list
     params[ :relation ] = "following" if params[ :relation ] .nil?
@@ -39,6 +27,7 @@ class UsersController < ApplicationController
   #   type - [ "story" , "commentlike" , "following" , "followers" ]
   #   id - user id
   #   page - finding for which page
+  #   current - request user == current user?
   def ajax_get_new_page
     case params[ :type ] 
     when "following" , "followers" 
@@ -51,8 +40,7 @@ class UsersController < ApplicationController
       }
       if params[ :type ] == "story" 
         data = User.fetch_moments( params[ :id ] , current_user , query ) [ "data" ]
-        @feeds = data[ "moments" ]  
-        @feeds .each { | moment | moment[ "feed_type" ] = "activity_feed" }
+        @feeds = data[ "moments" ]
       else 
         data = User.fetch_commentlike( params[ :id ] , current_user , query ) [ "data" ]
         @feeds = data[ "likes_and_comments" ]

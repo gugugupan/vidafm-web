@@ -9,7 +9,13 @@ class User
 		def fetch_moments( id , current_user , params )
 			data = VIDA.call( "users/#{ id }/moments" , params , current_user , "GET" ) 
 			data[ :body ] = "{\"data\":{\"moments\":[],\"next_query_parameters\":{}}}" if data[ :status ] == 401 || data[ :status ] == 204
-			JSON.parse( data[ :body ] )
+			result = JSON.parse( data[ :body ] )
+			result[ "data" ] [ "moments" ] .each do | moment | 
+				moment[ "feed_type" ] = "activity_feed" 
+				moment[ "created_at" ] = moment[ "moment" ] [ "modified_at" ] 
+				moment[ "moment" ] [ "liked" ] = moment[ "liked" ]
+			end
+			result 
 		end	
 
 		def fetch_moments_category( user_id , category , current_user )
@@ -58,7 +64,9 @@ class User
 		# 获取用户关注或粉丝列表
 		# 	type - [ "following" , "followers" ] 
 		def fetch_follow( id , current_user , type , page )
-			JSON.parse( VIDA.call( "users/#{ id }/#{ type }" , { :page => page } , current_user , "GET" ) [ :body ] )
+			data = VIDA.call( "users/#{ id }/#{ type }" , { :page => page } , current_user , "GET" )
+			data[ :body ] = "{\"data\":{\"users\":[]}}"if data[ :status ] == 204 
+			JSON.parse( data[ :body ] )
 		end
 
 		# 获取用户喜欢、评论列表
@@ -66,7 +74,9 @@ class User
 		# 	like_ids[before] 
 		# 	comment_ids[before] (若为空则从头开始取)
 		def fetch_commentlike( id , current_user , params )
-			JSON.parse( VIDA.call( "users/#{ id }/likes_and_comments" , params , current_user , "GET" ) [ :body ] )
+			data = VIDA.call( "users/#{ id }/likes_and_comments" , params , current_user , "GET" )
+			data[ :body ] = "{\"data\":{\"likes_and_comments\":[],\"next_query_parameters\":{}}}"if data[ :status ] == 204 
+			JSON.parse( data[ :body ] )
 		end
 	end
 end

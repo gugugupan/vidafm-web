@@ -9,7 +9,7 @@
 		margin-left: -240px ;
 		display: block;
 		padding: 40px 40px 40px 110px;
-		background:rgba(0,0,0,.5) image-url("images/lockbtn.png") no-repeat 43px center;
+		background:rgba(0,0,0,.5) image-url("images/icon_lock.png") no-repeat 43px center;
 		color: white;
 		font-size: 18px;
 
@@ -90,6 +90,11 @@
 		font-size: 16px;
 		margin: 10px 0 10px 15px;
 		color: #4d4d4d;
+	}
+
+	a.btn_small {
+		float: right;
+		margin-top: 4px;
 	}
 }
 .user_feed_self {
