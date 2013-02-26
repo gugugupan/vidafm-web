@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  <%= @user[ :name ] %> - Vida（微达） - 手机照片故事社区
+  <%= @cur_user[ :name ] %> - Vida（微达） - 手机照片故事社区
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
@@ -24,7 +24,7 @@
 
 <div id="friend-show">
  	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
- 	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ :cover_file ] } %>
+ 	<%= render :partial => "widgets/cover" , :locals => { :cover => @cur_user[ :cover_file ] } %>
 
  	<div id="main-block">
  		<div id="following-list">

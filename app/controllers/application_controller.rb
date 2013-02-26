@@ -38,6 +38,7 @@ class ApplicationController < ActionController::Base
       session[ :cur_user ] = { 
         :id => data[ "id" ] , 
         :avatar_file => data[ "avatar_file" ] , 
+        :cover_file => data[ "cover_file" ] ,
         :name => data[ "name" ] ,
         :vendors => data[ "vendors" ] ,
         :notification_count => data[ "notification_count" ] 
@@ -119,7 +120,7 @@ class ApplicationController < ActionController::Base
   def api_call( model , method , id , params )
     data = Moment .send( method , id , current_user , params ) if model == "Moment" 
     data = User   .send( method , id , current_user , params ) if model == "User" 
-    session[ :cur_user ] [ :notification_count ] = data[ "notification_count" ] if current_user 
+    session[ :cur_user ] [ :notification_count ] = data[ "notification_count" ] if current_user
     data
   end
 end

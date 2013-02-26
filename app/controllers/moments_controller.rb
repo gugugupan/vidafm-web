@@ -36,14 +36,15 @@ class MomentsController < ApplicationController
   def allcomments 
     @comments = Comment.fetch( :type => "Moment" , :type_id => params[ :id ] ) [ "data" ]
   end
-=begin
-  def ajax_like
-    result = Activity.like( :activity_id => params[:id ] , :user => current_user )
-    respond_to do |format|
-      format .json { render :json => result }
+
+  def like
+    if current_user 
+      @result = Moment.like( params[:id ] , current_user , nil )
+    else
+      render "misc/need_authentication"
     end
   end
-=end
+
   def sharelist
     @sns_hash = {
       "weiboer" => { :name => "新浪微博" , :img => "icon/icon_sina.png" , :url_attr => "?type=weiboer" } ,

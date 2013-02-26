@@ -11,8 +11,10 @@ class VIDA
 
 			puts "\n CMD : [#{ http_method }] for [#{ methods }] with [#{ http_params .to_param }] login by [#{ user[ :token ] }:#{ user[ :secret ] }]"
 
-			@connection = Faraday.new( :url => dev_api_url ) 
-			@connection .basic_auth( user[ :token ] , user[ :secret ] )
+			@connection = Faraday.new( :url => api_url )
+			unless options[ 1 ] .nil?
+				@connection .basic_auth( user[ :token ] , user[ :secret ] )
+			end
 
 			case http_method
 			when "GET"
@@ -20,7 +22,9 @@ class VIDA
 			when "POST"
 				res = @connection .post methods , http_params
 			end
-			res .body
+
+			# return params : { :body => JSON code , :status => HTTP status }
+			{ :body => res .body , :status => res .status } 
 		end
 
 		def api_url

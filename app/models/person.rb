@@ -1,7 +1,7 @@
 class Person 
 	# 获取用户最早参与的moment的创建时间，会返回['name', 'created_at', 'avatar_file', 'id', 'first_moment_created_at']
 	def self.fetchTimelineInfo(options = {})
-		JSON.parse(VIDA.call("user/show", {:id => options[:id]}))['data']
+		JSON.parse( VIDA.call("user/show", {:id => options[:id]}) [ :body ] )['data']
 	end
 
 	def self.fetch(options = {})

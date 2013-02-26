@@ -4,19 +4,8 @@ class UsersController < ApplicationController
     data = api_call( "User" , :fetch , params[ :id ] , nil )
     render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
     @user = data[ "data" ] 
-=begin
-    @following_tag = get_relation_btn( @user[ :relation ] ) 
-    if params[ :category ] .nil?
-      data = User.fetch_moments(params[:id], 0, current_user)
-      params[ :category ] = "all"
-    else
-      data = User.fetch_moments_category( params[ :id ] , params[ :category ] , current_user )
-    end
-    @result = notice #data[ "result" ]
-    @result = 401 if @current_user && @user[ :following_limited ] == 1 && get_relation_btn( @user[ :relation ] ) != 1
-    @moments = data[ "data" ]
-    #data = User.fetch( params[:id] , current_user )
-=end
+    @status = data[ "status" ]
+
     data = User.fetch_moments( params[ :id ] , current_user , {} ) [ "data" ]
     @feeds = data[ "moments" ] 
     @feeds .each do | moment | 
@@ -56,7 +45,7 @@ class UsersController < ApplicationController
       @user_list = User.fetch_follow( params[ :id ] , current_user , params[ :type ] , params[ :page ] ) [ "data" ] [ "users" ]
     when "commentlike" , "story"
       query = {
-        "avtivity_ids[before]" => params[ :activity ] ,
+        "activity_ids[before]" => params[ :activity ] ,
         "comment_ids[before]" => params[ :comment ] ,
         "like_ids[before]" => params[ :like ] 
       }

@@ -8,7 +8,7 @@ class ActivitiesController < ApplicationController
 
 	def like 
 		if current_user 
-			@result = Activity.like( :activity_id => params[:id ] , :user => current_user )
+			@result = Activity.like( params[ :id ] , current_user )
 		else
 			render "misc/need_authentication"
 		end

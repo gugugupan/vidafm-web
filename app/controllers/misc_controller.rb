@@ -12,7 +12,6 @@ class MiscController < ApplicationController
       return
     end
 
-    #@moments = Moment.hot_story() [ "data" ] [ "public_moments" ]
     @moments = api_call( "Moment" , :hot_story , nil , nil ) [ "data" ] [ "public_moments" ]
     @data = User.fetch_star_user( nil , current_user , nil ) [ "data" ]
     @data[ "recommended" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
@@ -29,7 +28,7 @@ class MiscController < ApplicationController
 
   def ajax_notification
     session[ :cur_user ] [ :notification_count ] = 0
-    @message = JSON.parse( VIDA.call("/notification/list" , {} , current_user ) ) [ "data" ]
+    @message = JSON.parse( VIDA.call("/notification/list" , {} , current_user ) [ :body ] ) [ "data" ]
     @message[ "unread" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
     @message[ "read" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
     render "misc/notificationlist" , :layout => false 
@@ -41,11 +40,11 @@ class MiscController < ApplicationController
 
   def friend
     redirect_to "/" and return unless current_user
-    @user = User.fetch_current_user( current_user ) [ "data" ] .symbolize_keys
-    #@moment = User.fetch_friend_moments( current_user , 0 ) [ "data" ]
-    data = api_call( "User" , :fetch_friend_moments , 0 , {} ) [ "data" ]
+    data = api_call( "User" , :fetch_feeds , 0 , {} ) [ "data" ]
     @moment = data[ "feeds" ] 
     @qparams = data[ "next_query_parameters" ] 
+
+    save_url_in_cookies
   end
 
   def ajax_get_new_page
@@ -54,8 +53,9 @@ class MiscController < ApplicationController
       "comment_ids[before]" => params[ :comment ] ,
       "like_ids[before]" => params[ :like ] 
     }
-    data = User.fetch_friend_moments( nil , current_user , next_query ) [ "data" ]
-    @moment = data[ "feeds" ] 
+    data = User.fetch_feeds( nil , current_user , next_query ) [ "data" ]
+    @feeds = data[ "feeds" ] 
+    puts @feeds .to_json
 
     @qparams = data[ "next_query_parameters" ] 
     @qparams[ "activity_ids" ] = { "before" => params[ :activity ] } if @qparams[ "activity_ids" ] .nil?

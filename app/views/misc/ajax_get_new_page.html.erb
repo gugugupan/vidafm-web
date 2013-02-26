@@ -1,4 +1,6 @@
-<%= render :partial => "widgets/feeds" , :collection => @moment -%>
-<div class="divparams activity_ids_before" value="<%= @qparams[ "activity_ids" ] [ "before" ] %>"> </div>
-<div class="divparams comment_ids_before" value="<%= @qparams[ "comment_ids" ] [ "before" ] %>"> </div>
-<div class="divparams like_ids_before" value="<%= @qparams[ "like_ids" ] [ "before" ] %>"> </div>
+<%= render :partial => "widgets/feeds" , :collection => @feeds -%>
+<% if @feeds .length > 0 -%>
+	<div class="divparams activity_ids_before" value="<%= @qparams[ "activity_ids" ] [ "before" ] %>"> </div>
+	<div class="divparams comment_ids_before" value="<%= @qparams[ "comment_ids" ] [ "before" ] %>"> </div>
+	<div class="divparams like_ids_before" value="<%= @qparams[ "like_ids" ] [ "before" ] %>"> </div>
+<% end -%>

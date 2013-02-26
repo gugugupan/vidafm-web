@@ -119,11 +119,28 @@
 </script>
 <% end -%>
 
+<%= content_for :page_specific_asset_tail do -%>
+<script>
+    <% unless @current_user && @status != 401 -%>
+        $( "#story_nav" ) .removeAttr( "href" ) ;
+        $( "#lc_nav" ) .removeAttr( "href" ) ;
+        $( "#fing_nav" ) .removeAttr( "href" ) ;
+        $( "#fer_nav" ) .removeAttr( "href" ) ;
+        $( ".user_nav p" ) .css( "color" , "" ) ;
+        $( "#user_info" ) .css( "top" , "-75px" ) ;
+        $( "#main_block" ) .css( "height" , "50px" ) ;
+    <% end -%>
+</script>
+<% end -%>
+
 <div id="user-show">
  	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
  	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ "cover_file" ] } %>
-    <% if @result == 401 -%>
-        <%= image_tag "images/private_tips.png" , :id => "nopermission" -%>
+    <% unless @current_user -%>
+        <div id="nopermission">您还没有登录, 登录后获取更多内容.</div>
+    <% end -%>
+    <% if @current_user && @status == 401 -%>
+        <div id="nopermission">Ta开启了仅粉丝可见, 关注Ta并获得通过, 就可以浏览其所有的生活轨迹</div>
     <% end -%>
 
     <div id="main_block">
@@ -131,12 +148,15 @@
             <%= render :partial => "users/userfeed" , :object => @user , :locals => { :is_self => false } -%>
             <%= render :partial => "users/usernav" , :object => @user -%>
         </div>
-        <div id="feed_container" type="story" blockstyle="puzzle">
-            <%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox" } -%>
-            <%= render :partial => "widgets/feedsparam" , :locals => { :qparams => @qparams } -%>
-            <div class="clearfix last_clearfix"> </div>
-        </div>
-        <a id="refresh-link" class="mouse" href=javascript:showStory()>点击显示更多</a>
+
+        <% if @current_user && @status != 401 -%>
+            <div id="feed_container" type="story" blockstyle="puzzle">
+                <%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox"}-%>
+                <%= render :partial => "widgets/feedsparam" , :locals => { :qparams => @qparams } -%>
+                <div class="clearfix last_clearfix"> </div>
+            </div>
+            <a id="refresh-link" class="mouse" href=javascript:showStory()>点击显示更多</a>
+        <% end -%>
         <div class="clearfix"> </div>
     </div>
 

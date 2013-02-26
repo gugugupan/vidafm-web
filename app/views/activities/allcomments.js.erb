@@ -21,7 +21,10 @@ if ( $selector .find( ".one_comment" ) .size() > 5 )
 {
 	$selector .find( ".one_comment" ) .eq( 0 ) .css( "border-top" , "none" ) ;
 	if ( $selector .find( ".one_comment" ) .size() == 0 )
+	{
 		$selector .find( ".comment_text" ) .text( "没有更多评论了" ) ;
+		$selector .find( ".comment_text" ) .addClass( "none_comment" ) ;
+	}
 	else
 		$selector .find( ".comment_text" ) .remove() ;
 }

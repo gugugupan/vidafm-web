@@ -12,9 +12,8 @@
 
 			<%# Activity feed %>
 			<% if feeds[ "feed_type" ] == "activity_feed" -%>
-				<p class="float_likes <%= feeds[ 'moment' ] [ 'liked' ] ? 'liked' : 'unlike' %>">
-					<%= feeds[ "moment" ] [ "likes_count" ] %> 
-				</p>
+				<% mid = feeds[ 'moment' ] [ 'id' ] -%>
+				<%= link_to feeds[ 'moment' ] [ 'likes_count' ] , like_moment_url( mid ) , :remote => true , :method => :put , :id => "like#{ mid }" , :class =>"float_likes #{ feeds[ 'moment' ] [ 'liked' ] ? 'liked' : 'unlike' }" %>
 				<% if boxtype == "userbox" -%>
 					<%= avatar_tag_b( feeds[ "user" ] , { :class => "float_avatar" } ) %>
 				<% else -%>
@@ -70,7 +69,7 @@
 
 					<% if feeds[ "type" ] == "moment" -%>
 						<% feeds[ "moment" ] [ "created_at" ] = feeds[ "created_at" ] -%>
-						<div class="mlcommentlike_content">
+						<div class="mlcommentlike_content" style="width:<%=240-45*(feeds[ "users" ].length-1)-%>px">
 							<p> 
 								<span>喜欢了</span> #<%= moment_category_by_num feeds[ "moment" ] [ "category_id" ] %> <%= moment_name( feeds[ "moment" ] ) -%>
 							</p>

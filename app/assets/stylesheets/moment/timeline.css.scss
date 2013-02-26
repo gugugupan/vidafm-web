@@ -49,7 +49,7 @@ $info_color: #a6a099 ;
 }
 
 .feed {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 
 	.feeds_icon {
 		position: absolute;
@@ -85,7 +85,7 @@ $info_color: #a6a099 ;
 	position: relative;
 
 	.mlbox {
-		@include all_border_radius( 8px ) ;
+		@include all_border_radius( 6px ) ;
 		background-color:white;
 		box-shadow: 0px 1px 3px #888888;
 		padding:5px;

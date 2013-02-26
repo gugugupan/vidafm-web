@@ -39,6 +39,7 @@ Bluerain::Application.routes.draw do
     post "share" , :on => :member
     post "comment" , :on => :member 
     get "allcomments", :on => :member 
+    put "like", :on => :member 
   end
 
   resources :activities, :only => "show" , :constraints => {:id => /[0-9]+/} do

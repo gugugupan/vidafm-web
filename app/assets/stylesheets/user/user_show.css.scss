@@ -1,17 +1,21 @@
 #user-show {
 	width: 100%;
 
-	img#nopermission{
+	#nopermission{
+		width: 330px;
 		position: absolute ;
 		top: 100px ;
 		left: 50% ;
-		margin-left: -200px ;
+		margin-left: -240px ;
 		display: block;
-		padding: 40px;
+		padding: 40px 40px 40px 110px;
+		background:rgba(0,0,0,.5) image-url("images/lockbtn.png") no-repeat 43px center;
+		color: white;
+		font-size: 18px;
+
 		border-radius: 8px;
 		-moz-border-radius: 8px;
 		-webkit-border-radius: 8px;
-		background-color: rgba(0,0,0,.5);
 	}
 	
 	#main_block {
