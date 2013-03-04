@@ -43,6 +43,7 @@
 			<% if feeds[ "feed_type" ] == "comment_feed" -%>
 				<div class="mlcommentlike">
 					<%= avatar_tag_b( feeds[ "user" ] , { :class => "mlcommentlike_image_left" } ) %>
+					<%= image_tag "icon/icon_small_comment.png" , :class => "mlcommentlike_icon" %>
 					<div class="mlcommentlike_content">
 						<p> 
 							<span>评论了</span> <%= feeds[ "content" ] -%>
@@ -66,10 +67,11 @@
 					<% for user in feeds[ "users" ] do -%>
 						<%= avatar_tag_b user , { :class => "mlcommentlike_image_left" } %>
 					<% end -%>
+					<%= image_tag "icon/icon_small_like.png" , :class => "mlcommentlike_icon" %>
 
 					<% if feeds[ "type" ] == "moment" -%>
 						<% feeds[ "moment" ] [ "created_at" ] = feeds[ "created_at" ] -%>
-						<div class="mlcommentlike_content" style="width:<%=240-45*(feeds[ "users" ].length-1)-%>px">
+						<div class="mlcommentlike_content" style="width:<%=225-45*(feeds[ "users" ].length-1)-%>px">
 							<p> 
 								<span>喜欢了</span> #<%= moment_category_by_num feeds[ "moment" ] [ "category_id" ] %> <%= moment_name( feeds[ "moment" ] ) -%>
 							</p>

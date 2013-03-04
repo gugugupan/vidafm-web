@@ -67,6 +67,12 @@
 
 					&:first-child { border : none ; }
 				}
+
+				#user_nav_arrow {
+					position: absolute;
+					bottom: -11px;
+					left: 34.75px;
+				}
 			}
 		}
 

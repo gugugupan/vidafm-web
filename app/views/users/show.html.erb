@@ -31,6 +31,7 @@
             $( "#feed_container" ) .attr( "blockstyle" , "puzzle" ) ;
             $( "#refresh-link" ) .attr( "href" , "javascript:showStory()" ) ;
             $( "#refresh-link" ) .css( { width : "" , "margin-left" : "" } ) ;
+            $( "#user_nav_arrow" ) .animate( { "left" : 34.75 } , 300 ) ;
 
             var param = "type=story" ;
             lazyload( "users" , userid_now , param ) ;
@@ -57,6 +58,7 @@
             $( "#feed_container" ) .attr( "blockstyle" , "" ) ;
             $( "#refresh-link" ) .attr( "href" , "javascript:showLikecomment()" ) ;
             $( "#refresh-link" ) .css( { width : "100%" , "margin-left" : "0" } ) ;
+            $( "#user_nav_arrow" ) .animate( { "left" : 127.25 } , 300 ) ;
 
             var param = "type=commentlike" ;
             lazyload( "users" , userid_now , param ) ;
@@ -83,6 +85,7 @@
             $( "#feed_container" ) .css( "background" , "none" ) ;
             $( "#refresh-link" ) .attr( "href" , "javascript:showFollowing()" ) ;
             $( "#refresh-link" ) .css( { width : "100%" , "margin-left" : "0" } ) ;
+            $( "#user_nav_arrow" ) .animate( { "left" : 218.75 } , 300 ) ;
 
             var param = "type=following&page=" + page_now + "&current=" + is_current_user ;
             lazyload( "users" , userid_now , param ) ;
@@ -107,6 +110,7 @@
             $( "#feed_container" ) .css( "background" , "none" ) ;
             $( "#refresh-link" ) .attr( "href" , "javascript:showFollowers()" ) ;
             $( "#refresh-link" ) .css( { width : "100%" , "margin-left" : "0" } ) ;
+            $( "#user_nav_arrow" ) .animate( { "left" : 310.25 } , 300 ) ;
 
             var param = "type=followers&page=" + page_now + "&current=" + is_current_user ;
             lazyload( "users" , userid_now , param ) ;
