@@ -30,11 +30,25 @@
 
   <%= yield %>  
   <div id="footer">
-    <%= link_to "商务合作" , business_url , :class => "footer_text mouse" %>
-    <p class="footer_text">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
-    <%= link_to "联系我们" , about_url , :class => "footer_text mouse" %>
-    <p class="footer_text">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.miitbeian.gov.cn" style="float:right" class="mouse">沪ICP备10216111号-2</a></p>
-    <%= image_tag( "index/bb3.png" , :class => "gov_icon" ) %>
+    <p class="footer_text">
+      <%= link_to "商务合作" , business_url , :class => "footer_link mouse" %>
+      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <%= link_to "联系我们" , about_url , :class => "footer_link mouse" %>
+      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <%= link_to "沪ICP备10216111号-2" , "http://www.miitbeian.gov.cn" , :class => "footer_link mouse" %>
+    </p>
+    <p class="footer_text">
+      <span>友情链接:&nbsp;</span>
+      <%= link_to "连接1" , "" , :class => "footer_link mouse" %>
+      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <%= link_to "连接2" , "" , :class => "footer_link mouse" %>
+      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <%= link_to "连接3" , "" , :class => "footer_link mouse" %>
+    </p>
+    <div class="footer_icon">
+      <%= image_tag( "index/bb3.png" , :class => "gov_icon" ) %>
+    </div>
+    <div class="clearfix"> </div>
   </div>
 
   <div id="theatre"> <div class="theatre_blank"> </div> </div>

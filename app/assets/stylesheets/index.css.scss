@@ -138,22 +138,26 @@
 }
 
 #footer {
-	width: 250px;
-	position: absolute;
-	left: 50%;
-	margin-left: -120px;
+	position: relative;
+	width: 100%;
 	margin-top: 20px;
 	padding-bottom: 20px;
+	text-align: center;
 
 	.footer_text {
+		margin-bottom: 10px;
+		width: 100%;
 		display: block;
 		float: left;
+		clear: both;
 	}
 
-	.gov_icon {
-		width: 100px;
-		float: left;
-		margin-left: 75px;
-		margin-top: 20px;
+	.footer_link {
+		float: none;
+		display: inline;
+	}
+
+	.footer_icon {
+		margin: 10px auto;
 	}
 }
