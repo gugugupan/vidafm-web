@@ -51,6 +51,7 @@ class User
 			JSON.parse( VIDA.call( "user/brief" , {} , current_user ) [ :body ] )
 		end
 
+		# 关注 取消关注 移除粉丝 balabala
 		def set_relation( user_id , current_user , commond )
 			return nil unless user_id =~ /[0-9]+/
 			JSON.parse( VIDA.call( "user/set_relation" , { :user_id => user_id , :type => commond } , current_user ) [ :body ] ) 

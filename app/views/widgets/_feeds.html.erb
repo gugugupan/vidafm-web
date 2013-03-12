@@ -77,7 +77,7 @@
 							</p>
 							<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
 						</div>
-						<%= link_to "" , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
+						<%= link_to image_tag( "feeds/story_thum_mask.png" ) , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 					<% else #is activity -%>
 						<div class="mlcommentlike_content" style="width:90px">
 							<p> 

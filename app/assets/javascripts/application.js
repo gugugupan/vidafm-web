@@ -2,7 +2,6 @@
 //= require jquery_ujs
 
 //= require autoresize
-//= require followinglist
 //= require lazyload
 //= require activity_window
 
