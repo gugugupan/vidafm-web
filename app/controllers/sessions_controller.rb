@@ -2,15 +2,7 @@
 class SessionsController < ApplicationController
   def create
     session[:current_user] = Session.create(:from => auth_provider, :token => auth_token, :secret => auth_secret)
-    cur_user
-    if cookies[:refer_url]
-      href = cookies.delete(:refer_url)
-
-      redirect_to href
-    else
-      redirect_to "/home"
-      #redirect_to :back
-    end
+    login_success
   end
 
   def failure
@@ -26,6 +18,35 @@ class SessionsController < ApplicationController
     else
       redirect_to "/"
     end
+  end
+
+  def login2douban # hack for douban login API
+    # authorization_code
+    param = {
+      :client_id => "0f8795b0403151382e96c110c093f3a8" ,
+      :redirect_uri => "http://api2.vida.fm:15097/user_sync/oauth" ,
+      :response_type => "code" ,
+      :state => "http://#{ request.host_with_port }/auth2/douban/callback"
+    }
+    redirect_to "https://www.douban.com/service/auth2/auth?#{ param .to_param }"
+  end
+
+  def createdouban
+    #access_token
+    connection = Faraday.new( :url => "https://www.douban.com/service/auth2/token" )
+    result = JSON.parse( connection .post( "" , {
+      :client_id => "0f8795b0403151382e96c110c093f3a8" ,
+      :client_secret => "e1a82d8cd5efbd3b" ,
+      :redirect_uri =>  "http://api2.vida.fm:15097/user_sync/oauth" ,
+      :grant_type => "authorization_code" ,
+      :code => params[ :code ]
+    } ) .body )
+    session[:current_user] = Session.create( { :from => "douban" , 
+                                               :token => result[ "access_token" ] , 
+                                               :secret => "" ,
+                                               :expires_in => result[ "expires_in" ] ,
+                                               :refresh_token => result[ "refresh_token" ] } )
+    login_success
   end
 
   private
@@ -46,5 +67,17 @@ class SessionsController < ApplicationController
 
   def auth_token
     auth_info['credentials']['token']
+  end
+
+  def login_success
+    cur_user
+    if cookies[:refer_url]
+      href = cookies.delete(:refer_url)
+
+      redirect_to href
+    else
+      redirect_to "/home"
+      #redirect_to :back
+    end
   end
 end

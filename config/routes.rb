@@ -58,6 +58,9 @@ Bluerain::Application.routes.draw do
   match '/auth/failure' => 'sessions#failure'
   match '/auth/logout' => 'sessions#destroy'
 
+  match '/auth2/douban' => 'sessions#login2douban'
+  match '/auth2/douban/callback' => 'sessions#createdouban'
+
   match "contact" => "misc#about", :as => :about  # Hack to rename the legal route "about" to "contact".
   match "business" => "misc#business", :as => :business
   post "create_feedback" => "misc#create_feedback"
