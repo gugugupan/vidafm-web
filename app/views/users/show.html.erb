@@ -151,7 +151,7 @@
     <div id="main_block">
         <div id="user_info">
             <%= render :partial => "users/userfeed" , :object => @user , :locals => { :is_self => false , :need_btn => @relation } -%>
-            <%= render :partial => "users/usernav" , :object => @user -%>
+            <%= render :partial => "users/usernav" , :object => @user , :locals => { :status => @status } -%>
         </div>
 
         <% if @current_user && @status != 401 -%>

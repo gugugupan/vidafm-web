@@ -1,29 +1,22 @@
 <%#
 	关注, 取消关注按钮
 	Params :
-		tag - 关注情况(0未关注 1关注 2等待回应)
+		tag - 显示何种图标(0关注 1取消关注 2等待对方批准 3移除粉丝)
 		uid - user id 
 		size - btn size ( btn_big btn_middle btn_small )
 -%>
 <% if tag == 0 %>
-	<%= link_to "+关注" , following_user_url( uid ) + "?type=following" , 
-		:class => "btn_blue " + size , :id => "following-tag#{ uid }" , 
+	<%= link_to "+关注" , following_user_url( uid ) + "?type=follow" , 
+		:class => "followbtn btn_blue " + size , :id => "following-tag#{ uid }" , 
 		:remote => true , :method => :put %>
-<% else %>
-<% if tag == 1 %>
-	<%= link_to "取消关注" , following_user_url( uid ) + "?type=none" , 
-		:class => "btn_red " + size , :id => "cancel-tag#{ uid }" , 
+<% elsif tag == 1 %>
+	<%= link_to "取消关注" , following_user_url( uid ) + "?type=unfollow" , 
+		:class => "followbtn btn_red " + size , :id => "cancel-tag#{ uid }" , 
 		:remote => true , :method => :put %>
-<% else %>
-<% if tag == 2 %>
+<% elsif tag == 2 %>
 	<a class="btn_dark <%= size %>" id="waiting-tag<%= uid %>">等待对方批准</a>
+<% elsif tag == 3 %>
+	<%= link_to "移除粉丝" , following_user_url( uid ) + "?type=remove" , 
+		:class => "followbtn btn_red " + size , :id => "remove-tag#{ uid }" , 
+		:remote => true , :method => :put %>
 <% end %>
-<% end %>
-<% end %>
-<script type="text/javascript">
-	$( "#following-tag<%= uid %>,#cancel-tag<%= uid %>" ) .click( function() {
-		$( this ) .text( "请稍侯.." ) ;
-		$( this ) .trigger( "click.rails" ) ;
-		return false ;
-	});
-</script>

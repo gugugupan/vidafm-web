@@ -1,35 +1,16 @@
 var num = <%= params[ :id ] %> ;
-<% if params[ :type ] == "following" -%>
-	var followResult = <%= raw @result .to_json %> ;
-	var $selector = $( "#following-tag" + num ) ;
-	if ( followResult .result == 0 )
-	{
-		if ( followResult .data .relation == "pending" )
-		{
-			$selector .text( "等待" ) ;
-			$selector .removeAttr( "href" ) ;
-			$selector .attr( "id" , "waiting-tag" + num ) ;
-			$selector .removeClass( "btn_red" ) ;
-			$selector .addClass( "btn_dark" ) ;
-		} else 
-		{
-			$selector .text( "取消关注" ) ;
-			$selector .attr( "href" , "<%= following_user_url( params[ :id ] ) + '?type=none' %>" ) ;
-			$selector .attr( "id" , "cancel-tag" + num ) ;
-			$selector .removeClass( "btn_blue" ) ;
-			$selector .addClass( "btn_red" ) ;
-		}
-		showCenterBox( followResult .message ) ;
-	} else 
-	{
-		showCenterBox( followResult .message ) ;
-	}
-<% else -%>
+var followResult = <%= raw @result .to_json %> ;
+<% if params[ :type ] == "follow" -%>
+	if ( followResult .status == 200 )
+		$( "#following-tag" + num ) .remove() ;
+<% elsif params[ :type ] == "unfollow" -%>
 	var $selector = $( "#cancel-tag" + num ) ;
 	$selector .text( "+关注" ) ;
 	$selector .attr( "href" , "<%= following_user_url( params[ :id ] ) + '?type=following' %>" ) ;
 	$selector .attr( "id" , "following-tag" + num ) ;
 	$selector .removeClass( "btn_red" ) ;
 	$selector .addClass( "btn_blue" ) ;
-	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
+<% elsif params[ :type ] == "remove" -%>
+	$( "#remove-tag" + num ) .parent() .remove() ;
 <% end -%>
+showCenterBox( followResult .message ) ;

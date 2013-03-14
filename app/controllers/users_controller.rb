@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   # Usage :
   #   following somebody
   # Param :
-  #   type - "following" or "unfollow"
+  #   type - "following" or "unfollow" or "remove"
   #   id - following user id 
   def following
     if current_user 

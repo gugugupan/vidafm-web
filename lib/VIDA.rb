@@ -21,6 +21,8 @@ class VIDA
 				res = @connection .get methods , http_params
 			when "POST"
 				res = @connection .post methods , http_params
+			when "PUT"
+				res = @connection .put methods , http_params
 			end
 
 			# return params : { :body => JSON code , :status => HTTP status }

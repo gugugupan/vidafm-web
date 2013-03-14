@@ -29,18 +29,12 @@ class User
 			return nil unless user_id =~ /[0-9]+/
 			data = VIDA.call( "users/#{ user_id }/brief" , {} , current_user , "GET" )
 			res = JSON.parse( data[ :body ] )
-			if data[ :status ] == 401
+			if data[ :status ] == 401 || data[ :status ] == 203
 				res[ "status" ] = 401
 			end
 			res 
 		end	
-=begin
-		def fetch_friends( user_id, relations, current_user )
-			return nil unless user_id =~ /[0-9]+/
-			relations += ',favourite' if (relations == 'following' and user_id.to_i == (current_user['id'] || current_user[:id]).to_i)
-			JSON.parse VIDA.call("user/relationships", {:id => user_id, :type => relations}, current_user)
-		end
-=end
+
 		# 获取用户feeds信息
 		def fetch_feeds( id , current_user , params )
 			JSON.parse( VIDA.call( "feeds" , params , current_user , "GET" ) [ :body ] )
@@ -51,15 +45,20 @@ class User
 			JSON.parse( VIDA.call( "user/brief" , {} , current_user ) [ :body ] )
 		end
 
-		# 关注 取消关注 移除粉丝 balabala
+		# 关注 取消关注 移除粉丝
+		#    status = [ follow unfollow remove agree reject ]
 		def set_relation( user_id , current_user , commond )
 			return nil unless user_id =~ /[0-9]+/
-			JSON.parse( VIDA.call( "user/set_relation" , { :user_id => user_id , :type => commond } , current_user ) [ :body ] ) 
+			data = VIDA.call( "relationships/#{ user_id }" , { :status => commond } , current_user , "PUT" )
+			res = JSON.parse( data[ :body ] )
+			res[ "status" ] = data[ :status ]
+			res 
 		end
 
 		# 获取当前星用户
 		def fetch_star_user( id , current_user , params )
 			JSON.parse( VIDA.call( "user/list_featured" , {} , current_user ) [ :body ] )
+			#JSON.parse( VIDA .call( "users/featured" , {} , current_user , "GET" ) [ :body ] )
 		end
 
 		# 获取用户关注或粉丝列表
