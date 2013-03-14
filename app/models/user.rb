@@ -57,8 +57,8 @@ class User
 
 		# 获取当前星用户
 		def fetch_star_user( id , current_user , params )
-			JSON.parse( VIDA.call( "user/list_featured" , {} , current_user ) [ :body ] )
-			#JSON.parse( VIDA .call( "users/featured" , {} , current_user , "GET" ) [ :body ] )
+			#JSON.parse( VIDA.call( "user/list_featured" , {} , current_user ) [ :body ] )
+			JSON.parse( VIDA .call( "users/featured" , {} , current_user , "GET" ) [ :body ] )
 		end
 
 		# 获取用户关注或粉丝列表

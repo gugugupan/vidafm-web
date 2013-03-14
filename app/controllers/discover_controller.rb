@@ -29,8 +29,6 @@ class DiscoverController < ApplicationController
   def staruser
     #@data = User.fetch_star_user( current_user ) [ "data" ]
     @data = api_call( "User" , :fetch_star_user , nil , nil ) [ "data" ]
-    @data[ "recommended" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
-    @data[ "stars" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
   end
 
   def ajax_get_new_page

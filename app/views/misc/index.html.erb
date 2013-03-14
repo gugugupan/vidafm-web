@@ -6,6 +6,16 @@
 Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活轨迹。
 <% end -%>
 
+<%= content_for :page_specific_asset do -%>
+<!--图像的自适应-->
+<script>
+jQuery( function() {
+  for ( var i = 0 ; i < $( ".user_cover_photo" ) .length ; i ++ )
+    centerImage( $( ".user_cover_photo" ) .eq( i ) .parent() , $( ".user_cover_photo" ) .eq( i ) ) ;
+} ) ;
+</script>
+<% end -%>
+
 <div id="index">
   <div id="index_head">
     <div id="red_block">
@@ -41,7 +51,7 @@ Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活
   <div id="staruser_block">
     <p id="staruser_head">星用户</p>
     <div id="staruser_list">
-      <%= render :partial => "widgets/staruser" , :collection => @data[ "recommended" ] [ "users" ] [ 0 , 4 ] , :locals => { :type => "normal" , :width => "205px" , :text => nil } %>
+      <%= render :partial => "widgets/staruser" , :collection => @data[ "recommended" ] [ 0 , 4 ] , :locals => { :type => "normal" , :width => "205px" , :text => nil } %>
       <div class="clearfix"> </div>
     </div>
   </div>

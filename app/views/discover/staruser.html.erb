@@ -2,6 +2,16 @@
   星用户 - Vida（微达） - 手机照片故事社区
 <% end -%>
 
+<%= content_for :page_specific_asset do -%>
+<!--图像的自适应-->
+<script>
+jQuery( function() {
+	for ( var i = 0 ; i < $( ".user_cover_photo" ) .length ; i ++ )
+		centerImage( $( ".user_cover_photo" ) .eq( i ) .parent() , $( ".user_cover_photo" ) .eq( i ) ) ;
+} ) ;
+</script>
+<% end -%>
+
 <div id="discover-page">
 	<%= render :partial => "widgets/header" , :locals => { :user => @cur_user } %>
 	<div id="main-main-block">
@@ -9,7 +19,7 @@
 		<div id="main-block">
 			<%= render :partial => "header" , :locals => { :name => "staruser" , :titleimg => "icon/icon_star_big.png" , :sortbtn => nil } %>
 			<div style="border-top:1px dashed white;width:100%;"> </div>
-			<%= render :partial => "widgets/staruserlist" , :locals => { :stars => @data[ "stars" ] , :recommended => @data[ "recommended" ] , :wb => "372.5px" , :wn => "245px" , :count => 20 , :unit => 3 } %>
+			<%= render :partial => "widgets/staruserlist" , :locals => { :stars => @data[ "star" ] , :recommended => @data[ "recommended" ] , :wb => "372.5px" , :wn => "245px" , :count => 20 , :unit => 3 } %>
 			<div class="clearfix"> </div>
 		</div>
 		<div class="clearfix"> </div>

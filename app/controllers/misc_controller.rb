@@ -14,8 +14,6 @@ class MiscController < ApplicationController
 
     @moments = api_call( "Moment" , :hot_story , nil , nil ) [ "data" ] [ "public_moments" ]
     @data = User.fetch_star_user( nil , current_user , nil ) [ "data" ]
-    @data[ "recommended" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
-    @data[ "stars" ] [ "users" ] .each { |u| u[ "relation_tag" ] = get_relation_btn( u[ "relation" ] ) }
   end
 
   def about

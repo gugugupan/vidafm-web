@@ -3,22 +3,21 @@
 	<h1 class="ribbon blue"> <%= text %> </h1>
 <% end -%>
 	<a href="/users/<%= staruser[ 'id' ] %>" class="user_cover" style="width:<%=width%>">
-		<%= image_tag staruser[ "photo" ] , :class => "user_cover_photo" , :style => "width:#{ width }" %>
+		<%= image_tag staruser[ "last_photo" ] [ "image_medium" ] , 
+					  :class => "user_cover_photo" , 
+					  :cheight => staruser[ "last_photo" ] [ "height" ] , 
+					  :cwidth => staruser[ "last_photo" ] [ "width" ] %>
 		<%= image_tag "images/user_cover_shadow.png" , :class => "user_cover_shadow" %>
 	</a>
-	<%= avatar_tag staruser %>
-	<%= link_to staruser[ :name ] , "/users/#{ staruser[ :id ] } " , :class => "user_name" %>
+	<%= avatar_tag_b staruser %>
+	<%= link_to staruser[ "name" ] , "/users/#{ staruser[ "id" ] } " , :class => "user_name" %>
 
 	<div class="user_data">
-		<h1> <%= staruser[ :count_moments ] %> </h1>
+		<h1> <%= staruser[ "moments_count" ] %> </h1>
 		<p>故事</p>
 	</div>
 	<div class="user_data">
-		<h1> <%= staruser[ :count_likes ] %> </h1>
+		<h1> <%= staruser[ "received_likes_count" ] %> </h1>
 		<p>喜欢数</p>
 	</div>
-	<!-- <a href="#" class="btn_blue">+关注</a> -->
-	<% size = "btn_small" -%>
-	<% size = "btn_middle" if type == "big" -%>
-	<%= render :partial => "widgets/followingbtn" , :locals => { :uid => staruser[ :id ] , :tag => staruser[ :relation_tag ] , :size => size } %>
 </div>
