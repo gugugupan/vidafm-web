@@ -1,0 +1,51 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#slideshow {
+
+	.slideshow_window {
+		display: none;
+		position: relative;
+		overflow: hidden;
+
+		.slideshow_img {
+			width: 100%;
+			height: auto;
+		}
+
+		#left_cover {
+			height: 100%;
+			left: 0;
+			top: 0;
+		}
+
+		#right_cover {
+			height: 100%;
+			right: 0;
+			top: 0;
+		}
+
+		#top_cover {
+			width: 100%;
+			top: 0;
+			left: 0;
+		}
+
+		#bottom_cover {
+			width: 100%; 
+			bottom: 0;
+			left: 0;
+		}
+
+		.cover {
+			display: none;
+			position: absolute; 
+		}
+	}
+}
+
+.bcolor {
+	background-color: #9B1600;
+}

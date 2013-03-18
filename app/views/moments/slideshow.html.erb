@@ -1,0 +1,18 @@
+<%= content_for :title do %>
+    <% moment_name @moment %>
+    <%= get_name( @moment ) %>Vida（微达） - 手机照片故事社区
+<% end -%>
+
+<%= content_for :page_specific_asset do %>
+<script type="text/javascript">
+	jQuery( function() {
+		window_width  = $( window ) .width() || $( document ) .width() ;
+		window_height = $( window ) .height() || $( document ) .height();
+		go_slideshow( 0 ) ;
+	});
+</script>
+<% end -%>
+
+<div id="slideshow">
+	<%= render :partial => "moments/slideshow_item" , :collection => @moment[ "items" ] %>
+</div>
