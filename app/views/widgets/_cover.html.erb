@@ -8,16 +8,38 @@
 		"background-size" : "cover" ,
 		"background-position" : "center" 
 	}) ;
-	/*
-	$( ".blur" ) .blurjs( {
-		source : ".cover-pic" ,
-		radius : 5 
-	} ) ;
-	*/
 </script>
+
 <!--[if IE]>
 <script type="text/javascript">
 	$( ".cover-pic" ) .css({ "background":"none" });
-	$( ".cover-pic" ) .find( "img" ) .css({ "display" : "block" }) ;
+	var $img = $( ".cover-pic" ) .find( "img" ) .eq( 0 ) ;
+	$img .load( function() {
+		var w = $img .width() , 
+			h = $img .height() ,
+			box_w = $( ".cover-pic" ) .eq( 0 ) .width() , 
+			box_h = $( ".cover-pic" ) .eq( 0 ) .height() ;
+		var box_ratio = box_w / box_h ,
+			img_ratio = w / h ;
+
+		if ( box_ratio > img_ratio ) 
+		{
+			var p = box_w / w ; 
+			var new_height = h * p ; 
+			var y = ( box_h - new_height ) / 2 ;
+			$img .css({ "margin-top" : y+"px" , 
+						"width" : "100%" , 
+						"height" : "auto" ,
+						"display" : "block" });
+		}else{
+			var p = box_h / h ; 
+			var new_width = w * p ; 
+			var x = ( box_w - new_width ) / 2 ;
+			$img .css({ "margin-left" : x+"px" , 
+						"height" : "100%" , 
+						"width" : "auto" ,
+						"display" : "block" });
+		}
+	} ) ;
 </script>
 <![endif]-->

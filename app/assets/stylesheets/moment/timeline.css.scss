@@ -140,13 +140,16 @@ $info_color: #a6a099 ;
 			font-size: 14px;
 
 			border:10px solid rgba(0,0,0,0);
+			*border:10px solid #000000; // hack for ie7
 			@include all_border_radius( 20px ) ;
 		}
 		.unlike {
 			background:rgba(0,0,0,.7) image-url("icon/icon_like_off.png") left center no-repeat;
+			*background:#000000 image-url("icon/icon_like_off.png") left center no-repeat;
 		}
 		.liked {
 			background:rgba(0,0,0,.7) image-url("icon/icon_timeline_liked.png") left center no-repeat;
+			*background:#000000 image-url("icon/icon_timeline_liked.png") left center no-repeat;
 		}
 
 		.float_avatar {

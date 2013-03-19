@@ -74,13 +74,8 @@ function adjust_image( callback )
         for ( var i = 0 ; i < $( ".image_container_row" ) .length ; i ++ )
         {
             $row = $( ".image_container_row:eq(" + i + ")" ) ;
-            /*
-            var maxh = parseInt( $row .find( ".divparams" ) .attr( "maxheight" ) ) ,
-                w = new Array() , h = new Array() ;
-            for ( var j = 0 ; j < $row .find( ".image_box" ) .length ; j ++ )
-            {
-            }
-            */
+            if ( $row .attr( "rebuild" ) == "true" ) continue ;
+            $row .attr( "rebuild" , "true" ) ;
 
             if ( $row .find( ".image_box" ) .length == 1 )
             {

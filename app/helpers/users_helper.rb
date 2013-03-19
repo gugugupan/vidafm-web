@@ -32,7 +32,11 @@ module UsersHelper
 	# Params :
 	# 	{ :class => "" , :style => "" }
 	def avatar_tag_b user , options = {}
-		inner_html = link_to( "" , "/users/#{ user[ "id" ] }" , :class => "avatar #{ options[ :class ] }" , :style => "background-image:url('#{ user[ "avatar_file" ] }');" , :title => user[ "name" ] )
+		inner_html = link_to( "" , "/users/#{ user[ "id" ] }" , 
+			:class => "avatar #{ options[ :class ] }" , 
+			:style => "background-image:url('#{ user[ "avatar_file" ] }');
+					filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{ user[ "avatar_file" ] }',sizingMethod='scale');" , # hack for ie
+			:title => user[ "name" ] )
 		raw inner_html
 	end
 
