@@ -8,11 +8,31 @@
 	jQuery( function() {
 		window_width  = $( window ) .width() || $( document ) .width() ;
 		window_height = $( window ) .height() || $( document ) .height();
+		slideshow_length = $( ".slideshow_window" ) .length ;
 		go_slideshow( 0 ) ;
+		$( "#slideshow_end" ) .css( "margin-top" , ( window_height - 120 ) / 3 + "px" ) ;
 	});
 </script>
 <% end -%>
 
 <div id="slideshow">
 	<%= render :partial => "moments/slideshow_item" , :collection => @moment[ "items" ] %>
+</div>
+<div id="slideshow_end">
+	<%= link_to "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;" do -%>
+		<%= image_tag @moment[ "user" ] [ "avatar_file" ] -%>
+	<% end -%>
+	<div class="clearfix"> </div>
+	<div style="margin:0 auto; width:230px;">
+		<%= link_to "" , :class => "roundbutton" , :style => "margin-right: 40px;" do -%>
+			<%= image_tag "slideshow/slideshow-unlike.png" -%>
+		<% end -%>
+		<%= link_to "" , :class => "roundbutton" do -%>
+			<%= image_tag "slideshow/slideshow-comment.png" -%>
+		<% end -%>
+		<%= link_to "" , :class => "roundbutton" , :style => "margin-left: 40px;" do -%>
+			<%= image_tag "slideshow/slideshow-share.png" -%>
+		<% end -%>
+		<div class="clearfix"> </div>
+	</div>
 </div>
