@@ -59,7 +59,6 @@
     $( "#staruser_list .feature_user:nth-child(4n)" ) .css( "margin-right" , "0" ) ;
     $( ".star-user-row .feature_user:first-child" ) .css( "margin-left" , "0" ) ;
     $( "#theme_list .thumbnail:nth-child(3n)" ) .css( "margin-right" , "0" ) ;
-    $( "#hot-story .thumbnail:nth-child(2n)" ) .css( "margin-right" , "0" ) ;
     $( ".text-info" ) .css( "background-color" , "gray" ) ;
     $( "#refresh-link" ) .css( "background-color" , "gray" ) ;
     $( "#download-place" ) .css( "background-color" , "gray" ) ;
@@ -75,6 +74,14 @@
     $( "#discover-page #main-main-block" ) .css( "width" , "1050" ) ;
   </script>
 <![endif]--> 
+
+<!--[if IE 7]>
+  <script type="text/javascript">
+    var s = $( "#notification_btn" ) .find( "span" ) .text() ;
+    $( "#notification_btn" ) .find( "span" ) .text( s .replace( " " , "" ) ) ;
+  </script>
+<![endif]-->
+
 
   <script type="text/javascript">
     var _gaq = _gaq || [];

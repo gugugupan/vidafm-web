@@ -2,11 +2,18 @@ var num = <%= params[ :id ] %> ;
 var followResult = <%= raw @result .to_json %> ;
 <% if params[ :type ] == "follow" -%>
 	if ( followResult .status == 200 )
-		$( "#following-tag" + num ) .remove() ;
+	{
+		var $selector = $( "#following-tag" + num ) ;
+		$selector .text( "取消关注" ) ;
+		$selector .attr( "href" , "<%= following_user_url( params[ :id ] ) + '?type=unfollow' %>" ) ;
+		$selector .attr( "id" , "cancel-tag" + num ) ;
+		$selector .removeClass( "btn_blue" ) ;
+		$selector .addClass( "btn_red" ) ;
+	}
 <% elsif params[ :type ] == "unfollow" -%>
 	var $selector = $( "#cancel-tag" + num ) ;
 	$selector .text( "+关注" ) ;
-	$selector .attr( "href" , "<%= following_user_url( params[ :id ] ) + '?type=following' %>" ) ;
+	$selector .attr( "href" , "<%= following_user_url( params[ :id ] ) + '?type=follow' %>" ) ;
 	$selector .attr( "id" , "following-tag" + num ) ;
 	$selector .removeClass( "btn_red" ) ;
 	$selector .addClass( "btn_blue" ) ;

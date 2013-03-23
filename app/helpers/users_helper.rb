@@ -32,6 +32,9 @@ module UsersHelper
 	# Params :
 	# 	{ :class => "" , :style => "" }
 	def avatar_tag_b user , options = {}
+		user[ "avatar_file" ] = user[ :avatar_file ] if user[ "avatar_file" ] .nil?
+		user[ "id" ] = user[ :id ] if user[ "id" ] .nil?
+		user[ "name" ] = user[ :name ] if user[ "name" ] .nil?
 		inner_html = link_to( "" , "/users/#{ user[ "id" ] }" , 
 			:class => "avatar #{ options[ :class ] }" , 
 			:style => "background-image:url('#{ user[ "avatar_file" ] }');

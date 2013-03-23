@@ -4,7 +4,7 @@
 		<ul>
 		<% unless user .nil? || request.url =~ /is_mobile=/i || request.user_agent =~ /(android|ipod|iphone)/i -%>
 			<li>
-				<%= avatar_tag user %>
+				<%= avatar_tag_b user %>
 				<%= link_to user[ :name ] , "/users/#{ user[ :id ] }" , :id => "me" , :class => "link" %>
 			</li>
 			<li>

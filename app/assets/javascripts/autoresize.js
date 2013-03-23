@@ -30,6 +30,7 @@ function set_feed_height( i )
     _feed .css( { "margin-top" : move + "px" } ) ;
 }
 
+var last_adjust_num = 0 ;
 function adjust_image( callback )
 {
     if ( $( "#feed_container" ) .attr( "blockstyle" ) == "block" )
@@ -71,11 +72,11 @@ function adjust_image( callback )
         };
     } else if ( $( "#feed_container" ) .attr( "blockstyle" ) == "puzzle" ) {
         if ( $( ".image_container_row" ) .length == 0 ) callback() ;
-        for ( var i = 0 ; i < $( ".image_container_row" ) .length ; i ++ )
+        for ( var i = last_adjust_num ; i < $( ".image_container_row" ) .length ; i ++ )
         {
             $row = $( ".image_container_row:eq(" + i + ")" ) ;
-            if ( $row .attr( "rebuild" ) == "true" ) continue ;
-            $row .attr( "rebuild" , "true" ) ;
+            //if ( $row .attr( "rebuild" ) == "true" ) break ;
+            //$row .attr( "rebuild" , "true" ) ;
 
             if ( $row .find( ".image_box" ) .length == 1 )
             {
@@ -138,6 +139,7 @@ function adjust_image( callback )
 
             if ( i == $( ".image_container_row" ) .length - 1 ) callback() ;
         }
+        last_adjust_num = $( ".image_container_row" ) .length ;
     }
 
     // Arrange list_featured img
@@ -149,6 +151,7 @@ function adjust_image( callback )
 };
 
 var left_px = 0 , right_px = 0 ;
+var last_arrange_num = 0 ;
 function arangeImage()
 {
     adjust_image( function() {
@@ -156,7 +159,7 @@ function arangeImage()
         if ( $( "#feed_container" ) .attr( "dontarange" ) == "true" ) return ;
 
         // This function is using for make feed to left or right
-        for ( var i = 0 ; i < $( ".feed" ) .length ; i ++ )
+        for ( var i = last_arrange_num ; i < $( ".feed" ) .length ; i ++ )
         {
             $feed = $( ".feed:eq(" + i + ")" ) ;
             if ( $feed .hasClass( "feed_left" ) || $feed .hasClass( "feed_right" ) ) continue ;
@@ -188,6 +191,7 @@ function arangeImage()
                 right_px += 15 + $feed .height() ;
             }
         }
+        last_arrange_num = $( ".feed" ) .length ;
     } ) ;
 }
 
