@@ -35,7 +35,7 @@ function adjust_image( callback )
 {
     if ( $( "#feed_container" ) .attr( "blockstyle" ) == "block" )
     {
-        for ( var i = 0; i < $( ".mlcontainer" ) .length ; i++ ) {
+        for ( var i = last_adjust_num ; i < $( ".mlcontainer" ) .length ; i++ ) {
             var _boxObjects = $( ".mlcontainer:eq(" + i + ") .mlbox .image_box" ) ;
             var _imageObjects = $( ".mlcontainer:eq(" + i + ") .mlbox .image_box .mlimage img" );
 
@@ -69,7 +69,8 @@ function adjust_image( callback )
             };
 
             if ( i == $( ".mlcontainer" ) .length - 1 ) callback() ;
-        };
+        } ;
+        last_adjust_num = $( ".mlcontainer" ) .length ;
     } else if ( $( "#feed_container" ) .attr( "blockstyle" ) == "puzzle" ) {
         if ( $( ".image_container_row" ) .length == 0 ) callback() ;
         for ( var i = last_adjust_num ; i < $( ".image_container_row" ) .length ; i ++ )
@@ -193,28 +194,4 @@ function arangeImage()
         }
         last_arrange_num = $( ".feed" ) .length ;
     } ) ;
-}
-
-function repeat_check( callback )
-{
-    if ( $( "#feed_container" ) .attr( "blockstyle" ) == "puzzle" )
-    {
-        callback() ;
-    } else 
-    for ( var i = $( ".feed" ) .length - 1 ; i >= 0 ; i -- ) 
-    {
-        var check_flag = false ;
-        var _boxObjects = $( ".feed:eq(" + i + ")" ) ;
-        var id_i = _boxObjects .attr( "id" ) ;
-        if ( !id_i ) continue ;
-        if ( id_i .substr( 0 , 6 ) != "moment" ) continue ;
-        for ( var j = i - 1 ; j >= 0 ; j -- )
-            if ( id_i == $( ".feed:eq(" + j + ")" ) .attr( "id" ) )
-            {
-                check_flag = true ;
-                break ;
-            }
-        if ( check_flag ) _boxObjects .remove() ;
-        if ( i == 0 ) callback() ;
-    }
 }

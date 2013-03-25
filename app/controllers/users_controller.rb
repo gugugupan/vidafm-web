@@ -31,7 +31,9 @@ class UsersController < ApplicationController
   def ajax_get_new_page
     case params[ :type ] 
     when "following" , "followers" 
-      @user_list = User.fetch_follow( params[ :id ] , current_user , params[ :type ] , params[ :page ] ) [ "data" ] [ "users" ]
+      data = User.fetch_follow( params[ :id ] , current_user , params[ :type ], params[ :page ] ) [ "data" ]
+      @user_list = data[ "users" ] 
+      @user_agree = data[ "pending" ] 
     when "commentlike" , "story"
       query = {
         "activity_ids[before]" => params[ :activity ] ,

@@ -2,6 +2,11 @@
 <% when "following" -%>
 	<%= render :partial => "users/userfeed" , :collection => @user_list , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 1 : nil } -%>
 <% when "followers" -%>
+	<% unless @user_agree .nil? -%>
+		<p class="user_feed_title">关注我的人</p>
+		<%= render :partial => "users/userfeed" , :collection => @user_agree , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 3 : nil } -%>
+		<p class="user_feed_title">关注我的人</p>
+	<% end -%>
 	<%= render :partial => "users/userfeed" , :collection => @user_list , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 3 : nil } -%>
 <% when "commentlike" , "story" -%>
 	<%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox" } -%>

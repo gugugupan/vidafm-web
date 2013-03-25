@@ -52,13 +52,9 @@ function avatarShow()
 	for (var i = 0; i<$(".avatar").length; i++) {
 		var avatarAddress = $(avatar[i]).children().attr("src");
 		if ( avatarAddress )
-			$(avatar[i]).css({
-				"background" : "url("+avatarAddress+")" ,
-				"background-repeat" : "no-repeat" , 
-				"background-position" : "center" , 
-				"background-color" : "white" ,
-				"background-size" : "cover"
-			});
+		{
+			$( avatar[ i ] ) .attr( "style" , "background-image:url(" + avatarAddress + "); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + avatarAddress + "',sizingMethod='scale');" ) ;
+		}
 	};
 }
 

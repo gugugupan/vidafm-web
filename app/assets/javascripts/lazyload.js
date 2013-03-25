@@ -40,7 +40,7 @@ function lazyload( url_part , id , params )
 				$( "#refresh-link" ) .before( data ) ;
 
 			avatarShow() ;
-			repeat_check( arangeImage ) ;
+			arangeImage() ;
 			$( "img.lazy" ) .lazyload() ;
 		}
 	} ) ;
