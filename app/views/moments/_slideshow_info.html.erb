@@ -1,0 +1,26 @@
+<%#	Params : activity %>
+
+<div class="info_window">
+	<% if activity[ "description" ] .length > 0 -%>
+		<p class="info_text"><%= activity[ "description" ] %></p>
+	<% end -%>
+	<% unless activity[ "additional_params" ] .nil? -%>
+	<div class="info_rating">
+		<% unless activity[ "additional_params" ] [ "template_rating" ] .nil? -%>
+			<% rating = activity[ "additional_params" ] [ "template_rating" ] .to_i
+			for i in 1..rating  -%>
+				<%= image_tag "slideshow/star_on.png" , :style => "margin-right:5px;" %>
+			<% end -%>
+			<% for i in 1..( 5 - rating )-%>
+				<%= image_tag "slideshow/star_off.png" , :style => "margin-right:5px;" %>
+			<% end -%>
+		<% end -%>
+		<% unless activity[ "additional_params" ] [ "template_rating" ] .nil? || activity[ "additional_params" ] [ "template_price" ] .nil? -%>
+			|
+		<% end -%>
+		<% unless activity[ "additional_params" ] [ "template_price" ] .nil? -%>
+			<%= activity[ "additional_params" ] [ "template_price" ] -%>
+		<% end -%>
+	</div>
+	<% end -%>
+</div>

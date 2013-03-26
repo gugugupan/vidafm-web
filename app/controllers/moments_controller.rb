@@ -18,6 +18,15 @@ class MomentsController < ApplicationController
     save_url_in_cookies
   end
 
+  def slideshow
+    data = api_call( "Moment" , :fetch , params[ :id ] , { :page => 0 , :page_size => 20 } )
+    render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
+    redirect_to( user_url( data[ 'data' ] [ 'user_id' ] ) , :notice => 401 ) and return if data[ 'result' ] == 401 
+    @moment = data[ "data" ]
+
+    render "moments/slideshow" , :layout => "layouts/slideshow_layout" 
+  end
+
   def ajax_get_new_page
     return if params[ :page ] .nil?
     params[ :page ] = params[ :page ] .to_i - 1
@@ -40,6 +49,11 @@ class MomentsController < ApplicationController
   def like
     if current_user 
       @result = Moment.like( params[:id ] , current_user , nil )
+      if params[ :agent ] == "slideshow"
+        render "likeslideshow"
+      else 
+        render "like"
+      end
     else
       render "misc/need_authentication"
     end

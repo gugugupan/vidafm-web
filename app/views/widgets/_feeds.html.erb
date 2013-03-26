@@ -24,6 +24,9 @@
 					<div class="clearfix"> </div>
 				</div>
 				<div class="mlinfo">
+					<%= link_to "/moments/#{ feeds[ "moment" ] [ "id" ] }/slideshow" , :class => "gotoslideshow" do -%>
+						<%= image_tag "slideshow/btn_play.png" -%>
+					<% end -%>
 					<% feeds[ "moment" ] [ "created_at" ] = feeds[ "created_at" ] -%>
 					<p class="mltitle">#<%= moment_category_by_num feeds[ "moment" ] [ "category_id" ] %> <%= moment_name feeds[ "moment" ] %> </p>
 					<div class="mldata">
