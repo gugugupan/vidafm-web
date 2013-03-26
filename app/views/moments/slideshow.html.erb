@@ -9,28 +9,41 @@
 		window_width  = $( window ) .width() || $( document ) .width() ;
 		window_height = $( window ) .height() || $( document ) .height();
 		slideshow_length = $( ".slideshow_window" ) .length ;
-		go_slideshow( 0 ) ;
+		
+		start_slideshow() ;
+
 		$( "#slideshow_end" ) .css( "margin-top" , ( window_height - 120 ) / 3 + "px" ) ;
+		$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 90 ) / 3 + "px" ) ;
 	});
 </script>
 <% end -%>
+<div id="slideshow_start">
+	<div id="start_user_avatar" class="roundavatar image">
+		<%= image_tag @moment[ "user" ] [ "avatar_file" ] -%>
+	</div>
+	<p id="start_user_name" class="text"><%= @moment[ "user" ] [ "name" ] %></p>
+	<%= image_tag "slideshow/slideDate.png" , :id => "start_category_img" , :class => "image" -%>
+	<p id="start_category" class="text"><%= moment_category( @moment[ "category" ] ) %></p>
+</div>
 
 <div id="slideshow">
 	<%= render :partial => "moments/slideshow_item" , :collection => @moment[ "items" ] %>
 </div>
+
 <div id="slideshow_end">
 	<%= link_to "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;" do -%>
 		<%= image_tag @moment[ "user" ] [ "avatar_file" ] -%>
 	<% end -%>
 	<div class="clearfix"> </div>
 	<div style="margin:0 auto; width:230px;">
-		<%= link_to "" , :class => "roundbutton" , :style => "margin-right: 40px;" do -%>
-			<%= image_tag "slideshow/slideshow-unlike.png" -%>
+		<%= link_to like_moment_url( @moment[ "id" ] ) + "?agent=slideshow" , :class => "roundbutton" , :style => "margin-right: 40px;" , :remote => true , :method => :put do -%>
+				<%= image_tag "slideshow/slideshow-like.png" , :class => "slideshow_like_btn" , :style => "#{ "display:none" unless @moment[ "liked" ] }" -%>
+				<%= image_tag "slideshow/slideshow-unlike.png" , :class => "slideshow_unlike_btn" , :style => "#{ "display:none" if @moment[ "liked" ] }" -%>
 		<% end -%>
-		<%= link_to "" , :class => "roundbutton" do -%>
+		<%= link_to "/moments/#{ @moment[ "id" ] }#comment-block" , :class => "roundbutton" do -%>
 			<%= image_tag "slideshow/slideshow-comment.png" -%>
 		<% end -%>
-		<%= link_to "" , :class => "roundbutton" , :style => "margin-left: 40px;" do -%>
+		<%= link_to sharelist_moment_url( @moment[ "id" ] ) + "?name=#{ @moment[ "name" ] }" , :remote => true , :method => :get , :class => "roundbutton" , :style => "margin-left: 40px;" do -%>
 			<%= image_tag "slideshow/slideshow-share.png" -%>
 		<% end -%>
 		<div class="clearfix"> </div>

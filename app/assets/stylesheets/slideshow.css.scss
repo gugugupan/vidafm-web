@@ -1,3 +1,8 @@
+/*
+ *= require screen
+ *= require widgets/blackbackground
+*/
+
 @mixin all_border_radius( $radius ) {
 	border-radius: $radius ;
 	-moz-border-radius: $radius ;
@@ -7,6 +12,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	font-size: 12px;
 }
 
 #slideshow {
@@ -75,9 +81,39 @@ body {
 	}
 }
 
+#slideshow_start {
+	width: 100%;
+	height: 90px;
+	text-align: center;
+	display: none;
+	position: relative;
+
+	.image {
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		margin-top: 0;
+		margin-left: -25px;
+		left: 50%;
+		display: none;
+		opacity: 0;
+	}
+
+	.text {
+		margin: 0;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		color: white;
+		display: none;
+		opacity: 0;
+	}
+}
+
 #slideshow_end {
 	width: 100%;
-	text-align: center;
 	display: none;
 }
 
@@ -88,6 +124,7 @@ body {
 	@include all_border_radius( 25px ) ;
 	overflow: hidden;
 	display: block;
+	float: none;
 
 	img {
 		width: 100%;
@@ -110,6 +147,13 @@ body {
 
 .bcolor {
 	background-color: #9B1600;
+	background-image: none;
+}
+
+#login_with {
+	left: 37%;
+	top: 100px;
+	position: fixed;
 }
 
 .clearfix { clear :both ; }

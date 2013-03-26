@@ -3,7 +3,7 @@
 
 var window_height , window_width ;
 var slideshow_num = -1 ;
-var animate_speed = 500 ;
+var animate_speed = 300 ;
 var lock_array = new Array() ;
 var slideshow_length ;
 
@@ -26,6 +26,35 @@ function close_zoom()
 	clearInterval( zoom_interval ) ;
 }
 
+function sink_animate( $image_selector , $text_selector , callback )
+{
+	$image_selector .css( "margin-top" , "-50px" ) ;
+	$image_selector .show( 0 ) ;
+	$text_selector  .show( 0 ) ;
+	$image_selector .animate( { 
+		"margin-top" : "0px" ,
+		"opacity" : "1" 
+	} , 800 ) ;
+	$text_selector  .animate( { "opacity" : "1" } , 800 ) ;
+	setTimeout( function() { 
+		$image_selector .fadeOut( 300 ) ;
+		$text_selector  .fadeOut( 300 ) ;
+		setTimeout( callback , 1000 ) ;
+	} , 1500 ) ;
+}
+
+
+function start_slideshow()
+{
+	var $selector = $( "#slideshow_start" ) ;
+	$selector .show( 0 ) ;
+	sink_animate( $selector .find( "#start_user_avatar" ) , $selector .find( "#start_user_name" ) , function() {
+	sink_animate( $selector .find( "#start_category_img" ) , $selector .find( "#start_category" ) , function() {
+		$selector .hide( 0 ) ;
+		go_slideshow( 0 ) ;
+	} ) ;
+	} ) ;
+}
 
 function go_slideshow( num )
 {
@@ -58,8 +87,10 @@ function go_slideshow( num )
 			} ) ;
 		}
 
-		open_zoom() ; // zoom in the picture
-		open_animate() ; // start animation
+		setTimeout( function() {
+			open_zoom() ; // zoom in the picture
+			open_animate() ; // start animation
+		} , 500 ) ;
 	} ) ;
 }
 
@@ -119,15 +150,15 @@ function open_animate()
 				} ) ;
 			break ;
 		case 3 :
-			$selector .find( "#right_cover" ) .animate( { width: "95%" } , 0 , function() {
-				$selector .find( "#left_cover" ) .animate( { width: "95%" } , animate_speed ) ;
+			$selector .find( "#right_cover" ) .animate( { width: "90%" } , 0 , function() {
+				$selector .find( "#left_cover" ) .animate( { width: "90%" } , animate_speed ) ;
 				$selector .find( "#right_cover" ) .animate({ width: "0%" } , animate_speed ) ;
 			}) ;
 			$selector .find( "#left_cover" ) .animate( { width: "0%" } , animate_speed , show_photo ) ;
 			break ;
 		case 4 :
-			$selector .find( "#left_cover" ) .animate( { width: "95%" } , 0 , function() {
-				$selector .find( "#right_cover" ) .animate( { width: "95%" } , animate_speed ) ;
+			$selector .find( "#left_cover" ) .animate( { width: "90%" } , 0 , function() {
+				$selector .find( "#right_cover" ) .animate( { width: "90%" } , animate_speed ) ;
 				$selector .find( "#left_cover" ) .animate({ width: "0%" } , animate_speed ) ;
 			}) ;
 			$selector .find( "#right_cover" ) .animate( { width: "0%" } , animate_speed , show_photo ) ;
@@ -139,7 +170,7 @@ function show_photo()
 {
 	var $selector = $( ".slideshow_window" ) .eq( slideshow_num ) ;
 	$selector .find( ".info_window" ) .fadeIn( animate_speed ) ;
-	setTimeout( play_next , 4000 ) ;
+	setTimeout( play_next , 5000 ) ;
 }
 
 function close_animate( callback )
@@ -192,4 +223,32 @@ function play_next()
 
 		$( "#slideshow_end" ) .fadeIn( animate_speed ) ;
 	} ) ;
+}
+
+
+
+// Remove dialog box
+function destroyDialog( type )
+{
+	var $selector = $( ".need_destroy" ) ;
+	$selector .fadeOut( 500 ) ;
+	if ( type == 1 )
+		setTimeout( function() { $selector .remove() ; } , 500 ) ;
+}
+
+// center text box function
+function showCenterBox( str )
+{
+	if ( $( "#temp-center-box" ) .length == 0 )
+	{
+		var showDiv = '<div id="temp-center-box">' + str + "</div>" ;
+		$( "body" ) .append( showDiv ) ;
+		var $select = $( "#temp-center-box" ) ;
+		var top  = ( $( window ) .height() - $select .height() ) / 2 ;
+		var left = ( $( window ) .width () - $select .width() ) / 2 ;
+		$select .css( { "top" : top , "left" : left } ) ;
+		if( $.browser.msie )
+			$select .css( "background-color" , "gray" ) ;
+		$select .fadeIn( 400 , function() { setTimeout( function() { $select .remove() ; } , 1000 ) } ) ;
+	}
 }

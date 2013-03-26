@@ -5,7 +5,7 @@
 	$( "#like" + num ) .text( nowLikedCount ) ;
 	$( "#like" + num ) .addClass( "liked" ) ;
 	$( "#like" + num ) .removeClass( "unlike" ) ;
-	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
-<% else -%>
+	showCenterBox( "<%= @result[ 'message' ] %>" ) 
+<% else -%>;
 	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
 <% end -%>

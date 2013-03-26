@@ -49,6 +49,11 @@ class MomentsController < ApplicationController
   def like
     if current_user 
       @result = Moment.like( params[:id ] , current_user , nil )
+      if params[ :agent ] == "slideshow"
+        render "likeslideshow"
+      else 
+        render "like"
+      end
     else
       render "misc/need_authentication"
     end

@@ -1,0 +1,35 @@
+#share_detail {
+	display: none;
+	position: absolute;	
+	background-color: rgba(0,0,0,0.6);
+	top: 0px;
+	left: 0px;
+	z-index: 256;
+
+	#login_with {
+		display: block;
+
+		form {
+			display: none;
+		}
+	}
+}
+
+#temp-center-box
+{
+	behavior: url("/assets/PIE.htc");
+	position: fixed;
+	display: none;
+	background-color: rgba(0,0,0,0.6);
+	text-align: center;
+	padding: 40px 20px;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	margin-top: 10px;
+	color: white;
+	text-shadow: 1px 1px gray;
+	font-size: 16px;
+	box-shadow:0px 1px 0px rgba(255,255,255,.5),inset 0px 1px 1px rgba(255,255,255,.5);
+	z-index: 2550;
+}
