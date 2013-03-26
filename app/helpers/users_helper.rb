@@ -24,7 +24,11 @@ module UsersHelper
 	def avatar_tag user, options = {}
 		user.symbolize_keys!
 		class_str = "avatar #{ options[ :class ] }"
-		inner_html = link_to( image_tag( user[ :avatar_file ] ) , "/users/#{ user[ :id ] }" , :class => class_str , :title => user[ :name ] )
+		inner_html = link_to( image_tag( user[ :avatar_file ] ) , "/users/#{ user[ :id ] }" , 
+			:class => class_str , 
+			:title => user[ :name ] ,
+			:style => "background-image:url('#{ user[ :avatar_file ] }');
+				filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{ user[ :avatar_file ] }',sizingMethod='scale');" )
 		inner_html = image_tag( user[ :avatar_file ] , :class => 'avatar' ) if options[ :nolink ]
 		raw inner_html
 	end

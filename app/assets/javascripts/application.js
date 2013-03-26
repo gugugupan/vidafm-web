@@ -10,7 +10,6 @@
 //= require soundmanager2
 
 jQuery( function() {
-	avatarShow() ;
     arangeImage() ;
 	// Login function
 	$( ".login_btn" ) .click( function() {
@@ -43,19 +42,6 @@ function showCenterBox( str )
 		$select .fadeIn( 400 , function() { setTimeout( function() { $select .remove() ; } , 1000 ) } ) ;
 		//$select .fadeIn( 400 , function() { $( this ) .hide() ; } ) ;	
 	}
-}
-
-// Adjust avatar picture
-function avatarShow()
-{
-	var avatar = $("a.avatar");
-	for (var i = 0; i<$(".avatar").length; i++) {
-		var avatarAddress = $(avatar[i]).children().attr("src");
-		if ( avatarAddress )
-		{
-			$( avatar[ i ] ) .attr( "style" , "background-image:url(" + avatarAddress + "); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + avatarAddress + "',sizingMethod='scale');" ) ;
-		}
-	};
 }
 
 // Remove dialog box

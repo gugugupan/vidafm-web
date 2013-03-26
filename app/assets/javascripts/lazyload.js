@@ -39,7 +39,6 @@ function lazyload( url_part , id , params )
 			} else 
 				$( "#refresh-link" ) .before( data ) ;
 
-			avatarShow() ;
 			arangeImage() ;
 			$( "img.lazy" ) .lazyload() ;
 		}
