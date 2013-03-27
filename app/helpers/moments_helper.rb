@@ -127,6 +127,12 @@ module MomentsHelper
 		item[ "name" ]
 	end
 
+	# get date string like 2010.10.5
+	def moment_date( time )
+		time = time .to_time
+		"#{ time .year }.#{ time .month }.#{ time .day }"
+	end
+
 	def get_time( moment )
 		time = moment[ "modified_at" ] 
 		time = moment[ "created_at" ] unless moment[ "created_at" ] .nil?
