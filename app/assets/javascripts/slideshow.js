@@ -46,6 +46,9 @@ function sink_animate( $image_selector , $text_selector , callback )
 
 function start_slideshow()
 {
+	$( "#slideshow_index" ) .fadeOut( animate_speed ) ;
+
+	setTimeout( function() {
 	var $selector = $( "#slideshow_start" ) ;
 	$selector .show( 0 ) ;
 	sink_animate( $selector .find( "#start_user_avatar" ) , $selector .find( "#start_user_name" ) , function() {
@@ -54,6 +57,8 @@ function start_slideshow()
 		go_slideshow( 0 ) ;
 	} ) ;
 	} ) ;
+
+} , animate_speed ) ;
 }
 
 function go_slideshow( num )

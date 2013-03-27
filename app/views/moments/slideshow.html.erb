@@ -10,13 +10,22 @@
 		window_height = $( window ) .height() || $( document ) .height();
 		slideshow_length = $( ".slideshow_window" ) .length ;
 		
-		start_slideshow() ;
+		//start_slideshow() ;
 
-		$( "#slideshow_end" ) .css( "margin-top" , ( window_height - 120 ) / 3 + "px" ) ;
-		$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 90 ) / 3 + "px" ) ;
+		$( "#slideshow_end" ) .css( "margin-top" , ( window_height - 120 ) / 2 + "px" ) ;
+		$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 90 ) / 2 + "px" ) ;
+		$( "#slideshow_index" ) .css( "margin-top" , ( window_height - 260 ) / 2 + "px" ) ;
 	});
 </script>
 <% end -%>
+
+<div id="slideshow_index">
+	<%= link_to image_tag( "slideshow/start_playbtn.png" ) , "javascript:start_slideshow()" -%>
+	<p>播放照片微电影</p>
+	<%= link_to image_tag( "slideshow/start_play_vida.png" ) , "" -%>
+	<%= link_to image_tag( "slideshow/start_download_vida.png" ) , "/" -%>
+</div>
+
 <div id="slideshow_start">
 	<div id="start_user_avatar" class="roundavatar image">
 		<%= image_tag @moment[ "user" ] [ "avatar_file" ] -%>
