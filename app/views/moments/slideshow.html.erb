@@ -12,7 +12,7 @@
 		
 		//start_slideshow() ;
 
-		$( "#slideshow_end" ) .css( "margin-top" , ( window_height - 120 ) / 2 + "px" ) ;
+		$( "#slideshow_end" ) .css( "margin-top" , ( window_height - 100 ) / 2 + "px" ) ;
 		$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 90 ) / 2 + "px" ) ;
 		$( "#slideshow_index" ) .css( "margin-top" , ( window_height - 260 ) / 2 + "px" ) ;
 	});
@@ -22,8 +22,10 @@
 <div id="slideshow_index">
 	<%= link_to image_tag( "slideshow/start_playbtn.png" ) , "javascript:start_slideshow()" -%>
 	<p>播放照片微电影</p>
-	<%= link_to image_tag( "slideshow/start_play_vida.png" ) , "" -%>
-	<%= link_to image_tag( "slideshow/start_download_vida.png" ) , "/" -%>
+	<% if request.user_agent =~ /(android|ipod|iphone)/i -%>
+		<%= link_to image_tag( "slideshow/start_play_vida.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" -%>
+		<%= link_to image_tag( "slideshow/start_download_vida.png" ) , "/" -%>
+	<% end -%>
 </div>
 
 <div id="slideshow_start">
@@ -31,8 +33,12 @@
 		<%= image_tag @moment[ "user" ] [ "avatar_file" ] -%>
 	</div>
 	<p id="start_user_name" class="text"><%= @moment[ "user" ] [ "name" ] %></p>
+
 	<%= image_tag "slideshow/slideDate.png" , :id => "start_category_img" , :class => "image" -%>
-	<p id="start_category" class="text"><%= moment_category( @moment[ "category" ] ) %></p>
+	<p id="start_category_text" class="text">#<%= moment_category( @moment[ "category" ] ) %> <%= moment_name( @moment ) %></p>
+	
+	<%= image_tag "slideshow/slideDate.png" , :id => "start_date_img" , :class => "image" -%>
+	<p id="start_date_text" class="text"><%= moment_date( @moment[ "created_at"] ) %></p>
 </div>
 
 <div id="slideshow">
