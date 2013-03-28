@@ -9,12 +9,14 @@
 		window_width  = $( window ) .width() || $( document ) .width() ;
 		window_height = $( window ) .height() || $( document ) .height();
 		slideshow_length = $( ".slideshow_window" ) .length ;
-		
+		now_color = parseInt( Math.random() * 6 ) ;
+		change_color() ;
+
 		//start_slideshow() ;
 
 		$( "#slideshow_end" ) .css( "margin-top" , ( window_height - 100 ) / 2 + "px" ) ;
-		$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 90 ) / 2 + "px" ) ;
-		$( "#slideshow_index" ) .css( "margin-top" , ( window_height - 260 ) / 2 + "px" ) ;
+		$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 260 ) / 2 + "px" ) ;
+		$( "#slideshow_index" ) .css( "padding-top" , ( window_height - 260 ) / 2 + "px" ) ;
 	});
 </script>
 <% end -%>
@@ -34,7 +36,7 @@
 	</div>
 	<p id="start_user_name" class="text"><%= @moment[ "user" ] [ "name" ] %></p>
 
-	<%= image_tag "slideshow/slideDate.png" , :id => "start_category_img" , :class => "image" -%>
+	<%= image_tag "slideshow/slideshow-catogory.png" , :id => "start_category_img" , :class => "image" -%>
 	<p id="start_category_text" class="text">#<%= moment_category( @moment[ "category" ] ) %> <%= moment_name( @moment ) %></p>
 	
 	<%= image_tag "slideshow/slideDate.png" , :id => "start_date_img" , :class => "image" -%>

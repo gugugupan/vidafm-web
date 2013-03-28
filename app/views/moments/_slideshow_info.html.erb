@@ -1,10 +1,10 @@
 <%#	Params : activity %>
-
+<% unless activity[ "additional_params" ] .nil? -%>
 <div class="info_window">
 	<% if activity[ "description" ] .length > 0 -%>
 		<p class="info_text"><%= activity[ "description" ] %></p>
 	<% end -%>
-	<% unless activity[ "additional_params" ] .nil? -%>
+	<% unless activity[ "additional_params" ] [ "template_rating" ] .nil? || activity[ "additional_params" ] [ "template_price" ] .nil? -%>
 	<div class="info_rating">
 		<% unless activity[ "additional_params" ] [ "template_rating" ] .nil? -%>
 			<% rating = activity[ "additional_params" ] [ "template_rating" ] .to_i
@@ -24,3 +24,4 @@
 	</div>
 	<% end -%>
 </div>
+<% end -%>

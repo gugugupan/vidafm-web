@@ -16,7 +16,8 @@ body {
 }
 
 #slideshow_index {
-	width: 170px;
+	display: none;
+	width: 100%; //170px;
 	height: auto;
 	display: block;
 	margin:0 auto;
@@ -83,6 +84,7 @@ body {
 			background-color: #000000;
 			background-color: rgba(0,0,0,.5);
 			*background-color: #000000;
+			filter: alpha(opacity = 50); /* required for opacity to work in IE */
 			color: white;
 			width: 100%;
 			display: none;
@@ -169,8 +171,7 @@ body {
 }
 
 .bcolor {
-	background-color: #9B1600;
-	background-image: none;
+	background-image:none;
 }
 
 #login_with {

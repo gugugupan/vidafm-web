@@ -1,5 +1,6 @@
 <div class="slideshow_window" cwidth="<%= slideshow_item[ "photo" ] [ "width" ] -%>" cheight="<%= slideshow_item[ "photo" ] [ "height" ] %>">
-	<%= image_tag slideshow_item[ "photo" ] [ "url_l" ] , :class => "slideshow_img" %>
+	<%#= image_tag slideshow_item[ "photo" ] [ "url_l" ] , :class => "slideshow_img" %>
+	<img class="slideshow_img" imgsrc="<%= slideshow_item[ "photo" ] [ "url_l" ] %>">
 	
 	<div id="left_cover" class="cover bcolor"> </div>
 	<div id="right_cover" class="cover bcolor"> </div>
