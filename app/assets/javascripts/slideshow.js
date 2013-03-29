@@ -1,11 +1,40 @@
 //= require jquery
 //= require jquery_ujs
+//= require pixastic.custom
 
 var window_height , window_width ;
 var slideshow_num = -1 ;
 var animate_speed = 300 ;
 var slideshow_length ;
-var background_str ;
+
+function blur_start( img_id )
+{
+	var $img_obj = $( "#" + img_id ) .eq( 0 ) ;
+	var $box_obj = $img_obj .parent() ;
+	var img_width = $img_obj .attr( "cwidth" ) ,
+		img_height = $img_obj .attr( "cheight" ) ;
+	var window_ratio = window_width / window_height ;
+	var img_ratio = img_width / img_height ; 
+	if ( window_ratio < img_ratio ) {
+		$img_obj .css( {
+			width : img_width * ( window_height / img_height ) ,
+			height : window_height ,
+			"margin-left" : ( window_width - img_width * ( window_height / img_height ) ) / 2 
+		} ) ;
+	} else {
+		$img_obj .css( {
+			width : window_width , 
+			height : img_height * ( window_width / img_width ) ,
+			"margin-top" : ( window_height - img_height * ( window_width / img_width ) ) / 2 
+		} ) ;
+	}
+
+	var img_ele = document.getElementById( img_id ) ;
+	img_ele .onload = function() {
+		Pixastic.process( img_ele , "blurfast", { amount : 1.5 } ) ;
+	}
+	img_ele .src = img_ele .attributes[ "imgsrc" ] .nodeValue ;
+}
 
 var color_list = [ "#476A7F" , "#805889" , "#DB4565" , "#D1664E" , "#D68147" , "#89A06D" ] , now_color = 0 ;
 function change_color()
@@ -56,6 +85,7 @@ function start_slideshow()
 {
 	$( "#slideshow_index" ) .fadeOut( animate_speed ) ;
 	$( "#slideshow_header" ) .fadeOut( animate_speed ) ;
+	$( "#slideshow_background" ) .fadeOut( animate_speed ) ;
 	$( "body" ) .css( "background-image" , "none" ) ;
 
 	setTimeout( function() {
@@ -247,10 +277,9 @@ function ending_slideshow()
 	setTimeout( function() {
 		$( "#slideshow_end" ) .fadeIn( animate_speed ) ;
 		$( "#slideshow_header" ) .fadeIn( animate_speed ) ;
-		setTimeout( function() { $( "body" ) .css( "background-image" , background_str ) ; } , 200 ) ;
+		$( "#slideshow_background" ) .fadeIn( animate_speed ) ;
 	} , 500 ) ;
 }
-
 
 
 // Remove dialog box

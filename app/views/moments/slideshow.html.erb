@@ -9,28 +9,30 @@
 
 <%= content_for :page_specific_asset do %>
 <script type="text/javascript">
-	background_str = "url(<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "url_l" ] %>)" ;
 	jQuery( function() {
 		window_width  = $( window ) .width() || $( document ) .width() ;
 		window_height = $( window ) .height() || $( document ) .height() ;
 		slideshow_length = $( ".slideshow_window" ) .length ;
+
 		now_color = parseInt( Math.random() * 6 ) ;
 		change_color() ;
-
-		//start_slideshow() ;
+		blur_start( "slideshow_background_img" ) ;
 
 		$( "#slideshow_index" ) .css( "height" , ( window_height - 100 ) + "px" ) ;
 		$( "#play_slideshow_btn_area" ) .css( "top" , ( window_height - 100 - 260 ) / 2 + "px" ) ;
 		$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 260 ) / 2 + "px" ) ;
 		$( "#slideshow_end" ) .css( "height" , ( window_height - 100 ) + "px" ) ;
 		$( "#end_slideshow_part" ) .css( "top" , ( window_height - 100 - 260 ) / 2 + "px" ) ;
-
-		$( "body" ) .css( "background-image" , background_str ) ;
 	});
 </script>
 <% end -%>
 
+<div id="slideshow_background">
+	<img id="slideshow_background_img" imgsrc="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "url_l" ] %>" cwidth="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "width" ] %>" cheight="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "height" ] %>">
+</div>
+
 <div id="slideshow_header">
+	<div class="black_cover"> </div>
 	<div id="slideshow_header_content">
 		<div id="header_left">
 			<%= link_to image_tag( "slideshow/vida_icon.png" ) , "/" %>
