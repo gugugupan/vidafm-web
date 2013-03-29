@@ -10,6 +10,23 @@
 			width: 100%;
 			margin-bottom: 5px;
 
+			#slideshow_entrance {
+				display: block;
+				text-align: center;
+				width: 100%;
+				margin-top: 20px;
+				margin-bottom: 30px;
+
+				.entrance_img {
+					display: inline;
+				}
+
+				.entrance_text {
+					margin-top: 10px;
+					color: white;
+				}
+			}
+
 			#download-place {
 				width: 90%;
 				float: left;

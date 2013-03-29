@@ -82,7 +82,8 @@
     <%= render :partial => "widgets/cover" , :locals => { :cover => @moment_cover } %>
     <div id="main-block">
  		<div id="main-block-header">
-            <%= render :partial => "downloadhint" , :locals => { :moment => @moment } %>
+            <%#= render :partial => "downloadhint" , :locals => { :moment => @moment } %>
+            <%= render :partial => "slideshow_entrance" , :locals => { :moment_id => @moment[ 'id' ] } %>
             <%= render :partial => "header" , :locals => { :moment => @moment } %>
             <%= render :partial => "sharebtn" , :locals => { :mid => @moment[ 'id' ] , :name => @moment[ 'name' ] } %>
             <%= render :partial => "mapbtn" , :locals => { :moment => @moment } -%>
