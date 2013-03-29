@@ -4,8 +4,14 @@
 var window_height , window_width ;
 var slideshow_num = -1 ;
 var animate_speed = 300 ;
-var lock_array = new Array() ;
 var slideshow_length ;
+
+var color_list = [ "#476A7F" , "#805889" , "#DB4565" , "#D1664E" , "#D68147" , "#89A06D" ] , now_color = 0 ;
+function change_color()
+{
+	now_color = ( now_color + 1 ) % 6 ;
+	$( ".bcolor" ) .css( "background-color" , color_list[ now_color ] ) ;
+}
 
 var zoom_interval = null ;
 function open_zoom()
@@ -28,6 +34,7 @@ function close_zoom()
 
 function sink_animate( $image_selector , $text_selector , callback )
 {
+	change_color() ;
 	$image_selector .css( "margin-top" , "-50px" ) ;
 	$image_selector .show( 0 ) ;
 	$text_selector  .show( 0 ) ;
@@ -93,10 +100,13 @@ function go_slideshow( num )
 			} ) ;
 		}
 
-		setTimeout( function() {
+		change_color() ;
+
+		$selector .find( ".slideshow_img" ) .load( function() {
 			open_zoom() ; // zoom in the picture
 			open_animate() ; // start animation
-		} , 500 ) ;
+		} ) ;
+		$selector .find( ".slideshow_img" ) .attr( "src" , $selector .find( ".slideshow_img:eq(0)" ) .attr( "imgsrc" ) ) ;
 	} ) ;
 }
 
