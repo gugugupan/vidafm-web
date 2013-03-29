@@ -223,14 +223,15 @@ $info_color: #a6a099 ;
 	.mlinfo {
 		width: auto;
 		margin: 5px 10px 5px 5px;
+		position: relative;
 
 		.gotoslideshow {
 			float: left;
 			height: 45px;
 			width: 45px;
 			position: absolute;
-			bottom: 10px;
-			left: 10px;
+			top: -25px;
+			left: 0px;
 
 			img {
 				width: 100%;

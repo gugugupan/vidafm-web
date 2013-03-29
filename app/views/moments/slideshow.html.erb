@@ -3,31 +3,64 @@
     <%= get_name( @moment ) %>Vida（微达） - 手机照片故事社区
 <% end -%>
 
+<%= content_for :prerequisite_libraries do %>
+	<!--<meta name="apple-itunes-app" content="app-id=454984086, affiliate-data=myAffiliateData, app-argument=myURL">-->
+<% end -%>
+
 <%= content_for :page_specific_asset do %>
 <script type="text/javascript">
 	jQuery( function() {
 		window_width  = $( window ) .width() || $( document ) .width() ;
-		window_height = $( window ) .height() || $( document ) .height();
+		window_height = $( window ) .height() || $( document ) .height() ;
 		slideshow_length = $( ".slideshow_window" ) .length ;
+
 		now_color = parseInt( Math.random() * 6 ) ;
 		change_color() ;
+		blur_start( "slideshow_background_img" ) ;
 
-		//start_slideshow() ;
-
-		$( "#slideshow_end" ) .css( "margin-top" , ( window_height - 100 ) / 2 + "px" ) ;
+		$( "#slideshow_index" ) .css( "height" , ( window_height - 100 ) + "px" ) ;
+		$( "#play_slideshow_btn_area" ) .css( "top" , ( window_height - 100 - 260 ) / 2 + "px" ) ;
 		$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 260 ) / 2 + "px" ) ;
-		$( "#slideshow_index" ) .css( "padding-top" , ( window_height - 260 ) / 2 + "px" ) ;
+		$( "#slideshow_end" ) .css( "height" , ( window_height - 100 ) + "px" ) ;
+		$( "#end_slideshow_part" ) .css( "top" , ( window_height - 100 - 260 ) / 2 + "px" ) ;
 	});
 </script>
 <% end -%>
 
+<div id="slideshow_background">
+	<img id="slideshow_background_img" imgsrc="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "url_l" ] %>" cwidth="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "width" ] %>" cheight="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "height" ] %>">
+</div>
+
+<div id="slideshow_header">
+	<div class="black_cover"> </div>
+	<div id="slideshow_header_content">
+		<div id="header_left">
+			<%= link_to image_tag( "slideshow/vida_icon.png" ) , "/" %>
+		</div>
+		<div id="header_right">
+			<p id="header_des">Vida 生活. 照片. 微电影</p>
+
+			<% if request.user_agent =~ /(android|ipod|iphone)/i -%>
+				<%= link_to image_tag( "slideshow/icon_play_vida.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" , :class => "header_btn" %>
+				<%= link_to image_tag( "slideshow/icon_download.png" ) , "/" , :class => "header_btn" %>
+			<% else -%>
+				<%= link_to image_tag( "slideshow/icon_download_iphone.png" ) , "http://itunes.apple.com/cn/app/id454984086?ls=1" , :class => "header_btn" %>
+				<%= link_to image_tag( "slideshow/icon_download_android.png" ) , "/android_download" , :class => "header_btn" %>
+			<% end -%>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+
 <div id="slideshow_index">
-	<%= link_to image_tag( "slideshow/start_playbtn.png" ) , "javascript:start_slideshow()" -%>
-	<p>播放照片微电影</p>
-	<% if request.user_agent =~ /(android|ipod|iphone)/i -%>
-		<%= link_to image_tag( "slideshow/start_play_vida.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" -%>
-		<%= link_to image_tag( "slideshow/start_download_vida.png" ) , "/" -%>
-	<% end -%>
+	<div class="black_cover"> </div>
+	<div id="play_slideshow_btn_area">
+		<%= link_to "javascript:start_slideshow()" , :id => "play_slideshow_btn" do -%>
+			<%= image_tag( "slideshow/btn_play2.png" ) %>
+			<p>播放照片微电影</p>
+		<% end -%>
+		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }" , :class => "goto_momentshow" %>
+	</div>
 </div>
 
 <div id="slideshow_start">
@@ -48,21 +81,26 @@
 </div>
 
 <div id="slideshow_end">
-	<%= link_to "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;" do -%>
-		<%= image_tag @moment[ "user" ] [ "avatar_file" ] -%>
-	<% end -%>
-	<div class="clearfix"> </div>
-	<div style="margin:0 auto; width:230px;">
-		<%= link_to like_moment_url( @moment[ "id" ] ) + "?agent=slideshow" , :class => "roundbutton" , :style => "margin-right: 40px;" , :remote => true , :method => :put do -%>
-				<%= image_tag "slideshow/slideshow-like.png" , :class => "slideshow_like_btn" , :style => "#{ "display:none" unless @moment[ "liked" ] }" -%>
-				<%= image_tag "slideshow/slideshow-unlike.png" , :class => "slideshow_unlike_btn" , :style => "#{ "display:none" if @moment[ "liked" ] }" -%>
-		<% end -%>
-		<%= link_to "/moments/#{ @moment[ "id" ] }#comment-block" , :class => "roundbutton" do -%>
-			<%= image_tag "slideshow/slideshow-comment.png" -%>
-		<% end -%>
-		<%= link_to sharelist_moment_url( @moment[ "id" ] ) + "?name=#{ @moment[ "name" ] }" , :remote => true , :method => :get , :class => "roundbutton" , :style => "margin-left: 40px;" do -%>
-			<%= image_tag "slideshow/slideshow-share.png" -%>
+	<div class="black_cover"> </div>
+	<div id="end_slideshow_part">
+		<%= link_to "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;" do -%>
+			<%= image_tag @moment[ "user" ] [ "avatar_file" ] -%>
 		<% end -%>
 		<div class="clearfix"> </div>
+		<div style="margin:0 auto; width:230px;">
+			<%= link_to like_moment_url( @moment[ "id" ] ) + "?agent=slideshow" , :class => "roundbutton" , :style => "margin-right: 40px;" , :remote => true , :method => :put do -%>
+					<%= image_tag "slideshow/slideshow-like.png" , :class => "slideshow_like_btn" , :style => "#{ "display:none" unless @moment[ "liked" ] }" -%>
+					<%= image_tag "slideshow/slideshow-unlike.png" , :class => "slideshow_unlike_btn" , :style => "#{ "display:none" if @moment[ "liked" ] }" -%>
+			<% end -%>
+			<%= link_to "/moments/#{ @moment[ "id" ] }#comment-block" , :class => "roundbutton" do -%>
+				<%= image_tag "slideshow/slideshow-comment.png" -%>
+			<% end -%>
+			<%= link_to sharelist_moment_url( @moment[ "id" ] ) + "?name=#{ @moment[ "name" ] }" , :remote => true , :method => :get , :class => "roundbutton" , :style => "margin-left: 40px;" do -%>
+				<%= image_tag "slideshow/slideshow-share.png" -%>
+			<% end -%>
+			<div class="clearfix"> </div>
+		</div>
+		
+		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }" , :class => "goto_momentshow" %>
 	</div>
 </div>

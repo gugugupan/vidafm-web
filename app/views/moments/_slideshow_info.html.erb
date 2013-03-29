@@ -9,10 +9,10 @@
 		<% unless activity[ "additional_params" ] [ "template_rating" ] .nil? -%>
 			<% rating = activity[ "additional_params" ] [ "template_rating" ] .to_i
 			for i in 1..rating  -%>
-				<%= image_tag "slideshow/star_on.png" , :style => "margin-right:5px;" %>
+				<%= image_tag "slideshow/star_on.png" , :style => "margin-right:5px; width:16px;" %>
 			<% end -%>
 			<% for i in 1..( 5 - rating )-%>
-				<%= image_tag "slideshow/star_off.png" , :style => "margin-right:5px;" %>
+				<%= image_tag "slideshow/star_off.png" , :style => "margin-right:5px; width: 16px;" %>
 			<% end -%>
 		<% end -%>
 		<% unless activity[ "additional_params" ] [ "template_rating" ] .nil? || activity[ "additional_params" ] [ "template_price" ] .nil? -%>
