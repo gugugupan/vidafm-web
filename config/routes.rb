@@ -47,6 +47,7 @@ Bluerain::Application.routes.draw do
     put "like", :on => :member 
     post "comment", :on => :member
     get "allcomments", :on => :member 
+    get "slideshow", :on => :member
   end
 
   get "/discover/index" 
