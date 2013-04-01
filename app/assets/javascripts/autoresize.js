@@ -83,9 +83,9 @@ function adjust_image( callback )
             {
                 var w = $row .find( ".image_box:eq(0) .mlimage img" ) .attr( "cwidth" ) ,
                     h = $row .find( ".image_box:eq(0) .mlimage img" ) .attr( "cheight" ) ;
-                $row .height( 354 / w * h ) ;
-                $row .find( ".image_box:eq(0)" ) .width( 354 ) ;
-                $row .find( ".image_box:eq(0)" ) .height( 354 / w * h ) ;
+                $row .height( 360 / w * h ) ;
+                $row .find( ".image_box:eq(0)" ) .width( 360 ) ;
+                $row .find( ".image_box:eq(0)" ) .height( 360 / w * h ) ;
                 $row .find( ".mlimage" ) .css( "width" , "100%" ) ;
                 $row .find( ".mlimage img" ) .css( "width" , "100%" ) ;
             }
@@ -99,8 +99,8 @@ function adjust_image( callback )
                 var h = Math .max( h1 , h2 ) ;
                 w1 = w1 * h / h1 ;
                 w2 = w2 * h / h2 ;
-                $row .height( 354 / ( w1 + w2 + 1 ) * h ) ;
-                var hh = 354 / ( w1 + w2 + 1 ) * h ;
+                $row .height( 360 / ( w1 + w2 + 1 ) * h ) ;
+                var hh = 360 / ( w1 + w2 + 1 ) * h ;
                 w1 = w1 / h * hh ;
                 w2 = w2 / h * hh ;
                 $row .find( ".image_box:eq(0)" ) .width( w1 ) ;
@@ -123,8 +123,8 @@ function adjust_image( callback )
                 w1 = w1 * h / h1 ;
                 w2 = w2 * h / h2 ;
                 w3 = w3 * h / h3 ;
-                $row .height( 354 / ( w1 + w2 + w3 + 2 ) * h ) ;
-                var hh = 354 / ( w1 + w2 + w3 + 2 ) * h ;
+                $row .height( 360 / ( w1 + w2 + w3 + 2 ) * h ) ;
+                var hh = 360 / ( w1 + w2 + w3 + 2 ) * h ;
                 w1 = w1 / h * hh ;
                 w2 = w2 / h * hh ;
                 w3 = w3 / h * hh ;

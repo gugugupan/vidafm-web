@@ -268,7 +268,6 @@ function callNotificationBox()
             $( "#message_box" ) .empty() ;
             $( "#message_box" ) .append( getData ) ;
             $( "#notification_btn" ) .find( "span" ) .eq( 0 ) .text( "消息" ) ;
-            avatarShow() ;
 
             $( "#message_box" ) .click( function() {
                 destroyDialog( 1 ) ;
