@@ -4,6 +4,8 @@
 	#main-block {
 		width: 450px;
 		margin: -225px auto 0;
+		*top: -225px;
+		_top: -225px;
 		position: relative;
 
 		#main-block-header {

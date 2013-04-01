@@ -10,10 +10,6 @@
 <%= content_for :page_specific_asset do %>
 <script type="text/javascript">
 	jQuery( function() {
-		window_width  = $( window ) .width() || $( document ) .width() ;
-		window_height = $( window ) .height() || $( document ) .height() ;
-		slideshow_length = $( ".slideshow_window" ) .length ;
-
 		now_color = parseInt( Math.random() * 6 ) ;
 		change_color() ;
 		blur_start( "slideshow_background_img" ) ;
@@ -23,14 +19,22 @@
 		$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 260 ) / 2 + "px" ) ;
 		$( "#slideshow_end" ) .css( "height" , ( window_height - 100 ) + "px" ) ;
 		$( "#end_slideshow_part" ) .css( "top" , ( window_height - 100 - 260 ) / 2 + "px" ) ;
+
+		soundManager.setup( {
+			url: '/swf/' , 
+			flashVersion: 9 ,
+			useFlashBlock: false
+		} ) ;
 	});
 </script>
 <% end -%>
 
+ <%#---Slideshow background---%>
 <div id="slideshow_background">
 	<img id="slideshow_background_img" imgsrc="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "url_l" ] %>" cwidth="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "width" ] %>" cheight="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "height" ] %>">
 </div>
 
+<%#---Slideshow header---%>
 <div id="slideshow_header">
 	<div class="black_cover"> </div>
 	<div id="slideshow_header_content">
@@ -52,6 +56,7 @@
 	</div>
 </div>
 
+<%#---Index of slideshow---%>
 <div id="slideshow_index">
 	<div class="black_cover"> </div>
 	<div id="play_slideshow_btn_area">
@@ -63,10 +68,9 @@
 	</div>
 </div>
 
+<%#---Starting animate of slideshow%>
 <div id="slideshow_start">
-	<div id="start_user_avatar" class="roundavatar image">
-		<%= image_tag @moment[ "user" ] [ "avatar_file" ] -%>
-	</div>
+	<div id="start_user_avatar" class="roundavatar image" style="background-image:url(<%=@moment[ "user" ] [ "avatar_file" ] -%>); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= @moment[ "user" ] [ "avatar_file" ] -%>',sizingMethod='scale');"> </div>
 	<p id="start_user_name" class="text"><%= @moment[ "user" ] [ "name" ] %></p>
 
 	<%= image_tag "slideshow/slideshow-catogory.png" , :id => "start_category_img" , :class => "image" -%>
@@ -76,16 +80,16 @@
 	<p id="start_date_text" class="text"><%= moment_date( @moment[ "created_at"] ) %></p>
 </div>
 
+<%#---Main area of slideshow---%>
 <div id="slideshow">
 	<%= render :partial => "moments/slideshow_item" , :collection => @moment[ "items" ] %>
 </div>
 
+<%#---Ending of slideshow---%>
 <div id="slideshow_end">
 	<div class="black_cover"> </div>
 	<div id="end_slideshow_part">
-		<%= link_to "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;" do -%>
-			<%= image_tag @moment[ "user" ] [ "avatar_file" ] -%>
-		<% end -%>
+		<%= link_to "" , "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;background-image:url(#{@moment[ "user" ] [ "avatar_file" ]}); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{ @moment[ "user" ] [ "id" ] }',sizingMethod='scale');" %>
 		<div class="clearfix"> </div>
 		<div style="margin:0 auto; width:230px;">
 			<%= link_to like_moment_url( @moment[ "id" ] ) + "?agent=slideshow" , :class => "roundbutton" , :style => "margin-right: 40px;" , :remote => true , :method => :put do -%>
@@ -102,5 +106,23 @@
 		</div>
 		
 		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }" , :class => "goto_momentshow" %>
+	</div>
+</div>
+
+<%#---Bar of slideshow---%>
+<div id="slideshow_bar_container">
+	<div id="slideshow_bar">
+		<%= link_to like_moment_url( @moment[ "id" ] ) + "?agent=slideshow" , :id => "bar_btn_1" , :remote => true , :method => :put do %>
+			<%= image_tag "slideshow/bar_like_on.png" , :class => "slideshow_like_btn" , :style => "#{ "display:none" unless @moment[ "liked" ] }" -%>
+			<%= image_tag "slideshow/bar_like_off.png" , :class => "slideshow_unlike_btn" , :style => "#{ "display:none" if @moment[ "liked" ] }" -%>
+		<% end -%>
+		<%= link_to "javascript:play_pause()" , :id => "bar_btn_2" do %>
+			<%= image_tag "slideshow/bar_pause.png" , :class => "slideshow_bar_pause" %>
+			<%= image_tag "slideshow/bar_play.png" , :class => "slideshow_bar_play" , :style => "display:none;" %>
+		<% end -%>
+		<%= link_to "javascript:music_change()" , :id => "bar_btn_3" do %>
+			<%= image_tag "slideshow/bar_music_off.png" , :class => "slideshow_bar_musicon" -%>
+			<%= image_tag "slideshow/bar_music_on.png" , :class => "slideshow_bar_musicoff" , :style => "display:none;" %>
+		<% end -%>
 	</div>
 </div>
