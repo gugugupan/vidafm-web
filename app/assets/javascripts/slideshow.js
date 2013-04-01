@@ -1,11 +1,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require pixastic.custom
+//= require soundmanager2-nodebug-jsmin
 
 var window_height , window_width ;
 var slideshow_num = -1 ;
 var animate_speed = 300 ;
 var slideshow_length ;
+var is_pause = false ;
+var will_pause = false ;
+var is_end = false ;
+
+jQuery( function() {
+	window_width  = $( window ) .width() || $( document ) .width() ;
+	window_height = $( window ) .height() || $( document ) .height() ;
+	slideshow_length = $( ".slideshow_window" ) .length ;
+} ) ;
 
 function blur_start( img_id )
 {
@@ -51,9 +61,12 @@ function open_zoom()
 	var time_left = 0 ;
 	zoom_interval = setInterval( function() {
 		time_left ++ ;
-		$selector .css( { width : initial_width + time_left * 2 ,
-						  "margin-left" : ( -time_left ) + "px" , 
-						  "margin-top" : ( -time_left ) + "px" } ) ;
+		if ( time_left <= 120 )
+		{
+			$selector .css( { width : initial_width + time_left * 2 ,
+							  "margin-left" : ( -time_left ) + "px" , 
+							  "margin-top" : ( -time_left ) + "px" } ) ;
+		} else clearInterval( zoom_interval ) ;
 	} , 50 ) ;
 }
 
@@ -61,6 +74,32 @@ function close_zoom()
 {
 	clearInterval( zoom_interval ) ;
 }
+
+
+/*=================    Music Function    ====================*/
+var music_num = 0 ;
+var music ;
+function play_background_music() {
+	/*
+		Start play background music randomly
+	*/
+    if ( soundManager.ok() ) 
+    {
+		music_num = ( music_num + parseInt( Math.random() * 4 ) + 1 ) % 5 ;
+		music = soundManager .getSoundById( "bmusic" + music_num ) ;
+		if ( !music )
+			music = soundManager.createSound( {
+				id: "bmusic" + music_num ,
+				url: "/mp3/slideshow" + music_num + ".m4a" ,
+				onfinish: function() {
+					play_background_music() ;
+				} 
+			} ) ;
+		music .play() ;
+	}
+}
+
+
 
 function sink_animate( $image_selector , $text_selector , callback )
 {
@@ -85,8 +124,12 @@ function start_slideshow()
 {
 	$( "#slideshow_index" ) .fadeOut( animate_speed ) ;
 	$( "#slideshow_header" ) .fadeOut( animate_speed ) ;
+	$( "#slideshow_end" ) .fadeOut( animate_speed ) ;
 	$( "#slideshow_background" ) .fadeOut( animate_speed ) ;
 	$( "body" ) .css( "background-image" , "none" ) ;
+	is_end = false ;
+	bar_on() ;
+	play_background_music() ;
 
 	setTimeout( function() {
 		var $selector = $( "#slideshow_start" ) ;
@@ -264,8 +307,15 @@ function close_animate( callback )
 
 function play_next()
 {
+	if ( will_pause ) 
+	{
+		is_pause = true ;
+		return ;
+	}
 	if ( slideshow_num < slideshow_length - 1 )
+	{
 		go_slideshow( slideshow_num + 1 ) ;
+	}
 	else close_animate( ending_slideshow ) ;
 }
 
@@ -273,14 +323,75 @@ function ending_slideshow()
 {
 	$( ".slideshow_window" ) .eq( slideshow_num ) .fadeOut( 0 ) ;
 	close_zoom() ;
+	is_end = true ;
 
 	setTimeout( function() {
+		bar_off() ;
 		$( "#slideshow_end" ) .fadeIn( animate_speed ) ;
 		$( "#slideshow_header" ) .fadeIn( animate_speed ) ;
 		$( "#slideshow_background" ) .fadeIn( animate_speed ) ;
 	} , 500 ) ;
 }
 
+/*=================    Bar Function    ====================*/
+
+function bar_play()
+{
+	$( ".slideshow_bar_pause" ) .css( "display" , "block" ) ;
+	$( ".slideshow_bar_play" ) .css( "display" , "none" ) ;
+}
+
+function bar_pause()
+{
+	$( ".slideshow_bar_pause" ) .css( "display" , "none" ) ;
+	$( ".slideshow_bar_play" ) .css( "display" , "block" ) ;
+}
+
+function bar_on()
+{
+	bar_play() ;
+	$( "#slideshow_bar" ) .fadeOut( 0 ) ;
+	$( "#slideshow_bar_container" ) .mouseenter( function() {
+		$( "#slideshow_bar" ) .fadeIn( 100 ) ;
+	} ) .mouseleave( function() {
+		$( "#slideshow_bar" ) .fadeOut( 100 ) ;
+	} ) ;
+}
+
+function bar_off()
+{
+	bar_pause() ;
+	$( "#slideshow_bar" ) .css( "display" , "block" ) ;
+	$( "#slideshow_bar_container" ) .unbind() ;
+}
+
+function play_pause()
+{
+	if ( is_end )
+	{
+		start_slideshow() ;
+	} else 
+	if ( is_pause )
+	{
+		is_pause = false ;
+		will_pause = false ;
+		bar_play() ;
+		play_next() ;
+	} else
+	if ( will_pause )
+	{
+		will_pause = false ;
+		bar_play() ;
+	} else
+	{
+		will_pause = true ;
+		bar_pause() ;
+	}
+}
+
+function music_btn()
+{
+}
 
 // Remove dialog box
 function destroyDialog( type )
