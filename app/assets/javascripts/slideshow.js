@@ -99,6 +99,22 @@ function play_background_music() {
 	}
 }
 
+function pause_background_music() {
+	$( ".slideshow_bar_musicon" ) .css( "display" , "block" ) ;
+	$( ".slideshow_bar_musicoff" ) .css( "display" , "none" ) ;
+	music .pause() ;
+}
+
+function continue_background_music() {
+	$( ".slideshow_bar_musicoff" ) .css( "display" , "block" ) ;
+	$( ".slideshow_bar_musicon" ) .css( "display" , "none" ) ;
+	music .play() ;
+}
+
+function has_audio()
+{
+	return $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".slideshow_audio" ) .length != 0 ;
+}
 
 
 function sink_animate( $image_selector , $text_selector , callback )
@@ -262,7 +278,26 @@ function show_photo()
 {
 	var $selector = $( ".slideshow_window" ) .eq( slideshow_num ) ;
 	$selector .find( ".info_window" ) .fadeIn( animate_speed ) ;
-	setTimeout( play_next , 5000 ) ;
+	if ( !has_audio() )
+		setTimeout( play_next , 5000 ) ;
+	else {
+		// Play audio
+		if ( soundManager .ok() )
+		{
+			var $audio_selector = $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".slideshow_audio" ) .eq( 0 ) ;
+			var audio_id = $audio_selector .attr( "audioid" ) ,
+				audio_src = $audio_selector .attr( "audiosrc" ) ;
+			var audio = soundManager .getSoundById( "audio" + audio_id ) ;
+			if ( !audio )
+				audio = soundManager.createSound( {
+					id: "audio" + audio_id ,
+					url: audio_src ,
+					onfinish: play_next
+				} ) ; 
+			audio .play() ;
+		} else 
+			setTimeout( play_next , 5000 ) ;
+	}
 }
 
 function close_animate( callback )
@@ -322,6 +357,7 @@ function play_next()
 function ending_slideshow()
 {
 	$( ".slideshow_window" ) .eq( slideshow_num ) .fadeOut( 0 ) ;
+	pause_background_music() ;
 	close_zoom() ;
 	is_end = true ;
 
@@ -389,8 +425,12 @@ function play_pause()
 	}
 }
 
-function music_btn()
+function music_change()
 {
+	if ( music .paused )
+		continue_background_music() ;
+	else 
+		pause_background_music() ;
 }
 
 // Remove dialog box
