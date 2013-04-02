@@ -7,4 +7,7 @@
 	<div id="top_cover" class="cover bcolor"> </div>
 	<div id="bottom_cover" class="cover bcolor"> </div>
 	<%= render :partial => "moments/slideshow_info" , :locals => { :activity => slideshow_item } -%>
+	<% unless slideshow_item[ "audio" ] .nil? -%>
+		<div class="slideshow_audio" audioid="<%= slideshow_item[ "audio" ] [ "id" ] %>" audiosrc="<%= slideshow_item[ "audio" ] [ "filename" ] %>"> </div>
+	<% end -%>
 </div>
