@@ -7,7 +7,6 @@
 	var $selector = $( "#" + num + "comment" ) ;
 	$selector .find( ".none_comment" ) .remove() ;
 	$selector .find( ".comments-list-container" ) .append( text ) ;
-	avatarShow() ;
 
 	var $btnselector = $selector .parent() .find( "a.comment" ) .eq( 0 ) ;
 	var nowCommentedCountStr = $btnselector .text() ;

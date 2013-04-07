@@ -7,7 +7,6 @@
 	var $selector = $( "#comment-block" ) ;
 	$selector .find( ".none_comment" ) .remove() ;
 	$selector .find( ".comments-list-container" ) .append( text ) ;
-	avatarShow() ;
 
 	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
 
