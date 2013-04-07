@@ -26,7 +26,7 @@ class MiscController < ApplicationController
 
   def ajax_notification
     session[ :cur_user ] [ :notification_count ] = 0
-    @message = JSON.parse( VIDA.call("/notification/list" , {} , current_user ) [ :body ] ) [ "data" ]
+    @message = User.fetch_notification( current_user )
     @message[ "unread" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
     @message[ "read" ] .each { |n| n[ "sentence" ] = get_notification_sentence( n )  }
     render "misc/notificationlist" , :layout => false 

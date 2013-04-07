@@ -78,5 +78,11 @@ class User
 			data[ :body ] = "{\"data\":{\"likes_and_comments\":[],\"next_query_parameters\":{}}}"if data[ :status ] == 204 
 			JSON.parse( data[ :body ] )
 		end
+
+		# 获取current_user的消息
+		# 传递进参数为认证用current_user
+		def fetch_notification( current_user )
+			JSON.parse( VIDA.call("/notification/list" , {} , current_user ) [ :body ] ) [ "data" ]
+		end
 	end
 end

@@ -79,13 +79,15 @@ function close_zoom()
 /*=================    Music Function    ====================*/
 var music_num = 0 ;
 var music ;
+var play_state = -1 ;
 function play_background_music() {
 	/*
 		Start play background music randomly
 	*/
+	play_state = 0 ;
     if ( soundManager.ok() ) 
     {
-		music_num = ( music_num + parseInt( Math.random() * 4 ) + 1 ) % 5 ;
+		music_num = parseInt( Math.random() * 5 ) ;
 		music = soundManager .getSoundById( "bmusic" + music_num ) ;
 		if ( !music )
 			music = soundManager.createSound( {

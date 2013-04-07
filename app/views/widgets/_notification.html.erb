@@ -2,14 +2,16 @@
 	<p class="timer"> <%= time_ago_now( notification[ "created_at" ] ) %> </p>
 	<%= avatar_tag_b notification[ "actor" ] %>
 	<span>
-		<a href="/users/<%=notification["actor"][:id]%>" class="user_name"> <%= notification[ "actor" ][ :name ] %> </a>
+		<% unless notification[ "actor" ][ :name ] .nil? -%>
+			<a href="/users/<%=notification["actor"][:id]%>" class="user_name"> <%= notification[ "actor" ][ :name ] %> </a>
+		<% end -%>
 		<p class="content"> <%= notification[ "sentence" ] %> </p>
-	<% unless notification[ "activity" ] .nil? -%>
-		<%= link_to image_tag( notification[ "activity" ] [ "photo" ] [ "url_s" ] , :class => "message_thumbnail" ) , "/moments/#{notification[ "activity" ] [ "moment_id" ]}#activity#{notification[ "activity" ] [ "id" ]}" %>
-	<% end -%>
-	<% if [ 14 , 15 ] .find { |x| x == notification[ "notification_type" ] } -%>
-		<%= link_to image_tag( notification[ "img_url" ] , :class => "message_thumbnail" ) , "/moments/#{notification[ "moment" ] [ "id" ]}" %>
-	<% end -%>
+		<% unless notification[ "activity" ] .nil? -%>
+			<%= link_to image_tag( notification[ "activity" ] [ "photo" ] [ "url_s" ] , :class => "message_thumbnail" ) , "/moments/#{notification[ "activity" ] [ "moment_id" ]}#activity#{notification[ "activity" ] [ "id" ]}" %>
+		<% end -%>
+		<% if [ 14 , 15 ] .find { |x| x == notification[ "notification_type" ] } -%>
+			<%= link_to image_tag( notification[ "img_url" ] , :class => "message_thumbnail" ) , "/moments/#{notification[ "moment" ] [ "id" ]}" %>
+		<% end -%>
 	</span>	
 	<div class="clearfix"></div>
 </div>

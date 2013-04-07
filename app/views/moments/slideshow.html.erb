@@ -23,7 +23,11 @@
 		soundManager.setup( {
 			url: '/swf/' , 
 			flashVersion: 9 ,
-			useFlashBlock: false
+			useFlashBlock: false , 
+			onready : function() {
+				if ( play_state == 0 )
+					play_background_music() ;
+			}
 		} ) ;
 	});
 </script>
