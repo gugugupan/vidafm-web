@@ -196,11 +196,18 @@ function go_slideshow( num )
 
 		change_color() ;
 
-		$selector .find( ".slideshow_img" ) .load( function() {
+		if ( $selector .find( ".slideshow_img" ) .attr( "src" ) != "" )
+		{
+			$selector .find( ".slideshow_img" ) .load( function() {
+				$selector .find( ".slideshow_img" ) .unbind() ;
+				open_zoom() ; // zoom in the picture
+				open_animate() ; // start animation
+			} ) ;
+			$selector .find( ".slideshow_img" ) .attr( "src" , $selector .find( ".slideshow_img:eq(0)" ) .attr( "imgsrc" ) ) ;
+		} else {
 			open_zoom() ; // zoom in the picture
 			open_animate() ; // start animation
-		} ) ;
-		$selector .find( ".slideshow_img" ) .attr( "src" , $selector .find( ".slideshow_img:eq(0)" ) .attr( "imgsrc" ) ) ;
+		}
 	} ) ;
 }
 
@@ -211,6 +218,7 @@ function open_animate()
 
 	var animate = parseInt( Math.random() * 4 ) + 1 ;
 	//var animate = 4 ;
+	$selector .find( ".cover" ) .css( "display" , "none" ) ;
 	switch ( animate )
 	{
 		case 1 :
@@ -309,7 +317,6 @@ function close_animate( callback )
 		callback() ;
 		return ;
 	}
-
 	var $selector = $( ".slideshow_window" ) .eq( slideshow_num ) ;
 	$( ".cover" ) .fadeOut( 0 ) ;
 
@@ -385,15 +392,30 @@ function bar_pause()
 	$( ".slideshow_bar_play" ) .css( "display" , "block" ) ;
 }
 
+var bar_interval = null , bar_last_time = 0 ;
 function bar_on()
 {
 	bar_play() ;
-	$( "#slideshow_bar" ) .fadeOut( 0 ) ;
-	$( "#slideshow_bar_container" ) .mouseenter( function() {
-		$( "#slideshow_bar" ) .fadeIn( 100 ) ;
-	} ) .mouseleave( function() {
-		$( "#slideshow_bar" ) .fadeOut( 100 ) ;
-	} ) ;
+	$( "#slideshow_bar" ) .css( "display" , "block" ) ;
+	setTimeout( function() {
+		$( "#slideshow_bar" ) .css( "display" , "none" ) ;
+		$( "body" ) .mousemove( function() {
+			$( "#slideshow_bar" ) .fadeIn( 500 ) ;
+			if ( bar_last_time > 0 )
+				bar_last_time = 5000
+			else {
+				bar_last_time = 5000 ;
+				bar_interval = setInterval( function() {
+					bar_last_time -= 500 ;
+					if ( bar_last_time == 0 )
+					{
+						$( "#slideshow_bar" ) .fadeOut( 500 ) ;
+						clearInterval( bar_interval ) ;
+					}
+				} , 500 ) ;
+			}
+		} ) ;
+	} , 5000 ) ;
 }
 
 function bar_off()
