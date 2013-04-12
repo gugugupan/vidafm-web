@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require pixastic.custom
 //= require soundmanager2-nodebug-jsmin
+//= require video
 
 var window_height , window_width ;
 var slideshow_num = -1 ;
@@ -117,7 +118,6 @@ function has_audio()
 {
 	return $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".slideshow_audio" ) .length != 0 ;
 }
-
 
 function sink_animate( $image_selector , $text_selector , callback )
 {
@@ -288,12 +288,13 @@ function show_photo()
 {
 	var $selector = $( ".slideshow_window" ) .eq( slideshow_num ) ;
 	$selector .find( ".info_window" ) .fadeIn( animate_speed ) ;
-	if ( !has_audio() )
+	if ( !has_audio() && !has_video() )
 		setTimeout( play_next , 5000 ) ;
-	else {
+	else if ( has_audio() ) {
 		// Play audio
 		if ( soundManager .ok() )
 		{
+			soundManager .setVolume( "bmusic" + music_num , 10 ) ;
 			var $audio_selector = $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".slideshow_audio" ) .eq( 0 ) ;
 			var audio_id = $audio_selector .attr( "audioid" ) ,
 				audio_src = $audio_selector .attr( "audiosrc" ) ;
@@ -302,12 +303,41 @@ function show_photo()
 				audio = soundManager.createSound( {
 					id: "audio" + audio_id ,
 					url: audio_src ,
-					onfinish: play_next
+					onfinish: function() {
+						if ( has_video() ) play_video() ;
+						else {
+							soundManager .setVolume( "bmusic" + music_num , 50 ) ;
+							play_next() ;
+						}
+					}
 				} ) ; 
 			audio .play() ;
 		} else 
 			setTimeout( play_next , 5000 ) ;
-	}
+	} else if ( has_video )
+		play_video() ;
+}
+
+function has_video()
+{
+	return $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".video-js" ) .length != 0 ;	
+}
+
+function play_video()
+{
+	soundManager .setVolume( "bmusic" + music_num , 10 ) ;
+	var $video_selector = $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".video-js" ) ;
+	$video_selector .css( "z-index" , "10" ) ;
+	var video_name = $video_selector .attr( "id" ) ;
+	$video_selector .attr( "height" , window_height ) ;
+
+	var video = _V_( video_name ) ;
+	video .removeEvent( "ended" , null ) ;
+	video .addEvent( "ended" , function() {
+		soundManager .setVolume( "bmusic" + music_num , 50 ) ;
+		play_next() ;
+	} ) ;
+	video .play() ;
 }
 
 function close_animate( callback )
