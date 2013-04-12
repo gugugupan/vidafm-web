@@ -1,7 +1,7 @@
 <%#
 	关注, 取消关注按钮
-	Params :
-		tag - 显示何种图标(0关注 1取消关注 2等待对方批准 3移除粉丝)
+	Param :
+		tag - 显示何种图标(0关注 1取消关注 2等待对方批准 3移除粉丝 4同意请求 5拒绝请求)
 		uid - user id 
 		size - btn size ( btn_big btn_middle btn_small )
 -%>
@@ -18,5 +18,13 @@
 <% elsif tag == 3 %>
 	<%= link_to "移除粉丝" , following_user_url( uid ) + "?type=remove" , 
 		:class => "followbtn btn_red " + size , :id => "remove-tag#{ uid }" , 
+		:remote => true , :method => :put %>
+<% elsif tag == 4 %>
+	<%= link_to "批准" , following_user_url( uid ) + "?type=agree" , 
+		:class => "followbtn btn_blue " + size , :id => "agree-tag#{ uid }" ,
+		:remote => true , :method => :put %>
+<% elsif tag == 5 %>
+	<%= link_to "忽略" , following_user_url( uid ) + "?type=reject" , 
+		:class => "followbtn btn_red " + size , :id => "reject-tag#{ uid }" , :style => "margin-right: 10px;" ,
 		:remote => true , :method => :put %>
 <% end %>

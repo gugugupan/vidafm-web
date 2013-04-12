@@ -10,6 +10,9 @@
 	<p class="username"> <%= userfeed[ "name" ] %> </p>
 	<% unless need_btn .nil? -%>
 		<%= render :partial => "widgets/followingbtn" , :locals => { :tag => need_btn , :uid => userfeed[ "id" ] , :size => "btn_small" } %>
+		<% if need_btn == 4 # 如果是隐私用户的关注请求 -%>
+			<%= render :partial => "widgets/followingbtn" , :locals => { :tag => 5 , :uid => userfeed[ "id" ] , :size => "btn_small" } %>
+		<% end -%>
 	<% end -%>
 	<div class="clearfix"> </div>
 </div>

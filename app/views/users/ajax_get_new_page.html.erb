@@ -3,9 +3,9 @@
 	<%= render :partial => "users/userfeed" , :collection => @user_list , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 1 : nil } -%>
 <% when "followers" -%>
 	<% unless @user_agree .nil? -%>
-		<p class="user_feed_title">关注我的人</p>
-		<%= render :partial => "users/userfeed" , :collection => @user_agree , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 3 : nil } -%>
-		<p class="user_feed_title">关注我的人</p>
+		<p class="user_feed_title" style="margin-top:0px;">------ 关注请求 ------</p>
+		<%= render :partial => "users/userfeed" , :collection => @user_agree , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 4 : nil } -%>
+		<p class="user_feed_title" style="margin-top:20px;">------ 粉丝列表 ------</p>
 	<% end -%>
 	<%= render :partial => "users/userfeed" , :collection => @user_list , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 3 : nil } -%>
 <% when "commentlike" , "story" -%>

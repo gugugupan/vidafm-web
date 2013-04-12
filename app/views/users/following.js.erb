@@ -19,5 +19,9 @@ var followResult = <%= raw @result .to_json %> ;
 	$selector .addClass( "btn_blue" ) ;
 <% elsif params[ :type ] == "remove" -%>
 	$( "#remove-tag" + num ) .parent() .remove() ;
+<% elsif params[ :type ] == "reject" -%>
+	$( "#reject-tag" + num ) .parent() .remove() ;
+<% elsif params[ :type ] == "agree" -%>
+	$( "#agree-tag" + num ) .parent() .remove() ;
 <% end -%>
 showCenterBox( followResult .message ) ;
