@@ -134,7 +134,8 @@ module MomentsHelper
 	end
 
 	def get_time( moment )
-		time = moment[ "modified_at" ] 
+		time = "2000-01-01 08:00:00 AM UTC"
+		time = moment[ "modified_at" ] unless moment[ "modified_at" ] .nil?
 		time = moment[ "created_at" ] unless moment[ "created_at" ] .nil?
 		time = moment[ "suggest_at" ] unless moment[ "suggest_at" ] .nil?
 		time = time .to_time - 8 .hour
