@@ -451,18 +451,18 @@ function bar_on()
 	bar_play() ;
 	$( "#slideshow_bar" ) .css( "display" , "block" ) ;
 	setTimeout( function() {
-		$( "#slideshow_bar" ) .fadeOut( animate_speed ) ;
+		$( "#slideshow_bar" ) .css( "display" , "none" ) ;
 		$( "body" ) .unbind() .mousemove( bar_fadeIn ) .click( bar_fadeIn ) ;
-	} , 5000 ) ;
+	} , 8000 ) ;
 }
 
 var bar_timeout = null ;
 function bar_fadeIn()
 {
-	$( "#slideshow_bar" ) .fadeIn( animate_speed ) ;
+	$( "#slideshow_bar" ) .css( "display" , "block" ) ;
 	clearTimeout( bar_timeout ) ;
 	bar_timeout = setTimeout( function() {
-		$( "#slideshow_bar" ) .fadeOut( animate_speed ) ;
+		$( "#slideshow_bar" ) .css( "display" , "none" ) ;
 	} , 5000 ) ;
 }
 
