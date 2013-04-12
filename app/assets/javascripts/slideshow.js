@@ -16,6 +16,7 @@ jQuery( function() {
 	window_width  = $( window ) .width() || $( document ) .width() ;
 	window_height = $( window ) .height() || $( document ) .height() ;
 	slideshow_length = $( ".slideshow_window" ) .length ;
+	loading_start() ;
 } ) ;
 
 function blur_start( img_id )
@@ -45,6 +46,16 @@ function blur_start( img_id )
 		Pixastic.process( img_ele , "blurfast", { amount : 1.5 } ) ;
 	}
 	img_ele .src = img_ele .attributes[ "imgsrc" ] .nodeValue ;
+}
+
+function loading_start()
+{
+	var loading_count = 0 ;
+	setInterval( function() {
+		$( "#slideshow_loading img" ) .css( "display" , "none" ) ;
+		$( "#slideshow_loading #loading" + loading_count ) .css( "display" , "block" ) ;
+		loading_count = ( loading_count + 1 ) % 8 ;
+	} , 125 ) ;
 }
 
 var color_list = [ "#476A7F" , "#805889" , "#DB4565" , "#D1664E" , "#D68147" , "#89A06D" ] , now_color = 0 ;
@@ -200,9 +211,11 @@ function go_slideshow( num )
 		{
 			$selector .find( ".slideshow_img" ) .load( function() {
 				$selector .find( ".slideshow_img" ) .unbind() ;
+				$( "#slideshow_loading" ) .css( "display" , "none" ) ;
 				open_zoom() ; // zoom in the picture
 				open_animate() ; // start animation
 			} ) ;
+			$( "#slideshow_loading" ) .css( "display" , "block" ) ;
 			$selector .find( ".slideshow_img" ) .attr( "src" , $selector .find( ".slideshow_img:eq(0)" ) .attr( "imgsrc" ) ) ;
 		} else {
 			open_zoom() ; // zoom in the picture
