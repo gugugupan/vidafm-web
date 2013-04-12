@@ -3,16 +3,9 @@ class ActivitiesController < ApplicationController
 		data = Moment.fetch( nil, current_user , { :activity_id => params[ :id ] , :page => 0 , :page_size => 1 } ) 
     	render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
     	redirect_to( user_url(data['data']['user_id']) , :notice => 401 ) and return if data[ 'result' ] == 401 
-		#redirect_to "/moments/#{ data[ "data" ] [ "items" ] [ 0 ] [ "moment_id" ] }" , :notice => params[ :id ]
-		redirect_to "/moments/#{ data[ "data" ] [ "items" ] [ 0 ] [ "moment_id" ] }/slideshow"
-	end
 
-	def slideshow
-		data = Moment.fetch( nil, current_user , { :activity_id => params[ :id ] , :page => 0 , :page_size => 1 } ) 
-    	render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
-    	redirect_to( user_url(data['data']['user_id']) , :notice => 401 ) and return if data[ 'result' ] == 401 
-		#redirect_to "/moments/#{ data[ "data" ] [ "items" ] [ 0 ] [ "moment_id" ] }" , :notice => params[ :id ]
-		redirect_to "/moments/#{ data[ "data" ] [ "items" ] [ 0 ] [ "moment_id" ] }/slideshow"
+		redirect_to "/moments/#{ data[ "data" ] [ "items" ] [ 0 ] [ "moment_id" ] }" and return if params[ :md ] .nil?
+    	redirect_to "/moments/#{ data[ "data" ] [ "items" ] [ 0 ] [ "moment_id" ] }?md=ms" , :notice => params[ :id ]
 	end
 
 	def like 

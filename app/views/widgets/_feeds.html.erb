@@ -24,7 +24,7 @@
 					<div class="clearfix"> </div>
 				</div>
 				<div class="mlinfo" style="padding-left: 50px;">
-					<%= link_to "/moments/#{ feeds[ "moment" ] [ "id" ] }/slideshow" , :class => "gotoslideshow" do -%>
+					<%= link_to "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "gotoslideshow" do -%>
 						<%= image_tag "slideshow/btn_play.png" -%>
 					<% end -%>
 					<% feeds[ "moment" ] [ "created_at" ] = feeds[ "created_at" ] -%>
@@ -54,9 +54,9 @@
 						<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
 					</div>
 					<% if feeds[ "type" ] == "moment" -%>
-						<%= link_to "" , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
+						<%= link_to image_tag( "feeds/story_thum_mask.png" ) , "/moments/#{ feeds[ "moment" ] [ "id" ] }?md=ms" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 					<% else #is activity -%>
-						<%= link_to "" , "/activities/#{ feeds[ "activity" ] [ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "activity" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
+						<%= link_to "" , "/activities/#{ feeds[ "activity" ] [ "id" ] }?md=ms" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "activity" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 					<% end -%>
 					<div class="clearfix"> </div>
 				</div>
@@ -80,7 +80,7 @@
 							</p>
 							<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
 						</div>
-						<%= link_to image_tag( "feeds/story_thum_mask.png" ) , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
+						<%= link_to image_tag( "feeds/story_thum_mask.png" ) , "/moments/#{ feeds[ "moment" ] [ "id" ] }?md=ms" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ feeds[ "moment" ] [ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 					<% else #is activity -%>
 						<div class="mlcommentlike_content" style="width:90px">
 							<p> 
@@ -89,7 +89,7 @@
 							<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
 						</div>
 						<% for activity in feeds[ "activities" ] [ 0 , 3 ] do -%>
-							<%= link_to "" , "/activities/#{ activity[ "id" ] }" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ activity[ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
+							<%= link_to "" , "/activities/#{ activity[ "id" ] }?md=ms" , :class => "mlcommentlike_image_right" , :style => "background:url('#{ activity[ "image_small" ] }') no-repeat scroll center center white; background-size: cover;" -%>
 						<% end -%>
 					<% end -%>
 					<div class="clearfix"> </div>

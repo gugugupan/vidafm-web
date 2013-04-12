@@ -3,7 +3,7 @@
 	<div class="image_box">
 		<%= link_to image_tag( "empty.png" , "data-original" => pic[ "image_small" ] , :class => "lazy" , 
 			:cwidth => pic[ "width" ] , :cheight => pic[ "height" ] ) , 
-			"/activities/#{ pic[ 'id' ] }" , :class => "mlimage" %>
+			"/activities/#{ pic[ 'id' ] }?md=ms" , :class => "mlimage" %>
 		<% if pic[ 'has_audio' ] -%>
 			<%= image_tag "audio/icon_micro.png" , :class => "has_audio_box" -%>
 		<% end -%>
@@ -12,7 +12,7 @@
 	<div class="image_box">
 		<%= link_to image_tag( "empty.png" , "data-original" => pic[ "photo" ] [ "url_m" ] , :class => "lazy" , 
 			:cwidth => pic[ "photo" ] [ "width" ] , :cheight => pic[ "photo" ] [ "height" ] ) , 
-			"/moments/#{ pic[ 'moment_id' ] }#activity#{ pic[ 'id' ] }" , :class => "mlimage" %>
+			"/moments/#{ pic[ 'moment_id' ] }?md=ms#activity#{ pic[ 'id' ] }" , :class => "mlimage" %>
 		<% unless pic[ "audio" ] .nil? -%>
 			<%= image_tag "audio/icon_micro.png" , :class => "has_audio_box" -%>
 		<% end -%>
