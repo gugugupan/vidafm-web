@@ -93,7 +93,7 @@
 <div id="slideshow_end">
 	<div class="black_cover"> </div>
 	<div id="end_slideshow_part">
-		<%= link_to "" , "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;background-image:url(#{@moment[ "user" ] [ "avatar_file" ]}); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{ @moment[ "user" ] [ "id" ] }',sizingMethod='scale');" %>
+		<%= link_to "" , "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;background-image:url(#{@moment[ "user" ] [ "avatar_file" ]}); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{ @moment[ "user" ] [ "avatar_file" ] }',sizingMethod='scale');" %>
 		<div class="clearfix"> </div>
 		<div style="margin:0 auto; width:230px;">
 			<%= link_to like_moment_url( @moment[ "id" ] ) + "?agent=slideshow" , :class => "roundbutton" , :style => "margin-right: 40px;" , :remote => true , :method => :put do -%>
@@ -135,4 +135,7 @@
 	<% for i in 0..7 do -%>
 		<%= image_tag "slideshow/loading/loading-0#{ i }.png" , :id => "loading#{ i }" -%>
 	<% end -%>
+</div>
+
+<div id="slideshow_audio_hint">
 </div>

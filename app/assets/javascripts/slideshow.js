@@ -51,10 +51,13 @@ function blur_start( img_id )
 function loading_start()
 {
 	var loading_count = 0 ;
+	var loading_audio_count = 0 ;
 	setInterval( function() {
 		$( "#slideshow_loading img" ) .css( "display" , "none" ) ;
 		$( "#slideshow_loading #loading" + loading_count ) .css( "display" , "block" ) ;
 		loading_count = ( loading_count + 1 ) % 8 ;
+		loading_audio_count = ( loading_audio_count - 1 ) % 4 ;
+		$( "#slideshow_audio_hint" ) .css( "background-position" , ( loading_audio_count * 40 ) + "px" ) ;
 	} , 125 ) ;
 }
 
@@ -311,6 +314,7 @@ function show_photo()
 		// Play audio
 		if ( soundManager .ok() )
 		{
+			$( "#slideshow_audio_hint" ) .css( "display" , "block" ) ;
 			soundManager .setVolume( "bmusic" + music_num , 10 ) ;
 			var $audio_selector = $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".slideshow_audio" ) .eq( 0 ) ;
 			var audio_id = $audio_selector .attr( "audioid" ) ,
@@ -321,6 +325,7 @@ function show_photo()
 					id: "audio" + audio_id ,
 					url: audio_src ,
 					onfinish: function() {
+						$( "#slideshow_audio_hint" ) .css( "display" , "none" ) ;
 						if ( has_video() ) play_video() ;
 						else {
 							soundManager .setVolume( "bmusic" + music_num , 50 ) ;
