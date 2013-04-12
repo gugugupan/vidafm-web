@@ -13,7 +13,7 @@
 	<% end -%>
 
 	<% unless slideshow_item[ "video" ] .nil? -%>
-		<video id="<%= "video#{ slideshow_item[ "video" ] [ "id" ] }" %>" class="video-js vjs-default-skin my_video" controls preload="auto" width="100%" height="" poster="" autoplay style="z-index:-2;">
+		<video id="<%= "video#{ slideshow_item[ "video" ] [ "id" ] }" %>" class="video-js vjs-default-skin my_video" controls preload="auto" poster="" autoplay style="z-index:-2;">
             <source src="<%= slideshow_item[ "video" ] [ "url_iphone" ] %>" type="video/mp4">
         </video>
 	<% end -%>

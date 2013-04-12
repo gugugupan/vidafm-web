@@ -174,6 +174,7 @@ function start_slideshow()
 	} , animate_speed ) ;
 }
 
+var open_loading_timeout = null ;
 function go_slideshow( num )
 {
 	close_animate( function() {
@@ -206,16 +207,19 @@ function go_slideshow( num )
 		}
 
 		change_color() ;
-
-		if ( $selector .find( ".slideshow_img" ) .attr( "src" ) != "" )
+		//console.log( $selector .find( ".slideshow_img" ) .attr( "src" ) ) ;
+		if ( !$selector .find( ".slideshow_img" ) .attr( "src" ) )
 		{
 			$selector .find( ".slideshow_img" ) .load( function() {
 				$selector .find( ".slideshow_img" ) .unbind() ;
 				$( "#slideshow_loading" ) .css( "display" , "none" ) ;
+				clearTimeout( open_loading_timeout ) ;
 				open_zoom() ; // zoom in the picture
 				open_animate() ; // start animation
 			} ) ;
-			$( "#slideshow_loading" ) .css( "display" , "block" ) ;
+			open_loading_timeout = setTimeout( function() { 
+				$( "#slideshow_loading" ) .css( "display" , "block" ) ;
+			} , 500 ) ;
 			$selector .find( ".slideshow_img" ) .attr( "src" , $selector .find( ".slideshow_img:eq(0)" ) .attr( "imgsrc" ) ) ;
 		} else {
 			open_zoom() ; // zoom in the picture
@@ -342,14 +346,16 @@ function play_video()
 	var $video_selector = $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".video-js" ) ;
 	$video_selector .css( "z-index" , "10" ) ;
 	var video_name = $video_selector .attr( "id" ) ;
-	$video_selector .attr( "height" , window_height ) ;
 
 	var video = _V_( video_name ) ;
-	video .removeEvent( "ended" , null ) ;
+	video .width( $( ".slideshow_window:eq(" + slideshow_num + ")" ) .width() + 1 ) ;
+	video .height( $( ".slideshow_window:eq(" + slideshow_num + ")" ) .height() + 1 ) ;
+	video .removeEvent( "ended" ) ;
 	video .addEvent( "ended" , function() {
 		soundManager .setVolume( "bmusic" + music_num , 50 ) ;
 		play_next() ;
 	} ) ;
+	video .removeEvent( "ended" ) ;
 	video .play() ;
 }
 
