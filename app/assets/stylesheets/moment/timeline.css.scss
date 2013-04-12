@@ -3,6 +3,14 @@
 	-moz-border-radius: $radius ;
 	-webkit-border-radius: $radius ;	
 }
+
+@mixin all_background_rgba( $r , $g , $b , $a ) {
+	background-color: rgb( $r , $g , $b ) ;
+	background-color: rgba( $r , $g , $b , $a ) ;
+	*background-color: rgb( $r , $g , $b ) ;
+	filter: alpha(opacity = $a * 100); /* required for opacity to work in IE */
+}
+
 $text_color: #B9B2AA ;
 $content_color : #6d6e71 ;
 $info_color: #a6a099 ;
@@ -146,14 +154,16 @@ $info_color: #a6a099 ;
 			border:10px solid rgba(0,0,0,0);
 			*border:10px solid #000000; // hack for ie7
 			@include all_border_radius( 20px ) ;
+
+			background-position: left center;
+			background-repeat: no-repeat;
+			@include all_background_rgba(0,0,0,0.7);
 		}
 		.unlike {
-			background:rgba(0,0,0,.7) image-url("icon/icon_like_off.png") left center no-repeat;
-			*background:#000000 image-url("icon/icon_like_off.png") left center no-repeat;
+			background-image: image-url("icon/icon_timeline_unlike.png");
 		}
 		.liked {
-			background:rgba(0,0,0,.7) image-url("icon/icon_timeline_liked.png") left center no-repeat;
-			*background:#000000 image-url("icon/icon_timeline_liked.png") left center no-repeat;
+			background-image: image-url("icon/icon_timeline_liked.png");
 		}
 
 		.float_avatar {
