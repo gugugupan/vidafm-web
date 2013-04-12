@@ -446,29 +446,23 @@ function bar_pause()
 	$( ".slideshow_bar_play" ) .css( "display" , "block" ) ;
 }
 
-var bar_interval = null , bar_last_time = 0 ;
 function bar_on()
 {
 	bar_play() ;
 	$( "#slideshow_bar" ) .css( "display" , "block" ) ;
 	setTimeout( function() {
-		$( "#slideshow_bar" ) .css( "display" , "none" ) ;
-		$( "body" ) .mousemove( function() {
-			$( "#slideshow_bar" ) .fadeIn( 500 ) ;
-			if ( bar_last_time > 0 )
-				bar_last_time = 5000
-			else {
-				bar_last_time = 5000 ;
-				bar_interval = setInterval( function() {
-					bar_last_time -= 500 ;
-					if ( bar_last_time == 0 )
-					{
-						$( "#slideshow_bar" ) .fadeOut( 500 ) ;
-						clearInterval( bar_interval ) ;
-					}
-				} , 500 ) ;
-			}
-		} ) ;
+		$( "#slideshow_bar" ) .fadeOut( animate_speed ) ;
+		$( "body" ) .unbind() .mousemove( bar_fadeIn ) .click( bar_fadeIn ) ;
+	} , 5000 ) ;
+}
+
+var bar_timeout = null ;
+function bar_fadeIn()
+{
+	$( "#slideshow_bar" ) .fadeIn( animate_speed ) ;
+	clearTimeout( bar_timeout ) ;
+	bar_timeout = setTimeout( function() {
+		$( "#slideshow_bar" ) .fadeOut( animate_speed ) ;
 	} , 5000 ) ;
 }
 
