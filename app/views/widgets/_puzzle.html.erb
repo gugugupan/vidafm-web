@@ -20,6 +20,7 @@
 			<%= render :partial => "widgets/pic" , :collection => puzzle[ 0 , 1 ] , :locals => { :puzzle_type => true } %>
 			<% puzzle .delete_at( 0 ) -%>
 		<% end -%>
+		<div class="clearfix"> </div>
 		<div class="divparams" maxheight="<%= maxheight -%>"> </div>
 	</div>
 <% end -%>

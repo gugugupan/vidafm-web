@@ -99,14 +99,12 @@ function adjust_image( callback )
                 var h = Math .max( h1 , h2 ) ;
                 w1 = w1 * h / h1 ;
                 w2 = w2 * h / h2 ;
-                $row .height( 360 / ( w1 + w2 + 1 ) * h ) ;
-                var hh = 360 / ( w1 + w2 + 1 ) * h ;
+                var hh = 359 / ( w1 + w2 + 1 ) * h ;
+                $row .height( hh ) ;
                 w1 = w1 / h * hh ;
                 w2 = w2 / h * hh ;
-                $row .find( ".image_box:eq(0)" ) .width( w1 ) ;
-                $row .find( ".image_box:eq(0)" ) .height( hh ) ;
-                $row .find( ".image_box:eq(1)" ) .width( w2 ) ;
-                $row .find( ".image_box:eq(1)" ) .height( hh ) ;
+                $row .find( ".image_box:eq(0)" ) .width( w1 ) .height( hh ) ;
+                $row .find( ".image_box:eq(1)" ) .width( w2 ) .height( hh ) .css( "margin-left" , "1px" ) ;
                 $row .find( ".mlimage" ) .css( "width" , "100%" ) ;
                 $row .find( ".mlimage img" ) .css( "width" , "100%" ) ;
             }
@@ -123,17 +121,14 @@ function adjust_image( callback )
                 w1 = w1 * h / h1 ;
                 w2 = w2 * h / h2 ;
                 w3 = w3 * h / h3 ;
-                $row .height( 360 / ( w1 + w2 + w3 + 2 ) * h ) ;
-                var hh = 360 / ( w1 + w2 + w3 + 2 ) * h ;
+                var hh = 358 / ( w1 + w2 + w3 ) * h ;
+                $row .height( hh ) ;
                 w1 = w1 / h * hh ;
                 w2 = w2 / h * hh ;
                 w3 = w3 / h * hh ;
-                $row .find( ".image_box:eq(0)" ) .width( w1 ) ;
-                $row .find( ".image_box:eq(0)" ) .height( hh ) ;
-                $row .find( ".image_box:eq(1)" ) .width( w2 ) ;
-                $row .find( ".image_box:eq(1)" ) .height( hh ) ;
-                $row .find( ".image_box:eq(2)" ) .width( w3 ) ;
-                $row .find( ".image_box:eq(2)" ) .height( hh ) ;
+                $row .find( ".image_box:eq(0)" ) .width( w1 ) .height( hh ) ;
+                $row .find( ".image_box:eq(1)" ) .width( w2 ) .height( hh ) .css( "margin-left" , "1px" ) ;
+                $row .find( ".image_box:eq(2)" ) .width( w3 ) .height( hh ) .css( "margin-left" , "1px" ) ;
                 $row .find( ".mlimage" ) .css( "width" , "100%" ) ;
                 $row .find( ".mlimage img" ) .css( "width" , "100%" ) ;
             }

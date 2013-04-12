@@ -306,7 +306,7 @@ function show_photo()
 	var $selector = $( ".slideshow_window" ) .eq( slideshow_num ) ;
 	$selector .find( ".info_window" ) .fadeIn( animate_speed ) ;
 	if ( !has_audio() && !has_video() )
-		setTimeout( play_next , 5000 ) ;
+		setTimeout( play_next , 3000 ) ;
 	else if ( has_audio() ) {
 		// Play audio
 		if ( soundManager .ok() )
@@ -330,7 +330,7 @@ function show_photo()
 				} ) ; 
 			audio .play() ;
 		} else 
-			setTimeout( play_next , 5000 ) ;
+			setTimeout( play_next , 3000 ) ;
 	} else if ( has_video )
 		play_video() ;
 }
