@@ -327,6 +327,7 @@ function show_photo()
 						if ( has_video() ) play_video() ;
 						else {
 							soundManager .setVolume( "bmusic" + music_num , 50 ) ;
+							continue_background_music() ;
 							play_next() ;
 						}
 					}
@@ -356,6 +357,7 @@ function play_video()
 	video .removeEvent( "ended" ) ;
 	video .addEvent( "ended" , function() {
 		soundManager .setVolume( "bmusic" + music_num , 50 ) ;
+		continue_background_music() ;
 		play_next() ;
 	} ) ;
 	video .removeEvent( "ended" ) ;
@@ -467,6 +469,7 @@ function bar_fadeIn()
 function bar_off()
 {
 	bar_pause() ;
+	clearTimeout( bar_timeout ) ;
 	$( "#slideshow_bar" ) .css( "display" , "block" ) ;
 	$( "#slideshow_bar_container" ) .unbind() ;
 }

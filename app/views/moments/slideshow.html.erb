@@ -48,7 +48,7 @@
 		<div id="header_right">
 			<p id="header_des">Vida 生活. 照片. 微电影</p>
 
-			<% if request.user_agent =~ /(android|ipod|iphone)/i -%>
+			<% if request.user_agent =~ /(android|ipod|iphone|ipad)/i -%>
 				<%= link_to image_tag( "slideshow/icon_play_vida.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" , :class => "header_btn" %>
 				<%= link_to image_tag( "slideshow/icon_download.png" ) , "/" , :class => "header_btn" %>
 			<% else -%>
