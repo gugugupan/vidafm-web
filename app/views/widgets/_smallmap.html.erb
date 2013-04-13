@@ -1,8 +1,9 @@
-<a href="javascript:showMap(<%= moment .to_json %>)">
+<a href="javascript:showMap()">
 	<% map_str = "http://ditu.google.cn/maps/api/staticmap?maptype=roadmap&sensor=false&size=418x320" -%>
 	<% moment[ "items" ] .each() do | activity | -%>
 		<% markers = "&markers=#{ activity[ 'lat' ] },#{ activity[ 'lng' ] }" -%>
 		<% map_str = map_str + markers if activity[ "lat" ] != 0 || activity[ "lng" ] != 0 -%>
 	<% end -%>
 	<%= image_tag map_str , :alt => "" , :id => "google_map" %>
+	<div class="mapinfo" mapinfo="<%= moment .to_json -%>"> </div>
 </a>

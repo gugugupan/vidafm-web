@@ -5,5 +5,8 @@
 	lng = lng + item[ 'lng' ] .to_f
 end -%>
 <% if lat != 0 || lng != 0 -%>
-<%= link_to image_tag("icon/icon_location_button.png") , "javascript:showMap(#{moment .to_json})" , :class=>"btn_dark btn_middle" ,:style=>"margin-top:17px; float:right; margin-right:5px;padding-left:0px;" %>
+<%= link_to "javascript:showMap()" , :class=>"btn_dark btn_middle" ,:style=>"margin-top:17px; float:right; margin-right:5px;padding-left:0px;" do %>
+	<%= image_tag("icon/icon_location_button.png") %>
+	<div class="mapinfo" mapinfo="<%= moment .to_json -%>"> </div>
+<% end -%>
 <% end -%>

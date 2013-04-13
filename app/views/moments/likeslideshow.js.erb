@@ -1,6 +1,5 @@
 <% if @result[ 'result' ] == 0 -%>
 	$( ".slideshow_unlike_btn" ) .fadeOut( 0 ) ;
 	$( ".slideshow_like_btn" ) .fadeIn( 0 ) ;
-<% else -%>
-	showCenterBox( "<%= @result[ 'message' ] %>" ) ;
 <% end -%>
+showCenterBox( "<%= @result[ 'message' ] %>" ) ;

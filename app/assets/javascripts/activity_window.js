@@ -27,8 +27,12 @@ function destroyTheatre()
 
 /*==============================map section==============================================*/
 
-function showMap( moment )
+function showMap(  )
 {
+    var moment_str = $( ".mapinfo" ) .eq( 0 ) .attr( "mapinfo" ) ;
+    console.log( moment_str ) ;
+    //return ;
+    var moment = jQuery.parseJSON( moment_str ) ;
     var lat = 0 ;
     var lng = 0 ;
     for ( var i = 0 ; i < moment .items .length ; i ++ )
@@ -43,7 +47,7 @@ function showMap( moment )
     {
         var mapDiv = "<div id='map'> </div>"
         $( "#theatre" ) .prepend( mapDiv ) ;
-        $( "#map" ) .css( "left" , ( $( window ) .width() - 800 ) / 2 ) ;
+        $( "#map" ) .css( "margin-left" , "-" + ( $( window ) .width() / 2 * 0.6 ) + "px" ) ;
         beginTheatre() ;
 
         $( "#map" ) .click( function( event ) {

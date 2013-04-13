@@ -74,7 +74,9 @@
 
 <%#---Starting animate of slideshow%>
 <div id="slideshow_start">
-	<div id="start_user_avatar" class="roundavatar image" style="background-image:url(<%=@moment[ "user" ] [ "avatar_file" ] -%>); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= @moment[ "user" ] [ "avatar_file" ] -%>',sizingMethod='scale');"> </div>
+	<div id="start_user_avatar" class="roundavatar image"> 
+		<div class="roundavatar_file" style="background-image:url(<%=@moment[ "user" ] [ "avatar_file" ] -%>); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= @moment[ "user" ] [ "avatar_file" ] -%>',sizingMethod='scale');"> </div>
+	</div>
 	<p id="start_user_name" class="text"><%= @moment[ "user" ] [ "name" ] %></p>
 
 	<%= image_tag "slideshow/slideshow-catogory.png" , :id => "start_category_img" , :class => "image" -%>
@@ -93,7 +95,9 @@
 <div id="slideshow_end">
 	<div class="black_cover"> </div>
 	<div id="end_slideshow_part">
-		<%= link_to "" , "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;background-image:url(#{@moment[ "user" ] [ "avatar_file" ]}); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{ @moment[ "user" ] [ "avatar_file" ] }',sizingMethod='scale');" %>
+		<%= link_to "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;" do %>
+			<div class="roundavatar_file" style="background-image:url(<%=@moment[ "user" ] [ "avatar_file" ] -%>); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= @moment[ "user" ] [ "avatar_file" ] -%>',sizingMethod='scale');"> </div>
+		<% end -%>
 		<div class="clearfix"> </div>
 		<div style="margin:0 auto; width:230px;">
 			<%= link_to like_moment_url( @moment[ "id" ] ) + "?agent=slideshow" , :class => "roundbutton" , :style => "margin-right: 40px;" , :remote => true , :method => :put do -%>

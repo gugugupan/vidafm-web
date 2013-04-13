@@ -1,3 +1,10 @@
+@mixin all_background_rgba( $r , $g , $b , $a ) {
+	background-color: rgb( $r , $g , $b ) ;
+	background-color: rgba( $r , $g , $b , $a ) ;
+	*background-color: rgb( $r , $g , $b ) ;
+	filter: alpha(opacity = $a * 100); /* required for opacity to work in IE */
+}
+
 #moment-show-page {
 	width: 100%;
 
@@ -156,7 +163,7 @@
 #theatre {
 	display: none;
 	position: absolute;
-	background-color: rgba(0,0,0,0.8);
+	@include all_background_rgba(0,0,0,0.8);
 	top: 0px;
 	z-index: 256;
 	overflow-x: hidden;
@@ -234,9 +241,11 @@
 	}
 
 	#map {
-		position: relative;
-		width: 800px;
+		position: absolute;
+		width: 60%;
 		height: 600px;
+		left: 50%;
+		top: 50px;
 	}
 
 	.theatre_blank {

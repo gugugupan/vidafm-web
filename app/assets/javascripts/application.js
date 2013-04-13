@@ -7,7 +7,7 @@
 
 //= require jquery.lazyload
 //= require video
-//= require soundmanager2
+//= require soundmanager2-nodebug-jsmin
 
 jQuery( function() {
     arangeImage() ;
