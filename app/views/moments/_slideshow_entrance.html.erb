@@ -3,7 +3,7 @@
 	Params:
 		moment_id - moment id
 %>
-<%= link_to "/moments/#{ moment_id }/slideshow" , :id => "slideshow_entrance" , :class => "mouse" do -%>
+<%= link_to "/moments/#{ moment_id }" , :id => "slideshow_entrance" , :class => "mouse" do -%>
 	<%= image_tag "slideshow/btn_play.png" , :class => "entrance_img" %>
 	<p class="entrance_text">播放照片微电影</p>
 <% end -%>

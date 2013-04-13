@@ -112,7 +112,7 @@ function play_background_music() {
 					play_background_music() ;
 				} 
 			} ) ;
-		music .play() ;
+		continue_background_music() ;
 	}
 }
 
@@ -481,6 +481,7 @@ function play_pause()
 	} else 
 	if ( is_pause )
 	{
+		continue_background_music() ;
 		is_pause = false ;
 		will_pause = false ;
 		bar_play() ;
@@ -488,10 +489,12 @@ function play_pause()
 	} else
 	if ( will_pause )
 	{
+		continue_background_music() ;
 		will_pause = false ;
 		bar_play() ;
 	} else
 	{
+		pause_background_music() ;
 		will_pause = true ;
 		bar_pause() ;
 	}
@@ -500,8 +503,10 @@ function play_pause()
 function music_change()
 {
 	if ( music .paused )
-		continue_background_music() ;
-	else 
+	{
+		if ( !( will_pause || is_pause ) )
+			continue_background_music() ;
+	} else 
 		pause_background_music() ;
 }
 

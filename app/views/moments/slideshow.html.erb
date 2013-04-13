@@ -68,7 +68,7 @@
 			<%= image_tag( "slideshow/btn_play2.png" ) %>
 			<p>播放照片微电影</p>
 		<% end -%>
-		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }" , :class => "goto_momentshow" %>
+		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :class => "goto_momentshow" %>
 	</div>
 </div>
 
@@ -100,7 +100,7 @@
 					<%= image_tag "slideshow/slideshow-like.png" , :class => "slideshow_like_btn" , :style => "#{ "display:none" unless @moment[ "liked" ] }" -%>
 					<%= image_tag "slideshow/slideshow-unlike.png" , :class => "slideshow_unlike_btn" , :style => "#{ "display:none" if @moment[ "liked" ] }" -%>
 			<% end -%>
-			<%= link_to "/moments/#{ @moment[ "id" ] }#comment-block" , :class => "roundbutton" do -%>
+			<%= link_to "/moments/#{ @moment[ "id" ] }?md=ms#comment-block" , :class => "roundbutton" do -%>
 				<%= image_tag "slideshow/slideshow-comment.png" -%>
 			<% end -%>
 			<%= link_to sharelist_moment_url( @moment[ "id" ] ) + "?name=#{ @moment[ "name" ] }" , :remote => true , :method => :get , :class => "roundbutton" , :style => "margin-left: 40px;" do -%>
@@ -109,7 +109,7 @@
 			<div class="clearfix"> </div>
 		</div>
 		
-		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }" , :class => "goto_momentshow" %>
+		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :class => "goto_momentshow" %>
 	</div>
 </div>
 
