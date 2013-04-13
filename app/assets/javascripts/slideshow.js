@@ -117,14 +117,12 @@ function play_background_music() {
 }
 
 function pause_background_music() {
-	$( ".slideshow_bar_musicon" ) .css( "display" , "block" ) ;
-	$( ".slideshow_bar_musicoff" ) .css( "display" , "none" ) ;
 	music .pause() ;
 }
 
 function continue_background_music() {
-	$( ".slideshow_bar_musicoff" ) .css( "display" , "block" ) ;
-	$( ".slideshow_bar_musicon" ) .css( "display" , "none" ) ;
+	//console.log( pause_music ) ;
+	if ( pause_music ) return ;
 	music .play() ;
 }
 
@@ -494,20 +492,34 @@ function play_pause()
 		bar_play() ;
 	} else
 	{
+		//pause_background_music() ;
 		pause_background_music() ;
 		will_pause = true ;
 		bar_pause() ;
 	}
 }
 
+var pause_music = false ;
 function music_change()
 {
-	if ( music .paused )
+	var tmp = pause_music ;
+	if ( pause_music )
 	{
-		if ( !( will_pause || is_pause ) )
-			continue_background_music() ;
+		pause_music = false ;
+		$( ".slideshow_bar_musicon" ) .css( "display" , "none" ) ;
+		$( ".slideshow_bar_musicoff" ) .css( "display" , "block" ) ;
 	} else 
-		pause_background_music() ;
+	{
+		pause_music = true ;
+		$( ".slideshow_bar_musicon" ) .css( "display" , "block" ) ;
+		$( ".slideshow_bar_musicoff" ) .css( "display" , "none" ) ;
+	}
+
+	if ( !( will_pause || is_pause || is_end ) )
+		if ( tmp )
+			continue_background_music() ;
+		else 
+			pause_background_music() ;
 }
 
 // Remove dialog box

@@ -342,13 +342,13 @@ img {
 	overflow: hidden;
 	display: block;
 	float: none;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
 
 	.roundavatar_file {
 		width: 100%;
 		height: 100%;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
 	}
 }
 

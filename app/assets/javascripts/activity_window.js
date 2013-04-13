@@ -53,6 +53,7 @@ function showMap(  )
         $( "#map" ) .click( function( event ) {
             event .stopPropagation() ;
         }) ;
+        $( "#theatre" ) .click( destroyTheatre ) ;
 
         var options = {
             backgroundColor : "#BBBBBB" ,
