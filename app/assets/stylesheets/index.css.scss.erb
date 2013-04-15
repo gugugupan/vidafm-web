@@ -1,0 +1,163 @@
+#index {
+	width: 100%;
+	position: relative;
+
+	#index_head {
+		width: 100%;
+		height: 430px;
+		overflow: hidden;
+
+		#red_block {
+			width: 100%;
+			height: 360px;
+			background-color: #e70e32;
+
+			#pic_col {
+				position: absolute;
+				margin-left: -450px;
+				left: 50%;
+				z-index: 10;
+			}
+
+			#intro_col {
+				background: url(<%=asset_path "index/qrcode2.png"%>) no-repeat left center;
+				padding-left: 120px;
+				height: 120px;
+				position: absolute ;
+				margin-left: 95px;
+				margin-top: 200px;
+				left: 50%;
+
+				#text {
+					margin-bottom: 14px;
+				}
+
+				p {
+					color: white;
+					font-size: 18px;
+					display: block;
+					margin-top: 14px;
+				}
+			}
+		}
+
+		#grey_bar{
+			background: url(<%=asset_path "index/grey_bar_bg.png"%>);
+			width: 100%;
+			height: 70px;
+
+			img{
+				left: 50%;
+				position: absolute;
+				margin-left: -482px;
+			}
+		}
+	}
+
+	#staruser_block
+	{
+		width: 880px;
+		margin: 30px auto 15px;
+
+		p#staruser_head
+		{
+			display: block;
+			padding-left: 50px;
+			padding-bottom: 15px;
+			border-bottom: 1px dashed rgba(0,0,0,0.3);
+
+			background:url(<%=asset_path "icon/icon_star_big.png"%>) no-repeat left top;
+			font-size: 21px;
+		}
+
+		#staruser_list
+		{
+			padding-top: 15px;
+			border-top: 1px dashed white;
+
+			.feature_user
+			{
+				float: left;
+				margin-right: 20px;
+				margin-left: 0;
+				&:nth-child( 4n ) { margin-right: 0; }
+			}
+		}
+	}
+
+	#theme_moment
+	{
+		width: 880px;
+		margin: 30px auto;
+
+		#theme_head
+		{
+			display: block;
+			padding-left: 40px;
+			padding-bottom: 15px;
+			border-bottom: 1px dashed rgba(0,0,0,0.3);
+
+			background:url(<%=asset_path "icon/icon_theme.png"%>) no-repeat left top;
+			font-size: 21px;
+		}
+
+		#theme_list
+		{
+			padding-top: 15px;
+			border-top: 1px dashed white;
+
+			.thumbnail
+			{
+				float: left;
+				margin-right: 20px;
+				margin-left: 0px;
+				margin-bottom: 15px;
+				&:nth-child( 3n ) { margin-right: 0; }
+			}
+		}
+	}
+}
+
+#download_ios {
+	float: left;
+	width: 99px;
+	height: 36px;
+	background: url(<%=asset_path "index/iphone_download.png"%>) no-repeat center center;
+
+	&:hover { background: url(<%=asset_path "index/iphone_download_hover.png"%>) no-repeat center center; }
+}
+
+#download_android {
+	float: left;
+	margin-left: 20px;
+	width: 107px;
+	height: 36px;
+	background: url(<%=asset_path "index/android_download.png"%>) no-repeat center center;
+
+	&:hover { background: url(<%=asset_path "index/android_download_hover.png"%>) no-repeat center center; }
+}
+
+#footer {
+	position: relative;
+	width: 100%;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+
+	.footer_text {
+		margin-bottom: 10px;
+		width: 100%;
+		display: block;
+		float: left;
+		clear: both;
+	}
+
+	.footer_link {
+		float: none;
+		display: inline;
+	}
+
+	.footer_icon {
+		margin: 10px auto;
+	}
+}
