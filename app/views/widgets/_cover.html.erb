@@ -3,12 +3,24 @@
 <script type="text/javascript">
 	var cover_address = $( ".cover-pic" ) .find( "img" ) .eq( 0 ) .attr( "src" ) ;
 	$( ".cover-pic" ) .css({
-		"background" : "url("+cover_address+")" ,
-		"background-attachment" : "fixed" ,
+		"background-image" : "url("+cover_address+")" ,
 		"background-size" : "cover" ,
 		"background-position" : "center" 
 	}) ;
+	var agent = navigator.userAgent ;
+	if ( !( agent .indexOf( "iPhone" ) > 0 || agent .indexOf( "android" ) > 0 || agent .indexOf( "iPad" ) > 0 ) )
+	$( ".cover-pic" ) .css({
+		"background-attachment" : "fixed"
+	}) ;
 </script>
+
+<!--[if iphone]>
+<script type="text/javascript">
+	$( ".cover-pic" ) .css({
+		"background-attachment" : "none" 
+	}) ;
+</script>
+<![endif]-->
 
 <!--[if IE]>
 <script type="text/javascript">
