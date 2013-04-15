@@ -268,7 +268,7 @@ img {
 #slideshow_bar {
 	width: 320px;
 	height: 55px;
-	background-image: url("slideshow/slidshow_toolbar.png");
+	background-image: image-url("slideshow/slidshow_toolbar.png");
 	display: none;
 
 	#bar_btn_1 {
@@ -319,7 +319,7 @@ img {
 #slideshow_audio_hint{
 	width: 40px;
 	height: 58px;
-	background-image: url("slideshow/icon_micro.png");
+	background-image: image-url("slideshow/icon_micro.png");
 	position: absolute;
 	top: 0;
 	left: 50%;
