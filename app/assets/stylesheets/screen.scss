@@ -1,9 +1,4 @@
-@font-face {
-	font-family:myFont;
-	src:asset-url("helvetica_neue_condensed_bold.ttf",font);
-}
-
-$font:myFont, Helvetica, Arial, sans-serif,"Microsoft YaHei",Hei;
+$font:Helvetica, Arial, sans-serif,"Microsoft YaHei",Hei;
 $font_dark:#363636;
 $font_grey:#77706f;
 $red:#C61635;
