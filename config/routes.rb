@@ -21,6 +21,8 @@ Bluerain::Application.routes.draw do
   match "/v/kaixin001-signin" => redirect("http://iphone.kaixin001.com/reg/prepare.php")
   get "android_download" => "misc#android_download"
 
+  # 智能下载连接
+  match "/dd" => "misc#auto_download"
 
   root :to => "misc#index"
   match "home" => "misc#friend"

@@ -62,4 +62,10 @@ class MiscController < ApplicationController
 
     render :layout => false 
   end
+
+  def auto_download 
+    redirect_to "/d/iphone" and return if request.user_agent =~ /(ipod|iphone|ipad)/i
+    redirect_to "/d/android" and return if request.user_agent =~ /(android)/i
+    redirect_to "/"
+  end 
 end
