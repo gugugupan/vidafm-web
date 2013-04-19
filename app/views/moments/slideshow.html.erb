@@ -43,14 +43,14 @@
 	<div class="black_cover"> </div>
 	<div id="slideshow_header_content">
 		<div id="header_left">
-			<%= link_to image_tag( "slideshow/vida_icon.png" ) , "/" %>
+			<%= link_to image_tag( "slideshow/icon_vida@2x.png" ) , "/" %>
 		</div>
 		<div id="header_right">
 			<p id="header_des">Vida 生活. 照片. 微电影</p>
 
 			<% if request.user_agent =~ /(android|ipod|iphone|ipad)/i -%>
-				<%= link_to image_tag( "slideshow/icon_play_vida.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" , :class => "header_btn" %>
-				<%= link_to image_tag( "slideshow/icon_download.png" ) , "/" , :class => "header_btn" %>
+				<%= link_to image_tag( "slideshow/play_by_vida@2x.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" , :class => "header_btn" %>
+				<%= link_to image_tag( "slideshow/download_vida@2x.png" ) , "/" , :class => "header_btn" %>
 			<% else -%>
 				<%= link_to image_tag( "slideshow/icon_download_iphone.png" ) , "http://itunes.apple.com/cn/app/id454984086?ls=1" , :class => "header_btn" %>
 				<%= link_to image_tag( "slideshow/icon_download_android.png" ) , "/android_download" , :class => "header_btn" %>

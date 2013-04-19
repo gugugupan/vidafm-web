@@ -99,7 +99,7 @@ function adjust_image( callback )
                 var h = Math .max( h1 , h2 ) ;
                 w1 = w1 * h / h1 ;
                 w2 = w2 * h / h2 ;
-                var hh = 359 / ( w1 + w2 + 1 ) * h ;
+                var hh = 358 / ( w1 + w2 + 1 ) * h ;
                 $row .height( hh ) ;
                 w1 = w1 / h * hh ;
                 w2 = w2 / h * hh ;
@@ -121,7 +121,7 @@ function adjust_image( callback )
                 w1 = w1 * h / h1 ;
                 w2 = w2 * h / h2 ;
                 w3 = w3 * h / h3 ;
-                var hh = 358 / ( w1 + w2 + w3 ) * h ;
+                var hh = 357 / ( w1 + w2 + w3 ) * h ;
                 $row .height( hh ) ;
                 w1 = w1 / h * hh ;
                 w2 = w2 / h * hh ;
