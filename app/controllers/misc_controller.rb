@@ -11,7 +11,6 @@ class MiscController < ApplicationController
       render "/misc/wap" , :layout => false
       return
     end
-    render :layout => "application_nofooter"
   end
 
   def about
