@@ -1,140 +1,167 @@
+@mixin all_background_size_cover( $image_url )
+{
+	background-image: url( $image_url );
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$image_url', sizingMethod='scale')";
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$image_url', sizingMethod='scale');
+}
+$font_color : #777777;
+
 #index {
 	width: 100%;
-	position: relative;
+	background-color: white;
 
-	#index_head {
+	#index_cover {
 		width: 100%;
-		height: 430px;
+		height: 650px;
+		@include all_background_size_cover( "<%= asset_path "index/wood_background.jpg" %>" );
+		position: relative;
+
+		#center_phone {
+			width: 560px;
+			height: 500px;
+			position: absolute;
+			left: 50%;
+			margin-left: -280px;
+		}
+
+		#left_content {
+			position: absolute;
+			width: 340px;
+			top: 120px;
+			left: 3%;
+
+			#index_logo_title {
+				font-size: 36px;
+				color: white;
+				margin-top: 20px;
+			}
+
+			#download_content {
+				width: 100%;
+				margin-top: 20px;
+
+				#left_part {
+					float: left;
+				}
+
+				#right_part {
+					float: left;
+					width: 180px;
+					margin-left: 15px;
+
+					.iphone_download {
+						width: 162px;
+						height: 50px;
+						float: left;
+						background-image: url(<%= asset_path "index/btn_download_ios.png" %>);
+					}
+
+					.android_download {
+						width: 173px;
+						height: 50px;
+						float: left;
+						margin-top: 10px;
+						background-image: url(<%= asset_path "index/btn_download_android.png" %>);
+					}
+				}
+			}
+		}
+
+		#bottom_text {
+			position: absolute;
+			bottom: 150px;
+			width: 100%;
+			text-align: center;
+			color: white;
+			font-size: 24px;
+		}
+
+		#index_login_btn {
+			right: 5%;
+			top: 30px;
+			position: absolute;
+			width: 100px;
+			height: 35px;
+			padding-top: 15px;
+			background-image: url(<%= asset_path "index/btn_login.png" %>);
+			background-repeat: no-repeat;
+			color: white;
+			font-size: 18px;
+			text-align: center;
+		}
+
+		#hot_stroy_btn {
+			position: absolute;
+			right: 5%;
+			top: 200px;
+			width: 163px;
+			height: 60px;
+			background-image: url(<%= asset_path "index/btn_feature_moment.png" %>);
+			background-repeat: no-repeat;
+		}
+	}
+
+	.intro_block {
+		width: 100%;
+		padding: 70px 0;
+		text-align: center;
+		color: $font_color;
+	}
+
+	.window_block {
+		width: 100%;
+		height: 250px;
+		position: relative;
 		overflow: hidden;
+		background-size: cover;
 
-		#red_block {
+		img.background_img {
+			position: absolute;
+			display: none;
 			width: 100%;
-			height: 360px;
-			background-color: #e70e32;
-
-			#pic_col {
-				position: absolute;
-				margin-left: -450px;
-				left: 50%;
-				z-index: 10;
-			}
-
-			#intro_col {
-				background: url(<%=asset_path "index/qrcode2.png"%>) no-repeat left center;
-				padding-left: 120px;
-				height: 120px;
-				position: absolute ;
-				margin-left: 95px;
-				margin-top: 200px;
-				left: 50%;
-
-				#text {
-					margin-bottom: 14px;
-				}
-
-				p {
-					color: white;
-					font-size: 18px;
-					display: block;
-					margin-top: 14px;
-				}
-			}
+			top: 0;
 		}
 
-		#grey_bar{
-			background: url(<%=asset_path "index/grey_bar_bg.png"%>);
+		.grey_cover {
 			width: 100%;
-			height: 70px;
-
-			img{
-				left: 50%;
-				position: absolute;
-				margin-left: -482px;
-			}
+			height: 100%;
+			position: absolute;
+			background-image: url(<%= asset_path "index/grey_point.png" %>);
 		}
 	}
 
-	#staruser_block
-	{
-		width: 880px;
-		margin: 30px auto 15px;
+	#intro1 {
+		font-size: 24px;
+	}
 
-		p#staruser_head
-		{
-			display: block;
-			padding-left: 50px;
-			padding-bottom: 15px;
-			border-bottom: 1px dashed rgba(0,0,0,0.3);
+	#intro2 {
+		font-size: 18px;
+	}
 
-			background:url(<%=asset_path "icon/icon_star_big.png"%>) no-repeat left top;
-			font-size: 21px;
-		}
+	#intro3 {
+		font-size: 24px;
+		position: relative;
 
-		#staruser_list
-		{
-			padding-top: 15px;
-			border-top: 1px dashed white;
-
-			.feature_user
-			{
-				float: left;
-				margin-right: 20px;
-				margin-left: 0;
-				&:nth-child( 4n ) { margin-right: 0; }
-			}
+		.float_camera {
+			position: absolute;
+			left: 50%;
+			margin-left: -45px;
+			top: -45px;
 		}
 	}
 
-	#theme_moment
-	{
-		width: 880px;
-		margin: 30px auto;
-
-		#theme_head
-		{
-			display: block;
-			padding-left: 40px;
-			padding-bottom: 15px;
-			border-bottom: 1px dashed rgba(0,0,0,0.3);
-
-			background:url(<%=asset_path "icon/icon_theme.png"%>) no-repeat left top;
-			font-size: 21px;
-		}
-
-		#theme_list
-		{
-			padding-top: 15px;
-			border-top: 1px dashed white;
-
-			.thumbnail
-			{
-				float: left;
-				margin-right: 20px;
-				margin-left: 0px;
-				margin-bottom: 15px;
-				&:nth-child( 3n ) { margin-right: 0; }
-			}
-		}
+	.scroll_btn {
+		background-image: url(<%= asset_path "index/btn_down.png" %>);
+		background-repeat: none;
+		width: 90px;
+		height: 90px;
+		position: absolute;
+		left: 50%;
+		margin-left: -45px;
 	}
-}
-
-#download_ios {
-	float: left;
-	width: 99px;
-	height: 36px;
-	background: url(<%=asset_path "index/iphone_download.png"%>) no-repeat center center;
-
-	&:hover { background: url(<%=asset_path "index/iphone_download_hover.png"%>) no-repeat center center; }
-}
-
-#download_android {
-	float: left;
-	margin-left: 20px;
-	width: 107px;
-	height: 36px;
-	background: url(<%=asset_path "index/android_download.png"%>) no-repeat center center;
-
-	&:hover { background: url(<%=asset_path "index/android_download_hover.png"%>) no-repeat center center; }
 }
 
 #footer {

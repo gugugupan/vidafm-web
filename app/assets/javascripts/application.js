@@ -5,18 +5,22 @@
 //= require lazyload
 //= require activity_window
 
-//= require jquery.lazyload
+//= require plugin/jquery.lazyload
 //= require video
 //= require soundmanager2-nodebug-jsmin
+//= require plugin/jquery.smooth-scroll.min
+//= require plugin/jquery.parallax
 
 jQuery( function() {
     arangeImage() ;
 	// Login function
 	$( ".login_btn" ) .click( function() {
 		$( "#login_detail" ) .fadeIn( 400 ) ;
+		$( "body" ) .css( "overflow-y" , "hidden" ) ;
 	});
 	$( "#login_detail" ) .click( function() {
 		destroyDialog( 0 ) ;
+		$( "body" ) .css( "overflow-y" , "scroll" ) ;
 	}) ;
 });
 

@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require pixastic.custom
+//= require plugin/pixastic.custom
 //= require soundmanager2-nodebug-jsmin
 //= require video
 

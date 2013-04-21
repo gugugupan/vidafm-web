@@ -1,67 +1,111 @@
 <%= content_for :title do %>
-  Vida（微达） - 手机照片故事社区
+Vida（微达） - 生活 . 照片 . 微电影
 <% end -%>
 
 <%= content_for :meta_description do %>
 Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活轨迹。
 <% end -%>
 
-<%= content_for :page_specific_asset do -%>
-<!--图像的自适应-->
-<script>
-jQuery( function() {
-  for ( var i = 0 ; i < $( ".user_cover_photo" ) .length ; i ++ )
-    centerImage( $( ".user_cover_photo" ) .eq( i ) .parent() , $( ".user_cover_photo" ) .eq( i ) ) ;
-} ) ;
-</script>
-<% end -%>
-
 <div id="index">
-  <div id="index_head">
-    <div id="red_block">
-      <div id="pic_col">
-        <%= image_tag "index/header_iphone.png" %>
-      </div>
-      <div id="intro_col">
-        <div id="text">
-          <%= image_tag "index/logo.png" %>
-          <p>中国最大的手机照片故事社区</p>
+  <div id="index_cover">
+    <%= image_tag "index/iphone5_mockup.png" , :id => "center_phone" %>
+    <div id="left_content">
+      <%= image_tag "index/logo.png" , :id => "index_logo" %>
+      <p id="index_logo_title">生活 . 照片 . 微电影</p>
+      <div id="download_content">
+        <div id="left_part">
+          <%= image_tag "index/QRcode.png" %>
         </div>
-        <%= render :partial => "widgets/download_bar", :locals => { :style => "new" } %>
+        <div id="right_part">
+          <%= link_to "" , "/d/iphone" , :class => "iphone_download" %>
+          <%= link_to "" , "/android_download" , :class => "android_download" %>
+        </div>
+        <div class="clearfix"> </div>
       </div>
     </div>
-    <div id="grey_bar">
-      <%= image_tag "index/brief.png" %>
+    <div id="bottom_text">
+      <p>Vida可能是最真实的照片微电影生活分享社区</p>
+      <p>已有接近千万用户选择Vida 通过照片分享真实生活</p>
+      <p>现在加入, 一起发现分享生活之美</p>
     </div>
+    <% unless @current_user -%>
+      <%= link_to "登 入 >" , "#" , :id => "index_login_btn" , :class => "mouse login_btn" %>
+    <% else -%>
+      <%= link_to "进入Vida" , "/home" , :id => "index_login_btn" , :class => "mouse" %>
+    <% end -%>
+    <%= link_to "" , "/discover/index.html" , :id => "hot_stroy_btn" %>
+    <%= link_to "" , "#intro1" , :class => "scroll_btn" , :style => "bottom: 30px;" -%>
   </div>
 
-<% unless @current_user -%>
-  <a id="login" style="position:absolute;right:50px;top:50px;" class="login_btn mouse">
-    登 入
-    <%= image_tag "icon/icon_detail.png" %>
-  </a>
-  <%= render :partial => "widgets/login" %>
-<% else -%>
-  <a id="login" style="position: absolute;right: 50px;top: 50px;" class="login_btn mouse" href="/home">
-    进入Vida
-    <%= image_tag "icon/icon_detail.png" %>
-  </a>
-<% end -%>
-
-  <div id="staruser_block">
-    <p id="staruser_head">星用户</p>
-    <div id="staruser_list">
-      <%= render :partial => "widgets/staruser" , :collection => @data[ "recommended" ] [ 0 , 4 ] , :locals => { :type => "normal" , :width => "205px" , :text => nil } %>
-      <div class="clearfix"> </div>
-    </div>
+  <div id="android_download">
+    
   </div>
 
-  <div id="theme_moment">
-    <p id="theme_head">主题活动</p>
-    <div id="theme_list">
-      <%= render :partial => "widgets/hotstory" , :collection => @moments[ 0 , 6 ] , :locals => { :width => 280 , :height => 194 } %>
-      <div class="clearfix"> </div>
-    </div>
+  <div id="intro1" class="intro_block">
+    <%= image_tag "index/intro_bg_1.jpg" %>
+    <p style="margin-top: 40px;">微游记, 美食记, 心情日记, 自拍秀, 生活点滴汇成微电影</p>
+    <p style="margin-top: 5px;">让你的照片更有趣</p>
   </div>
 
+  <div id="window1" class="window_block" style="background-image:url(<%= asset_path "index/big_bg_1.jpg" %>);">
+    <%= image_tag "index/big_bg_1.jpg" , :class => "background_img" %>
+    <div class="grey_cover"> </div>
+    <%= link_to "" , "#intro2" , :class => "scroll_btn" , :style => "bottom: 100px;" -%>
+  </div>
+
+  <div id="intro2" class="intro_block">
+    <%= image_tag "index/intro_bg_2.jpg" %>
+    <p style="margin-top: 15px;">自动将照片汇成照片微电影, 专有技术使照片微电影比播放视频<span style="font-size:108px; font-weight:200;">80%</span>省流量.</p>
+  </div>
+
+  <div id="window2" class="window_block" style="background-image:url(<%= asset_path "index/big_bg_2.jpg" %>);">
+    <%= image_tag "index/big_bg_2.jpg" , :class => "background_img" %>
+    <div class="grey_cover"> </div>
+    <%= link_to "" , "#intro3" , :class => "scroll_btn" , :style => "bottom: 100px;" -%>
+  </div>
+
+  <div id="intro3" class="intro_block">
+    <%= image_tag "index/intro_bg_3.png" , :class => "float_camera" %>
+    <p>业界最早推出并保持领先的实时特效镜头和渲染引擎</p>
+    <p style="margin-top: 5px;">摄影摄像都可用, 所见即所拍</p>
+    <p style="margin-top: 5px;">保证每个瞬间都精彩</p>
+  </div>
+
+  <div id="window3" class="window_block" style="background-image:url(<%= asset_path "index/big_bg_2.jpg" %>);">
+    <%= image_tag "index/big_bg_2.jpg" , :class => "background_img" %>
+    <div class="grey_cover"> </div>
+  </div>
+
+  <div id="footer">
+    <p class="footer_text">
+      <%= link_to "商务合作" , business_url , :class => "footer_link mouse" %>
+      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <%= link_to "联系我们" , about_url , :class => "footer_link mouse" %>
+      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <%= link_to "沪ICP备10216111号-2" , "http://www.miitbeian.gov.cn" , :class => "footer_link mouse" %>
+    </p>
+    <p class="footer_text">
+      <span>友情链接:&nbsp;</span>
+      <%= link_to "微米印" , "http://vimi.in/" , :class => "footer_link mouse" %>
+      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <%= link_to "360手机助手" , "http://zhushou.360.cn/index" , :class => "footer_link mouse" %>
+      <span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+      <%= link_to "360安全卫士" , "http://www.360.cn/weishi/" , :class => "footer_link mouse" %>
+    </p>
+    <div class="footer_icon">
+      <%= image_tag( "index/bb3.png" , :class => "gov_icon" ) %>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+
+  <%= render :partial => "widgets/login" -%>
+
+  <script type="text/javascript">
+    $( document ) .ready( function() {
+      $( "a.scroll_btn" ) .smoothScroll( { speed : 1000 } ) ;
+      $( "#window1" ) .parallax( 0 , 0.5 ) ;
+      $( "#window2" ) .parallax( 0 , 0.5 ) ;
+      $( "#window3" ) .parallax( 0 , 0.5 ) ;
+    } ) ;
+  </script>
 </div>

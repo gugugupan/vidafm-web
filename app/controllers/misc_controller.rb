@@ -11,9 +11,7 @@ class MiscController < ApplicationController
       render "/misc/wap" , :layout => false
       return
     end
-
-    @moments = api_call( "Moment" , :hot_story , nil , nil ) [ "data" ] [ "public_moments" ]
-    @data = User.fetch_star_user( nil , current_user , nil ) [ "data" ]
+    render :layout => "application_nofooter"
   end
 
   def about
