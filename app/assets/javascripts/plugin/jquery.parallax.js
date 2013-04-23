@@ -8,11 +8,11 @@
 	});
 
 	$.fn.parallax = function(xpos, speedFactor, outerHeight) {
-		console.log( "!!!!!" ) ;
 		var $this = $(this);
 		var getHeight;
 		var firstTop;
 		var paddingTop = 0;
+		var $window_select = $this ;
 		
 		//get the starting position of each element to have parallax applied to it		
 		$this.each(function(){
@@ -42,6 +42,7 @@
 				var $element = $(this);
 				var top = $element.offset().top;
 				var height = getHeight($element);
+				firstTop = $window_select.offset().top;
 
 				// Check if totally above or totally below viewport
 				if (top + height < pos || top > pos + windowHeight) {

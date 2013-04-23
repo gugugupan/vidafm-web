@@ -6,6 +6,7 @@ class MiscController < ApplicationController
   end
 
   def index
+    @android_url = "http://zhushou.360.cn/detail/index/soft_id/4945?recrefer=SE_D_vida"
     if request.url =~ /is_mobile=/i || request.user_agent =~ /(android|ipod|iphone)/i
       @is_ios = ( request.user_agent =~ /(ipod|iphone)/i )
       render "/misc/wap" , :layout => false

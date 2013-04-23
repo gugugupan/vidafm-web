@@ -9,9 +9,23 @@ Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活
 <%= content_for :page_specific_asset do %>
 <style type="text/css">
   body {
-    background: white ;
+    background: #1a1a1a ;
+    min-width: 900px;
+    overflow-x: auto;
+  }
+
+  #footer {
+    color: #777777 ;
+  }
+
+  #footer a {
+    color: #777777 ;
   }
 </style>
+<script type="text/javascript">
+  function closeAndroid(){ $( "#android_download" ) .fadeOut( 400 ) ; }
+  function openAndroid(){ $( "#android_download" ) .fadeIn( 400 ) ; }
+</script>
 <% end -%>
 
 <div id="index">
@@ -26,7 +40,7 @@ Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活
         </div>
         <div id="right_part">
           <%= link_to "" , "/d/iphone" , :class => "iphone_download" %>
-          <%= link_to "" , "/android_download" , :class => "android_download" %>
+          <a href=javascript:openAndroid() class="android_download"> </a>
         </div>
         <div class="clearfix"> </div>
       </div>
@@ -46,7 +60,12 @@ Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活
   </div>
 
   <div id="android_download">
-    
+    <%= image_tag "index/android_logo.png" %>
+    <p class="android_info">适用于Android 2.3以上手机</p>
+    <%= link_to "" , "/d/android" , :id => "download" %>
+    <%= link_to "" , "/d/android" , :id => "download_wandoujia" %>
+    <%= link_to "" , "zhushou360://type=apk&name=Vida&url=#{ @android_url }" , :id => "download_360" %>
+    <a class="android_close_btn" href=javascript:closeAndroid()><%= image_tag "icon/icon_close.png" -%></a>
   </div>
 
   <div id="intro1" class="intro_block">
@@ -55,7 +74,7 @@ Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活
     <p style="margin-top: 5px;">让你的照片更有趣</p>
   </div>
 
-  <div id="window1" class="window_block" style="background-image:url(<%= asset_path "index/big_bg_1.jpg" %>);">
+  <div id="window1" class="window_block">
     <%= image_tag "index/big_bg_1.jpg" , :class => "background_img" %>
     <div class="grey_cover"> </div>
     <%= link_to "" , "#intro2" , :class => "scroll_btn" , :style => "bottom: 100px;" -%>
@@ -66,10 +85,10 @@ Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活
     <p style="margin-top: 15px;">自动将照片汇成照片微电影, 专有技术使照片微电影比播放视频<span style="font-size:108px; font-weight:200;">80%</span>省流量.</p>
   </div>
 
-  <div id="window2" class="window_block" style="background-image:url(<%= asset_path "index/big_bg_2.jpg" %>);">
+  <div id="window2" class="window_block">
     <%= image_tag "index/big_bg_2.jpg" , :class => "background_img" %>
     <div class="grey_cover"> </div>
-    <%= link_to "" , "#intro3" , :class => "scroll_btn" , :style => "bottom: 100px;" -%>
+    <%= link_to "" , "#intro3" , :class => "scroll_btn" , :style => "top: 100px;" -%>
   </div>
 
   <div id="intro3" class="intro_block">
@@ -79,19 +98,19 @@ Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活
     <p style="margin-top: 5px;">保证每个瞬间都精彩</p>
   </div>
 
-  <div id="window3" class="window_block" style="background-image:url(<%= asset_path "index/big_bg_2.jpg" %>);">
-    <%= image_tag "index/big_bg_2.jpg" , :class => "background_img" %>
-    <div class="grey_cover"> </div>
-  </div>
-
   <%= render :partial => "widgets/login" -%>
 
   <script type="text/javascript">
     $( document ) .ready( function() {
       $( "a.scroll_btn" ) .smoothScroll( { speed : 1000 } ) ;
-      $( "#window1" ) .parallax( 0 , 0.5 ) ;
-      $( "#window2" ) .parallax( 0 , 0.5 ) ;
-      $( "#window3" ) .parallax( 0 , 0.5 ) ;
+      if ( !( document.all ) ) // hack for ie
+      {
+        $( "#window1" ) .parallax( 0 , 0.3 ) ;
+        $( "#window2" ) .parallax( 0 , 0.3 ) ; 
+      } else 
+      {
+        $( ".background_img" ) .css( "display" , "block" ) ;
+      }
     } ) ;
   </script>
 </div>
