@@ -13,6 +13,7 @@ var will_pause = false ;
 var is_end = false ;
 
 jQuery( function() {
+	gaDownload() ;
 	window_width  = $( window ) .width() || $( document ) .width() ;
 	window_height = $( window ) .height() || $( document ) .height() ;
 	slideshow_length = $( ".slideshow_window" ) .length ;
