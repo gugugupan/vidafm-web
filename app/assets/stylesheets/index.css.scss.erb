@@ -53,6 +53,13 @@ $font_color : #777777;
 
 				#left_part {
 					float: left;
+					width: 110px;
+					height: 110px;
+
+					img {
+						width: 100%;
+						height: 100%;
+					}
 				}
 
 				#right_part {
@@ -64,10 +71,11 @@ $font_color : #777777;
 						width: 162px;
 						height: 50px;
 						float: left;
-						background-image: url(<%= asset_path "index/btn_download_ios.png" %>);
+						background-image: url(<%= asset_path "index/index_download_iphone.png" %>);
+						background-repeat: no-repeat;
 
 						&:hover {
-							background-image: url(<%= asset_path "index/btn_download_ios_hover.png" %>);
+							background-position: 0 -50px;
 						}
 					}
 
@@ -76,10 +84,11 @@ $font_color : #777777;
 						height: 50px;
 						float: left;
 						margin-top: 10px;
-						background-image: url(<%= asset_path "index/btn_download_android.png" %>);
+						background-image: url(<%= asset_path "index/index_download_android.png" %>);
+						background-repeat: no-repeat;
 
 						&:hover {
-							background-image: url(<%= asset_path "index/btn_download_android_hover.png" %>);
+							background-position: 0 -50px;
 						}
 					}
 				}
@@ -104,16 +113,16 @@ $font_color : #777777;
 			top: 30px;
 			position: absolute;
 			width: 100px;
-			height: 39px;
-			padding-top: 11px;
-			background-image: url(<%= asset_path "index/btn_login.png" %>);
+			height: 35px;
+			padding-top: 15px;
+			background-image: url(<%= asset_path "index/index_login_weibo.png" %>);
 			background-repeat: no-repeat;
 			color: white;
 			font-size: 18px;
 			text-align: center;
 
 			&:hover {
-				background-image: url(<%= asset_path "index/btn_login_hover.png" %>);
+				background-position: 0 -50px;
 			}
 		}
 
@@ -123,11 +132,11 @@ $font_color : #777777;
 			top: 200px;
 			width: 163px;
 			height: 60px;
-			background-image: url(<%= asset_path "index/btn_feature_moment.png" %>);
+			background-image: url(<%= asset_path "index/index_feature_moment.png" %>);
 			background-repeat: no-repeat;
 
 			&:hover {
-				background-image: url(<%= asset_path "index/btn_feature_moment_hover.png" %>);
+				background-position: 0 -60px;
 			}
 		}
 	}
@@ -196,8 +205,8 @@ $font_color : #777777;
 	}
 
 	.scroll_btn {
-		background-image: url(<%= asset_path "index/btn_down.png" %>);
-		background-repeat: none;
+		background-image: url(<%= asset_path "index/index_down.png" %>);
+		background-repeat: no-repeat;
 		width: 90px;
 		height: 90px;
 		position: absolute;
@@ -205,7 +214,7 @@ $font_color : #777777;
 		margin-left: -45px;
 
 		&:hover {
-			background-image: url(<%= asset_path "index/btn_down_hover.png" %>);
+			background-position: 0 -90px;
 		}
 	}
 
@@ -237,10 +246,11 @@ $font_color : #777777;
 			width: 180px;
 			height: 50px;
 			margin-top: 20px;
-			background-image: url(<%= asset_path "index/btn_android_download.png" %>);
+			background-image: url(<%= asset_path "index/index_download_android_download.png" %>);
+			background-repeat: no-repeat;
 
 			&:hover {
-				background-image: url(<%= asset_path "index/btn_android_download_hover.png" %>);
+				background-position: 0 -50px;
 			}
 		}
 
@@ -248,10 +258,11 @@ $font_color : #777777;
 			width: 199px;
 			height: 50px;
 			margin-top: 20px;
-			background-image: url(<%= asset_path "index/btn_android_wandoujia.png" %>);
+			background-image: url(<%= asset_path "index/index_download_wandoujia.png" %>);
+			background-repeat: no-repeat;
 
 			&:hover {
-				background-image: url(<%= asset_path "index/btn_android_wandoujia_hover.png" %>);
+				background-position: 0 -50px;
 			}
 		}
 
@@ -260,10 +271,11 @@ $font_color : #777777;
 			height: 50px;
 			margin-top: 20px;
 
-			background-image: url(<%= asset_path "index/btn_android_360.png" %>);
+			background-image: url(<%= asset_path "index/index_download_360.png" %>);
+			background-repeat: no-repeat;
 
 			&:hover {
-				background-image: url(<%= asset_path "index/btn_android_360_hover.png" %>);
+				background-position: 0 -50px;
 			}
 		}
 	}
