@@ -4,8 +4,16 @@
 		<%= link_to image_tag( "empty.png" , "data-original" => pic[ "image_small" ] , :class => "lazy" , 
 			:cwidth => pic[ "width" ] , :cheight => pic[ "height" ] ) , 
 			"/activities/#{ pic[ 'id' ] }?md=ms" , :class => "mlimage" %>
-		<% if pic[ 'has_audio' ] -%>
-			<%= image_tag "audio/icon_micro.png" , :class => "has_audio_box" -%>
+		<% if pic[ "activity_type" ] == 3 and pic[ 'has_audio' ] -%>
+				<%= image_tag "icon/video_icon.png" , :class => "has_video_box_feed" -%>
+				<%= image_tag "audio/icon_micro.png" , :class => "has_audio_box" , :style => "right:30px;" -%>
+		<% else -%>
+			<% if pic[ "activity_type" ] == 3 -%>
+				<%= image_tag "icon/video_icon.png" , :class => "has_video_box_feed" -%>
+			<% end -%>
+			<% if pic[ 'has_audio' ] -%>
+				<%= image_tag "audio/icon_micro.png" , :class => "has_audio_box" -%>
+			<% end -%>
 		<% end -%>
 	</div>
 <% else -%>
