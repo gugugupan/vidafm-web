@@ -134,20 +134,29 @@ function has_audio()
 
 function sink_animate( $image_selector , $text_selector , callback )
 {
-	change_color() ;
-	$image_selector .css( "margin-top" , "-50px" ) ;
-	$image_selector .show( 0 ) ;
-	$text_selector  .show( 0 ) ;
-	$image_selector .animate( { 
-		"margin-top" : "0px" ,
-		"opacity" : "1" 
-	} , 800 ) ;
-	$text_selector  .animate( { "opacity" : "1" } , 800 ) ;
-	setTimeout( function() { 
-		$image_selector .fadeOut( 300 ) ;
-		$text_selector  .fadeOut( 300 ) ;
-		setTimeout( callback , 1000 ) ;
-	} , 1500 ) ;
+	//console.log( $text_selector ) ;
+	if ( $text_selector .length == 0 )
+		callback() ;
+	else {
+		change_color() ;
+
+		if ( $image_selector != null )
+		{
+			$image_selector .css( "margin-top" , "-50px" ) ;
+			$image_selector .show( 0 ) ;
+			$image_selector .animate( { 
+				"margin-top" : "0px" ,
+				"opacity" : "1" 
+			} , 800 ) ;
+		}
+		$text_selector  .show( 0 ) ;
+		$text_selector  .animate( { "opacity" : "1" } , 800 ) ;
+		setTimeout( function() { 
+			if ( $image_selector != null ) $image_selector .fadeOut( 300 ) ;
+			$text_selector  .fadeOut( 300 ) ;
+			setTimeout( callback , 1000 ) ;
+		} , 1500 ) ;
+	}
 }
 
 
@@ -168,10 +177,12 @@ function start_slideshow()
 		sink_animate( $selector .find( "#start_user_avatar" ) , $selector .find( "#start_user_name" ) , function() {
 		//sink_animate( $selector .find( "#start_category_img" ),$selector .find( "#start_category_text" ) , function() {
 		sink_animate( $selector .find( "#start_date_img" ) , $selector .find( "#start_date_text" ) , function() {
+		sink_animate( null , $selector .find( "#moment_description" ) , function() {
 			$selector .hide( 0 ) ;
 			go_slideshow( 0 ) ;
 		} ) ;
 		//} ) ;
+		} ) ;
 		} ) ;
 	} , animate_speed ) ;
 }

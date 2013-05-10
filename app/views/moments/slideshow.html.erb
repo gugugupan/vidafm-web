@@ -82,6 +82,15 @@
 		by <%= @moment[ "user" ] [ "name" ] %>
 	</p>
 
+	<% unless @moment[ "description" ] .nil? -%>
+		<%# puts @moment[ "description" ] .length -%>
+		<% if @moment[ "description" ] .length > 0 -%>
+			<p id="moment_description" class="text">
+				<%= @moment[ "description" ] %>
+			</p>
+		<% end -%>
+	<% end -%>
+
 	<%= image_tag "slideshow/slideshow-catogory.png" , :id => "start_category_img" , :class => "image" -%>
 	<p id="start_category_text" class="text"></p>
 	
