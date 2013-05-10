@@ -141,4 +141,10 @@ module MomentsHelper
 		time = time .to_time - 8 .hour
 		time .to_s
 	end
+
+	# 将评论中行如 @Yukis(123456) 括号以及里面的数字去掉
+	def process_comment( comment )
+		comment .sub( /@(.*)\|(.*)\([0-9]+\)/ , "@#{$2}" )
+		comment .sub( /@(.*)\|(.*)\([0-9]+\)/ , "@#{$2}" )
+	end
 end
