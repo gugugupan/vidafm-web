@@ -188,7 +188,7 @@ function showVideo( video )
         video_count = video_count + 1 ;
         var video_name = "my_video_" + video_count ;
         var videoDiv = '<video id="' + video_name + '" class="video-js vjs-default-skin my_video"\
-        controls preload="auto" poster="" autoplay>\
+        controls preload="auto" poster="" autoplay width="648" height="648">\
             <source src="' + video .url_iphone + '" type="video/mp4">\
         </video>' ;
 
@@ -210,6 +210,16 @@ function showVideo( video )
 
 function showActivity( activity )
 {
+    if ( activity .video != null && activity .audio == null )
+    {
+        beginTheatre() ;
+        $( "#theatre" ) .click( destroyTheatre ) ;
+
+        var video_json = $.parseJSON( '{"playable":' + activity .video .playable + 
+                        ',"url_iphone":"' + activity .video .url_iphone + '"}' ) ;
+        showVideo( video_json ) ;
+        return ;
+    }
     stopAllAudio() ;
     var imageDiv = "<div id=box_container> <div id=image_div> \
         <img src=" + activity .activity_url + " id='activity_detail_img'> \
