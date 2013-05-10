@@ -166,12 +166,12 @@ function start_slideshow()
 		var $selector = $( "#slideshow_start" ) ;
 		$selector .show( 0 ) ;
 		sink_animate( $selector .find( "#start_user_avatar" ) , $selector .find( "#start_user_name" ) , function() {
-		sink_animate( $selector .find( "#start_category_img" ),$selector .find( "#start_category_text" ) , function() {
+		//sink_animate( $selector .find( "#start_category_img" ),$selector .find( "#start_category_text" ) , function() {
 		sink_animate( $selector .find( "#start_date_img" ) , $selector .find( "#start_date_text" ) , function() {
 			$selector .hide( 0 ) ;
 			go_slideshow( 0 ) ;
 		} ) ;
-		} ) ;
+		//} ) ;
 		} ) ;
 	} , animate_speed ) ;
 }
