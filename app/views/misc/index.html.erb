@@ -50,11 +50,14 @@ Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活
       <p class="line">已有近千万用户选择 <B>Vida</B> 通过照片分享真实生活</p>
       <p class="line">现在加入, 一起发现分享生活之美</p>
     </div>
-    <% unless @current_user -%>
-      <%= link_to "登 入 >" , "#" , :id => "index_login_btn" , :class => "mouse login_btn" %>
-    <% else -%>
-      <%= link_to "进入Vida" , "/home" , :id => "index_login_btn" , :class => "mouse" %>
-    <% end -%>
+    <div id="corner_btn">
+      <%= link_to "关注微博" , "http://weibo.com/vidafm" , :id => "index_login_btn" , :class => "mouse" , :style => "margin-right:20px;" %>
+      <% unless @current_user -%>
+        <%= link_to "登 入 >" , "#" , :id => "index_login_btn" , :class => "mouse login_btn" %>
+      <% else -%>
+        <%= link_to "进入Vida" , "/home" , :id => "index_login_btn" , :class => "mouse" %>
+      <% end -%>
+    </div>
     <%= link_to "" , "/discover/index.html" , :id => "hot_stroy_btn" %>
     <%= link_to "" , "#intro1" , :class => "scroll_btn" , :style => "bottom: 30px;" -%>
   </div>

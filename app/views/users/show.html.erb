@@ -136,6 +136,8 @@
         $( ".user_nav p" ) .css( "color" , "" ) ;
         $( "#user_info" ) .css( "top" , "-75px" ) ;
         $( "#main_block" ) .css( "height" , "50px" ) ;
+    <% else -%>
+        $( "#main_block" ) .css( "width" , "850px" ) ;
     <% end -%>
 </script>
 <% end -%>
@@ -145,9 +147,10 @@
  	<%= render :partial => "widgets/cover" , :locals => { :cover => @user[ "cover_file" ] } %>
     <% unless @current_user -%>
         <div id="nopermission">您还没有登录, 登录后获取更多内容.</div>
-    <% end -%>
-    <% if @current_user && @status == 401 -%>
-        <div id="nopermission">Ta开启了仅粉丝可见, 关注Ta并获得通过, 就可以浏览其所有的生活轨迹</div>
+    <% else -%>
+        <% if @status == 401 -%>
+            <div id="nopermission">Ta开启了仅粉丝可见, 关注Ta并获得通过, 就可以浏览其所有的生活轨迹</div>
+        <% end -%>
     <% end -%>
 
     <div id="main_block">
