@@ -1,78 +1,250 @@
 <head>
 	<title> Vida（微达） - 手机照片故事社区 </title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5">
+	<meta name="viewport" content="width=640">
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<style type="text/css">
 		body {
 			margin:0;
-			background-color: black;
+			color: #1a1a1a;
 			position:relative;
 			width:100%;
-			margin-bottom: 200px;
 		}
 
-		div#main-container {
-			width:640px;
-			margin:0px auto;
-			position:relative;
+		#wap {
+			width: 640px;
+			position: relative;
 		}
 
-		img#icon {
-			position:absolute;
-			top:90px;
-			left:28px;
+		#wap_header {
+			width: 640px;
+			height: 630px;
+			position: relative;
 		}
-
-		a.head-btn {
-			position:absolute;
-			top:388px;
-			margin-left:-141px;
-			left: 50%;
-		}
-
-		a.foot-btn {
-			position:absolute;
-			bottom:60px;
-			left:50%;
-			margin-left:-141px;
-		}
-
-		img#bg_pic {
+		#wap_header img {
 			width: 100%;
-			z-index: -1;
-			float: left;
 		}
 
-		.clearfix {
+		#left_content {
+			position: absolute;
+			top: 150px;
+			left: 30px;
+			width: 350px;
+		}
+
+		#index_logo_title {
+			color: white;
+			font-size: 36px;
+			margin: 20px 0;
+		}
+
+		#download_iphone {
+			width: 162px;
+			height: 50px;
+			float: left;
+			background-image: url(<%= asset_path "index/index_download_iphone.png" %>);
+			background-repeat: no-repeat;
+		}
+
+		#download_android {
+			width: 173px;
+			height: 50px;
+			float: left;
+			margin-left: 15px;
+			background-image: url(<%= asset_path "index/index_download_android.png" %>);
+			background-repeat: no-repeat;
+		}
+
+		#bottom_text {
+			position: absolute;
+			bottom: 150px;
+			width: 100%;
+			text-align: center;
+			color: white;
+			font-size: 24px;
+		}
+
+		#bottom_text .line {
+			margin-bottom: 5px;
+		}
+
+		.intro_block {
+			width: 100%;
+			padding: 70px 0;
+			text-align: center;
+			color: #777777;
+		}
+
+		.window_block {
+			width: 100%;
+			height: 250px;
+			position: relative;
+			overflow: hidden;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}	
+		.window_block img.background_img {
+			position: absolute;
+			display: none;
+			width: 100%;
+			top: 0;
+		}
+		.window_block .grey_cover {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			background-image: url(<%= asset_path "index/grey_point.png" %>);
+		}
+
+		#window1 {
+			background-image: url( <%= asset_path "index/big_bg_1.jpg" %> );
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		#window2 {
+			height: 600px;
+			background-image: url( <%= asset_path "index/big_bg_2.jpg" %> );
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		#intro1 {
+			font-size: 24px;
+		}
+
+		#intro2 {
+			font-size: 18px;
+		}
+
+		#intro3 {
+			font-size: 24px;
+			position: relative;
+			background-color: white;
+			position: absolute;
+			bottom: 30px;
+		}
+		#intro3 .float_camera {
+			position: absolute;
+			left: 50%;
+			margin-left: -45px;
+			top: -45px;
+		}
+
+		.scroll_btn {
+			background-image: url(<%= asset_path "index/index_down.png" %>);
+			background-repeat: no-repeat;
+			width: 90px;
+			height: 90px;
+			position: absolute;
+			left: 50%;
+			margin-left: -45px;
+		}
+
+
+		#footer {
+			position: relative;
+			width: 100%;
+			margin-top: 20px;
+			padding-bottom: 20px;
+			text-align: center;
+		}
+		#footer .footer_text {
+			margin-bottom: 10px;
+			width: 100%;
+			display: block;
+			float: left;
 			clear: both;
+			color: #777777;
+		}
+		#footer .footer_icon {
+			margin: 10px auto;
+		}
+		#footer .footer_link {
+			float: none;
+			display: inline;
+			text-decoration: none;
+			color: #777777;
 		}
 	</style>
 
 </head>
 <body>
-	<div id="main-container">
-		<%= image_tag "wap/mobile_web.jpg" , :id => "bg_pic" %>
-		<div class="clearfix"> </div>
+	<div id="wap">
+		<div id="wap_header">
+			<%= image_tag "index/mobile_index_header_bg.png" %>
+			<div id="left_content">
+				<div style="width: 98px; height:33px;">
+					<%= image_tag "index/logo.png" , :id => "index_logo" %>
+				</div>
+				<p id="index_logo_title">生活 . 照片 . 微电影</p>
+
+				<div style="width:100%; height:50px;">
+					<%= link_to "" , "/d/iphone" , :id => "download_iphone" %>
+					<%= link_to "" , "/d/android" , :id => "download_android" %>
+				</div>
+			</div>
+			<div id="bottom_text">
+				<p class="line"><B>Vida</B> 可能是最真实的照片微电影生活分享社区</p>
+				<p class="line">已有近千万用户选择 <B>Vida</B> 通过照片分享真实生活</p>
+				<p class="line">现在加入, 一起发现分享生活之美</p>
+			</div>
+				<%= link_to "" , "#intro1" , :class => "scroll_btn" , :style => "bottom: 30px;" -%>
+		</div>
+
+		<div id="intro1" class="intro_block">
+			<%= image_tag "index/intro_bg_1.jpg" %>
+			<p style="margin-top: 40px;">微游记, 美食记, 心情日记, 自拍秀, 生活点滴汇成微电影</p>
+			<p style="margin-top: 5px;">让你的照片更有趣</p>
+		</div>
+
+		<div id="window1" class="window_block">
+			<%= image_tag "index/big_bg_1.jpg" , :class => "background_img" %>
+			<div class="grey_cover"> </div>
+			<%= link_to "" , "#intro2" , :class => "scroll_btn" , :style => "bottom: 100px;" -%>
+		</div>
+
+		<div id="intro2" class="intro_block">
+			<%= image_tag "index/intro_bg_2.jpg" %>
+			<p style="margin-top: 15px;">自动将照片汇成照片微电影, 专有技术使照片微电影比播放视频<span style="font-size:108px; font-weight:200;">80%</span>省流量.</p>
+		</div>
+
+		<div id="window2" class="window_block">
+			<%= image_tag "index/big_bg_2.jpg" , :class => "background_img" %>
+			<div class="grey_cover"> </div>
+			<%= link_to "" , "#intro3" , :class => "scroll_btn" , :style => "top: 50px;" -%>
+		</div>
+
+		<div id="intro3" class="intro_block">
+			<%= image_tag "index/intro_bg_3.png" , :class => "float_camera" %>
+			<p>业界最早推出并保持领先的实时特效镜头和渲染引擎</p>
+			<p style="margin-top: 5px;">摄影摄像都可用, 所见即所拍</p>
+			<p style="margin-top: 5px;">保证每个瞬间都精彩</p>
+		</div>
 	</div>
-
-	<% if @is_ios -%>
-		<%= link_to "/d/iphone" , :class => "head-btn" do %>
-			<%= image_tag "wap/app_store_download.png" %>
-		<% end -%>
-	<% else -%>
-		<%= link_to "/d/android" , :class => "head-btn" do %>
-			<%= image_tag "wap/android_download.png" %>
-		<% end -%>
-	<% end -%>
-
-	<% if @is_ios -%>
-		<%= link_to "/d/iphone" , :class => "foot-btn" do %>
-			<%= image_tag "wap/app_store_download.png" %>
-		<% end -%>
-	<% else -%>
-		<%= link_to "/d/android" , :class => "foot-btn" do %>
-			<%= image_tag "wap/android_download.png" %>
-		<% end -%>
-	<% end -%>
+	<div style="width: 640px">
+		<div id="footer">
+			<p class="footer_text">
+				<%= link_to "商务合作" , business_url , :class => "footer_link mouse" %>
+				<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+				<%= link_to "联系我们" , about_url , :class => "footer_link mouse" %>
+				<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+				<%= link_to "沪ICP备10216111号-2" , "http://www.miitbeian.gov.cn" , :class => "footer_link mouse" %>
+			</p>
+			<p class="footer_text">
+				<span>友情链接:&nbsp;</span>
+				<%= link_to "微米印" , "http://vimi.in/" , :class => "footer_link mouse" %>
+				<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+				<%= link_to "360手机助手" , "http://zhushou.360.cn/index" , :class => "footer_link mouse" %>
+				<span>&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+				<%= link_to "360安全卫士" , "http://www.360.cn/weishi/" , :class => "footer_link mouse" %>
+			</p>
+			<div class="footer_icon">
+				<%= image_tag( "index/bb3.png" , :class => "gov_icon" ) %>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
 </body>
