@@ -14,11 +14,56 @@ var is_end = false ;
 
 jQuery( function() {
 	gaDownload() ;
-	window_width  = $( window ) .width() || $( document ) .width() ;
-	window_height = $( window ) .height() || $( document ) .height() ;
 	slideshow_length = $( ".slideshow_window" ) .length ;
 	loading_start() ;
 } ) ;
+
+// Auto Resize the window size
+var onWindowResizeTimeout = null ;
+function onWindowResize(){
+	clearTimeout(onWindowResizeTimeout) ;
+	onWindowResizeTimeout = null;
+
+	window_width  = $( window ) .width() || $( document ) .width() ;
+	window_height = $( window ) .height() || $( document ) .height() ;
+
+	$( "#slideshow_index" ) .css( "height" , ( window_height - 100 ) + "px" ) ;
+	$( "#play_slideshow_btn_area" ) .css( "top" , ( window_height - 100 - 260 ) / 2 + "px" ) ;
+	$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 260 ) / 2 + "px" ) ;
+	$( "#slideshow_end" ) .css( "height" , ( window_height - 100 ) + "px" ) ;
+	$( "#end_slideshow_part" ) .css( "top" , ( window_height - 100 - 260 ) / 2 + "px" ) ;
+
+	if ( slideshow_num != -1 )
+	{
+		var $selector = $( ".slideshow_window" ) .eq( slideshow_num ) ;
+		var img_height = $selector .attr( "cheight" ) , 
+			img_width = $selector .attr( "cwidth" ) ;
+
+		// fix slideshow window's width and height
+		var window_ratio = window_width / window_height ;
+		var img_ratio = img_width / img_height ; 
+		if ( window_ratio > img_ratio ) {
+			$selector .css( {
+				width : img_width * ( window_height / img_height ) ,
+				height : window_height ,
+				"margin-left" : ( window_width - img_width * ( window_height / img_height ) ) / 2 
+			} ) ;
+		} else {
+			$selector .css( {
+				width : window_width , 
+				height : img_height * ( window_width / img_width ) ,
+				"margin-top" : ( window_height - img_height * ( window_width / img_width ) ) / 2 
+			} ) ;
+		}
+	}
+}
+$( window ) .resize( function() {
+	clearTimeout(onWindowResizeTimeout) ;
+	onWindowResizeTimeout = setTimeout( onWindowResize , 200 ) ;
+} );
+$( onWindowResize );
+onWindowResize() ;
+
 
 function blur_start( img_id )
 {
@@ -198,7 +243,7 @@ function go_slideshow( num )
 		}
 
 		slideshow_num = num ;
-		var $selector = $( ".slideshow_window" ) .eq( num ) ;
+		var $selector = $( ".slideshow_window" ) .eq( slideshow_num ) ;
 		var img_height = $selector .attr( "cheight" ) , img_width = $selector .attr( "cwidth" ) ;
 		$selector .find( ".info_window" ) .fadeOut( 0 ) ;
 
