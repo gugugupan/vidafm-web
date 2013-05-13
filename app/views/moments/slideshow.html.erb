@@ -45,6 +45,9 @@
 			<% if request.user_agent =~ /(android|ipod|iphone|ipad)/i -%>
 				<%= link_to image_tag( "slideshow/play_by_vida@2x.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" , :class => "header_btn" %>
 				<%= link_to image_tag( "slideshow/download_vida@2x.png" ) , "/" , :class => "header_btn" %>
+				<script type="text/javascript">
+					window.location.href = "vida://slideshow?id=<%= @moment[ "id" ] %>" ;
+				</script>
 			<% else -%>
 				<%= link_to image_tag( "slideshow/icon_download_iphone.png" ) , "http://itunes.apple.com/cn/app/id454984086?ls=1" , :class => "header_btn" %>
 				<%= link_to image_tag( "slideshow/icon_download_android.png" ) , "/android_download" , :class => "header_btn" %>
