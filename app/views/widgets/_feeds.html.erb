@@ -30,8 +30,8 @@
 					<% feeds[ "moment" ] [ "created_at" ] = feeds[ "created_at" ] -%>
 					<p class="mltitle">#<%= moment_category_by_num feeds[ "moment" ] [ "category_id" ] %> <%= moment_name feeds[ "moment" ] %> </p>
 					<div class="mldata">
-						<p class="mlnumber"> <%= feeds[ "moment" ] [ "activity_count" ] %> </p>
 						<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
+						<p class="mlnumber"> <%= feeds[ "moment" ] [ "activity_count" ] %> </p>
 						<div class="clearfix"></div>
 					</div>
 					<div class="clearfix"></div>

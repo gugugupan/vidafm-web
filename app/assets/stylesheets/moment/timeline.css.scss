@@ -270,9 +270,10 @@ $info_color: #a6a099 ;
 		.mldata {
 			float: right;
 			padding-top:8px;
+			*width: 150px;
 
 			p {
-				float: left;
+				float: right;
 				margin-left: 10px;
 				padding-left: 17px;
 			}
