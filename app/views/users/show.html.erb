@@ -27,6 +27,7 @@
             left_px = 0 , right_px = 0 ;
             $( "#story_nav p" ) .css( "color" , "crimson" ) ;
             $( "#main_block" ) .width( 850 ) ;
+            $( "#user-show" ) .css( "min-width" , "850px" ) ;
             $( "#feed_container" ) .attr( "type" , "story" ) ;
             $( "#feed_container" ) .removeAttr( "dontarange" ) ;
             $( "#feed_container" ) .css( "background" , "" ) ;
@@ -54,6 +55,7 @@
 
             $( "#lc_nav p" ) .css( "color" , "crimson" ) ;
             $( "#main_block" ) .width( 370 ) ;
+            $( "#user-show" ) .css( "min-width" , "" ) ;
             $( "#feed_container" ) .attr( "type" , "commentlike" ) ;
             $( "#feed_container" ) .attr( "dontarange" , "true" ) ;
             $( "#feed_container" ) .css( "background" , "none" ) ;
@@ -82,6 +84,7 @@
 
             $( "#fing_nav p" ) .css( "color" , "crimson" ) ;
             $( "#main_block" ) .width( 370 ) ;
+            $( "#user-show" ) .css( "min-width" , "" ) ;
             $( "#feed_container" ) .attr( "type" , "following" ) ;
             $( "#feed_container" ) .attr( "blockstyle" , "" ) ;
             $( "#feed_container" ) .css( "background" , "none" ) ;
@@ -107,6 +110,7 @@
 
             $( "#fer_nav p" ) .css( "color" , "crimson" ) ;
             $( "#main_block" ) .width( 370 ) ;
+            $( "#user-show" ) .css( "min-width" , "" ) ;
             $( "#feed_container" ) .attr( "type" , "followers" ) ;
             $( "#feed_container" ) .attr( "blockstyle" , "" ) ;
             $( "#feed_container" ) .css( "background" , "none" ) ;
@@ -138,6 +142,7 @@
         $( "#main_block" ) .css( "height" , "50px" ) ;
     <% else -%>
         $( "#main_block" ) .css( "width" , "850px" ) ;
+        $( "#user-show" ) .css( "min-width" , "850px" ) ;
     <% end -%>
 </script>
 <% end -%>
