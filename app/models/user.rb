@@ -37,7 +37,9 @@ class User
 
 		# 获取用户feeds信息
 		def fetch_feeds( id , current_user , params )
-			JSON.parse( VIDA.call( "feeds" , params , current_user , "GET" ) [ :body ] )
+			data = VIDA.call( "feeds" , params , current_user , "GET" )
+			data[ :body ] = '{"data":{"feeds":[],"next_query_parameters":{}}}' if data[ :status ] == 204
+			JSON.parse( data[ :body ] )
 		end
 
 		# 获取当前登录用户信息
