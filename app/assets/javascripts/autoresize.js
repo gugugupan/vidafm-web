@@ -190,3 +190,21 @@ function arangeImage()
         last_arrange_num = $( ".feed" ) .length ;
     } ) ;
 }
+
+var last_check_img ;
+function repeat_check( callback )
+{
+    for ( var i = $( ".feed" ) .length - 1 ; i >= last_check_img ; i -- )
+    {
+        var need_delete = false ;
+        var ith_feed_id = $( ".feed" ) .eq( i ) .attr( "id" ) ;
+        for ( var j = 0 ; j < last_check_img ; j ++ )
+            if ( ith_feed_id == $( ".feed" ) .eq( j ) .attr( "id" ) )
+            {
+                need_delete = true ;
+                break ;
+            }
+        if ( need_delete ) $( ".feed" ) .eq( i ) .remove() ;
+        if ( i == last_check_img ) callback() ;
+    }
+}

@@ -15,6 +15,7 @@ function lazyload( url_part , id , params )
 	else // come from User or Moment page
 		get_url = "/" + url_part + "/" + id + "/ajax_get_new_page?" + params ;	
 
+	last_check_img = $( ".feed" ) .length ; // 用于去重时纪录之前的feeds数量
 	$.get( get_url , function( data ) 
 	{
 		if ( data .length < 10 )
@@ -39,7 +40,7 @@ function lazyload( url_part , id , params )
 			} else 
 				$( "#refresh-link" ) .before( data ) ;
 
-			arangeImage() ;
+			repeat_check( arangeImage ) ;
 			$( "img.lazy" ) .lazyload() ;
 		}
 	} ) ;
