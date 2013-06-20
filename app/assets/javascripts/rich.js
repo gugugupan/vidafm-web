@@ -153,7 +153,7 @@ function play_background_music() {
 		if ( !music )
 			music = soundManager.createSound( {
 				id: "bmusic" + music_num ,
-				url: "http://127.0.0.1/mp3/slideshow" + music_num + ".m4a" ,
+				url: "/mp3/slideshow" + music_num + ".m4a" ,
 				onfinish: function() {
 					play_background_music() ;
 				} 
