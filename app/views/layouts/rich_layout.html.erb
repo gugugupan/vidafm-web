@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title><%= yield :title %></title>
+  <meta name="Description" content="<%= raw yield :meta_description %>">
+  <meta name="viewport" content="width=device-width">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+  <%= yield :prerequisite_libraries %>
+<!--[if IE 6]>
+<%= javascript_include_tag "DD_belatedPNG_0.0.8a" %>
+<script type="text/javascript">
+  DD_belatedPNG.fix('img,img');
+  DD_belatedPNG.fix('a,background');
+  DD_belatedPNG.fix('p,background');
+  DD_belatedPNG.fix('.ribbon,background');
+</script>
+<![endif]--> 
+  <%= javascript_include_tag "rich" %>
+  <%= stylesheet_link_tag    "rich" %>
+
+  <%= csrf_meta_tags %>
+  <%= yield :page_specific_asset %>
+</head>
+<body class="bcolor">
+  <%= yield %>
+</body>
+</html>

@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 module UsersHelper
 	# @params: 
 	# 	date: 2012-01-01 00:00:00 +0800 

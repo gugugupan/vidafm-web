@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class MomentsController < ApplicationController
   def show
     #data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 20 )
@@ -75,5 +77,32 @@ class MomentsController < ApplicationController
     else
       render "misc/need_authentication"
     end
+  end
+  
+  def rich
+    #id = params[:id]
+    #@abc = id  
+    
+    #data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 20 )
+    data = api_call( "Moment" , :fetch , params[ :id ] , { :page => 0 , :page_size => 20 } )
+    render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
+    redirect_to( user_url(data['data']['user_id']) , :notice => 401 ) and return if data[ 'result' ] == 401 
+    @moment = data[ "data" ]
+
+    # 对于 slideshow 的情况
+    # render "moments/slideshow" , :layout => "layouts/slideshow_layout" and return if params[ :md ] .nil?
+
+    # 对于 momentshow 的情况
+    @moment_cover = @moment[ "cover_file" ]
+    @moment[ "haslocation" ] = get_haslocation( @moment[ "items" ] ) 
+
+    activity_data = api_call( "Moment" , :fetch , nil , { :activity_id => notice , :page => 0 , :page_size => 1 } ) [ "data" ] [ "items" ] unless notice .nil?
+    activity_data .each do | item |
+      @activity = item if item[ 'id' ] == notice .to_i
+    end unless notice .nil?
+
+    save_url_in_cookies
+    
+    render :layout => "layouts/rich_layout"
   end
 end
