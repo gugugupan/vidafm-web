@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701035017) do
+ActiveRecord::Schema.define(:version => 20130701043140) do
 
   create_table "active_users", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -464,6 +464,9 @@ ActiveRecord::Schema.define(:version => 20130701035017) do
     t.datetime "updated_at",                  :null => false
   end
 
+  add_index "moment_statistics", ["created_at"], :name => "index_moment_statistics_on_created_at"
+  add_index "moment_statistics", ["moment_id"], :name => "index_moment_statistics_on_moment_id"
+
   create_table "moments", :force => true do |t|
     t.string   "name",                                  :limit => 200
     t.integer  "name_modified_by_user",                 :limit => 1,   :default => 0
@@ -893,6 +896,9 @@ ActiveRecord::Schema.define(:version => 20130701035017) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
   end
+
+  add_index "user_statistics", ["created_at", "user_id"], :name => "index_user_statistics_on_created_at_and_user_id"
+  add_index "user_statistics", ["user_id"], :name => "index_user_statistics_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                                           :null => false
