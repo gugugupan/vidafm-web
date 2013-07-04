@@ -12,6 +12,6 @@ class MomentStatistic < ActiveRecord::Base
    end
 
    def MomentStatistic.hot(page)
-     hot_list= MomentStatistic.order("`total_score` desc").offset(page*5).limit(5)
+     hot_list= MomentStatistic.order("`total_score` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
    end 
 end

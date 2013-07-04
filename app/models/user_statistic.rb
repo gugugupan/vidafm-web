@@ -38,10 +38,10 @@ class UserStatistic < ActiveRecord::Base
    end   
 
    def UserStatistic.create_sort(page)
-     UserStatistic.order("`create_score` desc").offset(page*5).limit(5)
+     UserStatistic.order("`create_score` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
    end
 
    def UserStatistic.shared_sort(page)
-     UserStatistic.order("`share_score` desc").offset(page*5).limit(5)
+     UserStatistic.order("`share_score` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
    end
 end
