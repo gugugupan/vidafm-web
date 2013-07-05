@@ -1,5 +1,19 @@
 Bluerain::Application.routes.draw do
 
+  get "weiboactive/lottery"
+
+  get "weiboactive/rule_share"
+
+  get "weiboactive/rule_oa"
+
+  get "weiboactive/rule"
+
+  get "weiboactive/top"
+
+  get "weiboactive/myprofile"
+
+  get "weiboactive/index"
+
   match "/d/iphone" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
   match "/d/android_sina" => redirect("http://pics.vida.fm/vida_sina_20130117.apk")
   android_url = ""

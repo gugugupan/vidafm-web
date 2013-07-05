@@ -1,0 +1,49 @@
+<!--每日之星-->
+<div class="row-fluid">
+    <div class="span12">
+        <div class="text-center block-title">
+            每日之星
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="user-container">
+                    <a href="#" class="pull-left"><img src="<%= @avatars[0] %>" class="user-avatar" alt='程莎莎' /></a>
+                    <div class="user-content">
+                        <div class="user-name">
+                            程莎莎
+                        </div>
+                        <div class="user-award">
+                            今日iPad mini得主
+                        </div>
+                        <%= link_to "如何获得iPad mini",
+                        {:controller => "weiboactive",:action => "rule_oa"},
+                        :class => "btn-yellow btn-large" %>
+                    </div>
+                </div>
+
+            </div>
+            <div class="span6">
+                <div class="user-container">
+                    <a href="#" class="pull-left"><img src="<%= @avatars[3] %>" class="user-avatar" alt='hiyesyes' /></a>
+                    <div class="user-content">
+                        <div class="user-name">
+                            hiyesyes
+                        </div>
+                        <div class="user-award">
+                            今日Tiffany得主
+                        </div>
+                        <%= link_to "如何获得Tiffany",
+                        {:controller => "weiboactive",:action => "rule_share"},
+                        :class => "btn-cyanogen btn-large" %>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
