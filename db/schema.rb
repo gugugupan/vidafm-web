@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701035017) do
+ActiveRecord::Schema.define(:version => 20130704084513) do
 
   create_table "active_users", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -462,7 +462,12 @@ ActiveRecord::Schema.define(:version => 20130701035017) do
     t.integer  "played_count", :default => 0
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.integer  "total_score"
   end
+
+  add_index "moment_statistics", ["created_at"], :name => "index_moment_statistics_on_created_at"
+  add_index "moment_statistics", ["moment_id"], :name => "index_moment_statistics_on_moment_id"
+  add_index "moment_statistics", ["total_score"], :name => "index_moment_statistics_on_total_score"
 
   create_table "moments", :force => true do |t|
     t.string   "name",                                  :limit => 200
@@ -892,7 +897,14 @@ ActiveRecord::Schema.define(:version => 20130701035017) do
     t.integer  "shared_played_count", :default => 0
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.integer  "create_score"
+    t.integer  "share_score"
   end
+
+  add_index "user_statistics", ["create_score"], :name => "index_user_statistics_on_create_score"
+  add_index "user_statistics", ["created_at", "user_id"], :name => "index_user_statistics_on_created_at_and_user_id"
+  add_index "user_statistics", ["share_score"], :name => "index_user_statistics_on_share_score"
+  add_index "user_statistics", ["user_id"], :name => "index_user_statistics_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                                                           :null => false
