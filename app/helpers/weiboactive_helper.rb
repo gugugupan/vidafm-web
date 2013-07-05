@@ -1,0 +1,2 @@
+module WeiboactiveHelper
+end

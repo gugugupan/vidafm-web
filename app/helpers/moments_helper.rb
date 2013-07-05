@@ -1,3 +1,4 @@
+#encoding: utf-8
 module MomentsHelper
 	def vida_pagination(base_url, page_count, current_page, options)
 
@@ -151,9 +152,9 @@ module MomentsHelper
 	# 给feeds生成一个id
 	def feed_id( feeds )
 		case feeds[ "feed_type" ]
-		when "activity_feed" : "moment#{ feeds[ "moment" ] [ "id" ] }"
-		when "comment_feed" : "comment#{ feeds[ "type" ] == "activity" ? feeds[ "activity" ] [ "id" ] : feeds[ "moment" ] [ "id" ] }"
-		when "like_feed" : "like#{ feeds[ "type" ] == "activity" ? feeds[ "activities" ] [ 0 ] [ "id" ] : feeds[ "moment" ] [ "id" ] }"
+		when "activity_feed" then "moment#{ feeds[ "moment" ] [ "id" ] }"
+		when "comment_feed" then "comment#{ feeds[ "type" ] == "activity" ? feeds[ "activity" ] [ "id" ] : feeds[ "moment" ] [ "id" ] }"
+		when "like_feed" then "like#{ feeds[ "type" ] == "activity" ? feeds[ "activities" ] [ 0 ] [ "id" ] : feeds[ "moment" ] [ "id" ] }"
 		end
 	end
 end
