@@ -14,6 +14,7 @@
         activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
     });
     
+    /*
     function slide(opt) {
         var el = opt.el;
         var time = opt.time;
@@ -46,4 +47,5 @@
         }, 500);
         
     }, 1000);
+    */
 });

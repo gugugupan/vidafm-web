@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130704084513) do
+ActiveRecord::Schema.define(:version => 20130705042731) do
 
   create_table "active_users", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -888,6 +888,17 @@ ActiveRecord::Schema.define(:version => 20130704084513) do
     t.datetime "updated_at"
     t.integer  "moment_id"
   end
+
+  create_table "user_shuffles", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.string   "qq_coin_ids"
+    t.integer  "shuffle_count", :default => 0
+  end
+
+  add_index "user_shuffles", ["created_at"], :name => "index_user_shuffles_on_created_at"
+  add_index "user_shuffles", ["user_id"], :name => "index_user_shuffles_on_user_id"
 
   create_table "user_statistics", :force => true do |t|
     t.integer  "user_id"
