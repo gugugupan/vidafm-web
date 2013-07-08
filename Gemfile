@@ -18,6 +18,7 @@ group :assets do
   gem 'uglifier'
 end
 
+#gem 'system_timer'
 gem 'jquery-rails'
 
 gem 'omniauth'
@@ -33,4 +34,5 @@ gem 'airbrake'
 
 gem 'log4r'
 
-gem 'thin'
+#gem 'thin'
+gem 'unicorn'
