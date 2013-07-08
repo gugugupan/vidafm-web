@@ -80,6 +80,16 @@ class MomentsController < ApplicationController
   end
   
   def rich
+=begin
+    #================added by chunlong.yu=========================
+    ip = request.env["HTTP_X_FORWARDED_FOR"]
+    if Rails.cache.read(ip) == nil
+        Rails.cache.write ip,"1"
+        MomentStatistic.add_played_count(params[:id])
+        UserStatistic.add_create_played_count(params[:create_uid])
+        UserStatistic.add_shared_played_count(params[:share_uid])
+    end
+=end
     #id = params[:id]
     #@abc = id  
     
