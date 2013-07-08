@@ -20,8 +20,6 @@ end
 
 gem 'jquery-rails'
 
-gem "system_timer"
-
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-oauth'

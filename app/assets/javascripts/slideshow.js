@@ -19,6 +19,7 @@ jQuery( function() {
 } ) ;
 
 // Auto Resize the window size
+var SLIDESHOW_FOOTER_HEIGHT = 44 ;
 var onWindowResizeTimeout = null ;
 function onWindowResize(){
 	clearTimeout(onWindowResizeTimeout) ;
@@ -27,11 +28,14 @@ function onWindowResize(){
 	window_width  = $( window ) .width() || $( document ) .width() ;
 	window_height = $( window ) .height() || $( document ) .height() ;
 
-	$( "#slideshow_index" ) .css( "height" , ( window_height - 100 ) + "px" ) ;
-	$( "#play_slideshow_btn_area" ) .css( "top" , ( window_height - 100 - 260 ) / 2 + "px" ) ;
-	$( "#slideshow_start" ) .css( "margin-top" , ( window_height - 260 ) / 2 + "px" ) ;
-	$( "#slideshow_end" ) .css( "height" , ( window_height - 100 ) + "px" ) ;
-	$( "#end_slideshow_part" ) .css( "top" , ( window_height - 100 - 260 ) / 2 + "px" ) ;
+	var hd = ( window_height - SLIDESHOW_FOOTER_HEIGHT ) ;
+
+	$( "#slideshow_index" ) .css( "height" , hd + "px" ) ;
+	$( "#play_slideshow_btn_area" ) .css( "top" ,  ( hd - 60 ) / 2 + "px" ) ;
+	$( "#slideshow_start" ) .css( "margin-top" , hd / 2 + "px" ) ;
+	$( "#slideshow_end" ) .css( "height" , hd + "px" ) ;
+	$( "#end_slideshow_part" ) .css( "top" , ( hd - 134 ) / 2 + "px" ) ;
+	$( "#slideshow_goto_momentshow" ) .css( "top" , ( hd - 20 ) / 2 + "px" ) ;
 
 	if ( slideshow_num != -1 )
 	{
@@ -208,9 +212,13 @@ function sink_animate( $image_selector , $text_selector , callback )
 function start_slideshow()
 {
 	$( "#slideshow_index" ) .fadeOut( animate_speed ) ;
-	$( "#slideshow_header" ) .fadeOut( animate_speed ) ;
+	$( "#slideshow_footer" ) .fadeOut( animate_speed ) ;
+	$( "#slideshow_ad" ) .fadeOut( animate_speed ) ;
 	$( "#slideshow_end" ) .fadeOut( animate_speed ) ;
 	$( "#slideshow_background" ) .fadeOut( animate_speed ) ;
+	$( "#slideshow_goto_momentshow" ) .fadeOut( animate_speed ) ;
+	$( "#slideshow_logo" ) .fadeOut( animate_speed ) ;	
+
 	$( "body" ) .css( "background-image" , "none" ) ;
 	is_end = false ;
 	bar_on() ;
@@ -484,8 +492,11 @@ function ending_slideshow()
 	setTimeout( function() {
 		bar_off() ;
 		$( "#slideshow_end" ) .fadeIn( animate_speed ) ;
-		$( "#slideshow_header" ) .fadeIn( animate_speed ) ;
+		$( "#slideshow_footer" ) .fadeIn( animate_speed ) ;
+		//$( "#slideshow_ad" ) .fadeIn( animate_speed ) ;
+		$( "#slideshow_goto_momentshow" ) .fadeIn( animate_speed ) ;
 		$( "#slideshow_background" ) .fadeIn( animate_speed ) ;
+	$( "#slideshow_logo" ) .fadeIn( animate_speed ) ;
 	} , 500 ) ;
 }
 
@@ -506,6 +517,7 @@ function bar_pause()
 function bar_on()
 {
 	bar_play() ;
+	$( "#slideshow_bar_container" ) .animate( { "bottom" : "0px" } , animate_speed ) ;
 	$( "#slideshow_bar" ) .css( "display" , "block" ) ;
 	setTimeout( function() {
 		$( "#slideshow_bar" ) .css( "display" , "none" ) ;
@@ -528,6 +540,7 @@ function bar_off()
 	bar_pause() ;
 	clearTimeout( bar_timeout ) ;
 	$( "#slideshow_bar" ) .css( "display" , "block" ) ;
+	$( "#slideshow_bar_container" ) .animate( { "bottom" : SLIDESHOW_FOOTER_HEIGHT + "px" } , animate_speed ) ;
 	$( "#slideshow_bar_container" ) .unbind() ;
 }
 

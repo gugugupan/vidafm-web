@@ -32,37 +32,12 @@
 	<img id="slideshow_background_img" imgsrc="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "url_l" ] %>" cwidth="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "width" ] %>" cheight="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "height" ] %>">
 </div>
 
-<%#---Slideshow header---%>
-<div id="slideshow_header">
-	<div class="black_cover"> </div>
-	<div id="slideshow_header_content">
-		<div id="header_left">
-			<%= link_to image_tag( "slideshow/icon_vida@2x.png" ) , "/" %>
-		</div>
-		<div id="header_right">
-			<p id="header_des">Vida 生活. 照片. 微电影</p>
-
-			<% if request.user_agent =~ /(android|ipod|iphone|ipad)/i -%>
-				<%= link_to image_tag( "slideshow/play_by_vida@2x.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" , :class => "header_btn" %>
-				<%= link_to image_tag( "slideshow/download_vida@2x.png" ) , "/" , :class => "header_btn" %>
-			<% else -%>
-				<%= link_to image_tag( "slideshow/icon_download_iphone.png" ) , "http://itunes.apple.com/cn/app/id454984086?ls=1" , :class => "header_btn" %>
-				<%= link_to image_tag( "slideshow/icon_download_android.png" ) , "/android_download" , :class => "header_btn" %>
-			<% end -%>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-</div>
-
 <%#---Index of slideshow---%>
 <div id="slideshow_index">
 	<div class="black_cover"> </div>
 	<div id="play_slideshow_btn_area">
-		<%= link_to "javascript:start_slideshow()" , :id => "play_slideshow_btn" do -%>
-			<%= image_tag( "slideshow/btn_play2.png" ) %>
-			<p>播放照片微电影</p>
-		<% end -%>
-		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :class => "goto_momentshow" %>
+		<%= link_to "" , "javascript:start_slideshow()" , :id => "play_slideshow_btn" -%>
+		<%#= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :class => "goto_momentshow" %>
 	</div>
 </div>
 
@@ -119,7 +94,7 @@
 			<div class="clearfix"> </div>
 		</div>
 		
-		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :class => "goto_momentshow" %>
+		<%#= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :class => "goto_momentshow" %>
 	</div>
 </div>
 
@@ -141,6 +116,21 @@
 	</div>
 </div>
 
+<%#---Slideshow footer---%>
+<div id="slideshow_footer">
+	<div class="black_cover"> </div>
+
+	<% if request.user_agent =~ /(android|ipod|iphone|ipad)/i -%>
+		<%= link_to image_tag( "slideshow/slideshow_play_in_vida.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" , :class => "footer_btn" , :id => "left_part" %>
+		<%= link_to image_tag( "slideshow/slideshow_download_vida.png" ) , "/" , :class => "footer_btn" , :id => "right_part" %>
+	<% else -%>
+		<%= link_to image_tag( "slideshow/slideshow_download_ios.png" ) , "http://itunes.apple.com/cn/app/id454984086?ls=1" , :class => "footer_btn" , :id => "left_part" %>
+		<%= link_to image_tag( "slideshow/slideshow_download_android.png" ) , "/android_download" , :class => "footer_btn" , :id => "right_part" %>
+	<% end -%>
+</div>
+
+
+<%#--- Slideshow btn ---%>
 <div id="slideshow_loading">
 	<% for i in 0..7 do -%>
 		<%= image_tag "slideshow/loading/loading-0#{ i }.png" , :id => "loading#{ i }" -%>
@@ -150,6 +140,13 @@
 <div id="slideshow_audio_hint">
 </div>
 
+<%= link_to "" , "/moments/#{ @moment[ "id" ] }?md=ms" , :id => "slideshow_goto_momentshow" %>
+<%= link_to image_tag( "slideshow/slideshow_logo.png" ) , "/" , :id => "slideshow_logo" -%>
+
+<div id="slideshow_ad">
+</div>
+
+<%#--- Slideshow auto jump ----%>
 <% if request.user_agent =~ /(ipod|iphone|ipad)/i -%>
 	<script type="text/javascript">
 		window.location.href = "vida://slideshow?id=<%= @moment[ "id" ] %>" ;
