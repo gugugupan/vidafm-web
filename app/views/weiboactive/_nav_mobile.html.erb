@@ -1,0 +1,30 @@
+<!-- Navbar ================================================== -->
+<% unless user .nil? %>
+<div class="row-fluid">
+    <div class="span12">
+        <%= link_to raw('<img src="/assets/weiboactive/home.png">'), {:controller=>"weiboactive", :action=>"index"}, :class=>"logo" %>
+        <ul class="nav nav-list">
+            <li class="active" style="line-height: 40px;">
+                <a href="#"><i class="icon-user"></i>&nbsp;&nbsp; 登入腾讯微博参加比赛 </a>
+            </li>
+            <li style="line-height: 40px;">
+                <a href="#"><i class="icon-info-sign"></i>&nbsp;&nbsp; 比赛规则 </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<% else -%>
+<div class="row-fluid">
+    <div class="span12">
+        <%= link_to raw('<img src="/assets/weiboactive/home.png">'), {:controller=>"weiboactive", :action=>"index"}, :class=>"logo" %>
+        <ul class="nav nav-list">
+            <li class="active" style="line-height: 40px;">
+                <a href="#"><i class="icon-user"></i>&nbsp;&nbsp; 登入腾讯微博参加比赛 </a>
+            </li>
+            <li style="line-height: 40px;">
+                <a href="#"><i class="icon-info-sign"></i>&nbsp;&nbsp; 比赛规则 </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<% end -%>

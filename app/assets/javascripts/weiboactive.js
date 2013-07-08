@@ -14,6 +14,8 @@
         activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
     });
     
+    $(document.body).append("<div>width: " + window.innerWidth + " <br> height:" + window.screen.height + "</div>");
+    
     /*
     function slide(opt) {
         var el = opt.el;

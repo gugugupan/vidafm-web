@@ -24,7 +24,13 @@ class WeiboactiveController < ApplicationController
 
     def index
         save_url_in_cookies
-        render :layout => "layouts/weiboactive_layout"
+        if request.user_agent =~ /(android|ipod|iphone|ipad)/i
+            @mobile = true
+            render :layout => "layouts/weiboactive_mobile_layout"
+        else
+            @mobile = false
+            render :layout => "layouts/weiboactive_layout"
+        end
     end
 
     def myprofile

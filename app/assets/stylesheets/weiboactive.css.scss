@@ -1,6 +1,5 @@
 /*
  *= require bootstrap/bootstrap.min
- *= require bootstrap/bootstrap-responsive.min
 */
 
 $blue: #7CB7E8;
@@ -12,19 +11,11 @@ body {
     padding-top: 20px;
 }
 
-/* Custom container */
-
-@media (min-width: 1200px) {
-    .container,
-    .navbar-static-top .container,
-    .navbar-fixed-top .container,
-    .navbar-fixed-bottom .container {
-      width: 1200px;
-    }
-}
 .wrapper {
+    width: 1250px;
     overflow: hidden;
 }
+
 .wrapper > hr {
     margin: 60px 0;
 }
@@ -186,7 +177,7 @@ body {
 
 .integral {
     font-size: 90px;
-    line-height: 1;
+    line-height: 1em;
     margin-left: 10px;
     font-weight: bold;
 }
@@ -264,14 +255,18 @@ body {
 
 /* Daily Star*/
 .user-container {
-    margin: 0 0 0 20%;
+    text-align: center;
     
     .user-content {
-        margin-left: 120px;
+        margin-left: 250px;
     }
     .user-avatar {
-      border-radius: 50px 50px 50px 50px;
-      width: 100px;
+            float: left;
+            margin-left: 150px;
+          img {
+              border-radius: 50px 50px 50px 50px;
+              width: 100px;
+          }
     }
 
     .user-name {
@@ -317,9 +312,6 @@ body {
   	color: inherit;
   }
 }
-
-
-
 
 .jifen {
     float: right;
@@ -414,12 +406,6 @@ body {
 }
 .thumbnail-pic img{
   width: 100%;
-}
-
-@media (max-width: 767px) {
-    .thumbnail-pic {
-        height: auto;
-    }
 }
 
 .rls_container .rls_container_inner .story_visited,
