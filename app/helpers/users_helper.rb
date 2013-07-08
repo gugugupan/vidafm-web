@@ -49,6 +49,25 @@ module UsersHelper
 		raw inner_html
 	end
 
+    # @params:
+    #   obj: {:avatar_file => 'http://example/avatar.png', :id => 133}
+    #                {'avatar_file' => 'http://example/avatar.png'} 
+    # @return:
+    #   "<a href='users/133' class='user-avatar'><img src='http://example/avatar.png' class='user-avatar-img'></img></a>"
+    # 没有链接
+
+    def avatar_tag_weibo user, options = {}
+        user.symbolize_keys!
+        class_str = "avatar #{ options[ :class ] }"
+        inner_html = link_to( image_tag( user[ :avatar_file ] ) , "javascript:void(0);" , 
+            :class => class_str , 
+            :title => user[ :name ] ,
+            :style => "background-image:url('#{ user[ :avatar_file ] }');
+                filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{ user[ :avatar_file ] }',sizingMethod='scale');" )
+        inner_html = image_tag( user[ :avatar_file ] , :class => 'avatar' ) if options[ :nolink ]
+        raw inner_html
+    end
+
 	# Params :
 	# 	none
 	def datebox_tag time # time str like "2012-10-18 11:03:08 AM UTC (2012-10-18 07:03:08 PM Local)"

@@ -40,7 +40,6 @@
 			<%= image_tag( "slideshow/btn_play2.png" ) %>
 			<p>播放照片微电影</p>
 		<% end -%>
-		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :class => "goto_momentshow" -%>
 	</div>
 </div>
 
@@ -79,32 +78,17 @@
 <div id="slideshow_end">
 	<div class="black_cover"> </div>
 	<div id="end_slideshow_part">
-		<%= link_to "/users/#{ @moment[ "user" ] [ "id" ] }" , :class => "roundavatar" , :style => "margin:0 auto 30px;" do %>
+		<%= link_to "javascript:void(0);" , :class => "roundavatar" , :style => "margin:0 auto 30px;" do %>
 			<div class="roundavatar_file" style="background-image:url(<%=@moment[ "user" ] [ "avatar_file" ] -%>); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= @moment[ "user" ] [ "avatar_file" ] -%>',sizingMethod='scale');"> </div>
 		<% end -%>
 		<div class="clearfix"> </div>
-		<div style="margin:0 auto; width:230px;">
-			<%= link_to like_moment_url( @moment[ "id" ] ) + "?agent=slideshow" , :class => "roundbutton" , :style => "margin-right: 40px;" , :remote => true , :method => :put do -%>
-					<%= image_tag "slideshow/slideshow-like.png" , :class => "slideshow_like_btn" , :style => "#{ "display:none" unless @moment[ "liked" ] }" -%>
-					<%= image_tag "slideshow/slideshow-unlike.png" , :class => "slideshow_unlike_btn" , :style => "#{ "display:none" if @moment[ "liked" ] }" -%>
-			<% end -%>
-			<%= link_to "/moments/#{ @moment[ "id" ] }?md=ms#comment-block" , :class => "roundbutton" do -%>
-				<%= image_tag "slideshow/slideshow-comment.png" -%>
-			<% end -%>
-			<%= link_to sharelist_moment_url( @moment[ "id" ] ) + "?name=#{ @moment[ "name" ] }" , :remote => true , :method => :get , :class => "roundbutton" , :style => "margin-left: 40px;" do -%>
-				<%= image_tag "slideshow/slideshow-share.png" -%>
-			<% end -%>
-			<div class="clearfix"> </div>
-		</div>
-		
-		<%= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :class => "goto_momentshow" %>
 	</div>
 </div>
 
 <%#---Bar of slideshow---%>
 <div id="slideshow_bar_container">
 	<div id="slideshow_bar">
-		<%= link_to like_moment_url( @moment[ "id" ] ) + "?agent=slideshow" , :id => "bar_btn_1" , :remote => true , :method => :put do %>
+		<%= link_to "javascript:void(0);" , :id => "bar_btn_1" , :remote => true , :method => :put do %>
 			<%= image_tag "slideshow/bar_like_on.png" , :class => "slideshow_like_btn" , :style => "#{ "display:none" unless @moment[ "liked" ] }" -%>
 			<%= image_tag "slideshow/bar_like_off.png" , :class => "slideshow_unlike_btn" , :style => "#{ "display:none" if @moment[ "liked" ] }" -%>
 		<% end -%>
@@ -121,25 +105,25 @@
 
 
 <%#---Bar of read, like and share%>
-<div class="rls_container">
+<!-- div class="rls_container">
 	<div class="rls_container_inner">
 		<p class="story_visited"> 120 </p>
 		<p class="story_like"> 80 </p>
 		<p class="story_share"> 50 </p>
 		<div class="clearfix"></div>
 	</div>
-</div>
+</div -->
 
 <%#---Bar of post info---%>
 <div class="userinfo_container">
 	<div class="userinfo_container_inner">
-		<%= avatar_tag @moment[ 'user' ] %>
+		<%= avatar_tag_weibo @moment[ 'user' ] %>
 		<h1>
-			<a href="/moments/<%= @moment[ "id" ] %>?md=ms"> #<%= moment_category( @moment[ "category" ] ) %> <%= moment_name @moment %> </a> 
+			<a href="javascript:void(0);"> #<%= moment_category( @moment[ "category" ] ) %> <%= moment_name @moment %> </a> 
 		</h1>
 		<div class="comment_container">
 			<div class="user_name"> 
-				<a href="/users/<%= @moment[ "user" ] [ :id ] %>"> <%= @moment[ "user" ] [ :name ] %> </a> 
+				<a href="javascript:void(0);"> <%= @moment[ "user" ] [ :name ] %> </a> 
 				<div class="clearfix"> </div>
 			</div>
 		<% unless @moment[ "audio" ] .nil? -%>
