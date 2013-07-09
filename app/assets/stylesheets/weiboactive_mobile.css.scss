@@ -8,6 +8,9 @@ $yellow: #fbae17;
 $cyanogen: #64ddb4;
 $pink: #dd5f7a;
 
+html {
+    font-size: 14px;
+}
 body {
     padding: 20px 0 0;
     line-height: inherit;
@@ -21,9 +24,11 @@ body {
     display: block;
     margin-bottom: 20px;
     margin-left: 10px;
+    margin-right: 10px;
 }
 
-.header {
+.header,
+.header-pink {
     padding: 20px;
 }
 /* Daily Star*/

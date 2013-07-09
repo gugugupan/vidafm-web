@@ -1,9 +1,15 @@
 <div class="container wrapper">
-    <%= render :partial => "nav", :locals => { :user => @cur_user } %>
-
-    <%= render :partial => "header_rule" %>
+    <% if @mobile %>
+    <%= render :partial => "nav_mobile", :locals => { :user => @cur_user } %>
 
     <%= render :partial => "rule" %>
 
     <%= render :partial => "footer" %>
+    <% else %>
+    <%= render :partial => "nav", :locals => { :user => @cur_user } %>
+
+    <%= render :partial => "rule" %>
+
+    <%= render :partial => "footer" %>
+    <% end %>
 </div>

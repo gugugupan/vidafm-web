@@ -1,11 +1,9 @@
 <div class="container wrapper">
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="text-center block-title">
-                原创奖规则
-            </div>
-        </div>
-    </div>
+    <% if @mobile %>
+        <%= render :partial => "nav_mobile", :locals => { :user => @cur_user } %>
+    <% else %>
+        <%= render :partial => "nav", :locals => { :user => @cur_user } %>
+    <% end %>
     <%= render :partial => "header_rule_oa" %>
 
     <%= render :partial => "rule_oa" %>
