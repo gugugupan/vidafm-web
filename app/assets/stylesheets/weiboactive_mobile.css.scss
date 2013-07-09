@@ -71,3 +71,22 @@ body {
     line-height: 1.2;
     margin: 0;
 }
+
+/* Article*/
+.article {
+    margin-left: 5%;
+    margin-right: 5%;
+    
+    p {
+        line-height: 1.2;
+    }
+    
+    .surround-img {
+        float: none;
+        display: block;
+    }
+    
+    .surround-content {
+        margin: 0;
+    }
+}

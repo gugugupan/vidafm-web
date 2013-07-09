@@ -1,10 +1,54 @@
 <div class="container wrapper">
     <% if @mobile %>
-        <%= render :partial => "nav_mobile", :locals => { :user => @cur_user } %>
+    <%= render :partial => "nav_mobile", :locals => { :user => @cur_user } %>
     <% else %>
-        <%= render :partial => "nav", :locals => { :user => @cur_user } %>
+    <%= render :partial => "nav", :locals => { :user => @cur_user } %>
     <% end %>
-    <%= render :partial => "header_rule_oa" %>
+    <% unless @mobile == true %>
+    <%= render :partial => "header_01" %>
+    <% else %>
+    <%= render :partial => "header_01_mobile" %>
+    <% end %>
 
-    <%= render :partial => "rule_oa" %>
+    <!--规则说明-->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center block-title">
+                原创奖规则
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <article class="article">
+                <div class="media">
+                    <div class="media-body">
+                        <p style="font-size: 17.5px;">
+                            原创分数获得方式：
+                        </p>
+                        <p style="font-size: 17.5px;">
+                            1、下载Vida微图记，上传照片做成微电影并添加“照片微电影大赛”Tag，原创得分+10
+                        </p>
+                        <p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/" class="btn-pink-small">下载Vida</a>
+                        </p>
+                        <p style="font-size: 17.5px;">
+                            2、微电影被播放一次，原创得分+5
+                        </p>
+                        <br>
+                        <p style="font-size: 17.5px;">
+                            奖项设置：
+                        </p>
+                        <p style="font-size: 17.5px; color: #f27149;">
+                            总原创分数最高的用户获得价值人民币6万元的高端欧洲双人游一次
+                        </p>
+                        <p style="font-size: 17.5px; color: #f27149;">
+                            每日原创分数最高的用户获得iPad mini 一台（30天共30台，每个用户限获奖一次）
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
 </div>

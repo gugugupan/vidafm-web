@@ -22,8 +22,8 @@ class WeiboactiveController < ApplicationController
         ]
     end
 
-    def index
-        save_url_in_cookies
+    # check user agent version
+    def check_user_agent
         if request.user_agent =~ /(android|ipod|iphone|ipad)/i
             @mobile = true
             render :layout => "layouts/weiboactive_mobile_layout"
@@ -33,52 +33,46 @@ class WeiboactiveController < ApplicationController
         end
     end
 
+    def index
+        save_url_in_cookies
+        check_user_agent
+    end
+
     def myprofile
-        render :layout => "layouts/weiboactive_layout"
+        save_url_in_cookies
+        check_user_agent
     end
 
     def editorstory
         save_url_in_cookies
-        render :layout => "layouts/weiboactive_layout"
+        check_user_agent
     end
 
     def top
         save_url_in_cookies
-        render :layout => "layouts/weiboactive_layout"
+        check_user_agent
     end
 
     def rule
         save_url_in_cookies
-        if request.user_agent =~ /(android|ipod|iphone|ipad)/i
-            @mobile = true
-            render :layout => "layouts/weiboactive_mobile_layout"
-        else
-            @mobile = false
-            render :layout => "layouts/weiboactive_layout"
-        end
+        check_user_agent
     end
 
     # 原创奖规则
     def rule_oa
         save_url_in_cookies
-        if request.user_agent =~ /(android|ipod|iphone|ipad)/i
-            @mobile = true
-            render :layout => "layouts/weiboactive_mobile_layout"
-        else
-            @mobile = false
-            render :layout => "layouts/weiboactive_layout"
-        end
+        check_user_agent
     end
 
     # 分享奖规则
     def rule_share
-        render :layout => "layouts/weiboactive_layout"
+        check_user_agent
     end
 
     # 抽奖
     def lottery
         # 未登录跳至首页
         redirect_to action: 'index' and return unless current_user
-        render :layout => "layouts/weiboactive_layout"
+        check_user_agent
     end
 end
