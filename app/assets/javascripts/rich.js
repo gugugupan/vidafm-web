@@ -24,7 +24,7 @@ function onWindowResize(){
 	clearTimeout(onWindowResizeTimeout) ;
 	onWindowResizeTimeout = null;
 
-	window_width  = 460;//$( window ) .width() || $( document ) .width() ;
+	window_width  = $("#wrapper").width() || 510;//$( window ) .width() || $( document ) .width() ;
 	window_height = 420;//$( window ) .height() || $( document ) .height() ;
 
 	$( "#slideshow_index" ) .css( "height" , ( window_height ) + "px" ) ;
