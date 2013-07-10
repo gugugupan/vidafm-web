@@ -27,6 +27,8 @@
 </script>
 <% end -%>
 
+<% is_mobile = request.user_agent =~ /(android|ios|ipod|iphone|ipad)/i -%>
+
  <%#---Slideshow background---%>
 <div id="slideshow_background">
 	<img id="slideshow_background_img" imgsrc="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "url_l" ] %>" cwidth="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "width" ] %>" cheight="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "height" ] %>">
@@ -36,8 +38,7 @@
 <div id="slideshow_index">
 	<div class="black_cover"> </div>
 	<div id="play_slideshow_btn_area">
-		<%= link_to "" , "javascript:start_slideshow()" , :id => "play_slideshow_btn" -%>
-		<%#= link_to image_tag( "slideshow/icon_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :class => "goto_momentshow" %>
+		<%= link_to image_tag( "slideshow/slideshow_play.png" ) , "javascript:start_slideshow()" , :id => "play_slideshow_btn" , :style => is_mobile ? "" : "width: 90px; height: 90px;" -%>
 	</div>
 </div>
 
@@ -117,7 +118,7 @@
 </div>
 
 <%#---Slideshow footer---%>
-<div id="slideshow_footer">
+<div id="slideshow_footer" style="<%= is_mobile ? "" : "height: 66px;" -%>">
 	<div class="black_cover"> </div>
 
 	<% if request.user_agent =~ /(android|ipod|iphone|ipad)/i -%>
@@ -140,7 +141,7 @@
 <div id="slideshow_audio_hint">
 </div>
 
-<%= link_to "" , "/moments/#{ @moment[ "id" ] }?md=ms" , :id => "slideshow_goto_momentshow" %>
+<%= link_to image_tag( "slideshow/slideshow_more.png" ) , "/moments/#{ @moment[ "id" ] }?md=ms" , :id => "slideshow_goto_momentshow" %>
 <%= link_to image_tag( "slideshow/slideshow_logo.png" ) , "/" , :id => "slideshow_logo" -%>
 
 <div id="slideshow_ad">
@@ -151,4 +152,12 @@
 	<script type="text/javascript">
 		window.location.href = "vida://slideshow?id=<%= @moment[ "id" ] %>" ;
 	</script>
+<% end -%>
+
+<% unless is_mobile -%>
+<script type="text/javascript">
+	SLIDESHOW_FOOTER_HEIGHT = 66 ;
+	$( "#play_slideshow_btn_area" ) .css( "margin-left" , "-60px" ) ;
+	$( "#slideshow_ad" ) .css( { "bottom" : "80px" , "width" : "600px" , "height" : "190px" , "margin-left" : "-300px"} ) ;
+</script>
 <% end -%>

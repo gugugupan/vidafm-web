@@ -31,7 +31,7 @@ function onWindowResize(){
 	var hd = ( window_height - SLIDESHOW_FOOTER_HEIGHT ) ;
 
 	$( "#slideshow_index" ) .css( "height" , hd + "px" ) ;
-	$( "#play_slideshow_btn_area" ) .css( "top" ,  ( hd - 60 ) / 2 + "px" ) ;
+	$( "#play_slideshow_btn_area" ) .css( "top" ,  ( hd - $( "#play_slideshow_btn_area" ) .height() ) / 2 + "px" ) ;
 	$( "#slideshow_start" ) .css( "margin-top" , hd / 2 + "px" ) ;
 	$( "#slideshow_end" ) .css( "height" , hd + "px" ) ;
 	$( "#end_slideshow_part" ) .css( "top" , ( hd - 134 ) / 2 + "px" ) ;
@@ -93,7 +93,7 @@ function blur_start( img_id )
 
 	var img_ele = document.getElementById( img_id ) ;
 	img_ele .onload = function() {
-		Pixastic.process( img_ele , "blurfast", { amount : 1.5 } ) ;
+		Pixastic.process( img_ele , "blurfast", { amount : 2 } ) ;
 	}
 	img_ele .src = img_ele .attributes[ "imgsrc" ] .nodeValue ;
 }

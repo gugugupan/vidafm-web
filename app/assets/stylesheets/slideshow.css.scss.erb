@@ -16,14 +16,6 @@
 	filter: alpha(opacity = $a * 100); /* required for opacity to work in IE */
 }
 
-@mixin all_background_size_cover( $image_url )
-{
-	background-image: url( $image_url );
-	background-size: cover;
-	background-repeat: no-repeat;
-	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{$image_url}', sizingMethod='scale');
-}
-
 body {
 	margin: 0;
 	padding: 0;
@@ -60,13 +52,12 @@ img {
 		position: absolute;
 		display: block;
 		width: 49.9%;
-		height: 30.5px;
+		height: 100%;
 		top:0;
-		text-align: center;
-		padding-top: 13.5px;
+		text-align: center;;
 
 		img {
-			height: 16.5px;
+			height: 100%;
 		}
 	}
 
@@ -102,7 +93,7 @@ img {
 		position: absolute;
 		top: 0;
 		left: 50%;
-		margin-left: -32px;
+		margin-left: -30px;
 		width: 60px;
 
 
@@ -110,11 +101,14 @@ img {
 			display: block;
 			width: 60px;
 			height: 60px;
-			@include all_background_size_cover( "<%= asset_path "slideshow/slideshow_play.png" %>" );
-			background-position: 0 0;
+			overflow: hidden;
 
-			&:hover {
-				background-position: 0 -60px;
+			img {
+				width: 100%;
+
+				&:hover {
+					margin-top: -100%;
+				}
 			}
 		}
 	}
@@ -331,11 +325,14 @@ img {
 	position: absolute;
 	right: 0;
 	display: block;
-	@include all_background_size_cover( "<%= asset_path "slideshow/slideshow_more.png" %>" );
-	background-position: 0 0;
+	overflow: hidden;
 
-	&:hover {
-		background-position: 0 -30px;
+	img {
+		width: 100%;
+
+		&:hover {
+			margin-top: -30px;
+		}
 	}
 }
 
@@ -349,6 +346,8 @@ img {
 	z-index: 105;
 	background-color: black;
 	border: 5px solid white;
+
+	display: none;
 }
 
 #slideshow_logo {
