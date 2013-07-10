@@ -1,7 +1,11 @@
 <div class="container wrapper">
+    <% unless @mobile %>
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
-
     <%= render :partial => "header_02", :locals => { :user => @cur_user } %>
+    <% else %>
+    <%= render :partial => "nav_mobile", :locals => { :user => @cur_user } %>
+    <%= render :partial => "header_02_mobile", :locals => { :user => @cur_user } %>
+    <% end %>
 
     <%= render :partial => "mystory" %>
 

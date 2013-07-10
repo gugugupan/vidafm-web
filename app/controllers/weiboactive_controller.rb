@@ -1,3 +1,4 @@
+#encoding: utf-8
 class WeiboactiveController < ApplicationController
     def initialize
         @avatars = [
@@ -33,18 +34,65 @@ class WeiboactiveController < ApplicationController
         end
     end
 
+    #首页
     def index
         save_url_in_cookies
+        @result = UserStatistic.every_day_star
+        @user0 = {}
+        @user1 = {}
+
+        #unless @result[0].nil?
+
+        @user0 = User.fetch("169" || @result[0].user_id, current_user, nil)["data"]
+        @user1 = User.fetch("167" || @result[0].user_id, current_user, nil)["data"]
+
+        #end
+
+        @moment = api_call( "Moment" , :fetch_by_search , nil , {
+            :category => "mood" ,
+            :order => "hottest" ,
+            :offset => 0
+        }) [ "data" ] [ "moments" ]
+        
+        @moment1 = api_call( "Moment" , :fetch_by_search , nil , {
+            :category => "food" ,
+            :order => "hottest" ,
+            :offset => 0
+        }) [ "data" ] [ "moments" ]
+
         check_user_agent
     end
 
+    # 我的页面
     def myprofile
         save_url_in_cookies
+
         check_user_agent
     end
 
+    #编辑推荐
     def editorstory
         save_url_in_cookies
+
+        @moment = api_call( "Moment" , :fetch_by_search , nil , {
+            :category => "mood" ,
+            :order => "hottest" ,
+            :offset => 0
+        }) [ "data" ] [ "moments" ]
+        
+        check_user_agent
+    end
+
+    # 热门作品
+    def topstory
+        save_url_in_cookies
+
+        @moment = api_call( "Moment" , :fetch_by_search , nil , {
+            :category => "food" ,
+            :order => "hottest" ,
+            :offset => 0
+        }) [ "data" ] [ "moments" ]
+        
         check_user_agent
     end
 
@@ -66,6 +114,7 @@ class WeiboactiveController < ApplicationController
 
     # 分享奖规则
     def rule_share
+        save_url_in_cookies
         check_user_agent
     end
 

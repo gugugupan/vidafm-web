@@ -31,15 +31,17 @@ body {
 .header-pink {
     padding: 20px;
 }
+
+
 /* Daily Star*/
 .user-container {
+    .user-avatar {
+        float: none;
+        margin-left: 0;
+    }
     
     .user-content {
         margin-left: 0;
-    }
-    .user-avatar {
-            float: none;
-            margin-left: 0;
     }
 }
 

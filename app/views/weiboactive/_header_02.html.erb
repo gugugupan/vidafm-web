@@ -3,7 +3,7 @@
     <div class="row-fluid">
         <div class="span4">
             <div class="myprofile-container">
-                <img alt="程莎莎" class="user-avatar" src="<%= user[ "avatar_file" ] %>">
+                <%= avatar_tag user, {:nolink => true, :class => "user-avatar"} %>
                 <div class="user-name">
                     <%= user[ :name ] %>
                 </div>

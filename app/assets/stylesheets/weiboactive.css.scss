@@ -253,6 +253,11 @@ body {
     margin: 0;
 }
 
+.user-avatar {
+  border-radius: 50px 50px 50px 50px;
+  width: 100px;
+}
+
 /* Daily Star*/
 .user-container {
     text-align: center;
@@ -261,12 +266,9 @@ body {
         margin-left: 250px;
     }
     .user-avatar {
-            float: left;
-            margin-left: 150px;
-          img {
-              border-radius: 50px 50px 50px 50px;
-              width: 100px;
-          }
+        float: left;
+        margin-left: 150px;
+        margin-bottom: 10px;
     }
 
     .user-name {
@@ -283,13 +285,9 @@ body {
     }
 }
 
+
 /* My Profile */
 .myprofile-container {
-    .user-avatar {
-      border-radius: 50px 50px 50px 50px;
-      width: 100px;
-      margin-bottom: 10px;
-    }
 
     .user-name {
       font-size: 140%;
@@ -392,12 +390,14 @@ body {
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
     
     .rls_container_inner {
-	    clear: both;
-	    color: white;
-	    margin: 0 auto;
-	    overflow: hidden;
-	    position: relative;
-	}
+        clear: both;
+        color: white;
+        line-height: 30px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+    }
 }
 
 .thumbnail-pic {
@@ -407,16 +407,6 @@ body {
 }
 .thumbnail-pic img{
   width: 100%;
-}
-
-.rls_container .rls_container_inner .story_visited,
-.rls_container .rls_container_inner .story_like,
-.rls_container .rls_container_inner .story_share {
-    float: left;
-    font-size: 12px;
-    line-height: 16px;
-    margin: 6px 0 6px 10%;
-    padding-left: 24px;
 }
 
 #carousel-1,

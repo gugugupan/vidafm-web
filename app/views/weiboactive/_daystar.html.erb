@@ -10,10 +10,10 @@
 <div class="row-fluid">
     <div class="span6">
         <div class="user-container">
-            <a href="#" class="user-avatar"><img src="<%= @avatars[0] %>" alt='程莎莎' /></a>
+            <%= avatar_tag @user0, {:nolink => true, :class => "user-avatar"} %>
             <div class="user-content">
                 <div class="user-name">
-                    程莎莎
+                    <%= @user0[:name] %>
                 </div>
                 <div class="user-award">
                     今日iPad mini得主
@@ -26,10 +26,10 @@
     </div>
     <div class="span6">
         <div class="user-container">
-            <a href="#" class="user-avatar"><img src="<%= @avatars[3] %>" alt='hiyesyes' /></a>
+            <%= avatar_tag @user1, {:nolink => true, :class => "user-avatar"} %>
             <div class="user-content">
                 <div class="user-name">
-                    hiyesyes
+                     <%= @user1[:name] %>
                 </div>
                 <div class="user-award">
                     今日Tiffany得主
