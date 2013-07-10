@@ -8,4 +8,8 @@
 	<% if pic[ "activity_type" ] == 3 -%>
 		<%= image_tag "images/play.png" , :class => "video_btn" %>
 	<% end -%>
+	<div class="activity_other_info">
+		<%= render :partial => "/widgets/poi" , :object => pic[ "poi" ] -%>
+		<%= render :partial => "/widgets/tag" , :collection => pic[ "tags" ] -%>
+	</div>
 </a>

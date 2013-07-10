@@ -194,7 +194,7 @@ $info_color: #a6a099 ;
 			z-index: 10;
 
 			border: 2px solid white;
-			@include all_border_radius( 10px ) ;
+			//@include all_border_radius( 10px ) ;
 			overflow:hidden;
 
 			.month {
