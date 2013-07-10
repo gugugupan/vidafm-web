@@ -166,7 +166,7 @@
 
         <% if @current_user && @status != 401 -%>
             <div id="feed_container" type="story" blockstyle="puzzle">
-                <%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :show_type => "datebox" } -%>
+                <%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :show_type => "datebox" , :act_user => @user } -%>
                 <%= render :partial => "widgets/feedsparam" , :locals => { :qparams => @qparams } -%>
                 <div class="clearfix last_clearfix"> </div>
             </div>

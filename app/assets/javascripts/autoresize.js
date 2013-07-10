@@ -60,7 +60,7 @@ function adjust_image( callback )
             {
                 $( ".mlcontainer:eq(" + i + ") .mlbox .image_container" ) .height( "215px" ) ;
                 _boxObjects .eq( 0 ) .addClass( "image_box_big" ) ;
-                _boxObjects .eq( 1 ) .addClass( "image_box_small" ) .css({"top":"5px"}) ;
+                _boxObjects .eq( 1 ) .addClass( "image_box_small" ) .css({"top":"0px"}) ;
                 _boxObjects .eq( 2 ) .addClass( "image_box_small" ) ;
 
                 for( var y = 0; y < _imageObjects .length ; y++ )

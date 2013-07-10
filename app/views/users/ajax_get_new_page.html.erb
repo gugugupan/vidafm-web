@@ -9,7 +9,7 @@
 	<% end -%>
 	<%= render :partial => "users/userfeed" , :collection => @user_list , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 3 : nil } -%>
 <% when "commentlike" , "story" -%>
-	<%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox" } -%>
+	<%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox" , :act_user => @user } -%>
 	<% if @feeds .length > 0 -%>
 		<%= render :partial => "widgets/feedsparam" , :locals => { :qparams => @qparams } -%>
 	<% end -%>

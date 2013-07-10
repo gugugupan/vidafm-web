@@ -5,12 +5,6 @@
 	filter: alpha(opacity = $a * 100); /* required for opacity to work in IE */
 }
 
-@mixin all_border_radius( $r ) {
-	border-radius: $r ;
-	-moz-border-radius: $r ;
-	-webkit-border-radius: $r ;
-}
-
 #moment-show-page {
 	width: 100%;
 
@@ -298,29 +292,8 @@ $font_grey : #77706f;
 			position: absolute;
 			bottom: 0;
 			left: 0;
+			padding-left: 5px;
 			@include all_background_rgba( 0 , 0 , 0 , 0.5 ) ;
-
-			.poi_block {
-				margin: 5px;
-				padding: 5px 5px 5px 23px;
-				float: left;
-				height: 15px;
-				font-size: 12px;
-				@include all_border_radius( 4px ) ;
-				color: white;
-				background: #7cb7e8 image-url("feeds/moment_list_poi_bg.png") no-repeat left center;
-			}
-
-			.tag_block {
-				margin: 5px;
-				padding: 5px;
-				float: left;
-				height: 15px;
-				font-size: 12px;
-				background-color: #b3a3d1;
-				@include all_border_radius( 4px ) ;
-				color: white;
-			}
 		}
 	}
 
