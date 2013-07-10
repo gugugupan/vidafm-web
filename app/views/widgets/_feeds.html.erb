@@ -3,9 +3,9 @@
 		Create a feed bubble~
 
 	Params :
-		boxtype - [ "datebox" , "userbox" (define)]
+		show_type - [ "datebox" , "user" (define)]
 %>
-<% boxtype = "userbox" if boxtype .nil? -%>
+<% show_type = "user" if show_type .nil? -%>
 <div class="feed" id="<%= feed_id feeds %>"> <!-- feeds id missed 'moment1325523'-->
 	<div class="mlcontainer"> 
 		<div class="mlbox">
@@ -14,15 +14,18 @@
 			<% if feeds[ "feed_type" ] == "activity_feed" -%>
 				<% mid = feeds[ 'moment' ] [ 'id' ] -%>
 				<%= link_to feeds[ 'moment' ] [ 'likes_count' ] , like_moment_url( mid ) , :remote => true , :method => :put , :id => "like#{ mid }" , :class =>"float_likes #{ feeds[ 'moment' ] [ 'liked' ] ? 'liked' : 'unlike' }" %>
-				<% if boxtype == "userbox" -%>
+
+				<% if show_type == "user" -%>
 					<%= avatar_tag_b( feeds[ "user" ] , { :class => "float_avatar" } ) %>
 				<% else -%>
 					<%= datebox_tag( get_time( feeds[ "moment" ] ) ) %>
 				<% end -%>
+
 				<div class="image_container">
 					<%= render :partial => "widgets/puzzle" , :object => feeds[ "activities" ] [ 0 , 9 ] %>
 					<div class="clearfix"> </div>
 				</div>
+
 				<div class="mlinfo" style="padding-left: 50px;">
 					<%= link_to "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "gotoslideshow" do -%>
 						<%= image_tag "slideshow/btn_play.png" -%>
@@ -36,6 +39,7 @@
 					</div>
 					<div class="clearfix"></div>
 				</div>
+				
 				<div class="clearfix"></div>
 
 				<%= image_tag "icon/icon_timeline_story.png" , :class => "feeds_icon feeds_icon_left" -%>
