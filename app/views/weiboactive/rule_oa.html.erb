@@ -1,16 +1,9 @@
+<!--原创奖规则-->
 <div class="container wrapper">
-    <% if @mobile %>
-    <%= render :partial => "nav_mobile", :locals => { :user => @cur_user } %>
-    <% else %>
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
-    <% end %>
-    <% unless @mobile == true %>
-    <%= render :partial => "header_01" %>
-    <% else %>
-    <%= render :partial => "header_01_mobile" %>
-    <% end %>
 
-    <!--原创奖规则-->
+    <%= render :partial => "header_01" %>
+
     <div class="row-fluid">
         <div class="span12">
             <div class="text-center block-title">

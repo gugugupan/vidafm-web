@@ -1,15 +1,37 @@
 <div class="container wrapper">
-    <% unless @mobile %>
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
+
     <%= render :partial => "header_02", :locals => { :user => @cur_user } %>
+
+    <!--我的作品-->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center block-title">
+                我的作品
+            </div>
+        </div>
+    </div>
+
+    <% unless @mobile == true %>
+    <%= createStory @moment, 4 %>
     <% else %>
-    <%= render :partial => "nav_mobile", :locals => { :user => @cur_user } %>
-    <%= render :partial => "header_02_mobile", :locals => { :user => @cur_user } %>
+    <%= createStory @moment, 2 %>
     <% end %>
 
-    <%= render :partial => "mystory" %>
+    <!--我的分享-->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center block-title">
+                我的分享
+            </div>
+        </div>
+    </div>
 
-    <%= render :partial => "myshare" %>
+    <% unless @mobile == true %>
+    <%= createStory @moment1, 4 %>
+    <% else %>
+    <%= createStory @moment1, 2 %>
+    <% end %>
 
     <%= render :partial => "footer" %>
 </div>

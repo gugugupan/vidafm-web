@@ -1,5 +1,51 @@
+<!--抽奖-->
 <div class="container wrapper">
 
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center block-title">
+                分享成功并参加抽奖
+            </div>
+        </div>
+    </div>
 
-    <%= render :partial => "lottery" %>
+    <div class="row-fluid">
+        <div class="span12 text-center">
+            <p style="font-size: 30px; color: #4d4d4d;">
+                成功分享微电影，点下方链接查看微博
+            </p>
+            <br>
+            <br>
+            <a class="btn-blue-small" href="/weiboactive/top?id=1">查看微博</a>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12 text-center">
+            <br>
+            <br>
+            <div style="position: relative; width: 475px; margin: 0px auto; background: url('/assets/weiboactive/lottery1.png') no-repeat scroll 0px 0px transparent; height: 475px;">
+                <div id="clock" style="width: 178px; height: 178px; position: absolute; left: 148px; top: 148px; background: url('/assets/weiboactive/clock.png') no-repeat scroll 0px 0px transparent;"></div>
+            </div>
+            <br>
+            <a class="btn-yellow-small" href="/weiboactive/top?id=1">抽奖赢Q币</a>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12 text-center" style="margin-bottom: 100px;">
+            <p style="font-size: 30px; color: #4d4d4d;">
+                恭喜抽中1Q币，我们会将兑换码发送到你填写的邮箱
+            </p>
+            <form>
+                <input type="text" style="margin-top: 12px;"/>
+                <button type="submit" class="btn">
+                    提交
+                </button>
+            </form>
+        </div>
+    </div>
+
 </div>

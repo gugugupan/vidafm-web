@@ -1,9 +1,5 @@
 <div class="container wrapper">
-    <% if @mobile %>
-    <%= render :partial => "nav_mobile", :locals => { :user => @cur_user } %>
-    <% else %>
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
-    <% end %>
 
     <!--所有热门作品-->
     <div class="row-fluid">
@@ -13,15 +9,15 @@
             </div>
         </div>
     </div>
-    
+
     <% unless @mobile == true %>
-    
+
     <%= createStory @moment, 4 %>
-    
+
     <% else %>
-    
+
     <%= createStory @moment, 2 %>
-    
+
     <% end %>
     <a href="javascript:void(0)" class="more-link">点击显示更多</a>
 
