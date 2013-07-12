@@ -33,7 +33,7 @@ function onWindowResize() {
     $("#slideshow_index").css("height", hd + "px");
     $("#slideshow_background").css("height", hd + "px");
     $("#play_slideshow_btn_area").css("top", (hd - $("#play_slideshow_btn_area").height() ) / 2 + "px");
-    $("#slideshow_start").css("margin-top", hd / 2 + "px");
+    $("#slideshow_start").css("margin-top", ( hd - 65 ) / 2 + "px");
     $("#slideshow_goto_momentshow").css("top", (hd - 20 ) / 2 + "px");
 
     if (slideshow_num != -1) {
@@ -244,19 +244,20 @@ function go_slideshow(num) {
         $selector.find(".info_window").fadeOut(0);
 
         // fix slideshow window's width and height
-        var window_ratio = window_width / window_height;
+        var hd = window_height - SLIDESHOW_FOOTER_HEIGHT ;
+        var window_ratio = window_width / hd;
         var img_ratio = img_width / img_height;
         if (window_ratio > img_ratio) {
             $selector.css({
-                width : img_width * (window_height / img_height ),
-                height : window_height,
-                "margin-left" : (window_width - img_width * (window_height / img_height ) ) / 2
+                width : img_width * (hd / img_height ),
+                height : hd,
+                "margin-left" : (window_width - img_width * (hd / img_height ) ) / 2
             });
         } else {
             $selector.css({
                 width : window_width,
                 height : img_height * (window_width / img_width ),
-                "margin-top" : (window_height - img_height * (window_width / img_width ) ) / 2
+                "margin-top" : (hd - img_height * (window_width / img_width ) ) / 2
             });
         }
 
