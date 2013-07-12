@@ -1,6 +1,5 @@
 /*
  *= require bootstrap/bootstrap.min
- *= require bootstrap/bootstrap-responsive.min
 */
 
 $blue: #7CB7E8;
@@ -12,19 +11,11 @@ body {
     padding-top: 20px;
 }
 
-/* Custom container */
-
-@media (min-width: 1200px) {
-    .container,
-    .navbar-static-top .container,
-    .navbar-fixed-top .container,
-    .navbar-fixed-bottom .container {
-      width: 1200px;
-    }
-}
 .wrapper {
+    width: 1250px;
     overflow: hidden;
 }
+
 .wrapper > hr {
     margin: 60px 0;
 }
@@ -86,7 +77,7 @@ body {
 .btn-blue {
     background: none repeat scroll 0 0 $blue;
     color: white;
-    font-size: 22.5px;
+    font-size: 140%;
     display: inline-block;
     text-align: center;
     line-height: 1.2;
@@ -95,7 +86,7 @@ body {
 .btn-yellow {
     background: none repeat scroll 0 0 $yellow;
     color: white;
-    font-size: 22.5px;
+    font-size: 140%;
     display: inline-block;
     text-align: center;
     line-height: 1.2;
@@ -104,7 +95,7 @@ body {
 .btn-yellow-small {
     background: none repeat scroll 0 0 $yellow;
     color: white;
-    font-size: 17.5px;
+    font-size: 110%;
     border-radius: 6px 6px 6px 6px;
     padding: 11px 19px;
     display: inline-block;
@@ -115,7 +106,7 @@ body {
 .btn-cyanogen {
     background: none repeat scroll 0 0 $cyanogen;
     color: white;
-    font-size: 22.5px;
+    font-size: 140%;
     display: inline-block;
     text-align: center;
     line-height: 1.2;
@@ -123,7 +114,7 @@ body {
 .btn-cyanogen-small {
     background: none repeat scroll 0 0 $cyanogen;
     color: white;
-    font-size: 17.5px;
+    font-size: 110%;
     border-radius: 6px 6px 6px 6px;
     padding: 11px 19px;
     display: inline-block;
@@ -134,7 +125,7 @@ body {
 .btn-pink {
     background: none repeat scroll 0 0 $pink;
     color: white;
-    font-size: 22.5px;
+    font-size: 140%;
     display: inline-block;
     text-align: center;
     line-height: 1.2;
@@ -143,7 +134,7 @@ body {
 .btn-pink-small {
     background: none repeat scroll 0 0 $pink;
     color: white;
-    font-size: 17.5px;
+    font-size: 110%;
     border-radius: 6px 6px 6px 6px;
     padding: 11px 19px;
     display: inline-block;
@@ -154,7 +145,7 @@ body {
 .btn-blue-small {
     background: none repeat scroll 0 0 $blue;
     color: white;
-    font-size: 17.5px;
+    font-size: 110%;
     border-radius: 6px 6px 6px 6px;
     padding: 11px 19px;
     display: inline-block;
@@ -166,7 +157,7 @@ body {
 .tencent-share {
     background: none repeat scroll 0 0 #7CB7E8;
     color: white;
-    font-size: 22.5px;
+    font-size: 140%;
     line-height: 20px;
     padding: 12px 0;
     width: 100%;
@@ -186,7 +177,7 @@ body {
 
 .integral {
     font-size: 90px;
-    line-height: 1;
+    line-height: 1em;
     margin-left: 10px;
     font-weight: bold;
 }
@@ -217,7 +208,7 @@ body {
     position: relative;
     background: $pink;
     color: white;
-    padding: 70px 70px 10px;
+    padding: 50px;
     
     img.iphone-big {
         float: right;
@@ -257,21 +248,27 @@ body {
 }
 
 .p22-5 {
-    font-size: 22.5px;
+    font-size: 140%;
     line-height: 1.2;
     margin: 0;
 }
 
+.user-avatar {
+  border-radius: 50px 50px 50px 50px;
+  width: 100px;
+}
+
 /* Daily Star*/
 .user-container {
-    margin: 0 0 0 20%;
+    text-align: center;
     
     .user-content {
-        margin-left: 120px;
+        margin-left: 250px;
     }
     .user-avatar {
-      border-radius: 50px 50px 50px 50px;
-      width: 100px;
+        float: left;
+        margin-left: 150px;
+        margin-bottom: 10px;
     }
 
     .user-name {
@@ -281,23 +278,19 @@ body {
     }
 
     .user-award {
-      font-size: 22.5px;
+      font-size: 140%;
       color: #DD5F79;
       line-height: 1.5;
       margin-bottom: 20px;
     }
 }
 
+
 /* My Profile */
 .myprofile-container {
-    .user-avatar {
-      border-radius: 50px 50px 50px 50px;
-      width: 100px;
-      margin-bottom: 10px;
-    }
 
     .user-name {
-      font-size: 22.5px;
+      font-size: 140%;
       font-weight: normal;
       line-height: 1.5;
       margin-bottom: 10px;
@@ -318,9 +311,6 @@ body {
   }
 }
 
-
-
-
 .jifen {
     float: right;
     font-size: 100px;
@@ -330,6 +320,7 @@ body {
 
 .placard {
     margin-left: 25px;
+    margin-bottom: 25px;
     
     .title {
         color: #4D4D4D;
@@ -399,12 +390,14 @@ body {
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
     
     .rls_container_inner {
-	    clear: both;
-	    color: white;
-	    margin: 0 auto;
-	    overflow: hidden;
-	    position: relative;
-	}
+        clear: both;
+        color: white;
+        line-height: 30px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+    }
 }
 
 .thumbnail-pic {
@@ -414,22 +407,6 @@ body {
 }
 .thumbnail-pic img{
   width: 100%;
-}
-
-@media (max-width: 767px) {
-    .thumbnail-pic {
-        height: auto;
-    }
-}
-
-.rls_container .rls_container_inner .story_visited,
-.rls_container .rls_container_inner .story_like,
-.rls_container .rls_container_inner .story_share {
-    float: left;
-    font-size: 12px;
-    line-height: 16px;
-    margin: 6px 0 6px 10%;
-    padding-left: 24px;
 }
 
 #carousel-1,
@@ -537,10 +514,19 @@ a.more-link {
 
 /* Article*/
 .article {
-    margin-left: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
     
     p {
         line-height: 1.2;
+    }
+    
+    .surround-img {
+        float: left;
+    }
+    
+    .surround-content {
+        margin-left: 280px;
     }
 }
 
@@ -560,7 +546,6 @@ a.more-link {
     width: 173px;
     height: 50px;
     display: block;
-    margin-top: 10px;
     background-image: url("/assets/index/index_download_android.png");
     background-repeat: no-repeat;
 
@@ -572,7 +557,7 @@ a.more-link {
 /* footer */
 footer {
     background: none no-repeat scroll 0 0 #F27149;
-    margin-top: 50px;
+    margin-top: 25px;
     padding-bottom: 20px;
     padding-top: 20px;
 }

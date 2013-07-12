@@ -1,0 +1,94 @@
+/*
+ *= require bootstrap/bootstrap.min
+ *= require weiboactive
+*/
+
+$blue: #7CB7E8;
+$yellow: #fbae17;
+$cyanogen: #64ddb4;
+$pink: #dd5f7a;
+
+html {
+    font-size: 14px;
+}
+body {
+    padding: 20px 0 0;
+    line-height: inherit;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+.logo {
+    display: block;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header,
+.header-pink {
+    padding: 20px;
+}
+
+
+/* Daily Star*/
+.user-container {
+    .user-avatar {
+        float: none;
+        margin-left: 0;
+    }
+    
+    .user-content {
+        margin-left: 0;
+    }
+}
+
+.user-container .user-award {
+    font-size: 1em;
+}
+
+/* Paragraph */
+.p30 {
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.p37-5 {
+    font-size: 37.5px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.p15 {
+    font-size: 15px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.p22-5 {
+    font-size: 1em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Article*/
+.article {
+    margin-left: 5%;
+    margin-right: 5%;
+    
+    p {
+        line-height: 1.2;
+    }
+    
+    .surround-img {
+        float: none;
+        display: block;
+    }
+    
+    .surround-content {
+        margin: 0;
+    }
+}

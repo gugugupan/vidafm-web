@@ -1,11 +1,182 @@
-<div class="container">
+<!--排行榜&获奖名单-->
+<div class="container wrapper">
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
 
-    <%= render :partial => "header_award" %>
+    <header>
+        <div class="row-fluid">
+            <div class="span12">
+                <img src="/assets/weiboactive/banner-award.png">
+            </div>
+        </div>
+    </header>
 
     <%= render :partial => "daystar" %>
 
-    <%= render :partial => "top" %>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center block-title">
+                排行榜&获奖名单
+            </div>
+        </div>
+    </div>
+    <% unless @mobile == true %>
 
-    <%= render :partial => "footer" %>
-</div>
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="placard">
+                <div class="title">
+                    原创达人 排行榜
+                </div>
+                <ul class="talent-container">
+                    <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "create"} -%>
+                </ul>
+                <br>
+                <div class="pagination">
+                    <ul>
+                        <li>
+                            <a href="#">上一页</a>
+                        </li>
+                        <li>
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                        <li>
+                            <a href="#">4</a>
+                        </li>
+                        <li>
+                            <a href="#">5</a>
+                        </li>
+                        <li>
+                            <a href="#">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="span6">
+            <div class="placard">
+
+                <div class="title">
+                    原创达人 获奖名单
+                </div>
+                <ul class="talent-container">
+                    <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "award"} -%>
+                </ul>
+                <br>
+                <div class="pagination">
+                    <ul>
+                        <li>
+                            <a href="#">上一页</a>
+                        </li>
+                        <li>
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                        <li>
+                            <a href="#">4</a>
+                        </li>
+                        <li>
+                            <a href="#">5</a>
+                        </li>
+                        <li>
+                            <a href="#">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% else %>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="placard">
+                <div class="title">
+                    原创达人 排行榜
+                </div>
+                <ul class="talent-container">
+                    <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "create"} -%>
+                </ul>
+                <br>
+                <div class="pagination">
+                    <ul>
+                        <li>
+                            <a href="#">上一页</a>
+                        </li>
+                        <li>
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                        <li>
+                            <a href="#">4</a>
+                        </li>
+                        <li>
+                            <a href="#">5</a>
+                        </li>
+                        <li>
+                            <a href="#">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="placard">
+
+                    <div class="title">
+                        原创达人 获奖名单
+                    </div>
+                    <ul class="talent-container">
+                        <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "award"} -%>
+                    </ul>
+                    <br>
+                    <div class="pagination">
+                        <ul>
+                            <li>
+                                <a href="#">上一页</a>
+                            </li>
+                            <li>
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <a href="#">4</a>
+                            </li>
+                            <li>
+                                <a href="#">5</a>
+                            </li>
+                            <li>
+                                <a href="#">下一页</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <% end %>
+
+        <%= render :partial => "footer" %>
+    </div>

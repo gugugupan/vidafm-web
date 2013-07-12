@@ -1,3 +1,4 @@
+#encoding: utf-8
 class WeiboactiveController < ApplicationController
     def initialize
         @avatars = [
@@ -22,44 +23,154 @@ class WeiboactiveController < ApplicationController
         ]
     end
 
+    # check user agent version
+    def check_user_agent
+        if request.user_agent =~ /(android|ipod|iphone|ipad)/i
+            @mobile = true
+            render :layout => "layouts/weiboactive_mobile_layout"
+        else
+            @mobile = false
+            render :layout => "layouts/weiboactive_layout"
+        end
+    end
+
+    #首页
     def index
+
         save_url_in_cookies
-        render :layout => "layouts/weiboactive_layout"
+=begin
+@result = UserStatistic.every_day_star
+#unless @result[0].nil?
+
+@user0 = User.fetch("169" || @result[0].user_id, current_user, nil)["data"]
+@user1 = User.fetch("167" || @result[0].user_id, current_user, nil)["data"]
+
+#end
+
+@moment = api_call( "Moment" , :fetch_by_search , nil , {
+:category => "mood" ,
+:order => "hottest" ,
+:offset => 0
+}) [ "data" ] [ "moments" ]
+
+@moment1 = api_call( "Moment" , :fetch_by_search , nil , {
+:category => "food" ,
+:order => "hottest" ,
+:offset => 0
+}) [ "data" ] [ "moments" ]
+
+=end
+        @user0 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)[ "data" ]
+        @user1 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)[ "data" ]
+        @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+        @moment1 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+
+        @createSort = UserStatistic.create_sort 0
+        @sharedSort = UserStatistic.shared_sort 0
+
+        @createSortJson = JSON.parse(@createSort.to_json)
+        @sharedSortJson = JSON.parse(@sharedSort.to_json)
+
+        @createSortJson.each do |a|
+        #u = User.fetch a["user_id"].to_s, current_user, nil
+            u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)
+            a["user"] = u[ "data" ]
+        end
+
+        @sharedSortJson.each do |a|
+        #u = User.fetch a["user_id"].to_s, current_user, nil
+            u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)
+            a["user"] = u[ "data" ]
+        end
+
+        check_user_agent
     end
 
+    # 我的页面
     def myprofile
-        render :layout => "layouts/weiboactive_layout"
+        save_url_in_cookies
+        @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+        @moment1 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+        check_user_agent
     end
 
+    #编辑推荐
     def editorstory
         save_url_in_cookies
-        render :layout => "layouts/weiboactive_layout"
+=begin
+@moment = api_call( "Moment" , :fetch_by_search , nil , {
+:category => "mood" ,
+:order => "hottest" ,
+:offset => 0
+}) [ "data" ] [ "moments" ]
+=end
+        @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+
+        check_user_agent
+    end
+
+    # 热门作品
+    def hotstory
+        save_url_in_cookies
+
+=begin
+@moment = api_call( "Moment" , :fetch_by_search , nil , {
+:category => "mood" ,
+:order => "hottest" ,
+:offset => 0
+}) [ "data" ] [ "moments" ]
+=end
+        @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+
+        check_user_agent
     end
 
     def top
         save_url_in_cookies
-        render :layout => "layouts/weiboactive_layout"
+        @user0 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)[ "data" ]
+        @user1 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)[ "data" ]
+
+        @createSort = UserStatistic.create_sort 0
+        @sharedSort = UserStatistic.shared_sort 0
+
+        @createSortJson = JSON.parse(@createSort.to_json)
+        @sharedSortJson = JSON.parse(@sharedSort.to_json)
+
+        @createSortJson.each do |a|
+        #u = User.fetch a["user_id"].to_s, current_user, nil
+            u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)
+            a["user"] = u[ "data" ]
+        end
+
+        @sharedSortJson.each do |a|
+        #u = User.fetch a["user_id"].to_s, current_user, nil
+            u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)
+            a["user"] = u[ "data" ]
+        end
+        check_user_agent
     end
 
     def rule
         save_url_in_cookies
-        render :layout => "layouts/weiboactive_layout"
+        check_user_agent
     end
 
     # 原创奖规则
     def rule_oa
-        render :layout => "layouts/weiboactive_layout"
+        save_url_in_cookies
+        check_user_agent
     end
 
     # 分享奖规则
     def rule_share
-        render :layout => "layouts/weiboactive_layout"
+        save_url_in_cookies
+        check_user_agent
     end
 
     # 抽奖
     def lottery
         # 未登录跳至首页
         redirect_to action: 'index' and return unless current_user
-        render :layout => "layouts/weiboactive_layout"
+        check_user_agent
     end
 end

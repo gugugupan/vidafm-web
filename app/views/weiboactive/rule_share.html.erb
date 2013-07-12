@@ -1,4 +1,9 @@
+<!--分享奖规则-->
 <div class="container wrapper">
+    <%= render :partial => "nav", :locals => { :user => @cur_user } %>
+
+    <%= render :partial => "header_01" %>
+
     <div class="row-fluid">
         <div class="span12">
             <div class="text-center block-title">
@@ -6,14 +11,39 @@
             </div>
         </div>
     </div>
+
     <div class="row-fluid">
         <div class="span12">
-            <img src="/assets/weiboactive/gift1.png">
+            <article class="article">
+                <div class="media">
+                    <img src="/assets/weiboactive/gift1.png">
+                    <div class="media-body">
+                        <br>
+                        <p style="font-size: 17.5px;">
+                            分享分数获得方式：
+                        </p>
+                        <p style="font-size: 17.5px;">
+                            登录活动页面，发现精彩的原创微电影，并分享到各大社交网站。
+                        </p>
+                        <p style="font-size: 17.5px;">
+                            1、分享一次，传播得分+1
+                        </p>
+                        <p style="font-size: 17.5px;">
+                            2、分享为微电影带来一次播放，传播得分+10
+                        </p>
+                        <br>
+                        <p style="font-size: 17.5px;">
+                            奖项设置：
+                        </p>
+                        <p style="font-size: 17.5px; color: #f27149;">
+                            总分享分数最高的用户获得价值人民币2万元的Cartier 卡地亚铂金戒指一个
+                        </p>
+                        <p style="font-size: 17.5px; color: #f27149;">
+                            每日分享分数最高的用户获得Tiffany 银项链一条
+                        </p>
+                    </div>
+                </div>
+            </article>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
-
-    <%= render :partial => "rule_share" %>
 </div>
