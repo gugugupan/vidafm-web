@@ -2,24 +2,30 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <style type="text/css">
             body {
                 margin: 0;
                 padding: 0;
+            }
+            img {
+                max-width: 100%;
             }
             .wrapper {
                 width: 640px;
                 margin: 0 auto;
                 position: relative;
             }
+
             #btn-choujiang {
-                bottom: 95px;
-                height: 120px;
+                bottom: 0;
+                height: 220px;
                 left: 0;
                 position: absolute;
                 width: 100%;
                 cursor: pointer;
             }
+
             .transparent_class {
                 filter: alpha(opacity=0);
                 -moz-opacity: 0;
@@ -44,14 +50,14 @@
                 box-shadow: 0 1px 5px #63605d;
                 display: none;
                 padding-bottom: 20px;
+                max-width: 100%;
             }
 
             #qqnumber {
-                padding: 0;
+                padding: 12px 0;
                 margin: 0;
                 border: 1px solid #000000;
-                height: 45px;
-                line-height: 45px;
+                line-height: 20px;
                 border-radius: 6px;
                 -moz-border-radius: 6px;
                 -webkit-border-radius: 6px;
@@ -94,6 +100,19 @@
                 height: 32px;
                 position: absolute;
                 display: none;
+            }
+            /* Media queries for responsive design
+             --------------------------------------------- */
+
+            /* --- Smartphones and small Tablet PCs --- */
+            @media screen and (max-width: 640px) {
+                .wrapper {
+                    width: 100%;
+                }
+
+                #qqnumber {
+                    width: 60%;
+                }
             }
         </style>
     </head>
@@ -142,6 +161,9 @@
                     var top = doc.scrollTop();
                     left += (wnd.width() - el.width()) / 2;
                     top += (wnd.height() - el.height()) / 2;
+
+                    el.css("top", Math.max(0, ((wnd.height() - el.outerHeight()) / 2) + wnd.scrollTop()) + "px");
+
                     el.css("left", left);
                     el.css("display", "block");
 
