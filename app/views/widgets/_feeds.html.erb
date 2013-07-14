@@ -3,39 +3,51 @@
 		Create a feed bubble~
 
 	Params :
-		boxtype - [ "datebox" , "userbox" (define)]
+		show_type - [ "datebox" , "user" (define)] (左上角显示图样是日历框还是头像框)
+		act_user ：由于 user/:id/moments 在feeds中无user参数，所以使用act_user将user传递进来。
 %>
-<% boxtype = "userbox" if boxtype .nil? -%>
+<% feeds[ "user" ] = act_user if defined?( act_user ) -%>
+<% show_type = "user" if show_type .nil? -%>
 <div class="feed" id="<%= feed_id feeds %>"> <!-- feeds id missed 'moment1325523'-->
 	<div class="mlcontainer"> 
 		<div class="mlbox">
 
 			<%# Activity feed %>
 			<% if feeds[ "feed_type" ] == "activity_feed" -%>
-				<% mid = feeds[ 'moment' ] [ 'id' ] -%>
-				<%= link_to feeds[ 'moment' ] [ 'likes_count' ] , like_moment_url( mid ) , :remote => true , :method => :put , :id => "like#{ mid }" , :class =>"float_likes #{ feeds[ 'moment' ] [ 'liked' ] ? 'liked' : 'unlike' }" %>
-				<% if boxtype == "userbox" -%>
+
+				<% if show_type == "user" -%>
 					<%= avatar_tag_b( feeds[ "user" ] , { :class => "float_avatar" } ) %>
 				<% else -%>
 					<%= datebox_tag( get_time( feeds[ "moment" ] ) ) %>
 				<% end -%>
+
+				<div class="mlinfo">
+					<p class="mltitle"><%= moment_name feeds[ "moment" ] %></p>
+					<div class="mldata">
+						<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
+						<div class="clearfix"></div>
+					</div>
+					<p class="mlsubtitle"><%= link_to feeds[ "user" ] [ "name" ] , "/users/#{ feeds[ "user" ] [ "id" ] }" %>&nbsp;| 照片 <%= feeds[ "moment" ] [ "activity_count" ] %></p>
+				</div>
+
 				<div class="image_container">
 					<%= render :partial => "widgets/puzzle" , :object => feeds[ "activities" ] [ 0 , 9 ] %>
 					<div class="clearfix"> </div>
 				</div>
-				<div class="mlinfo" style="padding-left: 50px;">
-					<%= link_to "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "gotoslideshow" do -%>
-						<%= image_tag "slideshow/btn_play.png" -%>
-					<% end -%>
-					<% feeds[ "moment" ] [ "created_at" ] = feeds[ "created_at" ] -%>
-					<p class="mltitle">#<%= moment_category_by_num feeds[ "moment" ] [ "category_id" ] %> <%= moment_name feeds[ "moment" ] %> </p>
-					<div class="mldata">
-						<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
-						<p class="mlnumber"> <%= feeds[ "moment" ] [ "activity_count" ] %> </p>
-						<div class="clearfix"></div>
-					</div>
-					<div class="clearfix"></div>
+
+				<div class="poitag_info">
+					<%= render :partial => "/widgets/poi" , :collection => feeds[ "pois" ] -%>
+					<%= render :partial => "/widgets/tag" , :collection => feeds[ "tags" ] -%>
+					<div class="clearfix"> </div>
 				</div>
+
+				<div class="mlbtn">
+					<%= link_to "" , "/moments/#{ feeds[ "moment" ] [ "id" ] }" , :class => "play_slideshow" -%>
+					<%= link_to like_moment_url( feeds[ "moment" ] [ "id" ] ) , :id => "like#{ feeds[ "moment" ] [ "id" ] }" , :class => "like_moment unlike" , :remote => true , :method => "PUT" do -%>
+						<%= feeds[ "moment" ] [ "likes_count" ] -%>
+					<% end -%>
+				</div>
+
 				<div class="clearfix"></div>
 
 				<%= image_tag "icon/icon_timeline_story.png" , :class => "feeds_icon feeds_icon_left" -%>

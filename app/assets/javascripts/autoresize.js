@@ -60,7 +60,7 @@ function adjust_image( callback )
             {
                 $( ".mlcontainer:eq(" + i + ") .mlbox .image_container" ) .height( "215px" ) ;
                 _boxObjects .eq( 0 ) .addClass( "image_box_big" ) ;
-                _boxObjects .eq( 1 ) .addClass( "image_box_small" ) .css({"top":"5px"}) ;
+                _boxObjects .eq( 1 ) .addClass( "image_box_small" ) .css({"top":"0px"}) ;
                 _boxObjects .eq( 2 ) .addClass( "image_box_small" ) ;
 
                 for( var y = 0; y < _imageObjects .length ; y++ )
@@ -83,9 +83,9 @@ function adjust_image( callback )
             {
                 var w = $row .find( ".image_box:eq(0) .mlimage img" ) .attr( "cwidth" ) ,
                     h = $row .find( ".image_box:eq(0) .mlimage img" ) .attr( "cheight" ) ;
-                $row .height( 360 / w * h ) ;
-                $row .find( ".image_box:eq(0)" ) .width( 360 ) ;
-                $row .find( ".image_box:eq(0)" ) .height( 360 / w * h ) ;
+                $row .height( 375 / w * h ) ;
+                $row .find( ".image_box:eq(0)" ) .width( 375 ) ;
+                $row .find( ".image_box:eq(0)" ) .height( 375 / w * h ) ;
                 $row .find( ".mlimage" ) .css( "width" , "100%" ) ;
                 $row .find( ".mlimage img" ) .css( "width" , "100%" ) ;
             }
@@ -99,7 +99,7 @@ function adjust_image( callback )
                 var h = Math .max( h1 , h2 ) ;
                 w1 = w1 * h / h1 ;
                 w2 = w2 * h / h2 ;
-                var hh = 358 / ( w1 + w2 + 1 ) * h ;
+                var hh = 373 / ( w1 + w2 + 1 ) * h ;
                 $row .height( hh ) ;
                 w1 = w1 / h * hh ;
                 w2 = w2 / h * hh ;
@@ -121,7 +121,7 @@ function adjust_image( callback )
                 w1 = w1 * h / h1 ;
                 w2 = w2 * h / h2 ;
                 w3 = w3 * h / h3 ;
-                var hh = 357 / ( w1 + w2 + w3 ) * h ;
+                var hh = 372 / ( w1 + w2 + w3 ) * h ;
                 $row .height( hh ) ;
                 w1 = w1 / h * hh ;
                 w2 = w2 / h * hh ;

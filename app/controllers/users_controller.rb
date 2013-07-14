@@ -43,6 +43,7 @@ class UsersController < ApplicationController
       if params[ :type ] == "story" 
         data = User.fetch_moments( params[ :id ] , current_user , query ) [ "data" ]
         @feeds = data[ "moments" ]
+        @user = User.fetch( params[ :id ] , current_user , nil ) [ "data" ]
       else 
         data = User.fetch_commentlike( params[ :id ] , current_user , query ) [ "data" ]
         @feeds = data[ "likes_and_comments" ]
