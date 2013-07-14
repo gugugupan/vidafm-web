@@ -4,12 +4,11 @@
 //= require autoresize
 //= require lazyload
 //= require activity_window
+//= require scroll
 
 //= require plugin/jquery.lazyload
 //= require video
 //= require soundmanager2-nodebug-jsmin
-//= require plugin/jquery.smooth-scroll.min
-//= require plugin/jquery.parallax
 
 jQuery( function() {
 	gaDownload() ;

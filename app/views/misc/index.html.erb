@@ -8,113 +8,111 @@ Vida-微达，记录分享生活中每次精彩，用照片串起你我的生活
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
-<style type="text/css">
+<style>
   body {
-    background: #1a1a1a ;
-    min-width: 900px;
-    overflow-x: auto;
+    background: white;
   }
 
   #footer {
-    color: #777777 ;
+    color: #777777;
   }
 
   #footer a {
-    color: #777777 ;
+    color: #777777;
   }
 </style>
-<script type="text/javascript">
-  function closeAndroid(){ $( "#android_download" ) .fadeOut( 400 ) ; }
-  function openAndroid(){ $( "#android_download" ) .fadeIn( 400 ) ; }
+<script type="text/javascript"> 
+jQuery( function() {
+    $( "#weichat" ) .mouseenter( function() { 
+      $( "#weichar_qrcode" ) .fadeIn( 300 ) ; 
+    } ) .mouseleave( function() { 
+        $( "#weichar_qrcode" ) .fadeOut( 300 ) ; 
+    } ) ;
+    start_scroll( "#photo_content" , { "speed_ratio" : 0.3 , "holdon_time" : 200 } ) ;
+    start_scroll( "#poitag_content" , { "speed_ratio" : 0.4 , "holdon_time" : 0 } ) ;
+} ) ;
 </script>
 <% end -%>
 
 <div id="index">
   <div id="index_cover">
-    <%= image_tag "index/iphone5_mockup.png" , :id => "center_phone" %>
-    <div id="left_content">
-      <%= image_tag "index/logo.png" , :id => "index_logo" %>
-      <p id="index_logo_title">生活 . 照片 . 微电影</p>
-      <div id="download_content">
-        <div id="left_part">
-          <%= image_tag "index/QRCode.jpg" %>
+    <div id="index_cover_body">
+      <div id="index_phone">
+        <div id="photo_content">
+          <%= image_tag "index/img/img1.png" %>
+          <%= image_tag "index/img/img2.png" %>
         </div>
-        <div id="right_part">
-          <%= link_to "" , "/d/iphone" , :class => "iphone_download" %>
-          <a href=javascript:openAndroid() class="android_download"> </a>
+      </div>
+      <div id="index_content">
+        <%= image_tag "index/logo_slogan.png" , :id => "vida_title" %>
+        <div id="poitag_content">
+          <%= image_tag "index/img/poi&tag1.png" %>
+          <%= image_tag "index/img/poi&tag2.png" %>
         </div>
-        <div class="clearfix"> </div>
+        <p id="des_text">已有千万用户使用Vida微图记分享游记, 美食记, 自拍秀, 将精彩瞬间汇成照片微电影, 记录生活, 分享生活, 发现生活新花样!</p>
+        <div id="btn_area">
+          <%= link_to "登入Vida微图记" , "#" , :class => "login_btn index_btn" %>
+          <%= link_to "查看热门作品" , "/discover/index" , :class => "hottest index_btn" %>
+        </div>
       </div>
     </div>
-    <div id="bottom_text">
-      <p class="line"><B>Vida</B> 可能是最真实的照片微电影生活分享社区</p>
-      <p class="line">已有近千万用户选择 <B>Vida</B> 通过照片分享真实生活</p>
-      <p class="line">现在加入, 一起发现分享生活之美</p>
+  </div>
+
+  <div id="index_headerline">
+    <div id="index_headerline_content">
+      <%= image_tag "index/download_qrcode.png" , :id => "index_qrcode" %>
+      <%= link_to image_tag( "index/download_ios.png" ) , "/d/iphone" , :class => "index_download" %>
+      <%= link_to image_tag( "index/download_android.png" ) , "/android_download" , :class => "index_download" %>
+
+      <div id="weichat" class="roundbtn"> <%= image_tag "index/wechat.png" -%> </div>
+      <%= link_to image_tag( "index/weibo.png" ) , "http://weibo.com/vidafm" , :id => "weibo" , :class => "roundbtn" -%>
+      <p id="guanzhu_text">求关注:</br>@Vida_微图记</p>
+
+      <%= image_tag "index/wechat_qrcode.png" , :id => "weichar_qrcode" %>
     </div>
-    <div id="corner_btn">
-      <%= link_to "关注微博" , "http://weibo.com/vidafm" , :id => "index_login_btn" , :class => "mouse" , :style => "margin-right:20px;" %>
-      <% unless @current_user -%>
-        <%= link_to "登 入 >" , "#" , :id => "index_login_btn" , :class => "mouse login_btn" %>
-      <% else -%>
-        <%= link_to "进入Vida" , "/home" , :id => "index_login_btn" , :class => "mouse" %>
-      <% end -%>
+  </div>
+
+  <div class="index_content index_content_grey">
+    <div class="content">
+      <%= image_tag "index/content1.png" , :class => "image_content_left" %>
+      <p class="font1">你和Ta的第一次出游,没去巴黎铁塔也没去巴厘岛,却因为一个个温馨的小瞬间,让牵着的手握的更紧。 </br>你平生做的第一道第二道第三道菜,虽然卖相不好,却代表着你人生独立的大跃进。</br>你毕业了,相处了四年的室友、损友、暗恋对象,都不知道下一次见面是什么时候。</p>
+      <p class="font2">这些照片,弥足珍贵,记录了永恒的瞬间,Vida 微图记将照片,视频配合音乐,语音和文字汇聚成照片微电影,将这些照片变成你的故事。</p>
+      <div class="clearfix"> </div>
     </div>
-    <%= link_to "" , "/discover/index.html" , :id => "hot_stroy_btn" %>
-    <%= link_to "" , "#intro1" , :class => "scroll_btn" , :style => "bottom: 30px;" -%>
   </div>
 
-  <div id="android_download">
-    <%= image_tag "index/android_logo.png" %>
-    <p class="android_info">适用于Android 2.3以上手机</p>
-    <%= link_to "" , "/d/android" , :id => "download" %>
-    <%= link_to "" , "/d/android" , :id => "download_wandoujia" %>
-    <%= link_to "" , "zhushou360://type=apk&name=Vida&url=#{ @android_url }" , :id => "download_360" %>
-    <a class="android_close_btn" href=javascript:closeAndroid()><%= image_tag "icon/icon_close.png" -%></a>
+  <div class="index_content">
+    <div class="content">
+      <%= image_tag "index/content2.png" , :class => "image_content_right" %>
+      <p class="font1">“呀!Ta照片中的寿司看起来好美味,口水都要流到手机上了!这是在哪儿啊我也要去!” </br>“咦?上海还有这么悠闲惬意的小路,我也想骑车去看看,地址是哪里呀?</br>
+      浏览朋友照片时,总是要多问一句拍摄地点,好麻烦!</p>
+      <p class="font2">第一眼看到照片,第二眼便可看到拍摄地点。Vida微图记使用大众点评强大的地点库,观看微电影时就好像在跟着Ta一起漫步!</p>
+      <div class="clearfix"> </div>
+    </div>
   </div>
 
-  <div id="intro1" class="intro_block">
-    <%= image_tag "index/intro_bg_1.jpg" %>
-    <p style="margin-top: 40px;">微游记, 美食记, 心情日记, 自拍秀, 生活点滴汇成微电影</p>
-    <p style="margin-top: 5px;">让你的照片更有趣</p>
+  <div class="index_content index_content_grey">
+    <div class="content">
+      <%= image_tag "index/content3.png" , :class => "image_content_left" %>
+      <p class="font1" style="padding-top: 70px;">有木有别人跟我一样也爱吃麻辣香锅?”</br>
+        “有谁去过香格里拉,能不能求个照片旅行游记瞧瞧?”</br>
+        “喵星人萌死了,我就要看小喵喵的照片!”</br>
+        有时候我们需要的,不是包罗万象的内容,而是让我们感兴趣的那几点</p>
+      <p class="font2">用亮点标签发现照片微电影,不仅方便您找到更贴近自己兴趣的照片作品,而且让与您志同道合的人更容易看到您的微电影。沟通,便从这里开始,变得更加真切。</p>
+      <div class="clearfix"> </div>
+    </div>
   </div>
 
-  <div id="window1" class="window_block">
-    <%= image_tag "index/big_bg_1.jpg" , :class => "background_img" %>
-    <div class="grey_cover"> </div>
-    <%= link_to "" , "#intro2" , :class => "scroll_btn" , :style => "bottom: 100px;" -%>
-  </div>
-
-  <div id="intro2" class="intro_block">
-    <%= image_tag "index/intro_bg_2.jpg" %>
-    <p style="margin-top: 15px;">自动将照片汇成照片微电影, 专有技术使照片微电影比播放视频<span style="font-size:108px; font-weight:200;">80%</span>省流量.</p>
-  </div>
-
-  <div id="window2" class="window_block">
-    <%= image_tag "index/big_bg_2.jpg" , :class => "background_img" %>
-    <div class="grey_cover"> </div>
-    <%= link_to "" , "#intro3" , :class => "scroll_btn" , :style => "top: 100px;" -%>
-  </div>
-
-  <div id="intro3" class="intro_block">
-    <%= image_tag "index/intro_bg_3.png" , :class => "float_camera" %>
-    <p>业界最早推出并保持领先的实时特效镜头和渲染引擎</p>
-    <p style="margin-top: 5px;">摄影摄像都可用, 所见即所拍</p>
-    <p style="margin-top: 5px;">保证每个瞬间都精彩</p>
+  <div class="index_content">
+    <div class="content">
+      <%= image_tag "index/content4.png" , :class => "image_content_right" %>
+      <p class="font1">“555555。。本来要照一道高端大气上档次的菜,拍出来效果好搓啊。。” </br>
+        “我在微博豆瓣人人上面都有朋友,照片分别上传好烦啊。。”</br>
+        你会发现,Vida微图记,比任何一款老公男朋友都要贴心!!!</p>
+      <p class="font2">将近30种滤镜随意选择, Vida微图记专属的将近30种滤镜,搞怪、卖萌、文艺、非主流任您挑,给您的照片增加无限的趣味。</p>
+      <div class="clearfix"> </div>
+    </div>
   </div>
 
   <%= render :partial => "widgets/login" -%>
-
-  <script type="text/javascript">
-    $( document ) .ready( function() {
-      $( "a.scroll_btn" ) .smoothScroll( { speed : 1000 } ) ;
-      if ( !( document.all ) ) // hack for ie
-      {
-        $( "#window1" ) .parallax( 0 , 0.3 ) ;
-        $( "#window2" ) .parallax( 0 , 0.3 ) ; 
-      } else 
-      {
-        $( ".background_img" ) .css( "display" , "block" ) ;
-      }
-    } ) ;
-  </script>
 </div>
