@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705042731) do
+ActiveRecord::Schema.define(:version => 20130715023306) do
 
   create_table "active_users", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -239,8 +239,7 @@ ActiveRecord::Schema.define(:version => 20130705042731) do
     t.date   "user_created_at"
   end
 
-  create_table "comments", :id => false, :force => true do |t|
-    t.integer  "id",                                             :null => false
+  create_table "comments", :force => true do |t|
     t.integer  "commentable_id",                                 :null => false
     t.string   "commentable_type", :limit => 100,                :null => false
     t.integer  "user_id",                                        :null => false
@@ -463,11 +462,13 @@ ActiveRecord::Schema.define(:version => 20130705042731) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
     t.integer  "total_score"
+    t.integer  "user_id"
   end
 
   add_index "moment_statistics", ["created_at"], :name => "index_moment_statistics_on_created_at"
   add_index "moment_statistics", ["moment_id"], :name => "index_moment_statistics_on_moment_id"
   add_index "moment_statistics", ["total_score"], :name => "index_moment_statistics_on_total_score"
+  add_index "moment_statistics", ["user_id"], :name => "index_moment_statistics_on_user_id"
 
   create_table "moments", :force => true do |t|
     t.string   "name",                                  :limit => 200
@@ -628,6 +629,11 @@ ActiveRecord::Schema.define(:version => 20130705042731) do
     t.integer  "processed",  :limit => 1, :default => 0, :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+  end
+
+  create_table "qq_coins", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "recommendations", :force => true do |t|
