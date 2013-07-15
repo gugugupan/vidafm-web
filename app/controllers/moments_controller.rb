@@ -7,7 +7,6 @@ class MomentsController < ApplicationController
     render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
     redirect_to( user_url(data['data']['user_id']) , :notice => 401 ) and return if data[ 'result' ] == 401 
     @moment = data[ "data" ]
-    puts data .to_json
 
     # 对于 slideshow 的情况
     render "moments/slideshow" , :layout => "layouts/slideshow_layout" and return if params[ :md ] .nil?
