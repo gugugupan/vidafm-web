@@ -78,6 +78,10 @@ module MomentsHelper
 		image_tag placeholder_url, :class => "user-avatar"
 	end
 
+	def vida_name
+		"Vida 微图记 - 给照片新的定义"
+	end
+
 	def moment_category( str )
 		alph = {
 			"random" => "随拍" ,
