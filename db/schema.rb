@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715070522) do
+ActiveRecord::Schema.define(:version => 20130715074618) do
 
   create_table "active_users", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -916,10 +916,16 @@ ActiveRecord::Schema.define(:version => 20130715070522) do
     t.integer  "share_score"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_award",        :default => false
-    t.integer  "award_type",      :default => 1
+    t.boolean  "is_award",            :default => false
+    t.integer  "award_type",          :default => 1
     t.datetime "award_time"
     t.string   "award_share_url"
+    t.integer  "create_count",        :default => 0
+    t.integer  "create_played_count", :default => 0
+    t.integer  "shared_count",        :default => 0
+    t.integer  "shared_played_count", :default => 0
+    t.text     "create_moment_ids"
+    t.text     "share_moment_ids"
   end
 
   add_index "user_statistic_totals", ["is_award"], :name => "index_user_statistic_totals_on_is_award"
