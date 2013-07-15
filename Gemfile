@@ -1,6 +1,6 @@
 source 'http://ruby.taobao.org/'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.1.0'
 
 gem 'json'
 group :development do

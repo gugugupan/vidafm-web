@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715023306) do
+ActiveRecord::Schema.define(:version => 20130715042117) do
 
   create_table "active_users", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -457,16 +457,18 @@ ActiveRecord::Schema.define(:version => 20130715023306) do
 
   create_table "moment_statistics", :force => true do |t|
     t.integer  "moment_id"
-    t.integer  "shared_count", :default => 0
-    t.integer  "played_count", :default => 0
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.integer  "shared_count",    :default => 0
+    t.integer  "played_count",    :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "total_score"
     t.integer  "user_id"
+    t.integer  "sharing_user_id"
   end
 
   add_index "moment_statistics", ["created_at"], :name => "index_moment_statistics_on_created_at"
   add_index "moment_statistics", ["moment_id"], :name => "index_moment_statistics_on_moment_id"
+  add_index "moment_statistics", ["sharing_user_id"], :name => "index_moment_statistics_on_sharing_user_id"
   add_index "moment_statistics", ["total_score"], :name => "index_moment_statistics_on_total_score"
   add_index "moment_statistics", ["user_id"], :name => "index_moment_statistics_on_user_id"
 
@@ -905,6 +907,16 @@ ActiveRecord::Schema.define(:version => 20130715023306) do
 
   add_index "user_shuffles", ["created_at"], :name => "index_user_shuffles_on_created_at"
   add_index "user_shuffles", ["user_id"], :name => "index_user_shuffles_on_user_id"
+
+  create_table "user_statistic_totals", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "create_score"
+    t.integer  "share_score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_statistic_totals", ["user_id"], :name => "index_user_statistic_totals_on_user_id"
 
   create_table "user_statistics", :force => true do |t|
     t.integer  "user_id"
