@@ -31,8 +31,8 @@
 			</div>
 
 			<div class="poitag_info">
-				<%= render :partial => "/widgets/poi" , :collection => item[ "pois" ] -%>
-				<%= render :partial => "/widgets/tag" , :collection => item[ "tags" ] -%>
+				<%= render :partial => "/widgets/poi" , :collection => item[ "pois" ] [ 0 , 3 ] -%>
+				<%= render :partial => "/widgets/tag" , :collection => item[ "tags" ] [ 0 , 5 ] -%>
 				<div class="clearfix"> </div>
 			</div>
 
