@@ -99,4 +99,14 @@ class UserStatisticTotal < ActiveRecord::Base
    def UserStatisticTotal.shared_award_hitstory(page)
      UserStatisticTotal.where(is_award:1).where(award_type:2).order("`award_time` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
    end
+
+   def UserStatisticTotal.my_create(user_id)
+      u = UserStatisticTotal.where(user_id: user_id).first
+      create_moment_ids = JSON.parse u.create_moment_ids
+   end
+
+   def UserStatisticTotal.my_share(user_id)
+      u = UserStatisticTotal.where(user_id: user_id).first
+      share_moment_ids = JSON.parse u.share_moment_ids
+   end
 end
