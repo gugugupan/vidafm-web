@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130715054209) do
+ActiveRecord::Schema.define(:version => 20130715070522) do
 
   create_table "active_users", :force => true do |t|
     t.integer  "user_id",    :null => false
@@ -457,18 +457,16 @@ ActiveRecord::Schema.define(:version => 20130715054209) do
 
   create_table "moment_statistics", :force => true do |t|
     t.integer  "moment_id"
-    t.integer  "shared_count",    :default => 0
-    t.integer  "played_count",    :default => 0
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.integer  "shared_count", :default => 0
+    t.integer  "played_count", :default => 0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "total_score"
     t.integer  "user_id"
-    t.integer  "sharing_user_id"
   end
 
   add_index "moment_statistics", ["created_at"], :name => "index_moment_statistics_on_created_at"
   add_index "moment_statistics", ["moment_id"], :name => "index_moment_statistics_on_moment_id"
-  add_index "moment_statistics", ["sharing_user_id"], :name => "index_moment_statistics_on_sharing_user_id"
   add_index "moment_statistics", ["total_score"], :name => "index_moment_statistics_on_total_score"
   add_index "moment_statistics", ["user_id"], :name => "index_moment_statistics_on_user_id"
 
@@ -636,6 +634,10 @@ ActiveRecord::Schema.define(:version => 20130715054209) do
   create_table "qq_coins", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "code"
+    t.string   "password"
+    t.integer  "coins"
+    t.boolean  "is_used",    :default => false
   end
 
   create_table "recommendations", :force => true do |t|
@@ -899,10 +901,10 @@ ActiveRecord::Schema.define(:version => 20130715054209) do
 
   create_table "user_shuffles", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.string   "qq_coin_ids"
-    t.integer  "shuffle_count", :default => 0
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "qq_coin_id"
+    t.integer  "shuffle_result"
   end
 
   add_index "user_shuffles", ["created_at"], :name => "index_user_shuffles_on_created_at"

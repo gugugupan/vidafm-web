@@ -1,5 +1,5 @@
 class MomentStatistic < ActiveRecord::Base
-   attr_accessible :moment_id, :user_id, :sharing_user_id, :shared_count, :played_count 
+   attr_accessible :moment_id, :user_id, :shared_count, :played_count 
    attr_accessible :total_score 
    
    
