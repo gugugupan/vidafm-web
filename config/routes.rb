@@ -1,5 +1,8 @@
 Bluerain::Application.routes.draw do
 
+  get "others/qb"
+  post "others/getqb"
+
   match "/d/iphone" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
   match "/d/android_sina" => redirect("http://pics.vida.fm/vida_sina_20130117.apk")
   android_url = ""

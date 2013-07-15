@@ -1,154 +1,127 @@
 <%= content_for :title do %>
-    <% moment_name @moment %>
-    <%= get_name( @moment ) %>Vida（微达） - 手机照片故事社区
+<% moment_name @moment %>
+<%= get_name( @moment ) %>Vida（微达） - 手机照片故事社区
 <% end -%>
 
 <%= content_for :prerequisite_libraries do %>
-	<!--<meta name="apple-itunes-app" content="app-id=454984086, affiliate-data=myAffiliateData, app-argument=myURL">-->
+<!--<meta name="apple-itunes-app" content="app-id=454984086, affiliate-data=myAffiliateData, app-argument=myURL">-->
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
 <script type="text/javascript">
-	jQuery( function() {
-		now_color = parseInt( Math.random() * 6 ) ;
-		change_color() ;
-		blur_start( "slideshow_background_img" ) ;
-
-		soundManager.setup( {
-			url: '/swf/' , 
-			flashVersion: 9 ,
-			useFlashBlock: false , 
-			onready : function() {
-				if ( play_state == 0 )
-					play_background_music() ;
-			}
-		} ) ;
-	});
+    jQuery(function() {
+        now_color = parseInt(Math.random() * 6);
+        change_color();
+        blur_start("slideshow_background_img");
+        soundManager.setup({
+            url : '/swf/',
+            flashVersion : 9,
+            useFlashBlock : false,
+            onready : function() {
+                if (play_state == 0)
+                    play_background_music();
+            }
+        });
+    }); 
 </script>
-<% end -%>  
+<% end -%>
+
+<% is_mobile = request.user_agent =~ /(android|ios|ipod|iphone|ipad)/i -%>
 
 <%#---Slideshow background---%>
 <div id="slideshow_background">
-	<img id="slideshow_background_img" imgsrc="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "url_l" ] %>" cwidth="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "width" ] %>" cheight="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "height" ] %>">
+    <img id="slideshow_background_img" imgsrc="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "url_l" ] %>" cwidth="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "width" ] %>" cheight="<%= @moment[ "items" ] [ 0 ] [ "photo" ] [ "height" ] %>">
 </div>
 
 <%#---Index of slideshow---%>
 <div id="slideshow_index">
-	<div class="black_cover"> </div>
-	<div id="play_slideshow_btn_area">
-		<%= link_to "javascript:start_slideshow()" , :id => "play_slideshow_btn" do -%>
-			<%= image_tag( "slideshow/btn_play2.png" ) %>
-			<p>播放照片微电影</p>
-		<% end -%>
-	</div>
+    <div class="black_cover"></div>
+    <div id="play_slideshow_btn_area">
+        <%= link_to image_tag( "slideshow/slideshow_play.png" ) , "javascript:start_slideshow()" , :id => "play_slideshow_btn" , :style => is_mobile ? "" : "width: 90px; height: 90px;" -%>
+    </div>
 </div>
 
 <%#---Starting animate of slideshow%>
 <div id="slideshow_start">
-	<div id="start_user_avatar" class="roundavatar image"> 
-		<div class="roundavatar_file" style="background-image:url(<%=@moment[ "user" ] [ "avatar_file" ] -%>); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= @moment[ "user" ] [ "avatar_file" ] -%>',sizingMethod='scale');"> </div>
-	</div>
-	<p id="start_user_name" class="text">
-		#<%= moment_category( @moment[ "category" ] ) %> <%= moment_name( @moment ) %> </br>
-		by <%= @moment[ "user" ] [ "name" ] %>
-	</p>
+    <div id="start_user_avatar" class="roundavatar image">
+        <div class="roundavatar_file" style="background-image:url(<%=@moment[ "user" ] [ "avatar_file" ] -%>); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= @moment[ "user" ] [ "avatar_file" ] -%>',sizingMethod='scale');"></div>
+    </div>
+    <p id="start_user_name" class="text">
+        #<%= moment_category( @moment[ "category" ] ) %> <%= moment_name( @moment ) %> </br>
+        by <%= @moment[ "user" ] [ "name" ] %>
+    </p>
 
-	<% unless @moment[ "description" ] .nil? -%>
-		<%# puts @moment[ "description" ] .length -%>
-		<% if @moment[ "description" ] .length > 0 -%>
-			<p id="moment_description" class="text">
-				<%= @moment[ "description" ] %>
-			</p>
-		<% end -%>
-	<% end -%>
+    <% unless @moment[ "description" ] .nil? -%>
+    <%# puts @moment[ "description" ] .length -%>
+    <% if @moment[ "description" ] .length > 0 -%>
+    <p id="moment_description" class="text">
+        <%= @moment[ "description" ] %>
+    </p>
+    <% end -%>
+    <% end -%>
 
-	<%= image_tag "slideshow/slideshow-catogory.png" , :id => "start_category_img" , :class => "image" -%>
-	<p id="start_category_text" class="text"></p>
-	
-	<%= image_tag "slideshow/slideDate.png" , :id => "start_date_img" , :class => "image" -%>
-	<p id="start_date_text" class="text"><%= moment_date( @moment[ "created_at"] ) %></p>
+    <%= image_tag "slideshow/slideshow-catogory.png" , :id => "start_category_img" , :class => "image" -%>
+    <p id="start_category_text" class="text"></p>
+
+    <%= image_tag "slideshow/slideDate.png" , :id => "start_date_img" , :class => "image" -%>
+    <p id="start_date_text" class="text">
+        <%= moment_date( @moment[ "created_at"] ) %>
+    </p>
 </div>
 
 <%#---Main area of slideshow---%>
 <div id="slideshow">
-	<%= render :partial => "moments/slideshow_item" , :collection => @moment[ "items" ] %>
+    <%= render :partial => "moments/slideshow_item" , :collection => @moment[ "items" ] %>
 </div>
 
-<%#---Ending of slideshow---%>
-<div id="slideshow_end">
-	<div class="black_cover"> </div>
-	<div id="end_slideshow_part">
-		<%= link_to "javascript:void(0);" , :class => "roundavatar" , :style => "margin:0 auto 30px;" do %>
-			<div class="roundavatar_file" style="background-image:url(<%=@moment[ "user" ] [ "avatar_file" ] -%>); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= @moment[ "user" ] [ "avatar_file" ] -%>',sizingMethod='scale');"> </div>
-		<% end -%>
-		<div class="clearfix"> </div>
-	</div>
+<%#---Slideshow footer---%>
+<div id="slideshow_footer">
+    <div class="slideshow_info">
+        <%= image_tag "#{@moment[ "user" ] [ "avatar_file" ]}" , :class => "avatar" -%>
+        <div class="slideshow_info_inner">
+                <div class="story_name"> <%= moment_name( @moment ) %> </div>
+                <div class="user_name"> <%= @moment[ "user" ] [ "name" ] %></div>
+                <div class="clearfix"></div>
+            <font title="拍摄时间" class="timer"> <%= moment_date( @moment[ "created_at"] ) %> </font>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <% if request.user_agent =~ /(android|ipod|iphone|ipad)/i -%>
+    <%= link_to image_tag( "slideshow/slideshow_play_in_vida.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" , :class => "footer_btn" , :id => "left_part", :target => "_blank" %>
+    <%= link_to image_tag( "slideshow/slideshow_download_vida.png" ) , "/" , :class => "footer_btn" , :id => "right_part", :target => "_blank" %>
+    <% else -%>
+    <%= link_to image_tag( "slideshow/slideshow_download_ios.png" ) , "http://itunes.apple.com/cn/app/id454984086?ls=1" , :class => "footer_btn" , :id => "left_part", :target => "_blank" %>
+    <%= link_to image_tag( "slideshow/slideshow_download_android.png" ) , "/d/android" , :class => "footer_btn" , :id => "right_part", :target => "_blank" %>
+    <% end -%>
 </div>
 
-<%#---Bar of slideshow---%>
-<div id="slideshow_bar_container">
-	<div id="slideshow_bar">
-		<%= link_to "javascript:void(0);" , :id => "bar_btn_1" , :remote => true , :method => :put do %>
-			<%= image_tag "slideshow/bar_like_on.png" , :class => "slideshow_like_btn" , :style => "#{ "display:none" unless @moment[ "liked" ] }" -%>
-			<%= image_tag "slideshow/bar_like_off.png" , :class => "slideshow_unlike_btn" , :style => "#{ "display:none" if @moment[ "liked" ] }" -%>
-		<% end -%>
-		<%= link_to "javascript:play_pause()" , :id => "bar_btn_2" do %>
-			<%= image_tag "slideshow/bar_pause.png" , :class => "slideshow_bar_pause" %>
-			<%= image_tag "slideshow/bar_play.png" , :class => "slideshow_bar_play" , :style => "display:none;" %>
-		<% end -%>
-		<%= link_to "javascript:music_change()" , :id => "bar_btn_3" do %>
-			<%= image_tag "slideshow/bar_music_on.png" , :class => "slideshow_bar_musicoff" -%>
-			<%= image_tag "slideshow/bar_music_off.png" , :class => "slideshow_bar_musicon" , :style => "display:none;" %>
-		<% end -%>
-	</div>
-</div>
-
-
-<%#---Bar of read, like and share%>
-<!-- div class="rls_container">
-	<div class="rls_container_inner">
-		<p class="story_visited"> 120 </p>
-		<p class="story_like"> 80 </p>
-		<p class="story_share"> 50 </p>
-		<div class="clearfix"></div>
-	</div>
-</div -->
-
-<%#---Bar of post info---%>
-<div class="userinfo_container">
-	<div class="userinfo_container_inner">
-		<%= avatar_tag_weibo @moment[ 'user' ] %>
-		<h1>
-			<a href="javascript:void(0);"> #<%= moment_category( @moment[ "category" ] ) %> <%= moment_name @moment %> </a> 
-		</h1>
-		<div class="comment_container">
-			<div class="user_name"> 
-				<a href="javascript:void(0);"> <%= @moment[ "user" ] [ :name ] %> </a> 
-				<div class="clearfix"> </div>
-			</div>
-		<% unless @moment[ "audio" ] .nil? -%>
-			<%= render :partial => "audiobutton" , :locals => { :audio => @moment[ "audio" ] } %>
-		<% end -%>
-		<% unless @moment[ "description" ] .length == 0 -%>
-			<p class="photo_description"> <%= empty_descripe( @moment[ "description" ] ) %> </p>
-		<% end -%>
-			<span class="timer" title="拍摄时间"> <%= time_ago_now( @moment[ "created_at" ] ) %>前 </span>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div>
-
+<%#--- Slideshow btn ---%>
 <div id="slideshow_loading">
-	<% for i in 0..7 do -%>
-		<%= image_tag "slideshow/loading/loading-0#{ i }.png" , :id => "loading#{ i }" -%>
-	<% end -%>
+    <% for i in 0..7 do -%>
+    <%= image_tag "slideshow/loading/loading-0#{ i }.png" , :id => "loading#{ i }" -%>
+    <% end -%>
 </div>
 
-<div id="slideshow_audio_hint">
-</div>
+<div id="slideshow_audio_hint"></div>
 
+<%= link_to image_tag( "slideshow/slideshow_logo.png" ) , "/" , :id => "slideshow_logo", :target => "_blank" -%>
+
+<div id="slideshow_ad"></div>
+
+<%#--- Slideshow auto jump ----%>
 <% if request.user_agent =~ /(ipod|iphone|ipad)/i -%>
-	<script type="text/javascript">
-		window.location.href = "vida://slideshow?id=<%= @moment[ "id" ] %>" ;
-	</script>
+<script type="text/javascript">
+    window.location.href = "vida://slideshow?id=<%= @moment[ "id" ] %>" ;</script>
+<% end -%>
+
+<% unless is_mobile -%>
+<script type="text/javascript">
+    $("#play_slideshow_btn_area").css("margin-left", "-60px");
+    $("#slideshow_ad").css({
+        "bottom" : "80px",
+        "width" : "600px",
+        "height" : "190px",
+        "margin-left" : "-300px"
+    }); 
+</script>
 <% end -%>
