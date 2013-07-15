@@ -61,7 +61,7 @@ class MomentsController < ApplicationController
       "douban" => { :name => "豆瓣" , :img => "icon/icon_douban.png" , :url_attr => "?type=douban" } ,
       "renren" => { :name => "人人" , :img => "icon/icon_renren.png" , :url_attr => "?type=renren" } ,
       "kaixin001" => { :name => "开心" , :img => "icon/icon_kaixin.png" , :url_attr => "?type=kaixin001" } ,
-      "qq" => { :name => "腾讯微博" , :img => "icon/icon_tencent.png" , :url_attr => "?type=qq" }
+      "qq-weibo" => { :name => "腾讯微博" , :img => "icon/icon_tencent.png" , :url_attr => "?type=qq-weibo" }
     }
     if current_user 
       @vendors = cur_user[ :vendors ]
