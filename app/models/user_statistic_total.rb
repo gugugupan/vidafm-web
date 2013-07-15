@@ -100,13 +100,23 @@ class UserStatisticTotal < ActiveRecord::Base
      UserStatisticTotal.where(is_award:1).where(award_type:2).order("`award_time` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
    end
 
-   def UserStatisticTotal.my_create(user_id)
+   def UserStatisticTotal.my_create(user_id,page,offset=5)
       u = UserStatisticTotal.where(user_id: user_id).first
       create_moment_ids = JSON.parse u.create_moment_ids
+      return create_moment_ids[page*offset..(page+1)*offset-1]
    end
 
-   def UserStatisticTotal.my_share(user_id)
+   def UserStatisticTotal.my_share(user_id,page,offset=5)
       u = UserStatisticTotal.where(user_id: user_id).first
       share_moment_ids = JSON.parse u.share_moment_ids
+      return share_moment_ids[page*offset..(page+1)*offset-1]
+   end
+ 
+   def UserStatisticTotal.my_profile(user_id)
+      u = UserStatisticTotal.where(user_id: user_id).first
+      create_rank = UserStatisticTotal.where("create_score > ?", u.create_score).count() + 1      
+      share_rank = UserStatisticTotal.where("share_score > ?", u.share_score).count() + 1      
+
+      return u.create_score, u.share_score, u.create_rank, u.share_rank
    end
 end
