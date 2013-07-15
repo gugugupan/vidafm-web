@@ -28,8 +28,7 @@ jQuery( function() {
     } ) .mouseleave( function() { 
         $( "#weichar_qrcode" ) .fadeOut( 300 ) ; 
     } ) ;
-    start_scroll( "#photo_content" , { "speed_ratio" : 0.3 , "holdon_time" : 200 } ) ;
-    start_scroll( "#poitag_content" , { "speed_ratio" : 0.4 , "holdon_time" : 0 } ) ;
+    start_scroll() ;
 } ) ;
 </script>
 <% end -%>
@@ -38,15 +37,21 @@ jQuery( function() {
   <div id="index_cover">
     <div id="index_cover_body">
       <div id="index_phone">
-        <div id="photo_content">
-          <%= image_tag "index/img/img1.png" %>
-          <%= image_tag "index/img/img2.png" %>
+        <div id="phone_content">
+          <div id="back_content">
+            <div class="back_content_ground" style="background-color:#00CC8E;display:block;"> </div>
+            <div class="back_content_ground" style="background-color:#D1664E;"> </div>
+          </div>
+          <div id="photo_content">
+            <%= image_tag "index/img/img1.png" , :style => "display: block;" %>
+            <%= image_tag "index/img/img2.png" %>
+          </div>
         </div>
       </div>
       <div id="index_content">
         <%= image_tag "index/logo_slogan.png" , :id => "vida_title" %>
         <div id="poitag_content">
-          <%= image_tag "index/img/poi&tag1.png" %>
+          <%= image_tag "index/img/poi&tag1.png" , :style => "display: block;" %>
           <%= image_tag "index/img/poi&tag2.png" %>
         </div>
         <p id="des_text">已有千万用户使用Vida微图记分享游记, 美食记, 自拍秀, 将精彩瞬间汇成照片微电影, 记录生活, 分享生活, 发现生活新花样!</p>
