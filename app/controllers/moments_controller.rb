@@ -7,7 +7,6 @@ class MomentsController < ApplicationController
     render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
     redirect_to( user_url(data['data']['user_id']) , :notice => 401 ) and return if data[ 'result' ] == 401 
     @moment = data[ "data" ]
-    puts data .to_json
 
     # 对于 slideshow 的情况
     render "moments/slideshow" , :layout => "layouts/slideshow_layout" and return if params[ :md ] .nil?
@@ -62,7 +61,7 @@ class MomentsController < ApplicationController
       "douban" => { :name => "豆瓣" , :img => "icon/icon_douban.png" , :url_attr => "?type=douban" } ,
       "renren" => { :name => "人人" , :img => "icon/icon_renren.png" , :url_attr => "?type=renren" } ,
       "kaixin001" => { :name => "开心" , :img => "icon/icon_kaixin.png" , :url_attr => "?type=kaixin001" } ,
-      "qq" => { :name => "腾讯微博" , :img => "icon/icon_tencent.png" , :url_attr => "?type=qq" }
+      "qq-weibo" => { :name => "腾讯微博" , :img => "icon/icon_tencent.png" , :url_attr => "?type=qq-weibo" }
     }
     if current_user 
       @vendors = cur_user[ :vendors ]
