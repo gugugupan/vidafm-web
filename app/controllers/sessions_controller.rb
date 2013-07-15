@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # 豆瓣登陆（不用omniauth实现）
   def login2douban # hack for douban login API
     # authorization_code
     param = {
@@ -42,6 +43,35 @@ class SessionsController < ApplicationController
       :code => params[ :code ]
     } ) .body )
     session[:current_user] = Session.create( { :from => "douban" , 
+                                               :token => result[ "access_token" ] , 
+                                               :secret => "" ,
+                                               :expires_in => result[ "expires_in" ] ,
+                                               :refresh_token => result[ "refresh_token" ] } )
+    login_success
+  end
+
+  # 开心登陆（不用omniauth实现）
+  def login2kaixin
+    # authorization_code
+    param = {
+      :client_id => "497161294179d3e3b1fca3ce574829f6" ,
+      :response_type => "code" ,
+      :redirect_uri => "http://#{ request.host_with_port }/auth2/kaixin/callback"
+    }
+    redirect_to "http://api.kaixin001.com/oauth2/authorize?#{ param .to_param }"
+  end
+
+  def createkaixin
+    #access_token
+    connection = Faraday.new( :url => "https://api.kaixin001.com/oauth2/access_token" )
+    result = JSON.parse( connection .post( "" , {
+      :client_id => "497161294179d3e3b1fca3ce574829f6" ,
+      :client_secret => "c812f23623ea99a2c720a4642f6f7df1" ,
+      :redirect_uri =>  "http://#{ request.host_with_port }/auth2/kaixin/callback" ,
+      :grant_type => "authorization_code" ,
+      :code => params[ :code ]
+    } ) .body )
+    session[:current_user] = Session.create( { :from => "kaixin001" , 
                                                :token => result[ "access_token" ] , 
                                                :secret => "" ,
                                                :expires_in => result[ "expires_in" ] ,
