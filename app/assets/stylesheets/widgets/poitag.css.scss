@@ -13,6 +13,7 @@
 	@include all_border_radius( 4px ) ;
 	color: white;
 	background: #7cb7e8 image-url("feeds/moment_list_poi_bg.png") no-repeat left center;
+	*width: auto;
 }
 
 .tag_block {
@@ -24,4 +25,5 @@
 	background-color: #b3a3d1;
 	@include all_border_radius( 4px ) ;
 	color: white;
+	*width: auto;
 }
