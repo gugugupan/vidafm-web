@@ -10,7 +10,9 @@ class MomentsController < ApplicationController
         Rails.cache.write ip,"1"
         MomentStatistic.add_played_count(params[:id])
         UserStatistic.add_create_played_count(params[:create_uid])
-        UserStatistic.add_shared_played_count(params[:share_uid])
+        UserStatistic.add_create_played_count(params[:create_uid])
+        UserStatisticTotal.add_shared_played_count(params[:share_uid])
+        UserStatisticTotal.add_shared_played_count(params[:share_uid])
     end
 =end
 
@@ -99,7 +101,9 @@ class MomentsController < ApplicationController
         Rails.cache.write ip,"1"
         MomentStatistic.add_played_count(params[:id])
         UserStatistic.add_create_played_count(params[:create_uid])
-        UserStatistic.add_shared_played_count(params[:share_uid])
+        UserStatistic.add_create_played_count(params[:create_uid])
+        UserStatisticTotal.add_shared_played_count(params[:share_uid])
+        UserStatisticTotal.add_shared_played_count(params[:share_uid])
     end
 =end
     #id = params[:id]
