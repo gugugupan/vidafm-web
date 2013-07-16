@@ -1,6 +1,7 @@
 class MomentStatistic < ActiveRecord::Base
    attr_accessible :moment_id, :user_id, :shared_count, :played_count 
    attr_accessible :total_score 
+   attr_accessible :recommended
    
    def MomentStatistic.add_shared_count(moment_id,user_id)
      m = MomentStatistic.find_or_initialize_by_moment_id(moment_id)
@@ -21,5 +22,14 @@ class MomentStatistic < ActiveRecord::Base
 
    def MomentStatistic.hot(page)
      hot_list= MomentStatistic.order("`total_score` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
+   end 
+
+      
+   def MomentStatistic.hot_recommended(offset,page)
+     hot_recommended= MomentStatistic.where(recommended: 2).offset(page*offset).limit(offset)
+   end 
+
+   def MomentStatistic.editor_recommended(offset,page)
+     editor_recommended= MomentStatistic.where(recommended: 1).offset(page*offset).limit(offset)
    end 
 end
