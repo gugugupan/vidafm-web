@@ -28,7 +28,7 @@ class User
 			# check whether the user_id is a number.
 			return nil unless user_id =~ /[0-9]+/
 			data = VIDA.call( "users/#{ user_id }/brief" , {} , current_user , "GET" )
-			res = JSON.parse( data[ :body ] )
+			res = data[ :body ].length >=2 ? JSON.parse( data[ :body ] ) : nil
 			if data[ :status ] == 401 || data[ :status ] == 203
 				res[ "status" ] = 401
 			end

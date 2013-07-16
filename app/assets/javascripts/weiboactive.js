@@ -1,5 +1,6 @@
 //= require bootstrap/bootstrap.min
 //= require scrollup/jquery.scrollUp.min
+//= require plugin/jQueryRotate.js
 
 ;$(function() {
     $.scrollUp({
@@ -47,5 +48,37 @@
      }, 500);
 
      }, 1000);
+
+     $("#clock").rotate({
+     bind : {
+     click : function() {
+     var a = Math.floor(Math.random() * 360);
+     a = 280;
+     $(this).rotate({
+     duration : 3000,
+     angle : 0,
+     animateTo : 1440 + a,
+     //easing: $.easing.easeOutSine,
+     callback : function() {
+     //alert('中奖了！');
+     }
+     });
+     }
+     }
+     });
      */
-}); 
+
+});
+
+//抽奖
+function rotate() {
+    $("#clock").rotate({
+        duration : 5000,
+        angle : 10000,
+        animateTo : 14400,
+        //easing: $.easing.easeOutSine,
+        callback : function() {
+            //alert('中奖了！');
+        }
+    });
+}

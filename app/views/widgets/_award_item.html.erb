@@ -1,4 +1,4 @@
-<li>
+<li class="num<%= award_item_counter + 1 %>">
     <a href="/users/<%= award_item["user_id"] %>" class="avatar pull-left" title="霁野"><img alt="1" src="<%= award_item["user"]["avatar_file"] %>"></a>
     <div class="info-container">
         <div class="user-name">
@@ -10,7 +10,7 @@
             <% elsif show_type == "shared" %>
             分享点击数<%= award_item["shared_played_count"] %>
             <% elsif show_type == "award" %>
-            iPad mini 得主
+            <%= @awardName %> 得主
             <% end %>
         </p>
     </div>

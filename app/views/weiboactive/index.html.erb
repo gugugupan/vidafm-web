@@ -1,7 +1,7 @@
 <div class="container wrapper">
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
 
-    <%= render :partial => "header_00" %>
+    <%= render :partial => "header_00", :locals => { :user => @cur_user } %>
 
     <%= render :partial => "daystar" %>
 
@@ -14,9 +14,9 @@
         </div>
     </div>
     <% unless @mobile == true %>
-    <%= createStory @moment, 4 %>
+    <%= storyGallery @moment, "", 4, 1 %>
     <% else %>
-    <%= createStory @moment, 2 %>
+    <%= storyGallery @moment, "", 2, 2 %>
     <% end %>
 
     <!--热门作品-->
@@ -28,9 +28,9 @@
         </div>
     </div>
     <% unless @mobile == true %>
-    <%= createStory @moment1, 4 %>
+    <%= storyGallery @momentHot, "", 4, 1 %>
     <% else %>
-    <%= createStory @moment1, 2 %>
+    <%= storyGallery @momentHot, "", 2, 2 %>
     <% end %>
 
     <!--获奖名单 & 排行榜-->
@@ -53,7 +53,7 @@
                 </ul>
                 <br>
                 <%= link_to "查看总榜及获奖名单",
-                {:controller => "weiboactive",:action => "top", :id => 1},
+                {:controller => "weiboactive",:action => "top", :type => "create"},
                 :class => "btn-yellow-small" %>
             </div>
         </div>
@@ -69,7 +69,7 @@
                 </ul>
                 <br>
                 <%= link_to "查看总榜及获奖名单",
-                {:controller => "weiboactive",:action => "top", :id => 2},
+                {:controller => "weiboactive",:action => "top", :type => "shared"},
                 :class => "btn-cyanogen-small" %>
             </div>
         </div>
@@ -86,7 +86,7 @@
                 </ul>
                 <br>
                 <%= link_to "查看总榜及获奖名单",
-                {:controller => "weiboactive",:action => "top", :id => 1},
+                {:controller => "weiboactive",:action => "top", :type => "create"},
                 :class => "btn-yellow-small" %>
             </div>
         </div>
@@ -103,7 +103,7 @@
                 </ul>
                 <br>
                 <%= link_to "查看总榜及获奖名单",
-                {:controller => "weiboactive",:action => "top", :id => 2},
+                {:controller => "weiboactive",:action => "top", :type => "shared"},
                 :class => "btn-cyanogen-small" %>
             </div>
         </div>

@@ -1,26 +1,6 @@
 #encoding: utf-8
 class WeiboactiveController < ApplicationController
     def initialize
-        @avatars = [
-            'http://pics.vida.fm/07bf7c8c-8120-11e2-a79a-180373f6dd13',
-            'http://pics.vida.fm/e0df1638-e0fe-11e2-acf6-180373f6dd13',
-            'http://pics.vida.fm/d9d5a0cc-9d70-11e2-bb82-180373f6dd13',
-            'http://pics.vida.fm/d183a3cc-628a-11e2-8cd9-180373f6dd13',
-            'http://pics.vida.fm/7ced847a-6412-11e2-92c5-180373f6dd13',
-            'http://pics.vida.fm/0df73e00-627b-11e2-9378-180373f6dd13'
-        ]
-
-        @photos = [
-            'http://pics.vida.fm/15/3111/2c14e390-dee7-11e2-8292-180373f6dd13_m',
-            'http://pics.vida.fm/15/2611/e73797ec-db3d-11e2-8ca2-180373f6dd13_m',
-            'http://pics.vida.fm/15/1911/d930a1fc-d50c-11e2-96f3-180373f6dd13_m',
-            'http://pics.vida.fm/15/3411/9c9f7d3e-e0e3-11e2-b2ed-180373f6dd13_m',
-            'http://pics.vida.fm/15/1310/f3498cd4-b847-11e2-9483-180373f6dd13_m',
-            'http://pics.vida.fm/15/1711/979e541a-d3cb-11e2-8caf-180373f6dd13_m',
-            'http://pics.vida.fm/14/3017/bddd57ce-4f60-11e2-943e-180373f6dd13_m',
-            'http://pics.vida.fm/14/3314/107cd576-0a43-11e2-933f-180373f6dd13_m',
-            'http://pics.vida.fm/14/1315/17de5f9c-11c3-11e2-8f7b-180373f6dd13_m'
-        ]
     end
 
     # check user agent version
@@ -36,74 +16,95 @@ class WeiboactiveController < ApplicationController
 
     #首页
     def index
-
         save_url_in_cookies
-=begin
-@result = UserStatistic.every_day_star
-#unless @result[0].nil?
 
-@user0 = User.fetch("169" || @result[0].user_id, current_user, nil)["data"]
-@user1 = User.fetch("167" || @result[0].user_id, current_user, nil)["data"]
+        #今日iPad mini得主
+        @ipadTodayUser = UserStatisticTotal.where(is_award:1).where(award_type:1).order("`award_time` desc").first
+        @user0 = @ipadTodayUser.nil? ? nil : User.fetch(@ipadTodayUser[:user_id].to_s, current_user, nil)["data"]
+        #今日Tiffany得主
+        @tiffanyTodayUser = UserStatisticTotal.where(is_award:1).where(award_type:2).order("`award_time` desc").first
+        @user1 = @tiffanyTodayUser.nil? ? nil : User.fetch(@tiffanyTodayUser[:user_id].to_s, current_user, nil)["data"]
 
-#end
-
-@moment = api_call( "Moment" , :fetch_by_search , nil , {
-:category => "mood" ,
-:order => "hottest" ,
-:offset => 0
-}) [ "data" ] [ "moments" ]
-
-@moment1 = api_call( "Moment" , :fetch_by_search , nil , {
-:category => "food" ,
-:order => "hottest" ,
-:offset => 0
-}) [ "data" ] [ "moments" ]
-
-=end
-        @user0 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)[ "data" ]
-        @user1 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)[ "data" ]
+        #TODO::编辑推荐
         @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
-        @moment1 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+        #@momentHot = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
 
-        @createSort = UserStatistic.create_sort 0
-        @sharedSort = UserStatistic.shared_sort 0
+        #热门作品
+        @momentHotRecords = MomentStatistic.hot 0
+        @momentHot = @momentHotRecords && @momentHotRecords.length >= 1 ? JSON.parse(@momentHotRecords.to_json) : Array.new
+        
+        @momentHot.each do |a|
+            m = Moment.fetch a["moment_id"], current_user
+            a.merge! m["data"] unless m["data"].nil?
+        end
+        @momentHot.delete_if {|i| i["items"].nil? || i["items"].length == 0}
 
-        @createSortJson = JSON.parse(@createSort.to_json)
-        @sharedSortJson = JSON.parse(@sharedSort.to_json)
+        #原创达人 Top10
+        @createSort = UserStatisticTotal.create_sort 0
+        #分享达人 Top10
+        @sharedSort = UserStatisticTotal.shared_sort 0
+
+        @createSortJson = @createSort && @createSort.length >= 1 ? JSON.parse(@createSort.to_json) : Array.new
+        @sharedSortJson = @sharedSort && @sharedSort.length >= 1 ? JSON.parse(@sharedSort.to_json) : Array.new
 
         @createSortJson.each do |a|
-        #u = User.fetch a["user_id"].to_s, current_user, nil
-            u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)
-            a["user"] = u[ "data" ]
+            u = User.fetch a["user_id"].to_s, current_user, nil
+            #u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)
+            a["user"] = u[ "data" ] unless u.nil?
         end
 
+        @createSortJson.delete_if {|i| i["user"].nil?}
+
         @sharedSortJson.each do |a|
-        #u = User.fetch a["user_id"].to_s, current_user, nil
-            u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)
-            a["user"] = u[ "data" ]
+            u = User.fetch a["user_id"].to_s, current_user, nil
+            #u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)
+            a["user"] = u[ "data" ] unless u.nil?
         end
+
+        @sharedSortJson.delete_if {|i| i["user"].nil?}
+        
+        cur_user_static = current_user.nil? ? nil : UserStatisticTotal.where(user_id: current_user["id"]).first
+        @currCreateScore = cur_user_static.nil? ? 0 : cur_user_static[:create_score]
+        @currShareScore = cur_user_static.nil? ? 0 : cur_user_static[:share_score]
 
         check_user_agent
     end
 
     # 我的页面
     def myprofile
+        # 未登录跳至首页
+        redirect_to action: 'index' and return unless current_user
         save_url_in_cookies
-        @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
-        @moment1 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+        #我的作品
+        @momentMyCreatedRecords = ShareMomentHistory.my_shared current_user["id"], 0
+        @momentMyCreated = @momentMyCreatedRecords && @momentMyCreatedRecords.length >= 1 ? JSON.parse(@momentMyCreatedRecords.to_json) : Array.new
+
+        @momentMyCreated.each do |a|
+            m = Moment.fetch a["moment_id"], current_user
+            a.merge! m["data"] unless m["data"].nil?
+        end
+        @momentMyCreated.delete_if {|i| i["items"].nil? || i["items"].length == 0}
+
+        #我的分享
+        @momentMySharedRecords = ShareMomentHistory.my_shared current_user["id"], 0
+        @momentMyShared = @momentMySharedRecords && @momentMySharedRecords.length >= 1 ? JSON.parse(@momentMySharedRecords.to_json) : Array.new
+        
+        @momentMyShared.each do |a|
+            m = Moment.fetch a["moment_id"], current_user
+            a.merge! m["data"] unless m["data"].nil?
+        end
+        @momentMyShared.delete_if {|i| i["items"].nil? || i["items"].length == 0}
+
+        cur_user_static = current_user.nil? ? nil : UserStatisticTotal.where(user_id: current_user["id"]).first
+        @currCreateScore = cur_user_static.nil? ? 0 : cur_user_static[:create_score]
+        @currShareScore = cur_user_static.nil? ? 0 : cur_user_static[:share_score]
+
         check_user_agent
     end
 
     #编辑推荐
     def editorstory
         save_url_in_cookies
-=begin
-@moment = api_call( "Moment" , :fetch_by_search , nil , {
-:category => "mood" ,
-:order => "hottest" ,
-:offset => 0
-}) [ "data" ] [ "moments" ]
-=end
         @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
 
         check_user_agent
@@ -112,41 +113,64 @@ class WeiboactiveController < ApplicationController
     # 热门作品
     def hotstory
         save_url_in_cookies
-
-=begin
-@moment = api_call( "Moment" , :fetch_by_search , nil , {
-:category => "mood" ,
-:order => "hottest" ,
-:offset => 0
-}) [ "data" ] [ "moments" ]
-=end
-        @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+        #热门作品
+        @momentHotRecords = MomentStatistic.hot 0
+        @momentHot = @momentHotRecords && @momentHotRecords.length >= 1 ? JSON.parse(@momentHotRecords.to_json) : Array.new
+        
+        @momentHot.each do |a|
+            m = Moment.fetch a["moment_id"], current_user
+            a.merge! m["data"] unless m["data"].nil?
+        end
+        @momentHot.delete_if {|i| i["items"].nil? || i["items"].length == 0}
 
         check_user_agent
     end
 
     def top
+        redirect_to action: 'index' and return unless params[:type]
         save_url_in_cookies
-        @user0 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)[ "data" ]
-        @user1 = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)[ "data" ]
+        @showType = params[:type]
+        @title = params[:type] == "create" ? "原创达人" : "分享达人"
 
-        @createSort = UserStatistic.create_sort 0
-        @sharedSort = UserStatistic.shared_sort 0
+        #今日iPad mini得主
+        @ipadTodayUser = UserStatisticTotal.where(is_award:1).where(award_type:1).order("`award_time` desc").first
+        @user0 = @ipadTodayUser.nil? ? nil : User.fetch(@ipadTodayUser[:user_id].to_s, current_user, nil)["data"]
+        #今日Tiffany得主
+        @tiffanyTodayUser = UserStatisticTotal.where(is_award:1).where(award_type:2).order("`award_time` desc").first
+        @user1 = @tiffanyTodayUser.nil? ? nil : User.fetch(@tiffanyTodayUser[:user_id].to_s, current_user, nil)["data"]
 
-        @createSortJson = JSON.parse(@createSort.to_json)
-        @sharedSortJson = JSON.parse(@sharedSort.to_json)
-
-        @createSortJson.each do |a|
-        #u = User.fetch a["user_id"].to_s, current_user, nil
-            u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)
-            a["user"] = u[ "data" ]
+        if params[:type] == "create"
+            #去除获奖用户之后的排行榜
+            @noAwardSort = UserStatisticTotal.create_sort_without_award 0
+            #获奖排行榜
+            @awardSort = UserStatisticTotal.create_award_history 0
+            @awardName = "iPad mini"
+        else
+            #去除获奖用户之后的排行榜
+            @noAwardSort = UserStatisticTotal.shared_sort_without_award 0
+            #获奖排行榜
+            @awardSort = UserStatisticTotal.shared_award_hitstory 0
+            @awardName = "Tiffany"
         end
 
-        @sharedSortJson.each do |a|
-        #u = User.fetch a["user_id"].to_s, current_user, nil
-            u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)
-            a["user"] = u[ "data" ]
+        @noAwardSortJson = @noAwardSort && @noAwardSort.length >= 1 ? JSON.parse(@noAwardSort.to_json) : Array.new
+        @awardSortJson = @awardSort && @awardSort.length >= 1 ? JSON.parse(@awardSort.to_json) : Array.new
+
+        @noAwardSortJson.each do |a|
+            u = User.fetch a["user_id"].to_s, current_user, nil
+            #u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)
+            a["user"] = u[ "data" ] unless u.nil?
         end
+
+        @noAwardSortJson.delete_if {|i| i["user"].nil?}
+
+        @awardSortJson.each do |a|
+            u = User.fetch a["user_id"].to_s, current_user, nil
+            #u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)
+            a["user"] = u[ "data" ] unless u.nil?
+        end
+
+        @awardSortJson.delete_if {|i| i["user"].nil?}
         check_user_agent
     end
 
