@@ -14,60 +14,26 @@
         scrollImg : false, // Set true to use image
         activeOverlay : false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
     });
+    
+    $("#scrollUp").css({'z-index': '1000'})
+    
+    /* SHARE MODAL DATA-API
+     * ============== */
 
-    /*
-     function slide(opt) {
-     var el = opt.el;
-     var time = opt.time;
-     var x = opt.x;
-     setTimeout(function(){
-     el.css('backgroundPosition', x + "px 0");
-     if (x == -1246) {
-     opt.x = 178;
-     }
-     opt.x -= 178;
-     slide(opt);
-     }, time);
-     }
+    $(document).on('click.sharemodal.data-api', '[data-toggle="share"]', function(e) {
+        var $this = $(this), href = $this.attr('href'), $target = $("#modal-container-share")//strip for ie7
+        , option = $target.data('modal') ? 'toggle' : $.extend({
+            remote : !/#/.test(href) && href
+        }, $target.data(), $this.data()), momentName = $this.attr("moment-name");
+        
+        $("#content", $target).val("我发现这个故事 #" + momentName +"# 很不错，特意分享 @Vida微达")
 
-     setTimeout(function(){
-     var opt = {
-     el: $("#clock"),
-     time: 300,
-     x: 0,
-     type: -1
-     };
+        e.preventDefault()
 
-     slide(opt);
-
-     var a = setInterval(function() {
-     if (opt.time <= 0) {
-     opt.time = 350;
-     }
-     opt.time += opt.type * 50;
-     }, 500);
-
-     }, 1000);
-
-     $("#clock").rotate({
-     bind : {
-     click : function() {
-     var a = Math.floor(Math.random() * 360);
-     a = 280;
-     $(this).rotate({
-     duration : 3000,
-     angle : 0,
-     animateTo : 1440 + a,
-     //easing: $.easing.easeOutSine,
-     callback : function() {
-     //alert('中奖了！');
-     }
-     });
-     }
-     }
-     });
-     */
-
+        $target.modal(option).one('hide', function() {
+            $this.focus()
+        })
+    })
 });
 
 //抽奖

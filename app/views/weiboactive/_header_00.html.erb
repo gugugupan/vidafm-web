@@ -10,7 +10,7 @@
             </p>
             <%= link_to "如何获得原创得分",
             {:controller => "weiboactive",:action => "rule_oa"},
-            :class => "btn-yellow btn-large" %>
+            :class => "btn btn-yellow btn-large" %>
         </div>
         <div class="span6">
             <div class="integral">
@@ -21,7 +21,7 @@
             </p>
             <%= link_to "如何获得分享得分",
             {:controller => "weiboactive",:action => "rule_share"},
-            :class => "btn-cyanogen btn-large" %>
+            :class => "btn btn-cyanogen btn-large" %>
         </div>
     </div>
 </header>
@@ -29,10 +29,10 @@
 <header class="header">
     <div class="row-fluid">
         <div class="span5 desc">
-            <p class="p30">
+            <p class="p26">
                 参加照片微电影大赛
             </p>
-            <p class="p37-5" style="margin-bottom: 26px;font-weight:bold;">
+            <p class="p30" style="margin-bottom: 26px;font-weight:bold;">
                 赢欧洲双人游等大奖
             </p>
             <p class="p15" style="margin-bottom: 20px;">
@@ -43,39 +43,37 @@
             </p>
             <%= link_to raw("<i class=\"icon-info-sign\"></i>&nbsp;&nbsp;规则说明"),
             {:controller => "weiboactive",:action => "rule"},
-            :class => "btn-blue btn-large" %>
+            :class => "btn btn-blue btn-large" %>
         </div>
 
         <div class="span7">
-            <div class="row">
-                <div class="span6">
-                    <div class="integral">
-                        <%= @currCreateScore %>
-                    </div>
-                    <p class="p22-5" style="margin-bottom: 12px;">
-                        我的原创得分
-                    </p>
-                    <p class="p15" style="margin-bottom: 20px;">
-                        下载Vida微图记，上传照片做成微电影并添加“照片微电影大赛”Tag，原创得分+10
-                    </p>
-                    <%= link_to "如何获得原创得分",
-                    {:controller => "weiboactive",:action => "rule_oa"},
-                    :class => "btn-yellow btn-large" %>
+            <div class="span6">
+                <div class="integral">
+                    <%= @currCreateScore %>
                 </div>
-                <div class="span6">
-                    <div class="integral">
-                        <%= @currShareScore %>
-                    </div>
-                    <p class="p22-5" style="margin-bottom: 12px;">
-                        我的分享得分
-                    </p>
-                    <p class="p15" style="margin-bottom: 20px;">
-                        下载Vida微图记，上传照片做成微电影并添加“照片微电影大赛”Tag，分享得分+10
-                    </p>
-                    <%= link_to "如何获得分享得分",
-                    {:controller => "weiboactive",:action => "rule_share"},
-                    :class => "btn-cyanogen btn-large" %>
+                <p class="p22-5" style="margin-bottom: 12px;">
+                    我的原创得分
+                </p>
+                <p class="p15" style="margin-bottom: 20px;">
+                    下载Vida微图记，上传照片做成微电影并添加“照片微电影大赛”Tag，原创得分+10
+                </p>
+                <%= link_to "如何获得原创得分",
+                {:controller => "weiboactive",:action => "rule_oa"},
+                :class => "btn btn-yellow btn-large" %>
+            </div>
+            <div class="span6">
+                <div class="integral">
+                    <%= @currShareScore %>
                 </div>
+                <p class="p22-5" style="margin-bottom: 12px;">
+                    我的分享得分
+                </p>
+                <p class="p15" style="margin-bottom: 20px;">
+                    下载Vida微图记，上传照片做成微电影并添加“照片微电影大赛”Tag，分享得分+10
+                </p>
+                <%= link_to "如何获得分享得分",
+                {:controller => "weiboactive",:action => "rule_share"},
+                :class => "btn btn-cyanogen btn-large" %>
             </div>
         </div>
     </div>

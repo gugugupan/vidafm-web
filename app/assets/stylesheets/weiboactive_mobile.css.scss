@@ -92,3 +92,14 @@ body {
         margin: 0;
     }
 }
+
+.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
+    background-color: #7cb7e8;
+    color: #FFFFFF;
+    margin-bottom: 1px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.nav-list {
+    font-size: 17.5px;
+}

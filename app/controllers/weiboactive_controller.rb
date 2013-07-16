@@ -5,7 +5,7 @@ class WeiboactiveController < ApplicationController
 
     # check user agent version
     def check_user_agent
-        if request.user_agent =~ /(android|ipod|iphone|ipad)/i
+        if request.user_agent =~ /(android|ipod|iphone)/i
             @mobile = true
             render :layout => "layouts/weiboactive_mobile_layout"
         else
