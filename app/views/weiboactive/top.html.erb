@@ -25,10 +25,10 @@
         <div class="span6">
             <div class="placard">
                 <div class="title">
-                    原创达人 排行榜
+                    <%= @title %> 今日排行榜
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "create"} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => @noAwardSortJson, :locals => { :show_type => @showType} -%>
                 </ul>
                 <br>
                 <div class="pagination">
@@ -63,10 +63,10 @@
             <div class="placard">
 
                 <div class="title">
-                    原创达人 获奖名单
+                    <%= @title %> 获奖名单
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "award"} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => @awardSortJson, :locals => { :show_type => "award"} -%>
                 </ul>
                 <br>
                 <div class="pagination">
@@ -102,10 +102,10 @@
         <div class="span12">
             <div class="placard">
                 <div class="title">
-                    原创达人 排行榜
+                    <%= @title %> 今日排行榜
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "create"} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => @noAwardSortJson, :locals => { :show_type => @showType} -%>
                 </ul>
                 <br>
                 <div class="pagination">
@@ -141,10 +141,10 @@
                 <div class="placard">
 
                     <div class="title">
-                        原创达人 获奖名单
+                        <%= @title %> 获奖名单
                     </div>
                     <ul class="talent-container">
-                        <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "award"} -%>
+                        <%= render :partial => "widgets/award_item" , :collection => @awardSortJson, :locals => { :show_type => "award"} -%>
                     </ul>
                     <br>
                     <div class="pagination">

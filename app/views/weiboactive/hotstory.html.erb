@@ -2,21 +2,10 @@
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
 
     <!--所有热门作品-->
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="text-center block-title">
-                所有热门作品
-            </div>
-        </div>
-    </div>
-
     <% unless @mobile == true %>
-
-    <%= createStory @moment, 4 %>
-
+    <%= storyGallery @momentHot, "所有热门作品", 4 %>
     <% else %>
-
-    <%= createStory @moment, 2 %>
+    <%= storyGallery @momentHot, "所有热门作品", 2 %>
 
     <% end %>
     <a href="javascript:void(0)" class="more-link">点击显示更多</a>
