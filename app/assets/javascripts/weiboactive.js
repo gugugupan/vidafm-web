@@ -14,9 +14,11 @@
         scrollImg : false, // Set true to use image
         activeOverlay : false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
     });
-    
-    $("#scrollUp").css({'z-index': '1000'})
-    
+
+    $("#scrollUp").css({
+        'z-index' : '1000'
+    })
+
     /* SHARE MODAL DATA-API
      * ============== */
 
@@ -25,14 +27,25 @@
         , option = $target.data('modal') ? 'toggle' : $.extend({
             remote : !/#/.test(href) && href
         }, $target.data(), $this.data()), momentName = $this.attr("moment-name");
-        
-        $("#content", $target).val("我发现这个故事 #" + momentName +"# 很不错，特意分享 @Vida微达")
+
+        $("#content", $target).val("我发现这个故事 #" + momentName + "# 很不错，特意分享 @Vida微达")
 
         e.preventDefault()
 
         $target.modal(option).one('hide', function() {
             $this.focus()
         })
+    })
+    /* PLAY MOMENT MODAL DATA-API
+     * ============== */
+
+    $(document).on('click.playmoment.data-api', '[data-toggle="play-moment"]', function(e) {
+        var $this = $(this), momentId = $this.attr("moment-id");
+        
+        location.href = "/moments/" + momentId;
+
+        e.preventDefault()
+
     })
 });
 

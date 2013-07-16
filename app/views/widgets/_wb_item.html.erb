@@ -1,5 +1,6 @@
-<div class="thumbnail-pic">    
+<div class="thumbnail-pic">
     <img src="<%= wb_item[ "items" ] [ 0 ] [ "photo" ] [ "url_l" ] %>" alt="dd">
+    <div class="play_container" data-toggle="play-moment" moment-id="<%= wb_item["id"] %>"></div>
     <div class="rls_container">
         <div class="rls_container_inner">
             <div class="span6">
@@ -23,6 +24,8 @@
 </div>
 <div class="tencent-share-container">
     <p>
-        <button href="#" class="btn btn-block btn-large btn-blue" data-toggle="share" moment-id="<%= wb_item["id"] %>" moment-name="<%= wb_item["name"]%>">分享赢Q币</button>
+        <button href="#" class="btn btn-block btn-large btn-blue" data-toggle="share" moment-id="<%= wb_item["id"] %>" moment-name="<%= wb_item["name"]%>">
+            分享赢Q币
+        </button>
     </p>
 </div>

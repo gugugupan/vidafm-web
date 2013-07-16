@@ -13,7 +13,6 @@ body {
 
 .wrapper {
     width: 1000px;
-    overflow: hidden;
 }
 
 .wrapper > hr {
@@ -217,6 +216,7 @@ body {
         margin-bottom: -64px;
         margin-right: -95px;
         margin-top: -116px;
+        width: 500px;
     }
     
     img.vida {
@@ -448,9 +448,19 @@ body {
     height: 150px;
     overflow: hidden;
     position: relative;
-}
-.thumbnail-pic img{
-  width: 100%;
+    
+    .play_container {
+        background: url("/assets/weiboactive/start.png") no-repeat scroll 50% 50% transparent;
+        cursor: pointer;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    
+    img{
+      width: 100%;
+    }
 }
 
 #carousel-1,

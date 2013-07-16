@@ -1,11 +1,15 @@
+<% content_for :title do %>
+    所有编辑推荐作品
+<% end %>
+
 <!--所有编辑推荐作品-->
 <div class="container wrapper">
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
 
     <% unless @mobile == true %>
-    <%= storyGallery @moment, "所有编辑推荐作品", 4 %>
+    <%= storyGallery @momentEditor, "所有编辑推荐作品", 4 %>
     <% else %>
-    <%= storyGallery @moment, "所有编辑推荐作品", 2 %>
+    <%= storyGallery @momentEditor, "所有编辑推荐作品", 2 %>
     <% end %>
     <a href="javascript:void(0)" class="more-link">点击显示更多</a>
 

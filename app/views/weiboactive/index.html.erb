@@ -1,3 +1,7 @@
+<% content_for :title do %>
+    首届照片微电影大赛
+<% end %>
+
 <div class="container wrapper">
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
 
@@ -14,9 +18,9 @@
         </div>
     </div>
     <% unless @mobile == true %>
-    <%= storyGallery @moment, "", 4, 1 %>
+    <%= storyGallery @momentEditor, "", 4, 1 %>
     <% else %>
-    <%= storyGallery @moment, "", 2, 2 %>
+    <%= storyGallery @momentEditor, "", 2, 2 %>
     <% end %>
 
     <!--热门作品-->
