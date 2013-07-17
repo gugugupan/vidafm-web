@@ -72,7 +72,7 @@ function adjust_image( callback )
         } ;
         last_adjust_num = $( ".mlcontainer" ) .length ;
     } else if ( $( "#feed_container" ) .attr( "blockstyle" ) == "puzzle" ) {
-        if ( $( ".image_container_row" ) .length == 0 ) callback() ;
+        if ( last_adjust_num == $( ".image_container_row" ) .length ) callback() ;
         for ( var i = last_adjust_num ; i < $( ".image_container_row" ) .length ; i ++ )
         {
             $row = $( ".image_container_row:eq(" + i + ")" ) ;
