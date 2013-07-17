@@ -51,7 +51,6 @@ class MiscController < ApplicationController
     }
     data = User.fetch_feeds( nil , current_user , next_query ) [ "data" ]
     @feeds = data[ "feeds" ] 
-    puts @feeds .to_json
 
     @qparams = data[ "next_query_parameters" ] 
     @qparams[ "activity_ids" ] = { "before" => params[ :activity ] } if @qparams[ "activity_ids" ] .nil?
