@@ -21,7 +21,6 @@
 
     /* SHARE MODAL DATA-API
     * ============== */
-    //TODO::
     $(document).on('click.sharemodal.data-api', '[data-toggle="share"]', function(e) {
         e.preventDefault();
         var $this = $(this), href = $this.attr('href'), $target = $("#modal-container-share"), //strip for ie7

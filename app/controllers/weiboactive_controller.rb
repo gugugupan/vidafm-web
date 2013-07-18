@@ -91,11 +91,14 @@ class WeiboactiveController < ApplicationController
 
     # 我的页面
     def myprofile
+        puts params[ :id ]
+        @profile_user = api_call( "User" , :fetch , params[ :id ] , current_user ) ["data"]
+        puts @profile_user
         # 未登录跳至首页
-        redirect_to action: 'index' and return unless current_user
+        redirect_to action: 'index' and return unless @profile_user
         save_url_in_cookies
         #我的作品
-        @momentMyCreatedRecords = ShareMomentHistory.my_shared current_user["id"], 0
+        @momentMyCreatedRecords = ShareMomentHistory.my_shared @profile_user["id"], 0
         @momentMyCreated = @momentMyCreatedRecords && @momentMyCreatedRecords.length >= 1 ? JSON.parse(@momentMyCreatedRecords.to_json) : Array.new
 
         @momentMyCreated.each do |a|
@@ -105,7 +108,7 @@ class WeiboactiveController < ApplicationController
         @momentMyCreated.delete_if {|i| i["items"].nil? || i["items"].length == 0}
 
         #我的分享
-        @momentMySharedRecords = ShareMomentHistory.my_shared current_user["id"], 0
+        @momentMySharedRecords = ShareMomentHistory.my_shared @profile_user["id"], 0
         @momentMyShared = @momentMySharedRecords && @momentMySharedRecords.length >= 1 ? JSON.parse(@momentMySharedRecords.to_json) : Array.new
 
         @momentMyShared.each do |a|
@@ -114,8 +117,8 @@ class WeiboactiveController < ApplicationController
         end
         @momentMyShared.delete_if {|i| i["items"].nil? || i["items"].length == 0}
 
-        unless current_user.nil?
-            cur_user_static = UserStatisticTotal.my_profile current_user["id"]
+        unless @profile_user.nil?
+            cur_user_static = UserStatisticTotal.my_profile @profile_user["id"]
             @currCreateScore = cur_user_static[0]
             @currShareScore = cur_user_static[1]
             @create_rank = cur_user_static[2]

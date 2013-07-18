@@ -23,7 +23,7 @@
             <div class="span6">
                 <div class="integral">
                     <% unless @cur_user.nil? %>
-                    <%= link_to @currCreateScore, {:controller => "weiboactive",:action => "myprofile"} %>
+                    <%= link_to @currCreateScore, {:controller => "weiboactive",:action => "myprofile", :id => @cur_user[:id]} %>
                     <% else %>
                     <%= @currCreateScore %>
                     <% end %>
@@ -32,7 +32,7 @@
                     我的原创得分
                 </p>
                 <p class="p15" style="margin-bottom: 20px;">
-                    下载Vida微图记，上传照片做成微电影并添加“照片微电影大赛”Tag，原创得分+10
+                    下载Vida微图记，上传照片做成微电影并添加“<span class="label badge-info">#照片微电影大赛</span>”Tag，原创得分+10
                 </p>
                 <%= link_to "如何获得原创得分",
                 {:controller => "weiboactive",:action => "rule_oa"},
@@ -41,7 +41,7 @@
             <div class="span6">
                 <div class="integral">
                     <% unless @cur_user.nil? %>
-                    <%= link_to @currShareScore, {:controller => "weiboactive",:action => "myprofile"} %>
+                    <%= link_to @currShareScore, {:controller => "weiboactive",:action => "myprofile", :id => @cur_user[:id]} %>
                     <% else %>
                     <%= @currShareScore %>
                     <% end %>
@@ -50,8 +50,9 @@
                     我的分享得分
                 </p>
                 <p class="p15" style="margin-bottom: 20px;">
-                    下载Vida微图记，上传照片做成微电影并添加“照片微电影大赛”Tag，分享得分+10
+                    分享一次，传播得分+1，分享为微电影带来一次播放，传播得分+10 
                 </p>
+                <br>
                 <%= link_to "如何获得分享得分",
                 {:controller => "weiboactive",:action => "rule_share"},
                 :class => "btn btn-cyanogen btn-large" %>
@@ -65,7 +66,7 @@
         <div class="span6">
             <div class="integral">
                 <% unless @cur_user.nil? %>
-                <%= link_to @currCreateScore, {:controller => "weiboactive",:action => "myprofile"} %>
+                <%= link_to @currCreateScore, {:controller => "weiboactive",:action => "myprofile", :id => @cur_user[:id]} %>
                 <% else %>
                 <%= @currCreateScore %>
                 <% end %>
@@ -80,7 +81,7 @@
         <div class="span6">
             <div class="integral">
                 <% unless @cur_user.nil? %>
-                <%= link_to @currShareScore, {:controller => "weiboactive",:action => "myprofile"} %>
+                <%= link_to @currShareScore, {:controller => "weiboactive",:action => "myprofile", :id => @cur_user[:id]} %>
                 <% else %>
                 <%= @currShareScore %>
                 <% end %>

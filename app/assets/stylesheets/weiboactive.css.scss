@@ -275,6 +275,11 @@ body {
 .user-avatar {
   border-radius: 50px 50px 50px 50px;
   width: 100px;
+  height: 100px;
+  
+  img {
+    border-radius: 50px 50px 50px 50px;
+  }
 }
 
 /* Daily Star*/

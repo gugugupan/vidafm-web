@@ -4,9 +4,9 @@
     <div class="row-fluid">
         <div class="span4">
             <div class="myprofile-container text-center">
-                <%= avatar_tag user, {:nolink => true, :class => "user-avatar"} %>
+                <%= avatar_tag @profile_user, {:nolink => true, :class => "user-avatar"} %>
                 <div class="user-name">
-                    <%= user[ :name ] %>
+                    <%= @profile_user[ :name ] %>
                 </div>
                 <br>
                 <span class="btn btn-yellow btn-large" href="/"> 原创排名 No.<%= @create_rank %> </span>
@@ -49,9 +49,9 @@
 <header class="header">
     <div class="row-fluid text-center myprofile-container">
         <div class="span12">
-            <%= avatar_tag user, {:nolink => true, :class => "user-avatar"} %>
+            <%= avatar_tag @profile_user, {:nolink => true, :class => "user-avatar"} %>
             <div class="user-name">
-                <%= user[ :name ] %>
+                <%= @profile_user[ :name ] %>
             </div>
         </div>
     </div>

@@ -68,4 +68,31 @@ module WeiboactiveHelper
 
         !!sns_qq
     end
+
+    # { :class => "" , :style => "" }
+    def avatar_tag_weiboactive user , options = {}
+        user[ "avatar_file" ] = user[ :avatar_file ] if user[ "avatar_file" ] .nil?
+        user[ "id" ] = user[ :id ] if user[ "id" ] .nil?
+        user[ "name" ] = user[ :name ] if user[ "name" ] .nil?
+        inner_html = link_to( "" , {:controller => "weiboactive",:action => "myprofile", :id => user[ "id" ]} , 
+            :class => "avatar #{ options[ :class ] }" , 
+            :style => "background-image:url('#{ user[ "avatar_file" ] }');
+                    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{ user[ "avatar_file" ] }',sizingMethod='scale');" , # hack for ie
+            :title => user[ "name" ] )
+        raw inner_html
+    end
+    
+    def avatar_tag_weiboactive_big user, options = {}
+        user.symbolize_keys!
+        class_str = "avatar #{ options[ :class ] }"
+        if options[ :nolink ].nil?
+          inner_html = link_to( image_tag( user[ :avatar_file ] ) , {:controller => "weiboactive",:action => "myprofile", :id => user[ :id ]} , 
+            :class => class_str , 
+            :title => user[ :name ])
+        else
+          inner_html = image_tag( user[ :avatar_file ] , :class => options[ :class ] || 'avatar' ) if options[ :nolink ]
+        end
+        raw inner_html
+    end
+
 end

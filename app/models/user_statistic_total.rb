@@ -114,9 +114,18 @@ class UserStatisticTotal < ActiveRecord::Base
  
    def UserStatisticTotal.my_profile(user_id)
       u = UserStatisticTotal.where(user_id: user_id).first
-      create_rank = UserStatisticTotal.where("create_score > ?", u.create_score).count() + 1      
-      share_rank = UserStatisticTotal.where("share_score > ?", u.share_score).count() + 1      
+      unless u.nil?
+          create_rank = UserStatisticTotal.where("create_score > ?", u.create_score).count() + 1      
+          share_rank = UserStatisticTotal.where("share_score > ?", u.share_score).count() + 1
+          create_score = u.create_score
+          share_score = u.share_score
+      else
+          create_rank = "--"
+          share_rank = "--"
+          create_score = 0
+          share_score = 0
+      end      
 
-      return u.create_score, u.share_score, create_rank, share_rank
+      return create_score, share_score, create_rank, share_rank
    end
 end

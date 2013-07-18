@@ -11,7 +11,7 @@
 <div class="row-fluid">
     <div class="span6">
         <div class="user-container">
-            <%= avatar_tag @user0, {:nolink => true, :class => "user-avatar"} %>
+            <%= avatar_tag_weiboactive_big @user0, {:class => "user-avatar"} %>
             <div class="user-content">
                 <div class="user-name">
                     <%= @user0[:name] %>
@@ -27,7 +27,7 @@
     </div>
     <div class="span6">
         <div class="user-container">
-            <%= avatar_tag @user1, {:nolink => true, :class => "user-avatar"} %>
+            <%= avatar_tag_weiboactive_big @user1, {:class => "user-avatar"} %>
             <div class="user-content">
                 <div class="user-name">
                     <%= @user1[:name] %>
