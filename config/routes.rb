@@ -11,10 +11,14 @@ Bluerain::Application.routes.draw do
   get "weiboactive/top"
 
   get "weiboactive/myprofile"
+  get "weiboactive/getmycreated"
+  get "weiboactive/getmyshared"
   
   get "weiboactive/editorstory"
+  get "weiboactive/geteditorstory"
 
   get "weiboactive/hotstory"
+  get "weiboactive/gethotstory"
 
   get "weiboactive/index"
   

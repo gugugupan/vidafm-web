@@ -66,9 +66,11 @@ class WeiboactiveController < ApplicationController
         save_url_in_cookies
 
         #我的作品
-        @momentMyCreated = ShareMomentHistory.my_shared @profile_user["id"], 0, 12
+        @momentMyCreated = ShareMomentHistory.my_created @profile_user["id"], 0, 12
+        @momentPageC = ((ShareMomentHistory.my_created_count @profile_user["id"])/12.to_f).ceil
         #我的分享
         @momentMyShared = ShareMomentHistory.my_shared @profile_user["id"], 0, 12
+        @momentPageS = ((ShareMomentHistory.my_shared_count @profile_user["id"])/12.to_f).ceil
 
         unless @profile_user.nil?
             cur_user_static = UserStatisticTotal.my_profile @profile_user["id"]
@@ -86,12 +88,66 @@ class WeiboactiveController < ApplicationController
         beforeRender
     end
 
+    # 获取更多我的作品
+    def getmycreated
+        page = params[:page]
+        userId = params[:userId]
+        @moments = ShareMomentHistory.my_created userId, page.to_i, 12
+
+        partial = render_to_string :partial => "widgets/story", :layout => nil
+
+        result = {
+            result: 0,
+            data: partial
+        }
+
+        respond_to do |format|
+            format.json { render :json => result.to_json }
+        end
+    end
+
+    # 获取更多我的分享
+    def getmyshared
+        page = params[:page]
+        userId = params[:userId]
+        @moments = ShareMomentHistory.my_shared userId, page.to_i, 12
+
+        partial = render_to_string :partial => "widgets/story", :layout => nil
+
+        result = {
+            result: 0,
+            data: partial
+        }
+
+        respond_to do |format|
+            format.json { render :json => result.to_json }
+        end
+    end
+
     #编辑推荐
     def editorstory
         save_url_in_cookies
         @momentEditor = MomentStatistic.editor_recommended 0, 12
+        @momentPage = (MomentStatistic.where(recommended: 1).count/12.to_f).ceil
 
         beforeRender
+    end
+
+    # 获取更多编辑推荐作品
+    def geteditorstory
+        page = params[:page]
+        @moments = MomentStatistic.editor_recommended page.to_i, 12
+
+        partial = render_to_string :partial => "widgets/story", :layout => nil
+
+        result = {
+            result: 0,
+            data: partial
+        }
+
+        respond_to do |format|
+            format.json { render :json => result.to_json }
+        end
     end
 
     # 热门作品
@@ -99,8 +155,26 @@ class WeiboactiveController < ApplicationController
         save_url_in_cookies
         #热门作品
         @momentHot = MomentStatistic.hot 0, 12
+        @momentPage = (MomentStatistic.count/12.to_f).ceil
 
         beforeRender
+    end
+
+    # 获取更多热门作品
+    def gethotstory
+        page = params[:page]
+        @moments = MomentStatistic.hot page.to_i, 12
+
+        partial = render_to_string :partial => "widgets/story", :layout => nil
+
+        result = {
+            result: 0,
+            data: partial
+        }
+
+        respond_to do |format|
+            format.json { render :json => result.to_json }
+        end
     end
 
     def top

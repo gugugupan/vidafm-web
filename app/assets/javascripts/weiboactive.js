@@ -20,7 +20,7 @@
     });
 
     /* SHARE MODAL DATA-API
-    * ============== */
+     * ============== */
     $(document).on('click.sharemodal.data-api', '[data-toggle="share"]', function(e) {
         e.preventDefault();
         var $this = $(this), href = $this.attr('href'), $target = $("#modal-container-share"), //strip for ie7
@@ -60,6 +60,33 @@
         location.href = "/moments/" + momentId;
 
         e.preventDefault()
+
+    });
+
+    /* LOAD MORE DATA BUTTON
+     * ============== */
+
+    $(document).on('click.loadmore.data-api', '[data-toggle="load-more"]', function(e) {
+        var $this = $(this), href = $this.attr('href'), page = Number($this.attr('data-current-page')), total = Number($this.attr('data-total-page'));
+
+        e.preventDefault();
+        if (page == total) {
+            $this.text("已经没有更多了");
+            return;
+        }
+
+        if (page + 1 <= total) {
+            $this.attr('data-current-page', page + 1);
+        }
+
+        $.get(href, {
+            page : page
+        }).done(function(data) {
+            if (page+1 == total) {
+                $this.text("已经没有更多了");
+            }
+            $(data.data).insertBefore($this);
+        });
 
     });
 
