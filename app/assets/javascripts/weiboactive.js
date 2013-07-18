@@ -33,7 +33,7 @@
 
         $("#content", $target).val("我发现这个故事 #" + momentName + "# 很不错，特意分享 @Vida微达");
         if (String(sns_qq) == "true") {
-            $.post("share?type=qq-weibo&1id=" + momentId, $("form", $target).serialize()).done(function(data) {
+            $.post("share?type=qq-weibo&id=" + momentId, $("form", $target).serialize()).done(function(data) {
                 $("#lottery_btn").attr("coin", data.coin);
                 $("#lottery_link").hide();
                 $("#lottery_btn").removeAttr("disabled");
