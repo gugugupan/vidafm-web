@@ -177,6 +177,13 @@ body {
     line-height: 1em;
     margin-left: 10px;
     font-weight: bold;
+    
+    a,
+    a:hover,
+    a:active {
+        color: #ffffff;
+        text-decoration: none;
+    }
 }
 
 .btn-login {
