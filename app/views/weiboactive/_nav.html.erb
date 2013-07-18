@@ -52,7 +52,7 @@
         <ul class="nav nav-list">
             <li class="active" style="line-height: 40px;position:relative;">
                 <%= link_to raw("<i class=\"icon-user\"></i>&nbsp;&nbsp; " + user[ :name ]),
-                {:controller => "weiboactive",:action => "myprofile"},
+                {:controller => "weiboactive",:action => "myprofile",:id => user[ :id ]},
                 :class => "nav-btn" %>
                 <button class="btn btn-pink" style="position: absolute;right: 0; top: 8px;" onclick="location.href='/auth/logout';">
                     注销

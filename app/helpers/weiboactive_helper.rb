@@ -1,8 +1,33 @@
 #encoding: utf-8
 module WeiboactiveHelper
+    def momentJson records
+        moment_json = records && records.length >= 1 ? JSON.parse(records.to_json) : Array.new
+
+        moment_json.each do |a|
+            m = Moment.fetch a["moment_id"], @current_user
+            a.merge! m["data"] unless m["data"].nil?
+        end
+        moment_json.delete_if {|i| i["items"].nil? || i["items"].length == 0}
+
+        moment_json
+    end
+
+    def talentUserJson records
+        talent_user_json = records && records.length >= 1 ? JSON.parse(records.to_json) : Array.new
+        talent_user_json.each do |a|
+            u = User.fetch a["user_id"].to_s, @current_user, nil
+            a["user"] = u[ "data" ] unless u.nil?
+        end
+        talent_user_json.delete_if {|i| i["user"].nil?}
+        
+        talent_user_json
+    end
+
     # 编辑推荐
     # 热门作品
-    def storyGallery moments = [], title = "", col = 4, raw = -1
+    def storyGallery records, title = "", col = 4, raw = -1
+        
+        moments = momentJson records
 
         $items = []
 
@@ -51,8 +76,8 @@ module WeiboactiveHelper
         if @cur_user
             @vendors = @cur_user[ :vendors ]
         else
-            false
-            #render "misc/need_authentication"
+        false
+        #render "misc/need_authentication"
         end
     end
 
@@ -74,23 +99,23 @@ module WeiboactiveHelper
         user[ "avatar_file" ] = user[ :avatar_file ] if user[ "avatar_file" ] .nil?
         user[ "id" ] = user[ :id ] if user[ "id" ] .nil?
         user[ "name" ] = user[ :name ] if user[ "name" ] .nil?
-        inner_html = link_to( "" , {:controller => "weiboactive",:action => "myprofile", :id => user[ "id" ]} , 
-            :class => "avatar #{ options[ :class ] }" , 
+        inner_html = link_to( "" , {:controller => "weiboactive",:action => "myprofile", :id => user[ "id" ]} ,
+            :class => "avatar #{ options[ :class ] }" ,
             :style => "background-image:url('#{ user[ "avatar_file" ] }');
                     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{ user[ "avatar_file" ] }',sizingMethod='scale');" , # hack for ie
             :title => user[ "name" ] )
         raw inner_html
     end
-    
+
     def avatar_tag_weiboactive_big user, options = {}
         user.symbolize_keys!
         class_str = "avatar #{ options[ :class ] }"
         if options[ :nolink ].nil?
-          inner_html = link_to( image_tag( user[ :avatar_file ] ) , {:controller => "weiboactive",:action => "myprofile", :id => user[ :id ]} , 
-            :class => class_str , 
+            inner_html = link_to( image_tag( user[ :avatar_file ] ) , {:controller => "weiboactive",:action => "myprofile", :id => user[ :id ]} ,
+            :class => class_str ,
             :title => user[ :name ])
         else
-          inner_html = image_tag( user[ :avatar_file ] , :class => options[ :class ] || 'avatar' ) if options[ :nolink ]
+            inner_html = image_tag( user[ :avatar_file ] , :class => options[ :class ] || 'avatar' ) if options[ :nolink ]
         end
         raw inner_html
     end

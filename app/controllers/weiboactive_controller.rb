@@ -33,48 +33,16 @@ class WeiboactiveController < ApplicationController
         @user1 = @tiffanyTodayUser.nil? ? nil : User.fetch(@tiffanyTodayUser[:user_id].to_s, current_user, nil)["data"]
 
         #编辑推荐
-        @momentEditorRecords = MomentStatistic.editor_recommended 4, 0
-        @momentEditor = @momentEditorRecords && @momentEditorRecords.length >= 1 ? JSON.parse(@momentEditorRecords.to_json) : Array.new
-
-        @momentEditor.each do |a|
-            m = Moment.fetch a["moment_id"], current_user
-            a.merge! m["data"] unless m["data"].nil?
-        end
-        @momentEditor.delete_if {|i| i["items"].nil? || i["items"].length == 0}
+        @momentEditor = MomentStatistic.editor_recommended 0, 4
 
         #热门作品
-        @momentHotRecords = MomentStatistic.hot 0
-        @momentHot = @momentHotRecords && @momentHotRecords.length >= 1 ? JSON.parse(@momentHotRecords.to_json) : Array.new
-
-        @momentHot.each do |a|
-            m = Moment.fetch a["moment_id"], current_user
-            a.merge! m["data"] unless m["data"].nil?
-        end
-        @momentHot.delete_if {|i| i["items"].nil? || i["items"].length == 0}
+        @momentHot = MomentStatistic.hot 0, 4
 
         #原创达人 Top10
-        @createSort = UserStatisticTotal.create_sort 0
+        @createSortJson = UserStatisticTotal.create_sort 0, 10
+
         #分享达人 Top10
-        @sharedSort = UserStatisticTotal.shared_sort 0
-
-        @createSortJson = @createSort && @createSort.length >= 1 ? JSON.parse(@createSort.to_json) : Array.new
-        @sharedSortJson = @sharedSort && @sharedSort.length >= 1 ? JSON.parse(@sharedSort.to_json) : Array.new
-
-        @createSortJson.each do |a|
-            u = User.fetch a["user_id"].to_s, current_user, nil
-            #u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)
-            a["user"] = u[ "data" ] unless u.nil?
-        end
-
-        @createSortJson.delete_if {|i| i["user"].nil?}
-
-        @sharedSortJson.each do |a|
-            u = User.fetch a["user_id"].to_s, current_user, nil
-            #u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)
-            a["user"] = u[ "data" ] unless u.nil?
-        end
-
-        @sharedSortJson.delete_if {|i| i["user"].nil?}
+        @sharedSortJson = UserStatisticTotal.shared_sort 0, 10
 
         unless current_user.nil?
             cur_user_static = UserStatisticTotal.my_profile current_user["id"]
@@ -91,31 +59,16 @@ class WeiboactiveController < ApplicationController
 
     # 我的页面
     def myprofile
-        puts params[ :id ]
-        @profile_user = api_call( "User" , :fetch , params[ :id ] , current_user ) ["data"]
-        puts @profile_user
         # 未登录跳至首页
+        redirect_to action: 'index' and return unless params[ :id ]
+        @profile_user = api_call( "User" , :fetch , params[ :id ] , current_user ) ["data"]
         redirect_to action: 'index' and return unless @profile_user
         save_url_in_cookies
+
         #我的作品
-        @momentMyCreatedRecords = ShareMomentHistory.my_shared @profile_user["id"], 0
-        @momentMyCreated = @momentMyCreatedRecords && @momentMyCreatedRecords.length >= 1 ? JSON.parse(@momentMyCreatedRecords.to_json) : Array.new
-
-        @momentMyCreated.each do |a|
-            m = Moment.fetch a["moment_id"], current_user
-            a.merge! m["data"] unless m["data"].nil?
-        end
-        @momentMyCreated.delete_if {|i| i["items"].nil? || i["items"].length == 0}
-
+        @momentMyCreated = ShareMomentHistory.my_shared @profile_user["id"], 0, 12
         #我的分享
-        @momentMySharedRecords = ShareMomentHistory.my_shared @profile_user["id"], 0
-        @momentMyShared = @momentMySharedRecords && @momentMySharedRecords.length >= 1 ? JSON.parse(@momentMySharedRecords.to_json) : Array.new
-
-        @momentMyShared.each do |a|
-            m = Moment.fetch a["moment_id"], current_user
-            a.merge! m["data"] unless m["data"].nil?
-        end
-        @momentMyShared.delete_if {|i| i["items"].nil? || i["items"].length == 0}
+        @momentMyShared = ShareMomentHistory.my_shared @profile_user["id"], 0, 12
 
         unless @profile_user.nil?
             cur_user_static = UserStatisticTotal.my_profile @profile_user["id"]
@@ -136,14 +89,7 @@ class WeiboactiveController < ApplicationController
     #编辑推荐
     def editorstory
         save_url_in_cookies
-        @momentEditorRecords = MomentStatistic.editor_recommended 12, 0
-        @momentEditor = @momentEditorRecords && @momentEditorRecords.length >= 1 ? JSON.parse(@momentEditorRecords.to_json) : Array.new
-
-        @momentEditor.each do |a|
-            m = Moment.fetch a["moment_id"], current_user
-            a.merge! m["data"] unless m["data"].nil?
-        end
-        @momentEditor.delete_if {|i| i["items"].nil? || i["items"].length == 0}
+        @momentEditor = MomentStatistic.editor_recommended 0, 12
 
         beforeRender
     end
@@ -152,14 +98,7 @@ class WeiboactiveController < ApplicationController
     def hotstory
         save_url_in_cookies
         #热门作品
-        @momentHotRecords = MomentStatistic.hot 0
-        @momentHot = @momentHotRecords && @momentHotRecords.length >= 1 ? JSON.parse(@momentHotRecords.to_json) : Array.new
-
-        @momentHot.each do |a|
-            m = Moment.fetch a["moment_id"], current_user
-            a.merge! m["data"] unless m["data"].nil?
-        end
-        @momentHot.delete_if {|i| i["items"].nil? || i["items"].length == 0}
+        @momentHot = MomentStatistic.hot 0, 12
 
         beforeRender
     end
@@ -179,36 +118,18 @@ class WeiboactiveController < ApplicationController
 
         if params[:type] == "create"
             #去除获奖用户之后的排行榜
-            @noAwardSort = UserStatisticTotal.create_sort_without_award 0
+            @noAwardSortJson = UserStatisticTotal.create_sort_without_award 0, 10
             #获奖排行榜
-            @awardSort = UserStatisticTotal.create_award_history 0
+            @awardSortJson = UserStatisticTotal.create_award_history 0, 10
             @awardName = "iPad mini"
         else
         #去除获奖用户之后的排行榜
-            @noAwardSort = UserStatisticTotal.shared_sort_without_award 0
+            @noAwardSortJson = UserStatisticTotal.shared_sort_without_award 0, 10
             #获奖排行榜
-            @awardSort = UserStatisticTotal.shared_award_hitstory 0
+            @awardSortJson = UserStatisticTotal.shared_award_hitstory 0, 10
             @awardName = "Tiffany"
         end
 
-        @noAwardSortJson = @noAwardSort && @noAwardSort.length >= 1 ? JSON.parse(@noAwardSort.to_json) : Array.new
-        @awardSortJson = @awardSort && @awardSort.length >= 1 ? JSON.parse(@awardSort.to_json) : Array.new
-
-        @noAwardSortJson.each do |a|
-            u = User.fetch a["user_id"].to_s, current_user, nil
-            #u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user0.json"), "rb").read)
-            a["user"] = u[ "data" ] unless u.nil?
-        end
-
-        @noAwardSortJson.delete_if {|i| i["user"].nil?}
-
-        @awardSortJson.each do |a|
-            u = User.fetch a["user_id"].to_s, current_user, nil
-            #u = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/user1.json"), "rb").read)
-            a["user"] = u[ "data" ] unless u.nil?
-        end
-
-        @awardSortJson.delete_if {|i| i["user"].nil?}
         beforeRender
     end
 
