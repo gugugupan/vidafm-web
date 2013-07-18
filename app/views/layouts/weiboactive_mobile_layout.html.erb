@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title><%= yield :title %></title>
-  <meta name="Description" content="<%= raw yield :meta_description %>">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-  <%= stylesheet_link_tag    "weiboactive_mobile" %>
-  <%= stylesheet_link_tag    "bootstrap/font-awesome.min" %>
-</head>
-<body>
-  <%= yield %>
-  <script src="http://code.jquery.com/jquery.js"></script>
-  <%= javascript_include_tag "weiboactive" %>
-</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><%= yield :title %></title>
+        <meta name="Description" content="<%= raw yield :meta_description %>">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+        <%= stylesheet_link_tag    "weiboactive_mobile" %>
+        <%= stylesheet_link_tag    "bootstrap/font-awesome.min" %>
+    </head>
+    <body>
+        <%= yield %>
+        <div id="modal-container-share" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h3 id="myModalLabel"> <%= image_tag "/assets/icon/icon_tencent.png" %> 分享到 腾讯微博 </h3>
+            </div>
+            <div class="modal-body">
+                <%= render :partial => "sharelist" %>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">
+                    关闭
+                </button>
+                <button class="btn btn-primary">
+                    发布
+                </button>
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <%= javascript_include_tag "weiboactive" %>
+    </body>
 </html>

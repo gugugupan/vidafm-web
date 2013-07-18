@@ -5,7 +5,7 @@ class WeiboactiveController < ApplicationController
 
     # check user agent version
     def check_user_agent
-        if request.user_agent =~ /(android|ipod|iphone|ipad)/i
+        if request.user_agent =~ /(android|ipod|iphone)/i
             @mobile = true
             render :layout => "layouts/weiboactive_mobile_layout"
         else
@@ -25,10 +25,16 @@ class WeiboactiveController < ApplicationController
         @tiffanyTodayUser = UserStatisticTotal.where(is_award:1).where(award_type:2).order("`award_time` desc").first
         @user1 = @tiffanyTodayUser.nil? ? nil : User.fetch(@tiffanyTodayUser[:user_id].to_s, current_user, nil)["data"]
 
-        #TODO::编辑推荐
-        @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
-        #@momentHot = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+        #编辑推荐
+        @momentEditorRecords = MomentStatistic.editor_recommended 4, 0
+        @momentEditor = @momentEditorRecords && @momentEditorRecords.length >= 1 ? JSON.parse(@momentEditorRecords.to_json) : Array.new
 
+        @momentEditor.each do |a|
+            m = Moment.fetch a["moment_id"], current_user
+            a.merge! m["data"] unless m["data"].nil?
+        end
+        @momentEditor.delete_if {|i| i["items"].nil? || i["items"].length == 0}
+        
         #热门作品
         @momentHotRecords = MomentStatistic.hot 0
         @momentHot = @momentHotRecords && @momentHotRecords.length >= 1 ? JSON.parse(@momentHotRecords.to_json) : Array.new
@@ -105,7 +111,14 @@ class WeiboactiveController < ApplicationController
     #编辑推荐
     def editorstory
         save_url_in_cookies
-        @moment = JSON.parse(File.open(File.join(File.expand_path(File.dirname(__FILE__)), "../assets/json/moments.json"), "rb").read)[ "data" ] [ "moments" ]
+        @momentEditorRecords = MomentStatistic.editor_recommended 12, 0
+        @momentEditor = @momentEditorRecords && @momentEditorRecords.length >= 1 ? JSON.parse(@momentEditorRecords.to_json) : Array.new
+
+        @momentEditor.each do |a|
+            m = Moment.fetch a["moment_id"], current_user
+            a.merge! m["data"] unless m["data"].nil?
+        end
+        @momentEditor.delete_if {|i| i["items"].nil? || i["items"].length == 0}
 
         check_user_agent
     end

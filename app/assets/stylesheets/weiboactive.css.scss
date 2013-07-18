@@ -3,7 +3,7 @@
 */
 
 $blue: #7CB7E8;
-$yellow: #fbae17;
+$yellow: #FBBF49;
 $cyanogen: #64ddb4;
 $pink: #dd5f7a;
 
@@ -12,8 +12,7 @@ body {
 }
 
 .wrapper {
-    width: 1250px;
-    overflow: hidden;
+    width: 1000px;
 }
 
 .wrapper > hr {
@@ -33,124 +32,128 @@ body {
       padding-right: 20px;
     }
     
-    .nav > li.nav-label {
-        color: #b3b3b3;
-        line-height: 63px;
-        margin-right: 1em;
+    .nav {
+        li.nav-label {
+            color: #b3b3b3;
+            line-height: 63px;
+            margin-right: 1em;
+        }
+        
+        li.nav-split {
+            color: #b3b3b3;
+            line-height: 63px;
+        }
+    
+        li {
+            a.nav-btn {
+                margin-top: 12px;
+                text-shadow: none;
+            }
+            
+            .btn-yellow:hover,
+            .btn-yellow:focus,
+            .btn-yellow:active,
+            .btn-yellow.active,
+            .btn-yellow.disabled,
+            .btn-yellow[disabled] {
+              color: #ffffff;
+              background-color: #fbae17;
+              *background-color: #fbae17;
+            }
+            
+            .btn {
+                color: white;
+            }
+
+            .btn-blue:hover,
+            .btn-blue:focus,
+            .btn-blue:active,
+            .btn-blue.active,
+            .btn-blue.disabled,
+            .btn-blue[disabled] {
+              color: #ffffff;
+              background-color: #1e8ce8;
+              *background-color: #1e8ce8;
+            }
+            
+        }
+        
     }
     
-    .nav > li.nav-split {
-        color: #b3b3b3;
-        line-height: 63px;
-    }
-    
-    .nav > li > a.btn-blue-small {
-        padding: 8px;
-        margin-top: 12px;
-        text-shadow: none;
-        color: white;
-    }
-    
-    .nav > li > a.btn-blue-small:hover {
-        color: white;
-        background: none repeat scroll 0 0 $blue;
-    }
-    
-    .nav > li > a.btn-yellow-small {
-        padding: 8px;
-        margin-top: 12px;
-        text-shadow: none;
-        color: white;
-    }
-    
-    .nav > li > a.btn-yellow-small:hover {
-        color: white;
-        background: none repeat scroll 0 0 $blue;
-    }
-    
-    .nav > li > a.nav-btn {
-        margin-top: 12px;
-    }
 }
 
 /* Buttons */
-.btn-blue {
-    background: none repeat scroll 0 0 $blue;
-    color: white;
-    font-size: 140%;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
-}
 
 .btn-yellow {
     background: none repeat scroll 0 0 $yellow;
+    border: none;
     color: white;
-    font-size: 140%;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
+    text-shadow: none;
 }
 
-.btn-yellow-small {
-    background: none repeat scroll 0 0 $yellow;
-    color: white;
-    font-size: 110%;
-    border-radius: 6px 6px 6px 6px;
-    padding: 11px 19px;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
+.btn-yellow:hover,
+.btn-yellow:focus,
+.btn-yellow:active,
+.btn-yellow.active,
+.btn-yellow.disabled,
+.btn-yellow[disabled] {
+  color: #ffffff;
+  background-color: #fbae17;
+  *background-color: #fbae17;
 }
 
 .btn-cyanogen {
     background: none repeat scroll 0 0 $cyanogen;
+    border: none;
     color: white;
-    font-size: 140%;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
+    text-shadow: none;
 }
-.btn-cyanogen-small {
-    background: none repeat scroll 0 0 $cyanogen;
-    color: white;
-    font-size: 110%;
-    border-radius: 6px 6px 6px 6px;
-    padding: 11px 19px;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
+
+.btn-cyanogen:hover,
+.btn-cyanogen:focus,
+.btn-cyanogen:active,
+.btn-cyanogen.active,
+.btn-cyanogen.disabled,
+.btn-cyanogen[disabled] {
+  color: #ffffff;
+  background-color: #0bdd96;
+  *background-color: #0bdd96;
 }
 
 .btn-pink {
     background: none repeat scroll 0 0 $pink;
+    border: none;
     color: white;
-    font-size: 140%;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
+    text-shadow: none;
 }
 
-.btn-pink-small {
-    background: none repeat scroll 0 0 $pink;
-    color: white;
-    font-size: 110%;
-    border-radius: 6px 6px 6px 6px;
-    padding: 11px 19px;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
+.btn-pink:hover,
+.btn-pink:focus,
+.btn-pink:active,
+.btn-pink.active,
+.btn-pink.disabled,
+.btn-pink[disabled] {
+  color: #ffffff;
+  background-color: #dd0735;
+  *background-color: #dd0735;
 }
 
-.btn-blue-small {
+.btn-blue {
     background: none repeat scroll 0 0 $blue;
+    border: none;
     color: white;
-    font-size: 110%;
-    border-radius: 6px 6px 6px 6px;
-    padding: 11px 19px;
-    display: inline-block;
-    text-align: center;
-    line-height: 1.2;
+    text-shadow: none;
+}
+
+.btn-blue:hover,
+.btn-blue:focus,
+.btn-blue:active,
+.btn-blue.active,
+.btn-blue.disabled,
+.btn-blue[disabled] {
+  color: #ffffff;
+  background-color: #1e8ce8;
+  *background-color: #1e8ce8;
 }
 
 
@@ -166,13 +169,7 @@ body {
 .tencent-share-container {
     margin-top: 10px;
     margin-bottom: 50px;
-    
-    /* Tencent share button*/
-    .btn-blue-small {
-        display: block;
-    }
 }
-
 
 
 .integral {
@@ -219,6 +216,7 @@ body {
         margin-bottom: -64px;
         margin-right: -95px;
         margin-top: -116px;
+        width: 500px;
     }
     
     img.vida {
@@ -245,6 +243,12 @@ body {
 
 .p37-5 {
     font-size: 37.5px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.p26 {
+    font-size: 26px;
     line-height: 1.2;
     margin: 0;
 }
@@ -444,9 +448,19 @@ body {
     height: 150px;
     overflow: hidden;
     position: relative;
-}
-.thumbnail-pic img{
-  width: 100%;
+    
+    .play_container {
+        background: url("/assets/weiboactive/start.png") no-repeat scroll 50% 50% transparent;
+        cursor: pointer;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    
+    img{
+      width: 100%;
+    }
 }
 
 #carousel-1,
@@ -610,4 +624,35 @@ footer {
 	height: 38px;  /* Height of image */
 	width: 38px; /* Width of image */
 	background: url(../img/top.png) no-repeat;
+}
+
+
+/*遮照窗体样式*/
+@media (max-width: 767px) {
+  .modal {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    width: auto;
+    margin: 0;
+  }
+  .modal.fade {
+    top: -100px;
+  }
+  .modal.fade.in {
+    top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+  .modal-header .close {
+    padding: 10px;
+    margin: -10px;
+  }
 }

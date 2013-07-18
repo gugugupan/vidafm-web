@@ -1,3 +1,7 @@
+<% content_for :title do %>
+    规则说明
+<% end %>
+
 <!--规则说明-->
 <div class="container wrapper">
     <%= render :partial => "nav", :locals => { :user => @cur_user } %>
@@ -37,7 +41,7 @@
                                 1、下载Vida微图记，上传照片做成微电影并添加“照片微电影大赛”Tag，原创得分+10
                             </p>
                             <p>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/" class="btn-pink-small">下载Vida</a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/" class="btn btn-pink btn-large">下载Vida</a>
                             </p>
                             <p style="font-size: 17.5px;">
                                 2、微电影被播放一次，原创得分+5
