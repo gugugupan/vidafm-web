@@ -3,6 +3,8 @@ class UserShuffle < ActiveRecord::Base
   attr_accessible :shuffle_result
   attr_accessible :qq_coin_id
   
+  attr_accessor   :qq_coin_code
+  attr_accessor   :qq_coin_password
 
   def UserShuffle.shuffle(user_id) 
     shuffle_count = UserShuffle.where(user_id:user_id).count()
@@ -43,6 +45,9 @@ class UserShuffle < ActiveRecord::Base
           qq_coin = QqCoins.where(coins: sh.shuffle_result).where(is_used: false).first
           if qq_coin != nil
              sh.qq_coin_id = qq_coin.id
+             sh.qq_coin_code = qq_coin.code
+             sh.qq_coin_password = qq_coin.password
+
              qq_coin.is_used = true
              
              sh.save
