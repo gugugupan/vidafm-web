@@ -193,18 +193,54 @@ class WeiboactiveController < ApplicationController
         if params[:type] == "create"
             #去除获奖用户之后的排行榜
             @noAwardSortJson = UserStatisticTotal.create_sort_without_award 0, 10
+            @noAwardPage = (UserStatisticTotal.where(is_award:0).count/10.to_f).ceil
             #获奖排行榜
             @awardSortJson = UserStatisticTotal.create_award_history 0, 10
+            @awardPage = (UserStatisticTotal.where(is_award:1).where(award_type:1).count/10.to_f).ceil
             @awardName = "iPad mini"
         else
         #去除获奖用户之后的排行榜
             @noAwardSortJson = UserStatisticTotal.shared_sort_without_award 0, 10
+            @noAwardPage = (UserStatisticTotal.where(is_award:0).count/10.to_f).ceil
             #获奖排行榜
             @awardSortJson = UserStatisticTotal.shared_award_hitstory 0, 10
+            @awardPage = (UserStatisticTotal.where(is_award:1).where(award_type:2).count/10.to_f).ceil
             @awardName = "Tiffany"
         end
 
         beforeRender
+    end
+
+    # 获取更多热门作品
+    def gettopuser
+        page = params[:page]
+        @showType = params[:type]
+        typeNum = params[:typeNum]
+
+        if params[:type] == "create"
+
+            if typeNum == "0"
+                @userJson = UserStatisticTotal.create_sort_without_award page.to_i - 1, 10
+            else
+                @userJson = UserStatisticTotal.create_award_history page.to_i - 1, 10
+            end
+        else
+            if typeNum == "0"
+                @userJson = UserStatisticTotal.shared_sort_without_award page.to_i - 1, 10
+            else
+                @userJson = UserStatisticTotal.shared_award_hitstory page.to_i - 1, 10
+            end
+        end
+        partial = render_to_string :partial => "widgets/top", :layout => nil
+
+        result = {
+            result: 0,
+            data: partial
+        }
+
+        respond_to do |format|
+            format.json { render :json => result.to_json }
+        end
     end
 
     def rule

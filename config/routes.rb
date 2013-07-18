@@ -9,6 +9,7 @@ Bluerain::Application.routes.draw do
   get "weiboactive/rule"
 
   get "weiboactive/top"
+  get "weiboactive/gettopuser"
 
   get "weiboactive/myprofile"
   get "weiboactive/getmycreated"

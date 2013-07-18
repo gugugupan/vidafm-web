@@ -90,6 +90,47 @@
 
     });
 
+    /* pagination
+     * ============== */
+    $(document).on('click.pagination.data-api', '[data-toggle="pagination"]', function(e) {
+        var $this = $(this), href = $this.attr('href'), page = Number($this.attr('data-current-page')), total = Number($this.attr('data-total-page')),
+        toPage = Number($(e.target).attr("data-to-page")),
+        type = $this.attr("data-type"),
+        typeNum = $this.attr("data-type-num");
+        
+        e.preventDefault();
+        if(isNaN(toPage))return;
+        var arr = [
+        '<li><a href="#" data-to-page="1">1</a></li>',
+        '<li><span>...</span></li>',
+        '<li class="active"><span>' + (toPage) + '</span></li>',
+        '<li><a href="#" data-to-page="' + (toPage + 1)+ '">下一页</a></li>'
+        ];
+        if(toPage >= total){
+            arr[3] = "<li><span>下一页</span></li>";
+        }
+        
+        if (toPage == 1) {
+            var str = arr[2] + arr[3];
+        } else if(toPage == 2){
+            var str = arr[0] + arr[2] + arr[3];
+        } else if(toPage > 2){
+            var str = arr.join("");
+        }
+        
+        $this.html("<ul>" + str + "</ul>");
+        
+        $this.attr('data-current-page', toPage <= total ? toPage : total);
+        
+        $.get(href, {
+            page : toPage,
+            type: type,
+            typeNum: typeNum
+        }).done(function(data) {
+            $(".talent-container", $this.parent()).html(data.data);
+        });
+    });
+
 });
 
 //抽奖
