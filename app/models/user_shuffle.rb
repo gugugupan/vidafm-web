@@ -75,6 +75,10 @@ class UserShuffle < ActiveRecord::Base
              sh.save
              qq_coin.save
           end
+       else 
+          qq_coin = QqCoins.find(sh.qq_coin_id) 
+          sh.qq_coin_code = qq_coin.code
+          sh.qq_coin_password = qq_coin.password
        end 
        
        puts sh.qq_coin_code
