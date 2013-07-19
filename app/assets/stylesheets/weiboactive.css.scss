@@ -177,6 +177,13 @@ body {
     line-height: 1em;
     margin-left: 10px;
     font-weight: bold;
+    
+    a,
+    a:hover,
+    a:active {
+        color: #ffffff;
+        text-decoration: none;
+    }
 }
 
 .btn-login {
@@ -268,6 +275,13 @@ body {
 .user-avatar {
   border-radius: 50px 50px 50px 50px;
   width: 100px;
+  height: 100px;
+  
+  img {
+    border-radius: 50px 50px 50px 50px;
+    width: 100px;
+    height: 100px;
+  }
 }
 
 /* Daily Star*/
@@ -316,7 +330,7 @@ body {
   font-size: 35px;
   color: #808080;
   border-bottom: 2px solid #d9d9d9;
-  margin-bottom: 50px;
+  margin: 50px 0;
   
   a {
   	color: inherit;

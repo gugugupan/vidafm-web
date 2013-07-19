@@ -10,9 +10,10 @@
     <%= storyGallery @momentHot, "所有热门作品", 4 %>
     <% else %>
     <%= storyGallery @momentHot, "所有热门作品", 2 %>
-
     <% end %>
-    <a href="javascript:void(0)" class="more-link">点击显示更多</a>
+    <% unless @momentPage == 1 || @momentPage == 0 %>
+    <a href="/weiboactive/gethotstory" class="more-link" data-toggle="load-more" data-total-page="<%= @momentPage %>" data-current-page="1">点击显示更多</a>
+    <% end %>
 
     <%= render :partial => "footer" %>
 </div>

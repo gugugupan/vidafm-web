@@ -9,10 +9,27 @@ Bluerain::Application.routes.draw do
   get "weiboactive/rule"
 
   get "weiboactive/top"
+  get "weiboactive/gettopuser"
 
   get "weiboactive/myprofile"
+  get "weiboactive/getmycreated"
+  get "weiboactive/getmyshared"
+  
+  get "weiboactive/editorstory"
+  get "weiboactive/geteditorstory"
+
+  get "weiboactive/hotstory"
+  get "weiboactive/gethotstory"
 
   get "weiboactive/index"
+  
+  post "weiboactive/share"
+  
+  post "weiboactive/shuffle"
+  
+  get '/weiboactive/myprofile'
+  
+  get '/moments/rich'
 
   match "/d/iphone" => redirect("http://itunes.apple.com/cn/app/id454984086?ls=1")
   match "/d/android_sina" => redirect("http://pics.vida.fm/vida_sina_20130117.apk")
@@ -81,5 +98,4 @@ Bluerain::Application.routes.draw do
   match "business" => "misc#business", :as => :business
   post "create_feedback" => "misc#create_feedback"
   
-  get ":controller/:action"
 end

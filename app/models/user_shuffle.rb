@@ -6,36 +6,46 @@ class UserShuffle < ActiveRecord::Base
   attr_accessor   :qq_coin_code
   attr_accessor   :qq_coin_password
 
-  def UserShuffle.shuffle(user_id) 
-    shuffle_count = UserShuffle.where(user_id:user_id).count()
 
-    if shuffle_count == 0
-       r = rand(1..100)
-       if r <= 70
-          coin = 1
-       elsif r >= 73
-          coin = nil
-       else
-          coin = 10
-       end    
-    elsif shuffle_count == 1
-       coin = nil
-    elsif shuffle_count == 2
-       r = rand(1..100)
-       if r <= 40
-          coin = 1
-       elsif r>=42
-          coin = nil
-       else
-          coin = 10
-       end
-    else
-       coin = nil
-    end
-  
-    UserShuffle.create({:user_id => user_id, :shuffle_result => coin}) 
+  def UserShuffle.get_qq_coin(user_id, session)
+      if session[ :qq_coin ].nil?
+            shuffle_count = UserShuffle.where(user_id:user_id).count()
+            
+            if shuffle_count == 0
+               r = rand(1..100)
+               if r <= 70
+                  coin = 1
+               elsif r >= 73
+                  coin = nil
+               else
+                  coin = 10
+               end    
+            elsif shuffle_count == 1
+               coin = nil
+            elsif shuffle_count == 2
+               r = rand(1..100)
+               if r <= 40
+                  coin = 1
+               elsif r>=42
+                  coin = nil
+               else
+                  coin = 10
+               end
+            else
+               coin = nil
+            end
+            
+            session[ :qq_coin ] = coin unless coin.nil?
+      end
+      session[ :qq_coin ]
   end
 
+  def UserShuffle.shuffle(user_id, session) 
+    coin = UserShuffle.get_qq_coin(user_id, session)
+    UserShuffle.create({:user_id => user_id, :shuffle_result => coin}) if coin
+    session.delete(:qq_coin)
+    return coin
+  end
 
   def UserShuffle.list_qq_coins(user_id)
      shuffles =  UserShuffle.where(user_id: user_id).where("shuffle_result IS NOT NULL")

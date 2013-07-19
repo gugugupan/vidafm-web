@@ -20,16 +20,16 @@ class MomentStatistic < ActiveRecord::Base
      m.save
    end
 
-   def MomentStatistic.hot(page)
-     hot_list= MomentStatistic.order("`total_score` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
+   def MomentStatistic.hot(page, offset = PAGE_OFFSET)
+     hot_list= MomentStatistic.order("`total_score` desc").offset(page*offset).limit(offset)
    end 
 
       
-   def MomentStatistic.hot_recommended(offset,page)
+   def MomentStatistic.hot_recommended(page, offset = PAGE_OFFSET)
      hot_recommended= MomentStatistic.where(recommended: 2).offset(page*offset).limit(offset)
    end 
 
-   def MomentStatistic.editor_recommended(offset,page)
+   def MomentStatistic.editor_recommended(page, offset = PAGE_OFFSET)
      editor_recommended= MomentStatistic.where(recommended: 1).offset(page*offset).limit(offset)
    end 
 end

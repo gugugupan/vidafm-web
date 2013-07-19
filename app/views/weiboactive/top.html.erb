@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    排行榜&获奖名单
+排行榜&获奖名单
 <% end %>
 
 <!--排行榜&获奖名单-->
@@ -32,31 +32,20 @@
                     <%= @title %> 今日排行榜
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @noAwardSortJson, :locals => { :show_type => @showType} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@noAwardSortJson), :locals => { :show_type => @showType} -%>
                 </ul>
                 <br>
-                <div class="pagination">
+                <div class="pagination pagination-large" href="/weiboactive/gettopuser" data-toggle="pagination" data-total-page="<%= @noAwardPage %>" data-current-page="1" data-type="<%= @showType %>" data-type-num="0">
                     <ul>
-                        <li>
-                            <a href="#">上一页</a>
-                        </li>
-                        <li>
+                        <li class="active">
                             <a href="#">1</a>
                         </li>
                         <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
-                        <li>
-                            <a href="#">下一页</a>
+                            <% unless @noAwardPage == 1 || @noAwardPage == 0 %>
+                            <a href="#" data-to-page="2">下一页</a>
+                            <% else %>
+                            <span>下一页</span>
+                            <% end %>
                         </li>
                     </ul>
                 </div>
@@ -70,31 +59,20 @@
                     <%= @title %> 获奖名单
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @awardSortJson, :locals => { :show_type => "award"} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@awardSortJson), :locals => { :show_type => "award"} -%>
                 </ul>
                 <br>
-                <div class="pagination">
+                <div class="pagination pagination-large" href="/weiboactive/gettopuser" data-toggle="pagination" data-total-page="<%= @awardPage %>" data-current-page="1" data-type="<%= @showType %>" data-type-num="1">
                     <ul>
-                        <li>
-                            <a href="#">上一页</a>
-                        </li>
-                        <li>
+                        <li class="active">
                             <a href="#">1</a>
                         </li>
                         <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
-                        <li>
-                            <a href="#">下一页</a>
+                            <% unless @awardPage == 1 || @awardPage == 0 %>
+                            <a href="#" data-to-page="2">下一页</a>
+                            <% else %>
+                            <span>下一页</span>
+                            <% end %>
                         </li>
                     </ul>
                 </div>
@@ -109,31 +87,20 @@
                     <%= @title %> 今日排行榜
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @noAwardSortJson, :locals => { :show_type => @showType} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@noAwardSortJson), :locals => { :show_type => @showType} -%>
                 </ul>
                 <br>
-                <div class="pagination">
+                <div class="pagination pagination-large" href="/weiboactive/gettopuser" data-toggle="pagination" data-total-page="<%= @noAwardPage %>" data-current-page="1" data-type="<%= @showType %>" data-type-num="0">
                     <ul>
-                        <li>
-                            <a href="#">上一页</a>
-                        </li>
-                        <li>
+                        <li class="active">
                             <a href="#">1</a>
                         </li>
                         <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
-                        <li>
-                            <a href="#">下一页</a>
+                            <% unless @noAwardPage == 1 || @noAwardPage == 0 %>
+                            <a href="#" data-to-page="2">下一页</a>
+                            <% else %>
+                            <span>下一页</span>
+                            <% end %>
                         </li>
                     </ul>
                 </div>
@@ -148,34 +115,23 @@
                         <%= @title %> 获奖名单
                     </div>
                     <ul class="talent-container">
-                        <%= render :partial => "widgets/award_item" , :collection => @awardSortJson, :locals => { :show_type => "award"} -%>
+                        <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@awardSortJson), :locals => { :show_type => "award"} -%>
                     </ul>
                     <br>
-                    <div class="pagination">
-                        <ul>
-                            <li>
-                                <a href="#">上一页</a>
-                            </li>
-                            <li>
-                                <a href="#">1</a>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">下一页</a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="pagination pagination-large" href="/weiboactive/gettopuser" data-toggle="pagination" data-total-page="<%= @awardPage %>" data-current-page="1" data-type="<%= @showType %>" data-type-num="1">
+                    <ul>
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <% unless @awardPage == 1 || @awardPage == 0 %>
+                            <a href="#" data-to-page="2">下一页</a>
+                            <% else %>
+                            <span>下一页</span>
+                            <% end %>
+                        </li>
+                    </ul>
+                </div>
                 </div>
             </div>
         </div>

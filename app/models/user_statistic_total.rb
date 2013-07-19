@@ -76,28 +76,28 @@ class UserStatisticTotal < ActiveRecord::Base
       u.save
    end
 
-   def UserStatisticTotal.create_sort(page)
-     UserStatisticTotal.order("`create_score` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
+   def UserStatisticTotal.create_sort(page, offset=PAGE_OFFSET)
+     UserStatisticTotal.order("`create_score` desc").offset(page*offset).limit(offset)
    end
 
-   def UserStatisticTotal.shared_sort(page)
-     UserStatisticTotal.order("`share_score` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
+   def UserStatisticTotal.shared_sort(page, offset=PAGE_OFFSET)
+     UserStatisticTotal.order("`share_score` desc").offset(page*offset).limit(offset)
    end
 
-   def UserStatisticTotal.create_sort_without_award(page)
-     UserStatisticTotal.where(is_award:0).order("`create_score` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
+   def UserStatisticTotal.create_sort_without_award(page, offset=PAGE_OFFSET)
+     UserStatisticTotal.where(is_award:0).order("`create_score` desc").offset(page*offset).limit(offset)
    end
 
-   def UserStatisticTotal.create_award_history(page)
-     UserStatisticTotal.where(is_award:1).where(award_type:1).order("`award_time` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
+   def UserStatisticTotal.create_award_history(page, offset=PAGE_OFFSET)
+     UserStatisticTotal.where(is_award:1).where(award_type:1).order("`award_time` desc").offset(page*offset).limit(offset)
    end
    
-   def UserStatisticTotal.shared_sort_without_award(page)
-     UserStatisticTotal.where(is_award:0).order("`share_score` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
+   def UserStatisticTotal.shared_sort_without_award(page, offset=PAGE_OFFSET)
+     UserStatisticTotal.where(is_award:0).order("`share_score` desc").offset(page*offset).limit(offset)
    end
 
-   def UserStatisticTotal.shared_award_hitstory(page)
-     UserStatisticTotal.where(is_award:1).where(award_type:2).order("`award_time` desc").offset(page*PAGE_OFFSET).limit(PAGE_OFFSET)
+   def UserStatisticTotal.shared_award_hitstory(page, offset=PAGE_OFFSET)
+     UserStatisticTotal.where(is_award:1).where(award_type:2).order("`award_time` desc").offset(page*offset).limit(offset)
    end
 
    def UserStatisticTotal.my_create(user_id,page,offset=5)
@@ -114,9 +114,18 @@ class UserStatisticTotal < ActiveRecord::Base
  
    def UserStatisticTotal.my_profile(user_id)
       u = UserStatisticTotal.where(user_id: user_id).first
-      create_rank = UserStatisticTotal.where("create_score > ?", u.create_score).count() + 1      
-      share_rank = UserStatisticTotal.where("share_score > ?", u.share_score).count() + 1      
+      unless u.nil?
+          create_rank = UserStatisticTotal.where("create_score > ?", u.create_score).count() + 1      
+          share_rank = UserStatisticTotal.where("share_score > ?", u.share_score).count() + 1
+          create_score = u.create_score
+          share_score = u.share_score
+      else
+          create_rank = "--"
+          share_rank = "--"
+          create_score = 0
+          share_score = 0
+      end      
 
-      return u.create_score, u.share_score, u.create_rank, u.share_rank
+      return create_score, share_score, create_rank, share_rank
    end
 end

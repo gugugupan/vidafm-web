@@ -1,5 +1,50 @@
 <!-- Navbar ================================================== -->
-<% if @mobile %>
+<% unless @mobile == true %>
+<% unless user .nil? %>
+<nav class="navbar navbar-weiboactive">
+    <div class="container">
+        <%= link_to raw('<img src="/assets/weiboactive/home.png">'), {:controller=>"weiboactive", :action=>"index"} %>
+        <div class="nav-collapse in collapse" style="height: auto;">
+            <ul class="nav">
+                <li>
+                    <%= link_to "领取Q币",
+                    {:controller => "weiboactive",:action => "lottery"},
+                    :class => "btn btn-yellow nav-btn" %>
+                </li>
+                <li>
+                    <%= link_to raw("<i class=\"icon-user\"></i> " + user[ :name ]),
+                    {:controller => "weiboactive",:action => "myprofile", :id => user[ :id ]},
+                    :class => "nav-btn" %>
+                </li>
+                <li class="nav-split">
+                    |
+                </li>
+                <li>
+                    <a href="/auth/logout" class="nav-btn">退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+<% else %>
+<nav class="navbar navbar-weiboactive">
+    <div class="container">
+        <%= link_to raw('<img src="/assets/weiboactive/home.png">'), {:controller=>"weiboactive", :action=>"index"} %>
+        <div class="nav-collapse in collapse" style="height: auto;">
+            <ul class="nav">
+                <li class="nav-label">
+                    登入腾讯微博参赛
+                </li>
+                <li>
+                    <a href="/auth/tqq" class="btn btn-blue btn-small nav-btn"><i class="icon-user"></i> 登入</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<% end %>
+<% else %>
 <% unless user .nil? %>
 <div class="row-fluid">
     <div class="span12">
@@ -7,9 +52,11 @@
         <ul class="nav nav-list">
             <li class="active" style="line-height: 40px;position:relative;">
                 <%= link_to raw("<i class=\"icon-user\"></i>&nbsp;&nbsp; " + user[ :name ]),
-                {:controller => "weiboactive",:action => "myprofile"},
+                {:controller => "weiboactive",:action => "myprofile",:id => user[ :id ]},
                 :class => "nav-btn" %>
-                <button class="btn btn-pink" style="position: absolute;right: 0; top: 8px;" onclick="location.href='/auth/logout';">注销</button>
+                <button class="btn btn-pink" style="position: absolute;right: 0; top: 8px;" onclick="location.href='/auth/logout';">
+                    注销
+                </button>
             </li>
             <li class="active" style="line-height: 40px;">
                 <%= link_to raw("<i class=\"icon-ok\"></i>&nbsp;&nbsp; 领取Q币"),
@@ -40,51 +87,6 @@
         </ul>
     </div>
 </div>
-<% end %>
-<% else %>
-<% unless user .nil? %>
-<nav class="navbar navbar-weiboactive">
-    <div class="container">
-        <%= link_to raw('<img src="/assets/weiboactive/home.png">'), {:controller=>"weiboactive", :action=>"index"} %>
-        <div class="nav-collapse in collapse" style="height: auto;">
-            <ul class="nav">
-                <li>
-                    <%= link_to "领取Q币",
-                    {:controller => "weiboactive",:action => "lottery"},
-                    :class => "btn btn-yellow nav-btn" %>
-                </li>
-                <li>
-                    <%= link_to raw("<i class=\"icon-user\"></i> " + user[ :name ]),
-                    {:controller => "weiboactive",:action => "myprofile"},
-                    :class => "nav-btn" %>
-                </li>
-                <li class="nav-split">
-                    |
-                </li>
-                <li>
-                    <a href="/auth/logout" class="nav-btn">退出</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-</nav>
-<% else %>
-<nav class="navbar navbar-weiboactive">
-    <div class="container">
-        <%= link_to raw('<img src="/assets/weiboactive/home.png">'), {:controller=>"weiboactive", :action=>"index"} %>
-        <div class="nav-collapse in collapse" style="height: auto;">
-            <ul class="nav">
-                <li class="nav-label">
-                    登入腾讯微博参赛
-                </li>
-                <li>
-                    <a href="/auth/tqq" class="btn btn-blue btn-small nav-btn"><i class="icon-user"></i> 登入</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <% end %>
 <% end %>
 

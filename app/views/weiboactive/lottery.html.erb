@@ -1,56 +1,39 @@
 <% content_for :title do %>
-    抽奖
+领取Q币
 <% end %>
-
 <!--抽奖-->
 <div class="container wrapper">
 
     <div class="row-fluid">
         <div class="span12">
             <div class="text-center block-title">
-                分享成功并参加抽奖
+                领取Q币
             </div>
         </div>
     </div>
 
     <div class="row-fluid">
         <div class="span12 text-center">
-            <p style="font-size: 30px; color: #4d4d4d;">
-                成功分享微电影，点下方链接查看微博
-            </p>
-            <br>
-            <br>
-            <a class="btn btn-blue btn-large" href="/weiboactive/top?id=1">查看微博</a>
-            <hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> 编号 </th>
+                        <th> Q币 </th>
+                        <th> 兑换码 </th>
+                        <th> 交付时间 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @list_qq_coins.each_with_index do |a, i| %>
+                    <tr class="success">
+                        <td> <%= raw '<span class="badge badge-success">' + (i + 1).to_s + '</span>' %> </td>
+                        <td> <%= a[:shuffle_result] %>Q币 </td>
+                        <td>  </td>
+                        <td> <%= a[:updated_at] %> </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <div class="row-fluid">
-        <div class="span12 text-center">
-            <br>
-            <br>
-            <div style="position: relative; width: 475px; margin: 0px auto; max-width: 70%;">
-                <img src="/assets/weiboactive/lottery1.png" style="width: 100%"/>
-                <img src='/assets/weiboactive/g16924.png' id="clock" style="position: absolute; left: 0; top: 0;width: 100%;cursor: pointer;">
-            </div>
-            <br>
-            <a class="btn btn-yellow btn-large" href="javascript:rotate()">抽奖赢Q币</a>
-            <hr>
-        </div>
-    </div>
-
-    <div class="row-fluid">
-        <div class="span12 text-center" style="margin-bottom: 100px;">
-            <p style="font-size: 30px; color: #4d4d4d;">
-                恭喜抽中1Q币，我们会将兑换码发送到你填写的邮箱
-            </p>
-            <form>
-                <input type="text" style="margin-top: 12px;"/>
-                <button type="submit" class="btn">
-                    提交
-                </button>
-            </form>
-        </div>
-    </div>
-
 </div>

@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    首届照片微电影大赛
+首届照片微电影大赛
 <% end %>
 
 <div class="container wrapper">
@@ -7,13 +7,13 @@
 
     <%= render :partial => "header_00", :locals => { :user => @cur_user } %>
 
-    <%= render :partial => "daystar" %>    
+    <%= render :partial => "daystar" %>
 
     <!--编辑推荐-->
     <div class="row-fluid">
         <div class="span12">
             <div class="text-center block-title">
-                <%= link_to "编辑推荐", controller:"weiboactive", action:"editorstory" -%>
+                编辑推荐
             </div>
         </div>
     </div>
@@ -22,12 +22,19 @@
     <% else %>
     <%= storyGallery @momentEditor, "", 2, 2 %>
     <% end %>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center">
+                <%= link_to "查看所有编辑推荐作品", {controller:"weiboactive", action:"editorstory"}, class:"btn btn-pink btn-large" -%>
+            </div>
+        </div>
+    </div>
 
     <!--热门作品-->
     <div class="row-fluid">
         <div class="span12">
             <div class="text-center block-title">
-                <%= link_to "热门作品", controller:"weiboactive", action:"hotstory" -%>
+                热门作品
             </div>
         </div>
     </div>
@@ -36,6 +43,13 @@
     <% else %>
     <%= storyGallery @momentHot, "", 2, 2 %>
     <% end %>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center">
+                <%= link_to "查看所有热门作品", {controller:"weiboactive", action:"hotstory"}, class:"btn btn-pink btn-large" -%>
+            </div>
+        </div>
+    </div>
 
     <!--获奖名单 & 排行榜-->
     <div class="row-fluid">
@@ -53,7 +67,7 @@
                     原创达人 Top10
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "create"} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@createSortJson), :locals => { :show_type => "create"} -%>
                 </ul>
                 <br>
                 <%= link_to "查看总榜及获奖名单",
@@ -69,7 +83,7 @@
                     分享达人 Top10
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @sharedSortJson, :locals => { :show_type => "shared"} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@sharedSortJson), :locals => { :show_type => "shared"} -%>
                 </ul>
                 <br>
                 <%= link_to "查看总榜及获奖名单",
@@ -86,7 +100,7 @@
                     原创达人 Top10
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @createSortJson, :locals => { :show_type => "create"} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@createSortJson), :locals => { :show_type => "create"} -%>
                 </ul>
                 <br>
                 <%= link_to "查看总榜及获奖名单",
@@ -103,7 +117,7 @@
                     分享达人 Top10
                 </div>
                 <ul class="talent-container">
-                    <%= render :partial => "widgets/award_item" , :collection => @sharedSortJson, :locals => { :show_type => "shared"} -%>
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@sharedSortJson), :locals => { :show_type => "shared"} -%>
                 </ul>
                 <br>
                 <%= link_to "查看总榜及获奖名单",
