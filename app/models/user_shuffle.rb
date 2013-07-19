@@ -54,7 +54,7 @@ class UserShuffle < ActiveRecord::Base
 
   def UserShuffle.shuffle(user_id, session) 
     coin = UserShuffle.get_qq_coin(user_id, session)
-    UserShuffle.create({:user_id => user_id, :shuffle_result => coin}) if coin
+    UserShuffle.create({:user_id => user_id, :shuffle_result => (coin == 0 ? nil : coin)}) if coin
     session.delete(:qq_coin)
     return coin
   end
