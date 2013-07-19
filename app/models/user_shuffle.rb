@@ -6,7 +6,19 @@ class UserShuffle < ActiveRecord::Base
   attr_accessor   :qq_coin_code
   attr_accessor   :qq_coin_password
 
+=begin
+1、Q币抽奖可以抽无数次
+2、分享到腾讯微博成功就可以抽一次
+3、兑换码直接显示在用户页面上
+4、http://pay.qq.com/ipay/index.shtml?n=60&c=qqacct_save&ch=qqcard,kj&aid=pay.index.button.ljcz
 
+
+中奖几率：
+第一次抽奖：70%概率中1Q币，2%概率中10Q币
+第二次抽奖：0%概率
+第三次抽奖：40%概率中1Q币，1%概率中10Q币
+以后：全是0%概率 
+=end
   def UserShuffle.get_qq_coin(user_id, session)
       if session[ :qq_coin ].nil?
             shuffle_count = UserShuffle.where(user_id:user_id).count()
@@ -35,7 +47,7 @@ class UserShuffle < ActiveRecord::Base
                coin = nil
             end
             
-            session[ :qq_coin ] = coin unless coin.nil?
+            session[ :qq_coin ] = coin || 0
       end
       session[ :qq_coin ]
   end
@@ -64,8 +76,10 @@ class UserShuffle < ActiveRecord::Base
              qq_coin.save
           end
        end 
+       
+       puts sh.qq_coin_code
      end 
-    
+
      return shuffles
   end  
 end

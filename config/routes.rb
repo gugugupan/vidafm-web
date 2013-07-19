@@ -1,5 +1,7 @@
 Bluerain::Application.routes.draw do
 
+  get "weiboactive" => "weiboactive#index"
+
   get "weiboactive/lottery"
 
   get "weiboactive/rule_share"

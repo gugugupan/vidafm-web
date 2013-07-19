@@ -19,8 +19,8 @@
                     <tr>
                         <th> 编号 </th>
                         <th> Q币 </th>
-                        <th> 兑换码 </th>
-                        <th> 交付时间 </th>
+                        <th> 卡号 </th>
+                        <th> 卡密码 </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,8 +28,8 @@
                     <tr class="success">
                         <td> <%= raw '<span class="badge badge-success">' + (i + 1).to_s + '</span>' %> </td>
                         <td> <%= a[:shuffle_result] %>Q币 </td>
-                        <td>  </td>
-                        <td> <%= a[:updated_at] %> </td>
+                        <td> <%= a.qq_coin_code %> </td>
+                        <td> <%= a.qq_coin_password %> </td>
                     </tr>
                     <% end %>
                 </tbody>

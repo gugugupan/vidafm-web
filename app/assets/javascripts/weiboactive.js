@@ -33,7 +33,7 @@
 
         $("#content", $target).val("我发现这个故事 #" + momentName + "# 很不错，特意分享 @Vida微达");
         if (String(sns_qq) == "true") {
-            $.post("share?type=qq-weibo&id=" + momentId, $("form", $target).serialize()).done(function(data) {
+            $.post("/weiboactive/share?type=qq-weibo&id=" + momentId, $("form", $target).serialize()).done(function(data) {
                 $("#lottery_btn").attr("coin", data.coin);
                 $("#lottery_link").hide();
                 $("#lottery_btn").removeAttr("disabled");
@@ -135,7 +135,7 @@
 
 //抽奖
 function rotate() {
-    $.post("shuffle", $("form", $("#modal-container-lottery")).serialize());
+    $.post("/weiboactive/shuffle", $("form", $("#modal-container-lottery")).serialize());
     var coin = $("#lottery_btn").attr("coin");
     $("#lottery_btn").attr("disabled", "disabled");
     var animateTo = 0;
@@ -152,7 +152,14 @@ function rotate() {
     } else if (coin == 10) {
         animateTo += 90;
     } else {
-        animateTo += 45;
+        var random = Math.random();
+        if (random < 0.33) {
+            animateTo += 45;
+        } else if (random < 0.66) {
+            animateTo += 135;
+        } else {
+            animateTo += 225;
+        }
     }
 
     $("#clock").rotate({
@@ -162,7 +169,7 @@ function rotate() {
         //easing: $.easing.easeOutSine,
         callback : function() {
             $("#lottery_btn").removeAttr("coin");
-            if (animateTo != 45) {
+            if (coin != 0) {
                 $("#lottery_link").show();
             }
         }
