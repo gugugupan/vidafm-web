@@ -2,7 +2,7 @@
 	<%= avatar_tag comment[ "user" ] %>
 	<div class="comment_container">
 		<p class="user_name"> <%= comment[ "user" ] [ :name ] %> </p>
-		<p class="photo_description"> <%= process_comment comment[ "content" ] %> </p>
+		<p class="photo_description"> <%= express_comment comment[ "content" ] %> </p>
 		<font class="timer"> <%= time_ago_now( comment[ "created_at" ] ) %>前 </font>
 	</div>
 	<div class="clearfix"></div>
