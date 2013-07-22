@@ -1,6 +1,6 @@
 development:
   adapter: mysql2
-  database: elbrus_development
+  database: vida_development
   username: root
   password: huxia001
   host: 192.168.10.7
@@ -8,7 +8,7 @@ development:
 
 production:
   adapter: mysql2
-  database: elbrus_development
+  database: vida_development
   username: root
   password: huxia001
   host: 192.168.10.7
