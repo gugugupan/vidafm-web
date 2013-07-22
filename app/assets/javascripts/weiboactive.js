@@ -40,7 +40,6 @@
                 $("#modal-container-lottery").modal().one('hide', function() {
                     $this.focus();
                 });
-                ;
             }).fail(function() {
                 alert("程序出错,请稍候再抽");
             });

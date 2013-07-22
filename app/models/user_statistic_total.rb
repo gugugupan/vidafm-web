@@ -117,8 +117,8 @@ class UserStatisticTotal < ActiveRecord::Base
       unless u.nil?
           create_rank = UserStatisticTotal.where("create_score > ?", u.create_score).count() + 1      
           share_rank = UserStatisticTotal.where("share_score > ?", u.share_score).count() + 1
-          create_score = u.create_score
-          share_score = u.share_score
+          create_score = u.create_score || 0
+          share_score = u.share_score || 0
       else
           create_rank = "--"
           share_rank = "--"
