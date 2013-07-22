@@ -13,10 +13,362 @@
 
 ActiveRecord::Schema.define(:version => 20130715074618) do
 
+  create_table "active_users", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+  end
+
+  create_table "activities", :force => true do |t|
+    t.integer  "user_id",                                                             :null => false
+    t.integer  "activity_type",                         :limit => 1,                  :null => false
+    t.integer  "is_private",                            :limit => 1,   :default => 0
+    t.string   "share_to",                              :limit => 200
+    t.integer  "parent_id"
+    t.integer  "moment_id"
+    t.integer  "photo_id"
+    t.integer  "comment_id"
+    t.datetime "created_at",                                                          :null => false
+    t.integer  "created_at_timezone",                                  :default => 8
+    t.datetime "digged_at"
+    t.integer  "likes_count",                                          :default => 0, :null => false
+    t.integer  "comments_count",                                       :default => 0, :null => false
+    t.integer  "del_flg",                               :limit => 1,   :default => 0, :null => false
+    t.float    "lng"
+    t.float    "lat"
+    t.integer  "display_order",                                        :default => 0
+    t.string   "batch_no",                              :limit => 40
+    t.string   "address",                               :limit => 500
+    t.string   "political_country",                     :limit => 500
+    t.string   "political_administrative_area_level_1", :limit => 500
+    t.string   "political_locality",                    :limit => 500
+    t.string   "political_sublocality",                 :limit => 500
+    t.integer  "from_library",                          :limit => 1
+    t.string   "filter_info",                           :limit => 200
+    t.datetime "taken_at"
+  end
+
+  add_index "activities", ["batch_no"], :name => "batch_no"
+  add_index "activities", ["del_flg", "created_at", "moment_id"], :name => "moment_id_3"
+  add_index "activities", ["del_flg", "user_id", "id"], :name => "id"
+  add_index "activities", ["digged_at"], :name => "digged_at"
+  add_index "activities", ["likes_count"], :name => "likes_count"
+  add_index "activities", ["lng", "lat"], :name => "lng"
+  add_index "activities", ["moment_id", "del_flg", "activity_type", "display_order", "digged_at"], :name => "activity_type"
+  add_index "activities", ["moment_id", "del_flg", "display_order", "created_at"], :name => "moment_id_2"
+  add_index "activities", ["moment_id", "del_flg", "user_id"], :name => "user_id_2"
+  add_index "activities", ["moment_id", "del_flg"], :name => "moment_id"
+  add_index "activities", ["user_id", "moment_id", "del_flg"], :name => "user_id"
+
+  create_table "activity_filters", :force => true do |t|
+    t.integer  "order",                            :default => 0,     :null => false
+    t.string   "device",                           :default => "all", :null => false
+    t.integer  "version",                          :default => 0,     :null => false
+    t.string   "name",               :limit => 50,                    :null => false
+    t.integer  "moment_name_unique",               :default => 0,     :null => false
+    t.string   "moment_name"
+    t.text     "description"
+    t.string   "icon_file",                                           :null => false
+    t.string   "filter_file"
+    t.string   "filter_params",                                       :null => false
+    t.text     "vshader",                                             :null => false
+    t.text     "fshader",                                             :null => false
+    t.datetime "created_at",                                          :null => false
+    t.integer  "del_flg",            :limit => 1,  :default => -1,    :null => false
+    t.integer  "sticky",                           :default => 0
+  end
+
+  create_table "address_books", :force => true do |t|
+    t.integer "user_id",                    :null => false
+    t.string  "phoneNumber", :limit => 200
+    t.string  "mail",        :limit => 200
+    t.string  "name",        :limit => 200
+  end
+
+  create_table "air_qualities", :force => true do |t|
+    t.string   "city"
+    t.string   "district"
+    t.integer  "aqi"
+    t.integer  "pm25_hourly"
+    t.integer  "pm25_daily"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "allowed_users", :force => true do |t|
+    t.string "from_site",    :limit => 100, :null => false
+    t.string "from_site_id", :limit => 100, :null => false
+  end
+
+  add_index "allowed_users", ["from_site", "from_site_id"], :name => "from_site"
+
+  create_table "app_errors", :force => true do |t|
+    t.string   "app",        :limit => 200
+    t.string   "lineno",     :limit => 200
+    t.datetime "created_at"
+  end
+
+  create_table "app_logs", :force => true do |t|
+    t.string  "app",         :limit => 200
+    t.string  "log_file",    :limit => 200
+    t.string  "log500_file", :limit => 200
+    t.integer "lines_count"
+  end
+
+  create_table "audios", :force => true do |t|
+    t.float    "duration"
+    t.integer  "recordable_id"
+    t.string   "recordable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "filename"
+    t.integer  "user_id"
+    t.integer  "moment_id"
+    t.string   "partition"
+    t.integer  "del_flg",         :default => 0
+  end
+
+  add_index "audios", ["moment_id", "del_flg"], :name => "moment_id"
+  add_index "audios", ["recordable_id", "recordable_type", "del_flg"], :name => "index_audios_on_recordable_id_and_recordable_type_and_del_flg"
+
+  create_table "avatars", :force => true do |t|
+    t.integer  "user_id",                       :null => false
+    t.string   "selection_file", :limit => 300
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "avatar_file",    :limit => 300
+    t.integer  "x1"
+    t.integer  "x2"
+    t.integer  "y1"
+    t.integer  "y2"
+    t.datetime "updated_at"
+    t.datetime "created_at"
+  end
+
+  add_index "avatars", ["user_id"], :name => "user_id"
+
+  create_table "belongings", :force => true do |t|
+    t.integer "belongingable_type", :limit => 2
+    t.integer "belongingable_id"
+    t.binary  "belongingable_guid", :limit => 16
+  end
+
+  add_index "belongings", ["belongingable_guid"], :name => "activity_guid"
+
+  create_table "browse_histories", :force => true do |t|
+    t.string   "uu_user_id", :limit => 40
+    t.integer  "user_id"
+    t.string   "ip",         :limit => 20
+    t.string   "referer",    :limit => 400
+    t.string   "agent",      :limit => 500
+    t.string   "url",        :limit => 400
+    t.string   "params",     :limit => 400
+    t.datetime "created_at"
+    t.integer  "processed",  :limit => 1,   :default => 0
+    t.integer  "is_se",      :limit => 1,   :default => 0
+    t.string   "keywords",   :limit => 200
+    t.string   "rank",       :limit => 100
+    t.string   "refer_from", :limit => 100
+    t.string   "country",    :limit => 200
+    t.string   "city",       :limit => 200
+    t.string   "search",     :limit => 200
+    t.string   "platform",   :limit => 10
+  end
+
+  add_index "browse_histories", ["created_at"], :name => "created_at"
+  add_index "browse_histories", ["processed"], :name => "processed"
+  add_index "browse_histories", ["url"], :name => "url", :length => {"url"=>255}
+  add_index "browse_histories", ["user_id", "created_at"], :name => "user_id_2"
+  add_index "browse_histories", ["user_id"], :name => "user_id"
+  add_index "browse_histories", ["uu_user_id", "is_se", "processed", "platform", "created_at"], :name => "uu_user_id_2"
+  add_index "browse_histories", ["uu_user_id", "user_id", "created_at"], :name => "uu_user_id"
+
+  create_table "browse_history_backups", :force => true do |t|
+    t.string   "uu_user_id", :limit => 40
+    t.integer  "user_id"
+    t.string   "ip",         :limit => 20
+    t.string   "referer",    :limit => 400
+    t.string   "agent",      :limit => 500
+    t.string   "url",        :limit => 400
+    t.string   "params",     :limit => 400
+    t.datetime "created_at"
+    t.integer  "processed",  :limit => 1,   :default => 0
+    t.integer  "is_se",      :limit => 1,   :default => 0
+    t.string   "keywords",   :limit => 200
+    t.string   "rank",       :limit => 100
+    t.string   "refer_from", :limit => 100
+    t.string   "country",    :limit => 200
+    t.string   "city",       :limit => 200
+    t.string   "search",     :limit => 200
+    t.string   "platform",   :limit => 10
+  end
+
+  add_index "browse_history_backups", ["created_at"], :name => "created_at"
+  add_index "browse_history_backups", ["processed"], :name => "processed"
+  add_index "browse_history_backups", ["url"], :name => "url", :length => {"url"=>255}
+  add_index "browse_history_backups", ["user_id", "created_at"], :name => "user_id_2"
+  add_index "browse_history_backups", ["user_id"], :name => "user_id"
+  add_index "browse_history_backups", ["uu_user_id", "is_se", "processed", "platform", "created_at"], :name => "uu_user_id_2"
+  add_index "browse_history_backups", ["uu_user_id", "user_id", "created_at"], :name => "uu_user_id"
+
+  create_table "categories", :force => true do |t|
+    t.string  "name",       :limit => 100
+    t.string  "icon",       :limit => 20
+    t.integer "belongs_to"
+  end
+
+  create_table "comment_backups", :id => false, :force => true do |t|
+    t.string "user_token",      :limit => 11
+    t.date   "created_at"
+    t.date   "user_created_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "commentable_id",                                 :null => false
+    t.string   "commentable_type", :limit => 100,                :null => false
+    t.integer  "user_id",                                        :null => false
+    t.text     "content",                                        :null => false
+    t.integer  "del_flg",          :limit => 1,   :default => 0, :null => false
+    t.datetime "created_at",                                     :null => false
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type", "del_flg"], :name => "commentable_id"
+  add_index "comments", ["commentable_type"], :name => "commentable_type"
+  add_index "comments", ["id"], :name => "id", :unique => true
+
+  create_table "covers", :force => true do |t|
+    t.string   "coverable_type", :limit => 100
+    t.integer  "coverable_id"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "file",           :limit => 300
+    t.datetime "updated_at"
+    t.datetime "created_at"
+    t.text     "link"
+    t.text     "action_text"
+    t.integer  "style",                         :default => 0
+    t.integer  "display",                       :default => 0
+    t.integer  "del_flg",        :limit => 1,   :default => 0
+  end
+
+  add_index "covers", ["coverable_type", "coverable_id"], :name => "coverable_type"
+
+  create_table "crash_entries", :force => true do |t|
+    t.integer "crash_id",               :null => false
+    t.text    "ckey",                   :null => false
+    t.text    "cvalue",                 :null => false
+    t.string  "md5",      :limit => 50
+  end
+
+  add_index "crash_entries", ["crash_id"], :name => "crash_id"
+  add_index "crash_entries", ["md5"], :name => "md5"
+
+  create_table "crashes", :force => true do |t|
+    t.datetime "created_at",                             :null => false
+    t.integer  "beenread",   :limit => 1, :default => 0, :null => false
+    t.integer  "count",                   :default => 1
+  end
+
+  add_index "crashes", ["beenread"], :name => "beenread"
+  add_index "crashes", ["count"], :name => "count"
+
+  create_table "devices", :force => true do |t|
+    t.integer  "user_id",                                           :null => false
+    t.string   "platform",            :limit => 50
+    t.string   "token",               :limit => 200
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "del_flg",             :limit => 1,   :default => 0, :null => false
+    t.integer  "notification_report",                :default => 0
+  end
+
+  add_index "devices", ["del_flg", "user_id"], :name => "user_id"
+  add_index "devices", ["platform", "token"], :name => "platform", :length => {"platform"=>nil, "token"=>72}
+  add_index "devices", ["token"], :name => "token"
+
+  create_table "douban_events", :force => true do |t|
+    t.string   "douban_id",          :limit => 200
+    t.string   "douban_url",         :limit => 200
+    t.text     "title"
+    t.text     "summary"
+    t.text     "content"
+    t.datetime "starts_at",                         :null => false
+    t.datetime "ends_at",                           :null => false
+    t.float    "lng"
+    t.float    "lat"
+    t.text     "address"
+    t.integer  "participants_count"
+    t.integer  "wishers_count"
+    t.string   "author_name",        :limit => 200
+    t.string   "author_uri",         :limit => 200
+  end
+
+  add_index "douban_events", ["author_uri"], :name => "author_uri"
+  add_index "douban_events", ["douban_url"], :name => "douban_id"
+
+  create_table "douban_users", :force => true do |t|
+    t.string  "douban_id",      :limit => 100
+    t.string  "location",       :limit => 100
+    t.string  "homepage",       :limit => 500
+    t.integer "contacts_count"
+    t.integer "reviews_count"
+    t.integer "notes_count"
+    t.integer "events_count"
+    t.integer "scanned",        :limit => 1,   :default => 0, :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "happened_at"
+  end
+
+  create_table "fake_users", :force => true do |t|
+    t.integer "user_id", :null => false
+  end
+
+  create_table "feedback_backups", :force => true do |t|
+    t.float    "usage_count", :null => false
+    t.float    "usage_per",   :null => false
+    t.datetime "created_at",  :null => false
+  end
+
+  create_table "feedbacks", :force => true do |t|
+    t.string   "from"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "friendships", :force => true do |t|
+    t.integer  "user_id",                                  :null => false
+    t.integer  "friend_id",                                :null => false
+    t.string   "status",      :limit => 40,                :null => false
+    t.float    "priority"
+    t.string   "description"
+    t.datetime "updated_at"
+    t.datetime "created_at",                               :null => false
+    t.integer  "del_flg",     :limit => 1,  :default => 0
+  end
+
+  add_index "friendships", ["friend_id", "user_id"], :name => "user_id_3"
+  add_index "friendships", ["status"], :name => "status"
+  add_index "friendships", ["user_id", "friend_id", "updated_at"], :name => "user_id"
+  add_index "friendships", ["user_id", "status", "del_flg"], :name => "user_id_4"
+  add_index "friendships", ["user_id", "updated_at", "id"], :name => "user_id_2"
+
   create_table "ignored_moments", :force => true do |t|
     t.integer  "moment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "illegal_reports", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.integer  "status",      :default => 0, :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "interactive_filters", :force => true do |t|
@@ -103,8 +455,8 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.integer  "moment_id"
     t.integer  "shared_count", :default => 0
     t.integer  "played_count", :default => 0
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "total_score"
     t.integer  "user_id"
   end
@@ -131,7 +483,7 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.integer  "participants_count"
-    t.integer  "photos_count"
+    t.integer  "photos_count",                                         :default => 0
     t.integer  "videos_count",                                         :default => 0
     t.integer  "likes_count",                                          :default => 0, :null => false
     t.integer  "comments_count",                                       :default => 0, :null => false
@@ -145,9 +497,10 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.datetime "updated_at"
   end
 
-  add_index "moments", ["category_id"], :name => "category_id"
+  add_index "moments", ["category_id", "del_flg"], :name => "category_id"
+  add_index "moments", ["del_flg", "category_id", "privacy", "likes_count"], :name => "category_id_2"
+  add_index "moments", ["del_flg", "category_id"], :name => "del_flg"
   add_index "moments", ["del_flg", "photos_count"], :name => "photos_count"
-  add_index "moments", ["del_flg"], :name => "del_flg"
   add_index "moments", ["ends_at"], :name => "ends_at"
   add_index "moments", ["id", "name"], :name => "id"
   add_index "moments", ["id", "privacy"], :name => "id_3"
@@ -167,6 +520,8 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.datetime "updated_at"
   end
 
+  add_index "notification_reports", ["notification_id", "token"], :name => "notification_id"
+
   create_table "notifications", :force => true do |t|
     t.integer  "user_id",                                       :null => false
     t.datetime "created_at",                                    :null => false
@@ -185,6 +540,12 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
   add_index "notifications", ["actor_id", "user_id", "subject1_id"], :name => "actor_id"
   add_index "notifications", ["user_id", "is_read"], :name => "user_id"
   add_index "notifications", ["user_id", "notification_type", "subject1_id"], :name => "user_id_2"
+
+  create_table "photo_values", :force => true do |t|
+    t.integer "photo_id"
+    t.integer "hex",      :limit => 8
+    t.integer "gray_hex", :limit => 8
+  end
 
   create_table "photos", :force => true do |t|
     t.integer  "photoable_id"
@@ -240,6 +601,11 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
 
   add_index "places", ["subtype_id"], :name => "subtype_id"
 
+  create_table "poi_types", :force => true do |t|
+    t.string  "type_name"
+    t.integer "type_id",   :default => 0, :null => false
+  end
+
   create_table "poiings", :force => true do |t|
     t.integer  "poi_id"
     t.integer  "poiable_id"
@@ -258,7 +624,8 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.float    "lng"
     t.float    "lat"
     t.string   "city"
-    t.string   "poi_type"
+    t.integer  "poi_type"
+    t.string   "poi_type_str"
   end
 
   create_table "pois_tags", :id => false, :force => true do |t|
@@ -354,9 +721,9 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.string   "robot_secret",                                             :null => false
     t.string   "robot_devicetoken",                                        :null => false
     t.integer  "robot_disabled",            :limit => 1,  :default => 0,   :null => false
-    t.datetime "robot_last_executed_at"
-    t.datetime "robot_last_preexecuted_at"
-    t.integer  "robot_interval_hours",                    :default => 0
+    t.datetime "robot_last_executed_at",                                   :null => false
+    t.datetime "robot_last_preexecuted_at",                                :null => false
+    t.integer  "robot_interval_hours",                    :default => 0,   :null => false
     t.float    "robot_stability",                         :default => 1.0, :null => false
     t.integer  "robot_photo_type",                        :default => 0
     t.string   "crawl_url",                 :limit => 50
@@ -365,6 +732,28 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
   add_index "robots", ["id"], :name => "id", :unique => true
   add_index "robots", ["robot_last_preexecuted_at"], :name => "B"
   add_index "robots", ["robot_photo_type"], :name => "Type"
+
+  create_table "robots_obsolete", :primary_key => "robot_id", :force => true do |t|
+    t.integer  "id",                                                       :null => false
+    t.string   "name",                                                     :null => false
+    t.datetime "created_at",                                               :null => false
+    t.integer  "following_limited",         :limit => 1,  :default => 0,   :null => false
+    t.datetime "robot_refreshed_at",                                       :null => false
+    t.integer  "robot_sex",                               :default => 0,   :null => false
+    t.string   "robot_token",                                              :null => false
+    t.string   "robot_secret",                                             :null => false
+    t.string   "robot_devicetoken",                                        :null => false
+    t.integer  "robot_disabled",            :limit => 1,  :default => 0,   :null => false
+    t.datetime "robot_last_executed_at",                                   :null => false
+    t.datetime "robot_last_preexecuted_at",                                :null => false
+    t.integer  "robot_interval_hours",                    :default => 0,   :null => false
+    t.float    "robot_stability",                         :default => 1.0, :null => false
+    t.integer  "robot_photo_type",                        :default => 0
+    t.string   "crawl_url",                 :limit => 50
+  end
+
+  add_index "robots_obsolete", ["id"], :name => "id", :unique => true
+  add_index "robots_obsolete", ["robot_last_preexecuted_at"], :name => "B"
 
   create_table "se_agents", :force => true do |t|
     t.string "name", :limit => 400
@@ -463,17 +852,26 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.string "svalue", :limit => 100, :null => false
   end
 
+  create_table "tag_relations", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "related_id"
+    t.integer  "del_flg",    :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
     t.datetime "created_at"
     t.integer  "del_flg",       :limit => 1, :default => 0
-    t.integer  "user_id",                    :default => 0, :null => false
+    t.integer  "user_id",                    :default => 0
   end
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
   add_index "taggings", ["taggable_id", "taggable_type", "del_flg"], :name => "taggable_id"
+  add_index "taggings", ["user_id"], :name => "user_id"
 
   create_table "tags", :force => true do |t|
     t.string  "name"
@@ -490,6 +888,9 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.integer "s_key"
     t.text    "s_value"
   end
+
+  add_index "template_datas", ["s_key", "template_dataable_type", "template_dataable_id"], :name => "s_key"
+  add_index "template_datas", ["template_dataable_id", "template_dataable_type"], :name => "template_dataable_id"
 
   create_table "user_auths", :force => true do |t|
     t.integer  "user_id",                                          :null => false
@@ -521,15 +922,17 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
 
   create_table "user_details", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "moments_count"
-    t.integer  "followings_count"
-    t.integer  "followers_count"
-    t.integer  "likes_count"
-    t.integer  "comments_count"
+    t.integer  "moments_count",       :default => 0
+    t.integer  "followings_count",    :default => 0
+    t.integer  "followers_count",     :default => 0
+    t.integer  "likes_count",         :default => 0
+    t.integer  "comments_count",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "notification_report", :default => 0
   end
+
+  add_index "user_details", ["user_id"], :name => "index_user_details_on_user_id"
 
   create_table "user_lucky_draws", :force => true do |t|
     t.integer  "user_id"
@@ -545,8 +948,8 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
 
   create_table "user_shuffles", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "qq_coin_id"
     t.integer  "shuffle_result"
   end
@@ -581,8 +984,8 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.integer  "create_played_count", :default => 0
     t.integer  "shared_count",        :default => 0
     t.integer  "shared_played_count", :default => 0
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "create_score"
     t.integer  "share_score"
   end
@@ -607,7 +1010,7 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"
     t.string   "default_password",          :limit => 100
-    t.string   "got_from",                  :limit => 10
+    t.string   "got_from",                  :limit => 50
     t.float    "lng"
     t.float    "lat"
     t.datetime "located_at"
@@ -630,17 +1033,6 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
   add_index "users", ["name"], :name => "name"
   add_index "users", ["recommended"], :name => "recommended"
   add_index "users", ["register_uuid"], :name => "register_uuid"
-
-  create_table "vender_relationships", :force => true do |t|
-    t.integer  "user_id",                     :null => false
-    t.string   "vender",        :limit => 50, :null => false
-    t.text     "following_ids"
-    t.text     "follower_ids"
-    t.datetime "created_at",                  :null => false
-  end
-
-  add_index "vender_relationships", ["user_id"], :name => "user_id"
-  add_index "vender_relationships", ["vender"], :name => "vender"
 
   create_table "vendor_avatars", :force => true do |t|
     t.integer  "user_id"
@@ -692,5 +1084,20 @@ ActiveRecord::Schema.define(:version => 20130715074618) do
     t.integer  "count",                     :null => false
     t.datetime "created_at",                :null => false
   end
+
+  create_table "weiboyis", :force => true do |t|
+    t.string "name",            :limit => 200
+    t.string "url",             :limit => 200
+    t.text   "fans_count"
+    t.text   "retweets_count"
+    t.text   "retweet_price"
+    t.text   "tweet_price"
+    t.text   "monthly_booking"
+    t.text   "weekly_booking"
+    t.text   "target"
+    t.text   "platform"
+  end
+
+  add_index "weiboyis", ["name"], :name => "name"
 
 end

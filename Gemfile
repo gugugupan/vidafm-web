@@ -33,4 +33,11 @@ gem 'airbrake'
 
 gem 'log4r'
 
-gem 'thin'
+gem 'unicorn'
+
+#gem 'redis'
+#gem 'redis-store'
+#gem 'redis-rails'
+
+gem 'redis-store', '~> 1.0.0'
+
