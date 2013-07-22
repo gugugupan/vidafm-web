@@ -3,7 +3,6 @@
 class MomentsController < ApplicationController
   def show
 
-=begin
     #================added by chunlong.yu=========================
     ip = request.env["HTTP_X_FORWARDED_FOR"]
     if Rails.cache.read(ip) == nil
@@ -14,7 +13,6 @@ class MomentsController < ApplicationController
         UserStatisticTotal.add_shared_played_count(params[:share_uid])
         UserStatisticTotal.add_shared_played_count(params[:share_uid])
     end
-=end
 
     #data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 20 )
     data = api_call( "Moment" , :fetch , params[ :id ] , { :page => 0 , :page_size => 20 } )
@@ -94,7 +92,6 @@ class MomentsController < ApplicationController
   end
   
   def rich
-=begin
     #================added by chunlong.yu=========================
     ip = request.env["HTTP_X_FORWARDED_FOR"]
     if Rails.cache.read(ip) == nil
@@ -105,7 +102,6 @@ class MomentsController < ApplicationController
         UserStatisticTotal.add_shared_played_count(params[:share_uid])
         UserStatisticTotal.add_shared_played_count(params[:share_uid])
     end
-=end
     #id = params[:id]
     #@abc = id  
     

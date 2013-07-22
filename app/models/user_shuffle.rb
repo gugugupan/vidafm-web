@@ -64,7 +64,7 @@ class UserShuffle < ActiveRecord::Base
 
      shuffles.each do |sh|
        if sh.qq_coin_id == nil
-          qq_coin = QqCoins.where(coins: sh.shuffle_result).where(is_used: false).first
+          qq_coin = QqCoin.where(coins: sh.shuffle_result).where(is_used: false).first
           if qq_coin != nil
              sh.qq_coin_id = qq_coin.id
              sh.qq_coin_code = qq_coin.code
@@ -76,7 +76,7 @@ class UserShuffle < ActiveRecord::Base
              qq_coin.save
           end
        else 
-          qq_coin = QqCoins.find(sh.qq_coin_id) 
+          qq_coin = QqCoin.find(sh.qq_coin_id) 
           sh.qq_coin_code = qq_coin.code
           sh.qq_coin_password = qq_coin.password
        end 
