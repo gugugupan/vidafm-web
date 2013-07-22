@@ -7,19 +7,17 @@ group :development do
  gem 'sqlite3'
 end
 
-group :production do
-  gem 'mysql2'
-end
+gem 'mysql2'
 
 group :assets do
-  gem 'sass-rails', '3.1.4'
+  gem 'sass-rails'
   gem 'yui-compressor'
   gem 'coffee-rails'
   gem 'uglifier'
 end
 
-#gem 'system_timer'
 gem 'jquery-rails'
+
 
 gem 'omniauth'
 gem 'omniauth-oauth2'

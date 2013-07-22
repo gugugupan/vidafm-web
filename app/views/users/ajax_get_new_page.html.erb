@@ -8,7 +8,12 @@
 		<p class="user_feed_title" style="margin-top:20px;">------ 粉丝列表 ------</p>
 	<% end -%>
 	<%= render :partial => "users/userfeed" , :collection => @user_list , :locals => { :is_self => true , :need_btn => params[ :current ] == "true" ? 3 : nil } -%>
-<% when "commentlike" , "story" -%>
+<% when "story" -%>
+	<%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox" , :act_user => @user } -%>
+	<% if @feeds .length > 0 -%>
+		<%= render :partial => "widgets/feedsparam" , :locals => { :qparams => @qparams } -%>
+	<% end -%>
+<% when "commentlike" -%>
 	<%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox" } -%>
 	<% if @feeds .length > 0 -%>
 		<%= render :partial => "widgets/feedsparam" , :locals => { :qparams => @qparams } -%>

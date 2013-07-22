@@ -1,1 +1,1 @@
-<%= link_to image_tag("icon/icon_share.png") + "分享" , sharelist_moment_url( mid ) + "?name=#{ name }", :remote => true , :method => :get , :class=>"btn_dark btn_middle" ,:style=>"margin-top:17px;float:right;padding-left:40px;" %>
+<%= link_to image_tag("icon/icon_share.png") + "分享" , URI::escape( sharelist_moment_url( mid ) + "?name=#{ name }" ) , :remote => true , :method => :get , :class=>"btn_dark btn_middle" ,:style=>"margin-top:17px;float:right;padding-left:40px;" %>

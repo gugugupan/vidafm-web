@@ -66,11 +66,11 @@ $info_color: #a6a099 ;
 	}
 
 	.feeds_icon_right {
-		right: -67px;
+		right: -52px;
 	}
 
 	.feeds_icon_left {
-		left: -67px;
+		left: -52px;
 	}
 
 	.mlarrow {
@@ -98,10 +98,13 @@ $info_color: #a6a099 ;
 		box-shadow: 0px 1px 3px #888888;
 		padding:5px;
 		position: relative;
-		width: 360px;
+		width: 375px;
 
 		.image_container {
 			width: 100%;
+			position: relative;
+			float: left;
+			margin-top: 5px;
 
 			.image_container_row {
 				width: 100%;
@@ -147,82 +150,50 @@ $info_color: #a6a099 ;
 			}
 		}
 
-		.float_likes {
-			position: absolute;
-			top: 14px;
-			right: 14px;
-			display: block;
-			z-index: 10;
-			height: 20px;
-			padding-left: 25px;
-			color: white;
-			font-size: 14px;
-
-			border:10px solid rgba(0,0,0,0);
-			*border:10px solid #000000; // hack for ie7
-			@include all_border_radius( 20px ) ;
-
-			background-position: left center;
-			background-repeat: no-repeat;
-			@include all_background_rgba(0,0,0,0.7);
-		}
-		.unlike {
-			background-image: image-url("icon/icon_timeline_unlike.png");
-		}
-		.liked {
-			background-image: image-url("icon/icon_timeline_liked.png");
-		}
-
 		.float_avatar {
-			position: absolute;
-			top: 0px;
-			left: 0px;
+			float: left;
 			height: 40px;
 			width: 40px;
 			z-index: 10;
-
-			border: 5px solid white;
-			@include all_border_radius( 6px ) ;
 		}
 
 		.float_datebox {
-			position: absolute;
-			top: 0px;
-			left: 0px;
+			float: left;
 			height:40px;
 			width:40px;
 			z-index: 10;
 
-			border: 2px solid white;
-			@include all_border_radius( 10px ) ;
 			overflow:hidden;
 
 			.month {
 				width: 100%;
+				height: 10px;
 				float: left;
 
 				background-color: crimson ; 
 				font-size: 9px ;
 				color: white;
 				text-align: center ;
+				padding-top: 2px;
 			}
 
 			.day {
 				width: 100%;
-				height: 36px;
+				height: 26px;
 				float: left;
 
 				background-color: white;
-				font-size: 26px;
+				font-size: 24px;
 				color: black;
 				text-align: center;
+				padding-top: 2px;
 			}
 		}
 
 		.image_box_big {
 			position:absolute;
 			height:213px;
-			width:212px;
+			width:227px;
 		}
 
 		.image_box_middle {
@@ -233,44 +204,53 @@ $info_color: #a6a099 ;
 		}
 
 		.image_box_small {
-			top: 112px;
+			top: 107px;
 			position:absolute;
 			height:106px;
-			right:5px;
+			right:0px;
 			width:147px;
 		}
 	}
 
 	.mlinfo {
-		width: auto;
-		margin: 5px 10px 5px 5px;
+		width: 325px;
+		margin-left: 10px;
+		float: left;
 		position: relative;
-
-		.gotoslideshow {
-			float: left;
-			height: 45px;
-			width: 45px;
-			position: absolute;
-			top: -25px;
-			left: 0px;
-
-			img {
-				width: 100%;
-				height: 100%;
-			}
-		}
 
 		.mltitle {
 			float:left;
-			padding-top:8px;
-			max-width: 100%;
+			color: #666666;
+			font-size: 14px;
 			word-wrap: break-word;
+			margin-top: 4px;
+		}
+
+		.mlsubtitle {
+			clear: left;
+			float: left;
+			color: $info_color;
+			font-size: 12px;
+			word-wrap: break-word;
+			margin-top: 4px;
+
+			a {
+				color: $info_color;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 
 		.mldata {
 			float: right;
-			padding-top:8px;
+			padding-top:12px;
 			*width: 150px;
+
+			color: $info_color ;
+			font-size:12px;
+			//text-shadow: 0px 1px 2px rgba(0,0,0,.1);
 
 			p {
 				float: right;
@@ -278,11 +258,57 @@ $info_color: #a6a099 ;
 				padding-left: 17px;
 			}
 		}
+	}
 
-		p {
-			color: $info_color ;
-			font-size:14px;
-			text-shadow: 0px 1px 2px rgba(0,0,0,.1);
+	.poitag_info {
+		float: left;
+		width: auto;
+	}
+
+	.mlbtn {
+		width: 100%;
+		height: 35px;
+		float: left;
+		margin-top: 5px;
+
+		.play_slideshow {
+			width: 186px;
+			height: 35px;
+			float: left;
+			margin-left: 1px;
+			background: image-url("feeds/moment_list_play_like.png") no-repeat 0 0;
+
+			&:hover {
+				background-position: 0px -35px;
+			}
+		}
+
+		.like_moment {
+			width: 70px;
+			height: 24px;
+			padding-top: 11px;
+			padding-left: 116px;
+			font-size: 14px;
+			color: white;
+			font-weight: 800;
+			float: right;
+			margin-right: 1px;
+			background: image-url("feeds/moment_list_play_like.png") no-repeat;
+		}
+
+		.unlike {
+			background-position: -187px 0px;
+
+			&:hover {
+				background-position: -187px -70px;
+			}
+		}
+		.liked {
+			background-position: -187px -35px;
+
+			&:hover {
+				background-position: -187px -105px;
+			}
 		}
 	}
 
@@ -294,7 +320,7 @@ $info_color: #a6a099 ;
 			float: left;
 			margin: 5px 5px 5px 0;
 
-			@include all_border_radius( 8px ) ;
+			//@include all_border_radius( 8px ) ;
 		}
 
 		.mlcommentlike_icon {

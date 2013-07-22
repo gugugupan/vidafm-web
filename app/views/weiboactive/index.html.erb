@@ -1,0 +1,132 @@
+<% content_for :title do %>
+首届照片微电影大赛
+<% end %>
+
+<div class="container wrapper">
+    <%= render :partial => "nav", :locals => { :user => @cur_user } %>
+
+    <%= render :partial => "header_00", :locals => { :user => @cur_user } %>
+
+    <%= render :partial => "daystar" %>
+
+    <!--编辑推荐-->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center block-title">
+                编辑推荐
+            </div>
+        </div>
+    </div>
+    <% unless @mobile == true %>
+    <%= storyGallery @momentEditor, "", 4, 1 %>
+    <% else %>
+    <%= storyGallery @momentEditor, "", 2, 2 %>
+    <% end %>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center">
+                <%= link_to "查看所有编辑推荐作品", {controller:"weiboactive", action:"editorstory"}, class:"btn btn-pink btn-large" -%>
+            </div>
+        </div>
+    </div>
+
+    <!--热门作品-->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center block-title">
+                热门作品
+            </div>
+        </div>
+    </div>
+    <% unless @mobile == true %>
+    <%= storyGallery @momentHot, "", 4, 1 %>
+    <% else %>
+    <%= storyGallery @momentHot, "", 2, 2 %>
+    <% end %>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center">
+                <%= link_to "查看所有热门作品", {controller:"weiboactive", action:"hotstory"}, class:"btn btn-pink btn-large" -%>
+            </div>
+        </div>
+    </div>
+
+    <!--获奖名单 & 排行榜-->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center block-title">
+                排行榜单
+            </div>
+        </div>
+    </div>
+    <% unless @mobile == true %>
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="placard">
+                <div class="title">
+                    原创达人 Top10
+                </div>
+                <ul class="talent-container">
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@createSortJson), :locals => { :show_type => "create"} -%>
+                </ul>
+                <br>
+                <%= link_to "查看总榜及获奖名单",
+                {:controller => "weiboactive",:action => "top", :type => "create"},
+                :class => "btn btn-yellow btn-large" %>
+            </div>
+        </div>
+
+        <div class="span6">
+            <div class="placard">
+
+                <div class="title">
+                    分享达人 Top10
+                </div>
+                <ul class="talent-container">
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@sharedSortJson), :locals => { :show_type => "shared"} -%>
+                </ul>
+                <br>
+                <%= link_to "查看总榜及获奖名单",
+                {:controller => "weiboactive",:action => "top", :type => "shared"},
+                :class => "btn btn-cyanogen btn-large" %>
+            </div>
+        </div>
+    </div>
+    <% else %>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="placard">
+                <div class="title">
+                    原创达人 Top10
+                </div>
+                <ul class="talent-container">
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@createSortJson), :locals => { :show_type => "create"} -%>
+                </ul>
+                <br>
+                <%= link_to "查看总榜及获奖名单",
+                {:controller => "weiboactive",:action => "top", :type => "create"},
+                :class => "btn btn-yellow btn-large" %>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="placard">
+
+                <div class="title">
+                    分享达人 Top10
+                </div>
+                <ul class="talent-container">
+                    <%= render :partial => "widgets/award_item" , :collection => talentUserJson(@sharedSortJson), :locals => { :show_type => "shared"} -%>
+                </ul>
+                <br>
+                <%= link_to "查看总榜及获奖名单",
+                {:controller => "weiboactive",:action => "top", :type => "shared"},
+                :class => "btn btn-cyanogen btn-large" %>
+            </div>
+        </div>
+    </div>
+    <% end %>
+
+    <%= render :partial => "footer" %>
+</div>

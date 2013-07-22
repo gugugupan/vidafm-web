@@ -79,8 +79,8 @@ class ApplicationController < ActionController::Base
   end
 
   def get_notification_sentence( noti )
-    unless [2,2,3,3,4,4,9,9,10,10,12,12].include?(noti[ "notification_type" ])
-      if noti[ 'moment' ][ "category" ] = "random" and noti[ 'moment' ][ "name" ] .empty?
+    if [2,2,3,3,4,4,9,9,10,10,12,12].include?(noti[ "notification_type" ])
+      if noti[ 'moment' ][ "category" ] == "random" and noti[ 'moment' ][ "name" ] .empty?
         noti[ 'moment' ][ "name" ] = "#{ noti[ 'moment' ][ 'created_at' ] [ 5 , 2 ] }月#{ noti[ 'moment' ][ 'created_at' ] [ 8 , 2 ]}日随拍" 
       end
     end
@@ -100,7 +100,7 @@ class ApplicationController < ActionController::Base
     end 
     if noti[ "notification_type" ] == 5 
       return "在照片中提到了您" if noti[ "activity" ] [ "activity_type" ] == 1 ;
-      return "在视频中提到了您" if noti[ "activity" ] [ "activity_type" ] == 1 ;
+      return "在视频中提到了您" if noti[ "activity" ] [ "activity_type" ] == 3 ;
     end 
     return "在评论中提到了您" if noti[ "notification_type" ] == 6 
     return "回复了您的照片" if noti[ "notification_type" ] == 7 
@@ -115,6 +115,7 @@ class ApplicationController < ActionController::Base
     return "关注了您" if noti[ "notification_type" ] == 51 
     return "希望关注您" if noti[ "notification_type" ] == 52
     return "" if noti[ "notification_type" ] == 99
+    ""
   end
 
   def api_call( model , method , id , params )

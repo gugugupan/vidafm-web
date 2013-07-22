@@ -13,7 +13,7 @@
 			<%= render :partial => "audiobutton" , :locals => { :audio => pic[ "audio" ] } %>
 		<% end -%>
 		<% unless pic[ "description" ] .length == 0 -%>
-			<p class="photo_description"> <%= empty_descripe( pic[ "description" ] ) %> </p>
+			<p class="photo_description"> <%= express_comment empty_descripe( pic[ "description" ] ) %> </p>
 		<% end -%>
 			<font class="timer" title="拍摄时间"> <%= time_ago_now( pic[ "created_at" ] ) %>前 </font>
 		</div>

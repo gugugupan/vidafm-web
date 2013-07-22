@@ -378,7 +378,7 @@ function show_photo()
 		if ( soundManager .ok() )
 		{
 			$( "#slideshow_audio_hint" ) .css( "display" , "block" ) ;
-			soundManager .setVolume( "bmusic" + music_num , 10 ) ;
+			soundManager .setVolume( "bmusic" + music_num , 40 ) ;
 			var $audio_selector = $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".slideshow_audio" ) .eq( 0 ) ;
 			var audio_id = $audio_selector .attr( "audioid" ) ,
 				audio_src = $audio_selector .attr( "audiosrc" ) ;
@@ -391,8 +391,8 @@ function show_photo()
 						$( "#slideshow_audio_hint" ) .css( "display" , "none" ) ;
 						if ( has_video() ) play_video() ;
 						else {
-							soundManager .setVolume( "bmusic" + music_num , 50 ) ;
-							continue_background_music() ;
+							soundManager .setVolume( "bmusic" + music_num , 100 ) ;
+							//continue_background_music() ;
 							play_next() ;
 						}
 					}
@@ -411,7 +411,7 @@ function has_video()
 
 function play_video()
 {
-	soundManager .setVolume( "bmusic" + music_num , 10 ) ;
+	soundManager .setVolume( "bmusic" + music_num , 40 ) ;
 	var $video_selector = $( ".slideshow_window" ) .eq( slideshow_num ) .find( ".video-js" ) ;
 	$video_selector .css( "z-index" , "10" ) ;
 	var video_name = $video_selector .attr( "id" ) ;
@@ -421,8 +421,8 @@ function play_video()
 	video .height( $( ".slideshow_window:eq(" + slideshow_num + ")" ) .height() + 1 ) ;
 	video .removeEvent( "ended" ) ;
 	video .addEvent( "ended" , function() {
-		soundManager .setVolume( "bmusic" + music_num , 50 ) ;
-		continue_background_music() ;
+		soundManager .setVolume( "bmusic" + music_num , 100 ) ;
+		//continue_background_music() ;
 		play_next() ;
 	} ) ;
 	video .removeEvent( "ended" ) ;

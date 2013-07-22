@@ -1,0 +1,19 @@
+<% content_for :title do %>
+    所有热门作品
+<% end %>
+
+<div class="container wrapper">
+    <%= render :partial => "nav", :locals => { :user => @cur_user } %>
+
+    <!--所有热门作品-->
+    <% unless @mobile == true %>
+    <%= storyGallery @momentHot, "所有热门作品", 4 %>
+    <% else %>
+    <%= storyGallery @momentHot, "所有热门作品", 2 %>
+    <% end %>
+    <% unless @momentPage == 1 || @momentPage == 0 %>
+    <a href="/weiboactive/gethotstory" class="more-link" data-toggle="load-more" data-total-page="<%= @momentPage %>" data-current-page="1">点击显示更多</a>
+    <% end %>
+
+    <%= render :partial => "footer" %>
+</div>

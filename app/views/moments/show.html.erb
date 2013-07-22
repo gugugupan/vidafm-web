@@ -1,6 +1,6 @@
 <%= content_for :title do %>
     <% moment_name @moment %>
-    <%= get_name( @moment ) %>Vida（微达） - 手机照片故事社区
+    <%= get_name( @moment ) %><%= vida_name -%>
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
@@ -95,9 +95,9 @@
         <div id="pic-block">
             <%= render :partial => "pic" , :collection => @moment[ "items" ] , :locals => { :category => @moment[ "category" ] } %>
             <% if @moment[ "items_count" ] > 20 -%>
-            <a id="refresh-link" class="mouse" style="width:100%;margin-left:0;" href=javascript:goLazyLoad()>点击显示更多</a>
+                <a id="refresh-link" class="mouse" style="width:100%;margin-left:0;" href=javascript:goLazyLoad()>点击显示更多</a>
             <% else -%>
-            <a id="refresh-link" style="width:100%;margin-left:0;">没有更多了</a>
+                <a id="refresh-link" style="width:100%;margin-left:0;">没有更多了</a>
             <% end -%>
             <div class="clearfix"> </div>
         </div>

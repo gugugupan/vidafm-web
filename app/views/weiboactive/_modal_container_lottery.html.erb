@@ -1,0 +1,29 @@
+<!--抽奖-->
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" class="modal hide fade in" id="modal-container-lottery">
+    <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">
+            ×
+        </button>
+        <h3 id="myModalLabel"> 分享成功并参加抽奖 </h3>
+    </div>
+    <div class="modal-body text-center">
+        <div style="position: relative; width: 300px; margin: 0px auto; max-width: 70%;">
+            <img src="/assets/weiboactive/lottery1.png" style="width: 100%"/>
+            <img src='/assets/weiboactive/g16924.png' id="clock" style="position: absolute; left: 0; top: 0;width: 100%;cursor: pointer;">
+        </div>
+        <br>
+        <div class="hide">
+            <%= form_tag( "#" , { :remote => true } ) do %>
+            <% end %>
+        </div>
+        <button class="btn btn-yellow btn-large" onclick="rotate()" id="lottery_btn">
+            抽奖赢Q币
+        </button>
+    </div>
+    <div class="modal-footer">
+        <a href="/weiboactive/lottery.html" class="btn btn-primary hide" id="lottery_link"> 抽奖成功，点击查看兑换码 </a>
+        <button aria-hidden="true" data-dismiss="modal" class="btn">
+            关闭
+        </button>
+    </div>
+</div>

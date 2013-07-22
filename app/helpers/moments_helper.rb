@@ -1,5 +1,4 @@
-#!/bin/env ruby
-# encoding: utf-8
+#encoding: utf-8
 module MomentsHelper
 	def vida_pagination(base_url, page_count, current_page, options)
 
@@ -78,6 +77,10 @@ module MomentsHelper
 		image_tag placeholder_url, :class => "user-avatar"
 	end
 
+	def vida_name
+		"Vida 微图记 - 给照片新的定义"
+	end
+
 	def moment_category( str )
 		alph = {
 			"random" => "随拍" ,
@@ -145,10 +148,12 @@ module MomentsHelper
 	end
 
 	# 将评论中行如 @Yukis(123456) 括号以及里面的数字去掉
+=begin  This is wrong!!!
 	def process_comment( comment )
 		comment .sub( /@(.*)\|(.*)\([0-9]+\)/ , "@#{$2}" )
 		comment .sub( /@(.*)\|(.*)\([0-9]+\)/ , "@#{$2}" )
 	end
+=end
 
 	# 给feeds生成一个id
 	def feed_id( feeds )
@@ -158,4 +163,16 @@ module MomentsHelper
 		when "like_feed" then "like#{ feeds[ "type" ] == "activity" ? feeds[ "activities" ] [ 0 ] [ "id" ] : feeds[ "moment" ] [ "id" ] }"
 		end
 	end
+
+	# 将字符串中@weiboer|Akira-ming(1871901020)的内容变为@Akira-ming
+	def express_comment( s )
+		return "" if s .nil? 
+		reg = /\@[a-zA-Z0-9\-]*\|([^(]*)\([\w]*\)/
+		count = 0
+		while !( s !~ reg ) do
+			s = s .sub( reg , "@#{ $1 }" )
+			break if ( count = count + 1 ) > 10
+		end
+		s
+	end 
 end

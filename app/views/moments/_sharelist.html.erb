@@ -9,7 +9,7 @@
 		<p> <%= @sns_hash[ sns[ "vendor" ] ] [ :name ] %> </p>
 		<div class="clearfix"></div>
 		<%= form_tag( "#{share_moment_url}#{@sns_hash[ sns[ 'vendor' ] ] [ :url_attr ] }" , { :remote => true , :style => "padding-top:15px;" } ) do %>
-			<%= text_area_tag "content" , "我发现这个故事 ##{ params[ :name ] }# 很不错，特意分享 @Vida微达" , :style => "width: 98%; float: left; margin-bottom: 10px;height:50px;" %>
+			<%= text_area_tag "content" , "##{ params[ :name ] }#，很爱这个照片微电影[撒花]，赶快来看看吧 ！[太开心] @Vida微图记 >> " , :style => "width: 98%; float: left; margin-bottom: 10px;height:50px;" %>
 			<%= submit_tag "发布" , :class => "btn_small btn_blue" , :style => "float: right;" %>
 			<div class="clearfix"></div>
 		<% end -%>

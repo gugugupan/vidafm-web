@@ -4,7 +4,7 @@ puts activity[ "additional_params" ] .nil?
 puts activity[ "description" ] .nil? 
 puts activity[ "description" ] 
 %>
-<% unless activity[ "additional_params" ] .nil? && activity[ "description" ] .nil? -%>
+<% unless activity[ "additional_params" ] .nil? && activity[ "description" ] .nil? && activity[ "poi" ] .empty? && activity[ "tags" ] .empty? -%>
 <div class="info_window">
 	<% unless activity[ "description" ] .nil? -%>
 		<% if activity[ "description" ] .length > 0 -%>
@@ -32,6 +32,14 @@ puts activity[ "description" ]
 		<% end -%>
 	</div>
 	<% end -%>
+	<% end -%>
+
+	<% unless activity[ "poi" ] .empty? && activity[ "tags" ] .empty? -%>
+		<div class="info_poitag">
+			<%= render :partial => "/widgets/poi" , :object => activity[ "poi" ] -%>
+			<%= render :partial => "/widgets/tag" , :collection => activity[ "tags" ] -%>
+			<div class="clearfix"> </div>
+		</div>
 	<% end -%>
 </div>
 <% end -%>

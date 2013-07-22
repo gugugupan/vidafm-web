@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  <%= get_name( @user ) %>Vida（微达） - 手机照片故事社区
+  <%= get_name( @user ) %><%= vida_name -%>
 <% end -%>
 
 <%= content_for :page_specific_asset do %>
@@ -166,7 +166,7 @@
 
         <% if @current_user && @status != 401 -%>
             <div id="feed_container" type="story" blockstyle="puzzle">
-                <%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :boxtype => "datebox"}-%>
+                <%= render :partial => "widgets/feeds" , :collection => @feeds , :locals => { :show_type => "datebox" , :act_user => @user } -%>
                 <%= render :partial => "widgets/feedsparam" , :locals => { :qparams => @qparams } -%>
                 <div class="clearfix last_clearfix"> </div>
             </div>

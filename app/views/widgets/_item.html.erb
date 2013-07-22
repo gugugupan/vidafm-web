@@ -1,11 +1,24 @@
+<%#
+	block_style = [ "puzzle" , "block" ] : 中间拼图的模式是拼图（APIv3 feeds）还是普通的三张拼（APIv2 moment search）
+	show_type = [ "user" , "date" ] : 左上角显示用户头像或日历框
+%>
 <div class="feed" id="moment<%= item[ 'id' ] %>">
 	<div class="mlcontainer"> <!-- mlcontainer star -->
 		<div class="mlbox">
 			<% if show_type == "user" -%>
 				<%= avatar_tag_b( item[ "user" ] , { :class => "float_avatar" } ) %>
 			<% else -%>
-				<%= datebox_tag( item[ "moment" ] [ "created_at" ] ) %>
+				<%= datebox_tag( get_time( item ) ) %>
 			<% end -%>
+
+			<div class="mlinfo">
+				<p class="mltitle"><%= moment_name item %></p>
+				<div class="mldata">
+					<p class="mltime"> <%= time_ago_now( get_time( item ) ) %>前 </p>
+					<div class="clearfix"></div>
+				</div>
+				<p class="mlsubtitle"><%= link_to item[ "user" ] [ "name" ] , "/users/#{ item[ "user" ] [ "id" ] }" %>&nbsp;| 照片 <%= item[ "photo_count" ] %></p>
+			</div>
 
 			<div class="image_container">
 				<% if block_style == "block" -%>
@@ -16,16 +29,20 @@
 				<% end -%>
 				<div class="clearfix"> </div>
 			</div>
-			<div class="mlinfo">
-				<p class="mltitle">#<%= moment_category item[ "category" ] %> <%= moment_name item %> </p>
-				<div class="mldata">
-					<p class="mllike"> <%= item[ "likes_count" ] %> </p>
-					<p class="mlnumber"> <%= item[ "items_count" ] %> </p>
-					<p class="mltime"> <%= time_ago_now( get_time( item ) ) %>前 </p>
-					<div class="clearfix"></div>
-				</div>
-				<div class="clearfix"></div>
+
+			<div class="poitag_info">
+				<%= render :partial => "/widgets/poi" , :collection => item[ "pois" ] [ 0 , 3 ] -%>
+				<%= render :partial => "/widgets/tag" , :collection => item[ "tags" ] [ 0 , 5 ] -%>
+				<div class="clearfix"> </div>
 			</div>
+
+			<div class="mlbtn">
+				<%= link_to "" , "/moments/#{ item[ "id" ] }" , :class => "play_slideshow" -%>
+				<%= link_to like_moment_url( item[ "id" ] ) , :id => "like#{ item[ "id" ] }" , :class => "like_moment unlike" , :remote => true , :method => "PUT" do -%>
+					<%= item[ "likes_count" ] -%>
+				<% end -%>
+			</div>
+
 			<div class="clearfix"></div>
 			<%= image_tag "images/mlarrow_right.png" , :class => "mlarrow mlarrow_right" %>
 			<%= image_tag "images/mlarrow_left.png" , :class => "mlarrow mlarrow_left" %> 
