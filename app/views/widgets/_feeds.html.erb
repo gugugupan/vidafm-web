@@ -61,7 +61,7 @@
 					<%= image_tag "icon/icon_small_comment.png" , :class => "mlcommentlike_icon" %>
 					<div class="mlcommentlike_content">
 						<p> 
-							<span>评论了</span> <%= feeds[ "content" ] -%>
+							<span>评论了</span> <%= express_comment feeds[ "content" ] -%>
 						</p>
 						<p class="mltime"> <%= time_ago_now( get_time( feeds ) ) %>前 </p>
 					</div>

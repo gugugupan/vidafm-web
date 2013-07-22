@@ -275,6 +275,7 @@ $info_color: #a6a099 ;
 			width: 186px;
 			height: 35px;
 			float: left;
+			margin-left: 1px;
 			background: image-url("feeds/moment_list_play_like.png") no-repeat 0 0;
 
 			&:hover {
@@ -291,6 +292,7 @@ $info_color: #a6a099 ;
 			color: white;
 			font-weight: 800;
 			float: right;
+			margin-right: 1px;
 			background: image-url("feeds/moment_list_play_like.png") no-repeat;
 		}
 
