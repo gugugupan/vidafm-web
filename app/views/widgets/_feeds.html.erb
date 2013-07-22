@@ -79,7 +79,7 @@
 			<%# Like feed %>
 			<% if feeds[ "feed_type" ] == "like_feed" -%>
 				<div class="mlcommentlike">
-					<% for user in feeds[ "users" ] do -%>
+					<% for user in feeds[ "users" ] [ 0 , 4 ] do -%>
 						<%= avatar_tag_b user , { :class => "mlcommentlike_image_left" } %>
 					<% end -%>
 					<%= image_tag "icon/icon_small_like.png" , :class => "mlcommentlike_icon" %>
