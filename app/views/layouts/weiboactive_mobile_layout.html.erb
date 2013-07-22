@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><%= yield :title %></title>
+        <meta name="Description" content="<%= raw yield :meta_description %>">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+        <%= stylesheet_link_tag    "weiboactive_mobile" %>
+        <%= stylesheet_link_tag    "bootstrap/font-awesome.min" %>
+    </head>
+    <body>
+        <%= yield %>
+        <%= render :partial => "modal_container_share" %>
+        <%= render :partial => "modal_container_lottery" %>
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <%= javascript_include_tag "weiboactive" %>
+    </body>
+</html>

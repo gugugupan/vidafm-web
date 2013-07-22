@@ -2,6 +2,20 @@
 # encoding: utf-8
 class MomentsController < ApplicationController
   def show
+
+=begin
+    #================added by chunlong.yu=========================
+    ip = request.env["HTTP_X_FORWARDED_FOR"]
+    if Rails.cache.read(ip) == nil
+        Rails.cache.write ip,"1"
+        MomentStatistic.add_played_count(params[:id])
+        UserStatistic.add_create_played_count(params[:create_uid])
+        UserStatistic.add_create_played_count(params[:create_uid])
+        UserStatisticTotal.add_shared_played_count(params[:share_uid])
+        UserStatisticTotal.add_shared_played_count(params[:share_uid])
+    end
+=end
+
     #data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 20 )
     data = api_call( "Moment" , :fetch , params[ :id ] , { :page => 0 , :page_size => 20 } )
     render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
@@ -80,6 +94,18 @@ class MomentsController < ApplicationController
   end
   
   def rich
+=begin
+    #================added by chunlong.yu=========================
+    ip = request.env["HTTP_X_FORWARDED_FOR"]
+    if Rails.cache.read(ip) == nil
+        Rails.cache.write ip,"1"
+        MomentStatistic.add_played_count(params[:id])
+        UserStatistic.add_create_played_count(params[:create_uid])
+        UserStatistic.add_create_played_count(params[:create_uid])
+        UserStatisticTotal.add_shared_played_count(params[:share_uid])
+        UserStatisticTotal.add_shared_played_count(params[:share_uid])
+    end
+=end
     #id = params[:id]
     #@abc = id  
     

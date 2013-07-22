@@ -1,0 +1,31 @@
+<% content_for :title do %>
+    首届照片微电影大赛
+<% end %>
+
+<div class="container wrapper">
+    <%= render :partial => "nav", :locals => { :user => @cur_user } %>
+
+    <%= render :partial => "header_02", :locals => { :user => @cur_user } %>
+
+    <!--我的作品-->
+    <% unless @mobile == true %>
+    <%= storyGallery @momentMyCreated, "我的作品", 4 %>
+    <% else %>
+    <%= storyGallery @momentMyCreated, "我的作品", 2 %>
+    <% end %>
+    <% unless @momentPageC == 1 || @momentPageC == 0 %>
+    <a href="/weiboactive/getmycreated?userId=<%= @cur_user[:id] %>" class="more-link" data-toggle="load-more" data-total-page="<%= @momentPageC %>" data-current-page="1">点击显示更多</a>
+    <% end %>
+
+    <!--我的分享-->
+    <% unless @mobile == true %>
+    <%= storyGallery @momentMyShared, "我的分享", 4 %>
+    <% else %>
+    <%= storyGallery @momentMyShared, "我的分享", 2 %>
+    <% end %>
+    <% unless @momentPageS == 1 || @momentPageS == 0 %>
+    <a href="/weiboactive/getmyshared?userId=<%= @cur_user[:id] %>" class="more-link" data-toggle="load-more" data-total-page="<%= @momentPageS %>" data-current-page="1">点击显示更多</a>
+    <% end %>
+
+    <%= render :partial => "footer" %>
+</div>

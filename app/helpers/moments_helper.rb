@@ -1,5 +1,4 @@
-#!/bin/env ruby
-# encoding: utf-8
+#encoding: utf-8
 module MomentsHelper
 	def vida_pagination(base_url, page_count, current_page, options)
 

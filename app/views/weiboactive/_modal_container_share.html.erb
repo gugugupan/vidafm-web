@@ -1,0 +1,34 @@
+<% sns_qq = qqShareModal %>
+<div id="modal-container-share" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" sns-qq="<%= sns_qq %>">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×
+        </button>
+        <h3 id="myModalLabel"> <%= image_tag "/assets/icon/icon_tencent.png" %> 分享到腾讯微博 </h3>
+    </div>
+    <div class="modal-body">
+        <% if @cur_user.nil? %>
+        <p class="text-error">
+            请先登录...
+        </p>
+        <% elsif sns_qq %>
+            <%= form_tag( "#" , { :remote => true , :style => "padding-top:15px;" } ) do %>
+            <%= text_area_tag "content" , "我发现这个故事 ##{ params[ :name ] }# 很不错，特意分享 @Vida微达" , :style => "width: 98%; float: left; margin-bottom: 10px;height:50px;" %>
+            <% end %>
+        <% else %>
+        <p class="text-error">
+            您并没有设置分享到腾讯微博,请下载唯达客户端并进行设置.
+        </p>
+        <% end %>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">
+            关闭
+        </button>
+        <% if @cur_user && sns_qq %>
+        <button class="btn btn-primary">
+            发布
+        </button>
+        <% end %>
+    </div>
+</div>

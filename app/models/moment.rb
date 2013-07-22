@@ -1,7 +1,7 @@
 require "VIDA"
 
 #encoding: utf-8
-class Moment
+class Moment < ActiveRecord::Base
 
   # 获取单个故事
   def self.fetch(id, current_user , options = {})

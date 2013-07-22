@@ -79,7 +79,6 @@ class ApplicationController < ActionController::Base
   end
 
   def get_notification_sentence( noti )
-    puts noti.to_json
     if [2,2,3,3,4,4,9,9,10,10,12,12].include?(noti[ "notification_type" ])
       if noti[ 'moment' ][ "category" ] == "random" and noti[ 'moment' ][ "name" ] .empty?
         noti[ 'moment' ][ "name" ] = "#{ noti[ 'moment' ][ 'created_at' ] [ 5 , 2 ] }月#{ noti[ 'moment' ][ 'created_at' ] [ 8 , 2 ]}日随拍" 

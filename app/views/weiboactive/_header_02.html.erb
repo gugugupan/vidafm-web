@@ -1,0 +1,93 @@
+<!--my profile -->
+<% unless @mobile %>
+<header class="header">
+    <div class="row-fluid">
+        <div class="span4">
+            <div class="myprofile-container text-center">
+                <%= avatar_tag @profile_user, {:nolink => true, :class => "user-avatar"} %>
+                <div class="user-name">
+                    <%= @profile_user[ :name ] %>
+                </div>
+                <br>
+                <span class="btn btn-yellow btn-large" href="/"> 原创排名 No.<%= @create_rank %> </span>
+                <br>
+                <br>
+                <span class="btn btn-cyanogen btn-large" href="/"> 分享排名 No.<%= @share_rank %> </span>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="integral">
+                <%= @currCreateScore%>
+            </div>
+            <p class="p22-5" style="margin-bottom: 12px;">
+                我的原创得分
+            </p>
+            <p class="p15" style="margin-bottom: 20px;">
+                下载Vida微图记，上传照片做成微电影并添加“<span class="label badge-info">#微电影大赛</span>”Tag，原创得分+10
+            </p>
+            <%= link_to "如何获得原创得分",
+            {:controller => "weiboactive",:action => "rule_oa"},
+            :class => "btn btn-yellow btn-large" %>
+        </div>
+        <div class="span4">
+            <div class="integral">
+                <%= @currShareScore %>
+            </div>
+            <p class="p22-5" style="margin-bottom: 12px;">
+                我的分享得分
+            </p>
+            <p class="p15" style="margin-bottom: 20px;">
+                分享一次，传播得分+1，分享为微电影带来一次播放，传播得分+10
+            </p>
+            <%= link_to "如何获得分享得分",
+            {:controller => "weiboactive",:action => "rule_share"},
+            :class => "btn btn-cyanogen btn-large" %>
+        </div>
+    </div>
+</header>
+<% else %>
+<header class="header">
+    <div class="row-fluid text-center myprofile-container">
+        <div class="span12">
+            <%= avatar_tag @profile_user, {:nolink => true, :class => "user-avatar"} %>
+            <div class="user-name">
+                <%= @profile_user[ :name ] %>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid text-center">
+        <div class="span6">
+            <span class="btn btn-yellow btn-large" href="/"> 原创排名 No.<%= @create_rank %> </span>
+        </div>
+        <div class="span6">
+            <span class="btn btn-cyanogen btn-large" href="/"> 分享排名 No.<%= @share_rank %> </span>
+        </div>
+    </div>
+    <hr>
+    <div class="row-fluid text-center">
+        <div class="span6">
+            <div class="integral">
+                <%= @currCreateScore %>
+            </div>
+            <p class="p22-5" style="margin-bottom: 12px;">
+                我的原创得分
+            </p>
+            <%= link_to "如何获得原创得分",
+            {:controller => "weiboactive",:action => "rule_oa"},
+            :class => "btn btn-yellow btn-large" %>
+        </div>
+        <div class="span6">
+            <div class="integral">
+                <%= @currShareScore %>
+            </div>
+            <p class="p22-5" style="margin-bottom: 12px;">
+                我的分享得分
+            </p>
+            <%= link_to "如何获得分享得分",
+            {:controller => "weiboactive",:action => "rule_share"},
+            :class => "btn btn-cyanogen btn-large" %>
+        </div>
+    </div>
+</header>
+<% end %>

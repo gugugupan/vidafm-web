@@ -1,0 +1,46 @@
+<% content_for :title do %>
+领取Q币
+<% end %>
+<!--抽奖-->
+<div class="container wrapper">
+    <%= render :partial => "nav", :locals => { :user => @cur_user } %>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="text-center block-title">
+                领取Q币
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> 编号 </th>
+                        <th> Q币 </th>
+                        <th> 卡号 </th>
+                        <th> 卡密码 </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @list_qq_coins.each_with_index do |a, i| %>
+                    <tr class="success">
+                        <td> <%= raw '<span class="badge badge-success">' + (i + 1).to_s + '</span>' %> </td>
+                        <td> <%= a[:shuffle_result] %>Q币 </td>
+                        <td> <%= a.qq_coin_code %> </td>
+                        <td> <%= a.qq_coin_password %> </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="alert alert-info">
+        <span class="label label-info">注意</span> 刚抽到的Q币不能立即分发卡号和密码，可能需要24小时后才能领取。。。
+    </div>
+    <div class="alert">
+        <a href="http://pay.qq.com/ipay/index.shtml?n=60&c=qqacct_save&ch=qqcard,kj&aid=pay.index.button.ljcz">立即去充Q币！！</a>
+    </div>
+</div>
