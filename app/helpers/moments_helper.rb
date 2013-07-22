@@ -168,7 +168,7 @@ module MomentsHelper
 	# 将字符串中@weiboer|Akira-ming(1871901020)的内容变为@Akira-ming
 	def express_comment( s )
 		return "" if s .nil? 
-		reg = /\@[a-zA-Z0-9]*\|([^(]*)\([\d]*\)/
+		reg = /\@[a-zA-Z0-9\-]*\|([^(]*)\([\w]*\)/
 		count = 0
 		while !( s !~ reg ) do
 			s = s .sub( reg , "@#{ $1 }" )
