@@ -5,7 +5,7 @@ class MomentsController < ApplicationController
 
     #================added by chunlong.yu=========================
     ip = request.env["HTTP_X_FORWARDED_FOR"]
-    if Rails.cache.read(ip) == nil
+    if Rails.cache.read(ip) == nil && ip != nil
         Rails.cache.write ip,"1"
         if params[:should_statistic]
           MomentStatistic.add_played_count(params[:id])
@@ -94,7 +94,7 @@ class MomentsController < ApplicationController
   def rich
     #================added by chunlong.yu=========================
     ip = request.env["HTTP_X_FORWARDED_FOR"]
-    if Rails.cache.read(ip) == nil
+    if Rails.cache.read(ip) == nil && ip != nil
         Rails.cache.write ip,"1"
         if params[:should_statistic]
           MomentStatistic.add_played_count(params[:id])
