@@ -5,6 +5,13 @@ class MomentsController < ApplicationController
 
     #================added by chunlong.yu=========================
     ip = request.env["HTTP_X_FORWARDED_FOR"]
+
+    Rails.logger.info "==========moment/show #{ip}================"
+    Rails.logger.info "==========id: #{params[:id]}=========="
+    Rails.logger.info "==========share_uid: #{params[:share_uid]}============"
+    Rails.logger.info "==========create_uid: #{params[:create_uid]}============"
+    Rails.logger.info "==========should_statistic: #{params[:should_statistic]}========"
+
     if Rails.cache.read(ip) == nil && ip != nil
         Rails.cache.write ip,"1"
         if params[:should_statistic] == true
