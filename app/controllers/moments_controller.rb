@@ -7,11 +7,11 @@ class MomentsController < ApplicationController
     ip = request.env["HTTP_X_FORWARDED_FOR"]
     if Rails.cache.read(ip) == nil && ip != nil
         Rails.cache.write ip,"1"
-        if params[:should_statistic]
+        if params[:should_statistic] == true
           MomentStatistic.add_played_count(params[:id])
           UserStatisticTotal.add_shared_played_count(params[:share_uid])
           UserStatisticTotal.add_create_played_count(params[:create_uid])
-        else
+        elsif params[:should_statistic] == nil 
           m = MomentStatistic.where(moment_id: params[:id]).first()
           if m != nil
             MomentStatistic.add_played_count(params[:id])
@@ -109,11 +109,11 @@ class MomentsController < ApplicationController
 
     if Rails.cache.read(ip) == nil && ip != nil
         Rails.cache.write ip,"1"
-        if params[:should_statistic]
+        if params[:should_statistic] == true
           MomentStatistic.add_played_count(params[:id])
           UserStatisticTotal.add_shared_played_count(params[:share_uid])
           UserStatisticTotal.add_create_played_count(params[:create_uid])
-        else
+        elsif params[:should_statistic] == nil 
           m = MomentStatistic.where(moment_id: params[:id]).first()
           if m != nil
             MomentStatistic.add_played_count(params[:id])
