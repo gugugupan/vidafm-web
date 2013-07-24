@@ -10,7 +10,13 @@ class MomentsController < ApplicationController
         if params[:should_statistic]
           MomentStatistic.add_played_count(params[:id])
           UserStatisticTotal.add_shared_played_count(params[:share_uid])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
+          UserStatisticTotal.add_create_played_count(params[:create_uid])
+        else
+          m = MomentStatistic.where(moment_id: params[:id]).first()
+          if m != nil
+            MomentStatistic.add_played_count(params[:id])
+            UserStatisticTotal.add_create_played_count(m.user_id)
+          end
         end
     end
 
@@ -94,12 +100,25 @@ class MomentsController < ApplicationController
   def rich
     #================added by chunlong.yu=========================
     ip = request.env["HTTP_X_FORWARDED_FOR"]
+    
+    Rails.logger.info "==========rich #{ip}================"
+    Rails.logger.info "==========id: #{params[:id]}=========="
+    Rails.logger.info "==========share_uid: #{params[:share_uid]}============"
+    Rails.logger.info "==========create_uid: #{params[:create_uid]}============"
+    Rails.logger.info "==========should_statistic: #{params[:should_statistic]}========"
+
     if Rails.cache.read(ip) == nil && ip != nil
         Rails.cache.write ip,"1"
         if params[:should_statistic]
           MomentStatistic.add_played_count(params[:id])
           UserStatisticTotal.add_shared_played_count(params[:share_uid])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
+          UserStatisticTotal.add_create_played_count(params[:create_uid])
+        else
+          m = MomentStatistic.where(moment_id: params[:id]).first()
+          if m != nil
+            MomentStatistic.add_played_count(params[:id])
+            UserStatisticTotal.add_create_played_count(m.user_id)
+          end
         end
     end
 
