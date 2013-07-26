@@ -135,7 +135,17 @@ class MomentsController < ApplicationController
     #data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 20 )
     data = api_call( "Moment" , :fetch , params[ :id ] , { :page => 0 , :page_size => 20 } )
     render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
-    redirect_to( user_url(data['data']['user_id']) , :notice => 401 ) and return if data[ 'result' ] == 401 
+    
+    
+    if data['result'] == 401
+        @moment_id = params[ :id ]
+        @user_id = data["data"]["user_id"]
+        user = api_call( "User" , :fetch , @user_id.to_s , nil )["data"]
+        @cover_file = user["cover_file"]
+        @avatar_file = user["avatar_file"]
+        render :layout => "layouts/rich_401_layout", :template => "moments/rich_401" and return
+    end
+    
     @moment = data[ "data" ]
 
     # 对于 slideshow 的情况

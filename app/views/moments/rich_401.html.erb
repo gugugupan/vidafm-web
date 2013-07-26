@@ -1,0 +1,54 @@
+<%= content_for :title do %>
+手机照片故事社区
+<% end -%>
+
+<%= content_for :prerequisite_libraries do %>
+<!--<meta name="apple-itunes-app" content="app-id=454984086, affiliate-data=myAffiliateData, app-argument=myURL">-->
+<% end -%>
+
+<%= content_for :page_specific_asset do %>
+<script type="text/javascript">
+    jQuery(function() {
+        now_color = parseInt(Math.random() * 6);
+        change_color();
+        blur_start("slideshow_background_img");
+    }); 
+</script>
+<% end -%>
+
+<% is_mobile = request.user_agent =~ /(android|ios|ipod|iphone|ipad)/i -%>
+
+<div id="slideshow_background">
+    <img id="slideshow_background_img" imgsrc="<%= @cover_file %>">
+</div>
+
+<div class="black_cover"></div>
+<div class="lock_container">
+    <%= image_tag( "images/icon_lock_big.png" ) %>
+    <p style="color: white; font-size: 18px; margin: 17px 0px;">
+        此用户已设置隐私，微电影仅好友可见
+    </p>
+    <%= link_to "点击查看详情" , "/users/#{@user_id}", :target => "_blank", :class => "detail_link" %>
+</div>
+
+<%#---Slideshow footer---%>
+<div id="slideshow_footer">
+    <div class="slideshow_info">
+        <%= image_tag "#{@avatar_file}" , :class => "avatar" -%>
+        <div class="slideshow_info_inner">
+            <div class="story_name"></div>
+            <div class="user_name"></div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <% if request.user_agent =~ /(android|ipod|iphone|ipad)/i -%>
+    <%= link_to image_tag( "slideshow/slideshow_play_in_vida.png" ) , "vida://slideshow?id=#{ @moment_id }" , :class => "footer_btn" , :id => "left_part", :target => "_blank" %>
+    <%= link_to image_tag( "slideshow/slideshow_download_vida.png" ) , "/" , :class => "footer_btn" , :id => "right_part", :target => "_blank" %>
+    <% else -%>
+    <%= link_to image_tag( "slideshow/slideshow_download_ios.png" ) , "http://itunes.apple.com/cn/app/id454984086?ls=1" , :class => "footer_btn" , :id => "left_part", :target => "_blank" %>
+    <%= link_to image_tag( "slideshow/slideshow_download_android.png" ) , "/d/android" , :class => "footer_btn" , :id => "right_part", :target => "_blank" %>
+    <% end -%>
+</div>
+
+<%= link_to image_tag( "slideshow/slideshow_logo.png" ) , "/" , :id => "slideshow_logo", :target => "_blank" -%>
