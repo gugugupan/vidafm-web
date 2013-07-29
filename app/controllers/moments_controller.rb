@@ -17,7 +17,7 @@ class MomentsController < ApplicationController
     ip_key = ip + "_" + params[:id]    
     if Rails.cache.read(ip_key) == nil 
         Rails.cache.write ip_key,"1"
-        if params[:should_statistic] == true
+        if params[:should_statistic] == "true"
           MomentStatistic.add_played_count(params[:id])
           UserStatisticTotal.add_shared_played_count(params[:share_uid])
           UserStatisticTotal.add_create_played_count(params[:create_uid])
@@ -27,6 +27,8 @@ class MomentsController < ApplicationController
             MomentStatistic.add_played_count(params[:id])
             UserStatisticTotal.add_create_played_count(m.user_id)
           end
+        else
+          Rails.logger.info "=================xxxx============"
         end
     end
     end
@@ -123,7 +125,7 @@ class MomentsController < ApplicationController
     ip_key = ip + "_" + params[:id]
     if Rails.cache.read(ip_key) == nil 
         Rails.cache.write ip_key,"1"
-        if params[:should_statistic] == true
+        if params[:should_statistic] == "true"
           MomentStatistic.add_played_count(params[:id])
           UserStatisticTotal.add_shared_played_count(params[:share_uid])
           UserStatisticTotal.add_create_played_count(params[:create_uid])
@@ -133,6 +135,8 @@ class MomentsController < ApplicationController
             MomentStatistic.add_played_count(params[:id])
             UserStatisticTotal.add_create_played_count(m.user_id)
           end
+        else
+          Rails.logger.info "=============xxxx============"
         end
     end
     end
