@@ -18,13 +18,13 @@ class MomentsController < ApplicationController
     if Rails.cache.read(ip_key) == nil 
         Rails.cache.write ip_key,"1"
         if params[:should_statistic] == "true"
-          MomentStatistic.add_played_count(params[:id])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
-          UserStatisticTotal.add_create_played_count(params[:create_uid])
+          MomentStatistic.add_played_count(params[:id].to_i)
+          UserStatisticTotal.add_shared_played_count(params[:share_uid].to_i)
+          UserStatisticTotal.add_create_played_count(params[:create_uid].to_i)
         elsif params[:should_statistic] == nil 
-          m = MomentStatistic.where(moment_id: params[:id]).first()
+          m = MomentStatistic.where(moment_id: params[:id].to_i).first()
           if m != nil
-            MomentStatistic.add_played_count(params[:id])
+            MomentStatistic.add_played_count(params[:id].to_i)
             UserStatisticTotal.add_create_played_count(m.user_id)
           end
         else
@@ -126,13 +126,13 @@ class MomentsController < ApplicationController
     if Rails.cache.read(ip_key) == nil 
         Rails.cache.write ip_key,"1"
         if params[:should_statistic] == "true"
-          MomentStatistic.add_played_count(params[:id])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
-          UserStatisticTotal.add_create_played_count(params[:create_uid])
+          MomentStatistic.add_played_count(params[:id].to_i)
+          UserStatisticTotal.add_shared_played_count(params[:share_uid].to_i)
+          UserStatisticTotal.add_create_played_count(params[:create_uid].to_i)
         elsif params[:should_statistic] == nil 
-          m = MomentStatistic.where(moment_id: params[:id]).first()
+          m = MomentStatistic.where(moment_id: params[:id].to_i).first()
           if m != nil
-            MomentStatistic.add_played_count(params[:id])
+            MomentStatistic.add_played_count(params[:id].to_i)
             UserStatisticTotal.add_create_played_count(m.user_id)
           end
         else
