@@ -12,19 +12,25 @@ class MomentsController < ApplicationController
     Rails.logger.info "==========create_uid: #{params[:create_uid]}============"
     Rails.logger.info "==========should_statistic: #{params[:should_statistic]}========"
 
-    if Rails.cache.read(ip) == nil && ip != nil
-        Rails.cache.write ip,"1"
-        if params[:should_statistic] == true
-          MomentStatistic.add_played_count(params[:id])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
-          UserStatisticTotal.add_create_played_count(params[:create_uid])
+   
+    if ip != nil
+    ip_key = ip + "_" + params[:id]    
+    if Rails.cache.read(ip_key) == nil 
+        Rails.cache.write ip_key,"1"
+        if params[:should_statistic] == "true"
+          MomentStatistic.add_played_count(params[:id].to_i)
+          UserStatisticTotal.add_shared_played_count(params[:share_uid].to_i)
+          UserStatisticTotal.add_create_played_count(params[:create_uid].to_i)
         elsif params[:should_statistic] == nil 
-          m = MomentStatistic.where(moment_id: params[:id]).first()
+          m = MomentStatistic.where(moment_id: params[:id].to_i).first()
           if m != nil
-            MomentStatistic.add_played_count(params[:id])
+            MomentStatistic.add_played_count(params[:id].to_i)
             UserStatisticTotal.add_create_played_count(m.user_id)
           end
+        else
+          Rails.logger.info "=================xxxx============"
         end
+    end
     end
 
     #data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 20 )
@@ -107,26 +113,32 @@ class MomentsController < ApplicationController
   def rich
     #================added by chunlong.yu=========================
     ip = request.env["HTTP_X_FORWARDED_FOR"]
-    
+    Rails.logger.info "======#{ip.class}===========" 
+
     Rails.logger.info "==========rich #{ip}================"
     Rails.logger.info "==========id: #{params[:id]}=========="
     Rails.logger.info "==========share_uid: #{params[:share_uid]}============"
     Rails.logger.info "==========create_uid: #{params[:create_uid]}============"
     Rails.logger.info "==========should_statistic: #{params[:should_statistic]}========"
-
-    if Rails.cache.read(ip) == nil && ip != nil
-        Rails.cache.write ip,"1"
-        if params[:should_statistic] == true
-          MomentStatistic.add_played_count(params[:id])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
-          UserStatisticTotal.add_create_played_count(params[:create_uid])
+    
+    if ip != nil
+    ip_key = ip + "_" + params[:id]
+    if Rails.cache.read(ip_key) == nil 
+        Rails.cache.write ip_key,"1"
+        if params[:should_statistic] == "true"
+          MomentStatistic.add_played_count(params[:id].to_i)
+          UserStatisticTotal.add_shared_played_count(params[:share_uid].to_i)
+          UserStatisticTotal.add_create_played_count(params[:create_uid].to_i)
         elsif params[:should_statistic] == nil 
-          m = MomentStatistic.where(moment_id: params[:id]).first()
+          m = MomentStatistic.where(moment_id: params[:id].to_i).first()
           if m != nil
-            MomentStatistic.add_played_count(params[:id])
+            MomentStatistic.add_played_count(params[:id].to_i)
             UserStatisticTotal.add_create_played_count(m.user_id)
           end
+        else
+          Rails.logger.info "=============xxxx============"
         end
+    end
     end
 
     #id = params[:id]
