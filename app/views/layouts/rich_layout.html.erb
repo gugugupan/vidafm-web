@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><%= yield :title %></title>
         <meta name="Description" content="<%= raw yield :meta_description %>">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
         <%= yield :prerequisite_libraries %>
@@ -19,13 +19,10 @@
         <![endif]-->
         <%= javascript_include_tag "rich" %>
         <%= stylesheet_link_tag    "rich" %>
-
         <%= csrf_meta_tags %>
         <%= yield :page_specific_asset %>
     </head>
     <body class="bcolor">
-
         <%= yield %>
-
     </body>
 </html>

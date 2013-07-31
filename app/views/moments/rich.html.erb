@@ -22,7 +22,20 @@
                     play_background_music();
             }
         });
-    }); 
+    });
+    $(document.body).ready(function() {
+        setTimeout(function(){
+            start_slideshow();
+        }, 0)
+    });
+    
+    /*$(window).on('hashchange', function() {
+         if(location.hash.indexOf("showCall=1") != -1) {
+             ending_slideshow();
+         } else {
+             ending_slideshow();
+         }
+    });*/
 </script>
 <% end -%>
 
@@ -106,8 +119,6 @@
 
 <%= link_to image_tag( "slideshow/slideshow_logo.png" ) , "/" , :id => "slideshow_logo", :target => "_blank" -%>
 
-<div id="slideshow_ad"></div>
-
 <%#--- Slideshow auto jump ----%>
 <% if request.user_agent =~ /(ipod|iphone|ipad)/i -%>
 <script type="text/javascript">
@@ -116,12 +127,6 @@
 
 <% unless is_mobile -%>
 <script type="text/javascript">
-    $("#play_slideshow_btn_area").css("margin-left", "-60px");
-    $("#slideshow_ad").css({
-        "bottom" : "80px",
-        "width" : "600px",
-        "height" : "190px",
-        "margin-left" : "-300px"
-    }); 
+    $("#play_slideshow_btn_area").css("margin-left", "-45px");
 </script>
 <% end -%>
