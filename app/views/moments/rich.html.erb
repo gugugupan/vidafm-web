@@ -29,13 +29,10 @@
         }, 0)
     });
     
-    /*$(window).on('hashchange', function() {
-         if(location.hash.indexOf("showCall=1") != -1) {
-             ending_slideshow();
-         } else {
-             ending_slideshow();
-         }
-    });*/
+    <!--微博里播放，缩起应用，停止播放-->
+    $(window).on('hashchange', function() {
+         ending_slideshow();
+    });
 </script>
 <% end -%>
 
