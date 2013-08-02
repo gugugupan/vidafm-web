@@ -13,6 +13,7 @@ var will_pause = false;
 var is_end = false;
 
 jQuery(function() {
+    gaDownload();
     slideshow_length = $(".slideshow_window").length;
     loading_start();
 });
@@ -239,8 +240,7 @@ function start_slideshow() {
             sink_animate($selector.find("#start_date_img"), $selector.find("#start_date_text"), function() {
                 sink_animate(null, $selector.find("#moment_description"), function() {
                     $selector.hide(0);
-                    //go_slideshow(0);
-                    play_next();
+                    go_slideshow(0);
                 });
                 //} ) ;
             });
