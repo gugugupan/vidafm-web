@@ -6,7 +6,13 @@ class Moment < ActiveRecord::Base
   # 获取单个故事
   def self.fetch(id, current_user , options = {})
     options.reject! { |key, value| value.nil? } # 清理为空的键值对，因为如果同时出现activity_id和page，服务器不认page。
-    JSON.parse( VIDA.call("moment/show/#{id}?offset_padding=0", options , current_user ) [ :body ] )
+    result = VIDA.call("moment/show/#{id}?offset_padding=0", options , current_user ) [ :body ]
+    begin
+      result = JSON.parse( result )
+    rescue
+       result = {"result" => 1}
+    end
+    result
   end
  
   # 获取当前热门故事
