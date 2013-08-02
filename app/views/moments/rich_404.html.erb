@@ -1,0 +1,25 @@
+<%= content_for :title do %>
+手机照片故事社区
+<% end -%>
+
+<%= content_for :prerequisite_libraries do %>
+<!--<meta name="apple-itunes-app" content="app-id=454984086, affiliate-data=myAffiliateData, app-argument=myURL">-->
+<% end -%>
+
+<%= content_for :page_specific_asset do %>
+<script type="text/javascript">
+    jQuery(function() {
+        now_color = 1;
+        change_color();
+    }); 
+</script>
+<% end -%>
+
+<div class="lock_container">
+    <%= image_tag( "icon/icon_cancel.png" ) %>
+    <p style="color: white; font-size: 18px; margin: 17px 0px;">
+        该微电影可能已不存在
+    </p>
+</div>
+
+<%= link_to image_tag( "slideshow/slideshow_logo.png" ) , "/" , :id => "slideshow_logo", :target => "_blank" -%>

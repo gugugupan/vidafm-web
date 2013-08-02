@@ -141,12 +141,9 @@ class MomentsController < ApplicationController
     end
     end
 
-    #id = params[:id]
-    #@abc = id  
-    
-    #data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 20 )
     data = api_call( "Moment" , :fetch , params[ :id ] , { :page => 0 , :page_size => 20 } )
-    render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
+
+    render :layout => "layouts/rich_404", :template => "moments/rich_404" and return if data[ 'result' ] == 1
     
     
     if data['result'] == 401
@@ -155,7 +152,7 @@ class MomentsController < ApplicationController
         user = api_call( "User" , :fetch , @user_id.to_s , nil )["data"]
         @cover_file = user["cover_file"]
         @avatar_file = user["avatar_file"]
-        render :layout => "layouts/rich_401_layout", :template => "moments/rich_401" and return
+        render :layout => "layouts/rich_401", :template => "moments/rich_401" and return
     end
     
     @moment = data[ "data" ]
