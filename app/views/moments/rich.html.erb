@@ -25,13 +25,27 @@
     });
     $(document.body).ready(function() {
         setTimeout(function(){
-            start_slideshow();
+            if ( location.hash != "#showCall=1" && location.hash != "#hideCall=1" ) 
+                {
+                    start_slideshow();
+                    //alert( "start 1" + location.hash ) ;
+                }
         }, 0)
     });
     
     <!--微博里播放，缩起应用，停止播放-->
     $(window).on('hashchange', function() {
-         ending_slideshow();
+        //alert( location.hash ) ;
+        if ( location.hash == "#hideCall=1" ) 
+        {
+            location.reload();
+            //alert( "Ready to reload!!!" ) ;
+        }
+        if ( location.hash == "#showCall=1" ) 
+        {
+            start_slideshow();
+            //alert( "start 2" + location.hash ) ;
+        }
     });
 </script>
 <% end -%>
