@@ -194,7 +194,7 @@ function has_audio() {
 }
 
 function sink_animate($image_selector, $text_selector, callback) {
-    //console.log( $text_selector ) ;
+    //console.log( $image_selector, $text_selector ) ;
     if ($text_selector.length == 0)
         callback();
     else {
@@ -229,7 +229,6 @@ function start_slideshow() {
 
     $("body").css("background-image", "none");
     is_end = false;
-    bar_on();
     play_background_music();
 
     setTimeout(function() {
@@ -550,49 +549,14 @@ function ending_slideshow() {
     is_end = true;
 
     setTimeout(function() {
-        bar_off();
         $("#slideshow_index").fadeIn(animate_speed);
         $("#slideshow_goto_momentshow").fadeIn(animate_speed);
-        $("#slideshow_background").fadeIn(animate_speed);
+        //$("#slideshow_background").fadeIn(animate_speed);
+        $("#slideshow_background").show();
     }, 500);
 }
 
 /*=================    Bar Function    ====================*/
-
-function bar_play() {
-    $(".slideshow_bar_pause").css("display", "block");
-    $(".slideshow_bar_play").css("display", "none");
-}
-
-function bar_pause() {
-    $(".slideshow_bar_pause").css("display", "none");
-    $(".slideshow_bar_play").css("display", "block");
-}
-
-function bar_on() {
-    bar_play();
-    $("#slideshow_bar").css("display", "block");
-    setTimeout(function() {
-        $("#slideshow_bar").css("display", "none");
-        $("body").unbind().mousemove(bar_fadeIn).click(bar_fadeIn);
-    }, 8000);
-}
-
-var bar_timeout = null;
-function bar_fadeIn() {
-    $("#slideshow_bar").css("display", "block");
-    clearTimeout(bar_timeout);
-    bar_timeout = setTimeout(function() {
-        $("#slideshow_bar").css("display", "none");
-    }, 5000);
-}
-
-function bar_off() {
-    bar_pause();
-    clearTimeout(bar_timeout);
-    $("#slideshow_bar").css("display", "block");
-}
-
 function play_pause() {
     if (is_end) {
         start_slideshow();
@@ -600,17 +564,14 @@ function play_pause() {
         continue_background_music();
         is_pause = false;
         will_pause = false;
-        bar_play();
         play_next();
     } else if (will_pause) {
         continue_background_music();
         will_pause = false;
-        bar_play();
     } else {
         //pause_background_music() ;
         pause_background_music();
         will_pause = true;
-        bar_pause();
         if ( audio && audio .playState == 1 )
         {
             audio .pause() ;

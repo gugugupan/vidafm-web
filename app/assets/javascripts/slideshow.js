@@ -167,13 +167,13 @@ function play_background_music() {
 }
 
 function pause_background_music() {
-	music .pause() ;
+	music && music .pause() ;
 }
 
 function continue_background_music() {
 	//console.log( pause_music ) ;
 	if ( pause_music ) return ;
-	music .play() ;
+	music && music .play() ;
 }
 
 function has_audio()
