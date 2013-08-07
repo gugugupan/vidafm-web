@@ -222,7 +222,10 @@ function sink_animate($image_selector, $text_selector, callback) {
 }
 
 function start_slideshow() {
-    $("#slideshow_index").fadeOut(animate_speed);
+    //$("#slideshow_index").fadeOut(animate_speed);
+    $("#slideshow_index").animate({
+        opacity: 0
+    }, animate_speed);
     $("#slideshow_ad").fadeOut(animate_speed);
     $("#slideshow_background").fadeOut(animate_speed);
     $("#slideshow_goto_momentshow").fadeOut(animate_speed);
@@ -258,7 +261,7 @@ function go_slideshow(num) {
         slideshow_num = num;
         var $selector = $(".slideshow_window").eq(slideshow_num);
         var img_height = $selector.attr("cheight"), img_width = $selector.attr("cwidth");
-        $selector.find(".info_window").fadeOut(0);
+        //$selector.find(".info_window").fadeOut(0);
 
         // fix slideshow window's width and height
         var hd = window_height - SLIDESHOW_FOOTER_HEIGHT ;
@@ -424,7 +427,8 @@ function open_animate() {
 var audio ;
 function show_photo() {
     var $selector = $(".slideshow_window").eq(slideshow_num);
-    $selector.find(".info_window").fadeIn(animate_speed);
+    //$selector.find(".info_window").fadeIn(animate_speed);
+    $selector.find(".info_window").show();
     if (!has_audio() && !has_video())
         setTimeout(play_next, 3000);
     else if (has_audio()) {
@@ -549,7 +553,10 @@ function ending_slideshow() {
     is_end = true;
 
     setTimeout(function() {
-        $("#slideshow_index").fadeIn(animate_speed);
+        //$("#slideshow_index").fadeIn(animate_speed);
+        $("#slideshow_index").animate({
+            opacity: 100
+        }, animate_speed);
         $("#slideshow_goto_momentshow").fadeIn(animate_speed);
         //$("#slideshow_background").fadeIn(animate_speed);
         $("#slideshow_background").show();

@@ -2,9 +2,8 @@
  *= require slideshow
 */
 #slideshow_footer {
-    bottom: 0;
     height: 104px;
-    position: absolute;
+    position: relative;
     background: white;
     
     .footer_btn {
@@ -13,7 +12,17 @@
         bottom: 0;
     }
 }
-
+#slideshow_start {
+    position: absolute;
+    top: 0;
+}
+#slideshow {
+    position: absolute;
+    top: 0;
+}
+.info_window {
+    filter: alpha(opacity=50);
+}
 .slideshow_info {
     height: 60px;
     width: 100%;
