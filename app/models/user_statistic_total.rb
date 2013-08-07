@@ -13,7 +13,7 @@ class UserStatisticTotal < ActiveRecord::Base
          u = UserStatisticTotal.create({:user_id => creating_user_id, :create_played_count => 1})
       end
    
-      u.create_score = u.create_count * 10 + u.create_played_count * 5
+      u.create_score = u.create_count * 1 + u.create_played_count * 20 
       u.save
    end
 
@@ -39,7 +39,7 @@ class UserStatisticTotal < ActiveRecord::Base
          u = UserStatisticTotal.create({:user_id => creating_user_id, :create_count => 1})
       end
 
-      u.create_score = u.create_count * 10 + u.create_played_count * 5
+      u.create_score = u.create_count * 1 + u.create_played_count * 20 
      
       begin
         create_moment_ids = JSON.parse u.create_moment_ids
