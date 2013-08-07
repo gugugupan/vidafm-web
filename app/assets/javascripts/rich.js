@@ -223,8 +223,8 @@ function sink_animate($image_selector, $text_selector, callback) {
 
 function start_slideshow() {
     //$("#slideshow_index").fadeOut(animate_speed);
-    $("#slideshow_index").animate({
-        opacity: 0
+    $("#slideshow_index").css({
+        visibility: 'hidden'
     }, animate_speed);
     $("#slideshow_ad").fadeOut(animate_speed);
     $("#slideshow_background").fadeOut(animate_speed);
@@ -554,8 +554,8 @@ function ending_slideshow() {
 
     setTimeout(function() {
         //$("#slideshow_index").fadeIn(animate_speed);
-        $("#slideshow_index").animate({
-            opacity: 100
+        $("#slideshow_index").css({
+            visibility: 'visible'
         }, animate_speed);
         $("#slideshow_goto_momentshow").fadeIn(animate_speed);
         //$("#slideshow_background").fadeIn(animate_speed);
