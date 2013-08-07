@@ -25,7 +25,7 @@
     });
     $(document.body).ready(function() {
         setTimeout(function(){
-            if ( location.hash != "#showCall=1" && location.hash != "#hideCall=1" ) 
+            if ( location.hash == "#showCall=1" || location.hash == "") 
                 {
                     start_slideshow();
                     //alert( "start 1" + location.hash ) ;
