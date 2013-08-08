@@ -1,7 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require plugin/pixastic.custom
-//= require soundmanager2-nodebug-jsmin
+//= require soundmanager2-nodebug
+//require soundmanager2-nodebug-jsmin
 //= require video
 
 var window_height, window_width;
@@ -546,9 +547,12 @@ function play_next() {
         close_animate(ending_slideshow);
 }
 
-function ending_slideshow() {
+/**
+ * @_music_crashed: when music doesn't work
+ */
+function ending_slideshow(_music_crashed) {
     $(".slideshow_window").eq(slideshow_num).fadeOut(0);
-    pause_background_music();
+    !_music_crashed && pause_background_music();
     close_zoom();
     is_end = true;
 
