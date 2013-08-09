@@ -13,7 +13,6 @@ var will_pause = false ;
 var is_end = false ;
 
 jQuery( function() {
-	gaDownload() ;
 	slideshow_length = $( ".slideshow_window" ) .length ;
 	loading_start() ;
 } ) ;
