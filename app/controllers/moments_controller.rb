@@ -5,13 +5,32 @@ class MomentsController < ApplicationController
 
     #================added by chunlong.yu=========================
     ip = request.env["HTTP_X_FORWARDED_FOR"]
-    if Rails.cache.read(ip) == nil
-        Rails.cache.write ip,"1"
-        if params[:should_statistic]
-          MomentStatistic.add_played_count(params[:id])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
+
+    Rails.logger.info "==========moment/show #{ip}================"
+    Rails.logger.info "==========id: #{params[:id]}=========="
+    Rails.logger.info "==========share_uid: #{params[:share_uid]}============"
+    Rails.logger.info "==========create_uid: #{params[:create_uid]}============"
+    Rails.logger.info "==========should_statistic: #{params[:should_statistic]}========"
+
+   
+    if ip != nil
+    ip_key = ip + "_" + params[:id]    
+    if Rails.cache.read(ip_key) == nil 
+        Rails.cache.write ip_key,"1"
+        if params[:should_statistic] == "true"
+          MomentStatistic.add_played_count(params[:id].to_i)
+          UserStatisticTotal.add_shared_played_count(params[:share_uid].to_i)
+          UserStatisticTotal.add_create_played_count(params[:create_uid].to_i)
+        elsif params[:should_statistic] == nil 
+          m = MomentStatistic.where(moment_id: params[:id].to_i).first()
+          if m != nil
+            MomentStatistic.add_played_count(params[:id].to_i)
+            UserStatisticTotal.add_create_played_count(m.user_id)
+          end
+        else
+          Rails.logger.info "=================xxxx============"
         end
+    end
     end
 
     #data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 20 )
@@ -94,13 +113,32 @@ class MomentsController < ApplicationController
   def rich
     #================added by chunlong.yu=========================
     ip = request.env["HTTP_X_FORWARDED_FOR"]
-    if Rails.cache.read(ip) == nil
-        Rails.cache.write ip,"1"
-        if params[:should_statistic]
-          MomentStatistic.add_played_count(params[:id])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
-          UserStatisticTotal.add_shared_played_count(params[:share_uid])
+    Rails.logger.info "======#{ip.class}===========" 
+
+    Rails.logger.info "==========rich #{ip}================"
+    Rails.logger.info "==========id: #{params[:id]}=========="
+    Rails.logger.info "==========share_uid: #{params[:share_uid]}============"
+    Rails.logger.info "==========create_uid: #{params[:create_uid]}============"
+    Rails.logger.info "==========should_statistic: #{params[:should_statistic]}========"
+    
+    if ip != nil
+    ip_key = ip + "_" + params[:id]
+    if Rails.cache.read(ip_key) == nil 
+        Rails.cache.write ip_key,"1"
+        if params[:should_statistic] == "true"
+          MomentStatistic.add_played_count(params[:id].to_i)
+          UserStatisticTotal.add_shared_played_count(params[:share_uid].to_i)
+          UserStatisticTotal.add_create_played_count(params[:create_uid].to_i)
+        elsif params[:should_statistic] == nil 
+          m = MomentStatistic.where(moment_id: params[:id].to_i).first()
+          if m != nil
+            MomentStatistic.add_played_count(params[:id].to_i)
+            UserStatisticTotal.add_create_played_count(m.user_id)
+          end
+        else
+          Rails.logger.info "=============xxxx============"
         end
+    end
     end
 
     #id = params[:id]
@@ -109,7 +147,17 @@ class MomentsController < ApplicationController
     #data = Moment.fetch(params[ :id ] , current_user , :page => 0 , :page_size => 20 )
     data = api_call( "Moment" , :fetch , params[ :id ] , { :page => 0 , :page_size => 20 } )
     render( "misc/error" , :layout => false ) and return if data[ 'result' ] == 1
-    redirect_to( user_url(data['data']['user_id']) , :notice => 401 ) and return if data[ 'result' ] == 401 
+    
+    
+    if data['result'] == 401
+        @moment_id = params[ :id ]
+        @user_id = data["data"]["user_id"]
+        user = api_call( "User" , :fetch , @user_id.to_s , nil )["data"]
+        @cover_file = user["cover_file"]
+        @avatar_file = user["avatar_file"]
+        render :layout => "layouts/rich_401_layout", :template => "moments/rich_401" and return
+    end
+    
     @moment = data[ "data" ]
 
     # 对于 slideshow 的情况

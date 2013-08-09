@@ -22,7 +22,31 @@
                     play_background_music();
             }
         });
-    }); 
+    });
+    $(document.body).ready(function() {
+        setTimeout(function(){
+            if ( location.hash != "#showCall=1" && location.hash != "#hideCall=1" ) 
+                {
+                    start_slideshow();
+                    //alert( "start 1" + location.hash ) ;
+                }
+        }, 0)
+    });
+    
+    <!--微博里播放，缩起应用，停止播放-->
+    $(window).on('hashchange', function() {
+        //alert( location.hash ) ;
+        if ( location.hash == "#hideCall=1" ) 
+        {
+            location.reload();
+            //alert( "Ready to reload!!!" ) ;
+        }
+        if ( location.hash == "#showCall=1" ) 
+        {
+            start_slideshow();
+            //alert( "start 2" + location.hash ) ;
+        }
+    });
 </script>
 <% end -%>
 
@@ -106,8 +130,6 @@
 
 <%= link_to image_tag( "slideshow/slideshow_logo.png" ) , "/" , :id => "slideshow_logo", :target => "_blank" -%>
 
-<div id="slideshow_ad"></div>
-
 <%#--- Slideshow auto jump ----%>
 <% if request.user_agent =~ /(ipod|iphone|ipad)/i -%>
 <script type="text/javascript">
@@ -116,12 +138,6 @@
 
 <% unless is_mobile -%>
 <script type="text/javascript">
-    $("#play_slideshow_btn_area").css("margin-left", "-60px");
-    $("#slideshow_ad").css({
-        "bottom" : "80px",
-        "width" : "600px",
-        "height" : "190px",
-        "margin-left" : "-300px"
-    }); 
+    $("#play_slideshow_btn_area").css("margin-left", "-45px");
 </script>
 <% end -%>

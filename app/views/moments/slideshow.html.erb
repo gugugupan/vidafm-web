@@ -123,10 +123,10 @@
 
 	<% if request.user_agent =~ /(android|ipod|iphone|ipad)/i -%>
 		<%= link_to image_tag( "slideshow/slideshow_play_in_vida.png" ) , "vida://slideshow?id=#{ @moment[ "id" ] }" , :class => "footer_btn" , :id => "left_part" %>
-		<%= link_to image_tag( "slideshow/slideshow_download_vida.png" ) , "/" , :class => "footer_btn" , :id => "right_part" %>
+		<%= link_to image_tag( "slideshow/slideshow_download_vida.png" ) , "/dd" , :class => "footer_btn" , :id => "right_part" %>
 	<% else -%>
 		<%= link_to image_tag( "slideshow/slideshow_download_ios.png" ) , "http://itunes.apple.com/cn/app/id454984086?ls=1" , :class => "footer_btn" , :id => "left_part" %>
-		<%= link_to image_tag( "slideshow/slideshow_download_android.png" ) , "/android_download" , :class => "footer_btn" , :id => "right_part" %>
+		<%= link_to image_tag( "slideshow/slideshow_download_android.png" ) , "/d/android" , :class => "footer_btn" , :id => "right_part" %>
 	<% end -%>
 </div>
 

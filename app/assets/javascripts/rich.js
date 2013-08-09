@@ -13,10 +13,27 @@ var will_pause = false;
 var is_end = false;
 
 jQuery(function() {
-    gaDownload();
     slideshow_length = $(".slideshow_window").length;
     loading_start();
 });
+
+function stopALL()
+{
+    $("#slideshow_audio_hint").css("display", "none");
+    if ( music && music .playState == 1 ) 
+    {
+        music .stop() ;
+        soundManager.setVolume("bmusic" + music_num, 50);
+    }
+    if ( audio && audio .playState == 1 ) audio .stop() ;
+
+    var slideshow_num = -1;
+    var is_pause = false;
+    var will_pause = false;
+    var is_end = false;
+    $(".slideshow_window").fadeOut(0);
+    close_zoom();
+}
 
 // Auto Resize the window size
 var SLIDESHOW_FOOTER_HEIGHT = 104;
@@ -222,7 +239,8 @@ function start_slideshow() {
             sink_animate($selector.find("#start_date_img"), $selector.find("#start_date_text"), function() {
                 sink_animate(null, $selector.find("#moment_description"), function() {
                     $selector.hide(0);
-                    go_slideshow(0);
+                    //go_slideshow(0);
+                    play_next();
                 });
                 //} ) ;
             });
@@ -404,6 +422,7 @@ function open_animate() {
     }
 }
 
+var audio ;
 function show_photo() {
     var $selector = $(".slideshow_window").eq(slideshow_num);
     $selector.find(".info_window").fadeIn(animate_speed);
@@ -416,7 +435,7 @@ function show_photo() {
             soundManager.setVolume("bmusic" + music_num, 10);
             var $audio_selector = $(".slideshow_window").eq(slideshow_num).find(".slideshow_audio").eq(0);
             var audio_id = $audio_selector.attr("audioid"), audio_src = $audio_selector.attr("audiosrc");
-            var audio = soundManager.getSoundById("audio" + audio_id);
+            audio = soundManager.getSoundById("audio" + audio_id);
             if (!audio)
                 audio = soundManager.createSound({
                     id : "audio" + audio_id,
@@ -592,6 +611,13 @@ function play_pause() {
         pause_background_music();
         will_pause = true;
         bar_pause();
+        if ( audio && audio .playState == 1 )
+        {
+            audio .pause() ;
+            soundManager.setVolume("bmusic" + music_num, 50);
+            play_next() ;
+            $("#slideshow_audio_hint").css("display", "none");
+        }
     }
 }
 
