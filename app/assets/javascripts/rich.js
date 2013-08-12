@@ -547,7 +547,7 @@ function play_next() {
 }
 
 /**
- * @_music_crashed: when music doesn't work
+ * @_music_crashed: when set iframe style display:none; flash crashed in firefox
  */
 function ending_slideshow(_music_crashed) {
     $(".slideshow_window").eq(slideshow_num).fadeOut(0);
