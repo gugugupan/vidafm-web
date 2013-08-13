@@ -11,6 +11,7 @@ var slideshow_length;
 var is_pause = false;
 var will_pause = false;
 var is_end = false;
+var audio = null;
 
 jQuery(function() {
     gaDownload();
@@ -28,10 +29,10 @@ function stopALL()
     }
     if ( audio && audio .playState == 1 ) audio .stop() ;
 
-    var slideshow_num = -1;
-    var is_pause = false;
-    var will_pause = false;
-    var is_end = false;
+    slideshow_num = -1;
+    is_pause = false;
+    will_pause = false;
+    is_end = false;
     $(".slideshow_window").fadeOut(0);
     close_zoom();
 }
@@ -424,8 +425,10 @@ function open_animate() {
     }
 }
 
-var audio ;
 function show_photo() {
+    if (is_end) {
+        return;
+    }
     var $selector = $(".slideshow_window").eq(slideshow_num);
     //$selector.find(".info_window").fadeIn(animate_speed);
     $selector.find(".info_window").show();
@@ -546,16 +549,16 @@ function play_next() {
         close_animate(ending_slideshow);
 }
 
-/**
- * @_music_crashed: when set iframe style display:none; flash crashed in firefox
- */
-function ending_slideshow(_music_crashed) {
+function ending_slideshow() {
     $(".slideshow_window").eq(slideshow_num).fadeOut(0);
 
-    if (!_music_crashed) {
+    setTimeout(function(){
         pause_background_music();
+    });
+
+    setTimeout(function(){
         audio && audio.pause();
-    }
+    });
 
     close_zoom();
     is_end = true;
