@@ -213,7 +213,7 @@ function start_slideshow()
 {
 	$( "#slideshow_index" ) .fadeOut( animate_speed ) ;
 	$( "#slideshow_footer" ) .fadeOut( animate_speed ) ;
-	$( "#slideshow_ad" ) .fadeOut( animate_speed ) ;
+	//$( "#slideshow_ad" ) .fadeOut( animate_speed ) ;
 	$( "#slideshow_end" ) .fadeOut( animate_speed ) ;
 	$( "#slideshow_background" ) .fadeOut( animate_speed ) ;
 	$( "#slideshow_goto_momentshow" ) .fadeOut( animate_speed ) ;
@@ -620,6 +620,12 @@ function showCenterBox( str )
 		$select .fadeIn( 400 , function() { setTimeout( function() { $select .remove() ; } , 1000 ) } ) ;
 	}
 }
+
+$(function(){
+    $("#slideshow_ad .close").click(function(){
+        $("#slideshow_ad").fadeOut();
+    });
+});
 
 // Download GA
 function gaDownload()
