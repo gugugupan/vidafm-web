@@ -13,8 +13,7 @@
 @mixin all_background_rgba( $r , $g , $b , $a ) {
 	background-color: rgb( $r , $g , $b ) ;
 	background-color: rgba( $r , $g , $b , $a ) ;
-	*background-color: rgb( $r , $g , $b ) ;
-	filter: alpha(opacity = $a * 100); /* required for opacity to work in IE */
+	background: url("/x-opacity.png") repeat scroll 0 0 transparent\9;
 }
 
 body {
@@ -354,6 +353,10 @@ img {
 	z-index: 105;
 	background-color: black;
 	border: 5px solid white;
+	
+	a {
+	    float: none;
+	}
 	
 	.close {
 	    position: absolute;
