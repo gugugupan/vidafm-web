@@ -11,6 +11,7 @@ var slideshow_length ;
 var is_pause = false ;
 var will_pause = false ;
 var is_end = false ;
+var img_loading_state ;
 
 jQuery( function() {
 	gaDownload() ;
@@ -224,6 +225,11 @@ function start_slideshow()
 	bar_on() ;
 	play_background_music() ;
 
+	// Smart loading initialize
+	img_loading_state = new Array( slideshow_length ) ;
+	for ( var i = 0 ; i < slideshow_length ; i ++ )
+		img_loading_state[ i ] = 0 ;
+
 	setTimeout( function() {
 		var $selector = $( "#slideshow_start" ) ;
 		$selector .show( 0 ) ;
@@ -238,6 +244,23 @@ function start_slideshow()
 		} ) ;
 		} ) ;
 	} , animate_speed ) ;
+}
+
+function smart_loading( slideshow_num )
+{
+	// smart_loading the element[ i ]
+	if ( slideshow_num >= slideshow_length ) return ;
+	if ( img_loading_state[ slideshow_num ] == 0 )
+	{
+		img_loading_state[ slideshow_num ] = 1 ;
+		var $img_selector = $( ".slideshow_window:eq(" + slideshow_num + ") .slideshow_img" ) ;
+
+		$img_selector .load( function() {
+			img_loading_state[ slideshow_num ] = 2
+		} ) ;
+
+		$img_selector .attr( "src" , $img_selector .attr( "imgsrc" ) ) ;
+	}
 }
 
 var open_loading_timeout = null ;
@@ -274,8 +297,12 @@ function go_slideshow( num )
 
 		change_color() ;
 		//console.log( $selector .find( ".slideshow_img" ) .attr( "src" ) ) ;
-		if ( !$selector .find( ".slideshow_img" ) .attr( "src" ) )
-		{
+		for ( var i = num ; i < num + 3 ; i ++ ) { smart_loading( i ) ; }
+
+		if ( img_loading_state[ num ] == 2 ) { // loading end
+			open_zoom() ; // zoom in the picture
+			open_animate() ; // start animation
+		} else { // 
 			$selector .find( ".slideshow_img" ) .load( function() {
 				$selector .find( ".slideshow_img" ) .unbind() ;
 				$( "#slideshow_loading" ) .css( "display" , "none" ) ;
@@ -286,10 +313,6 @@ function go_slideshow( num )
 			open_loading_timeout = setTimeout( function() { 
 				$( "#slideshow_loading" ) .css( "display" , "block" ) ;
 			} , 500 ) ;
-			$selector .find( ".slideshow_img" ) .attr( "src" , $selector .find( ".slideshow_img:eq(0)" ) .attr( "imgsrc" ) ) ;
-		} else {
-			open_zoom() ; // zoom in the picture
-			open_animate() ; // start animation
 		}
 	} ) ;
 }
